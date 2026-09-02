@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+
+  --color-background: 247 248 250;
+  --color-foreground: 15 23 42;
+  --color-card: 255 255 255;
+  --color-card-foreground: 15 23 42;
+  --color-muted: 241 245 249;
+  --color-muted-foreground: 100 116 139;
+  --color-border: 226 232 240;
+  --color-primary: 37 99 235;
+  --color-primary-foreground: 255 255 255;
+  --color-accent: 239 246 255;
+  --color-accent-foreground: 29 78 216;
+  --color-destructive: 225 29 72;
+  --color-destructive-foreground: 255 255 255;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --color-background: 2 6 23;
+  --color-foreground: 226 232 240;
+  --color-card: 15 23 42;
+  --color-card-foreground: 226 232 240;
+  --color-muted: 30 41 59;
+  --color-muted-foreground: 148 163 184;
+  --color-border: 30 41 59;
+  --color-primary: 96 165 250;
+  --color-primary-foreground: 2 6 23;
+  --color-accent: 29 55 107;
+  --color-accent-foreground: 191 219 254;
+  --color-destructive: 244 63 94;
+  --color-destructive-foreground: 2 6 23;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+* {
+  box-sizing: border-box;
+}

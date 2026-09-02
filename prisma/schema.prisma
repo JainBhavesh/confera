@@ -1,0 +1,376 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum OtpPurpose {
+  LOGIN
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+enum MeetingStatus {
+  SCHEDULED
+  LIVE
+  ENDED
+  CANCELLED
+}
+
+enum MeetingNotesStatus {
+  PENDING
+  READY
+  FAILED
+  SKIPPED
+}
+
+enum LivestreamStatus {
+  SCHEDULED
+  LIVE
+  ENDED
+}
+
+enum LivestreamVisibility {
+  PUBLIC
+  PRIVATE
+}
+
+enum RecordingStatus {
+  NONE
+  RECORDING
+  PROCESSING
+  READY
+  FAILED
+}
+
+enum ActionItemStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum ActionItemSource {
+  AI
+  MANUAL
+}
+
+model Organization {
+  id                  String  @id @default(cuid())
+  name                String
+  slug                String  @unique
+  registrationEnabled Boolean @default(true)
+
+  // When true, this org's meeting invite links (/meet/[meetingId]) can be
+  // joined by anyone with the link, without an account — see
+  // services/meeting.service.ts's guest-join path. Off by default.
+  publicMeetingsEnabled Boolean @default(false)
+
+  // Org-wide defaults for the per-user permission toggles below. A user's
+  // own field is nullable and overrides this when set (see User model).
+  defaultCanCreateMeeting    Boolean @default(true)
+  defaultCanCreateLivestream Boolean @default(true)
+  defaultCanGenerateNotes    Boolean @default(true)
+  defaultCanViewTranscript   Boolean @default(true)
+  defaultCanViewActionItems  Boolean @default(true)
+  defaultCanViewRecording    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users       User[]
+  meetings    Meeting[]
+  livestreams Livestream[]
+  auditLogs   AuditLog[]
+  actionItems ActionItem[]
+}
+
+model User {
+  id             String  @id @default(cuid())
+  organizationId String
+  name           String
+  email          String  @unique
+  // Null for an account that has only ever signed in via Google/Facebook —
+  // see oauthProvider below. The login route rejects a password attempt on
+  // such an account with a clear "use Google/Facebook to sign in" message
+  // rather than a null-comparison failure.
+  passwordHash   String?
+  role           Role    @default(USER)
+  isActive       Boolean @default(true)
+  avatarUrl      String?
+
+  // Set once the owner has proven access to `email`, either by completing the
+  // registration OTP step, successfully logging in via email OTP (see
+  // lib/auth/otp.ts), or signing in via an OAuth provider (which already
+  // verifies the email itself). Pre-existing rows are backfilled to true by
+  // the add_email_otp migration — verification only gates *new* signups.
+  emailVerified   Boolean   @default(false)
+  emailVerifiedAt DateTime?
+
+  // Set when this account was created by, or has linked, a "Continue with
+  // Google/Facebook" sign-in (see services/oauth.service.ts). Both null for
+  // an email/password-only account. oauthId is the provider's own stable
+  // user id (Google `sub` / Facebook `id`), used to re-match on return visits
+  // independent of whether the user's email address ever changes upstream.
+  oauthProvider String?
+  oauthId       String?
+
+  // Per-user permission overrides. null = inherit the org's default*
+  // (Organization model); an explicit true/false overrides it for this user
+  // only. Never enforced against ADMIN users — see lib/permissions.ts.
+  canCreateMeeting    Boolean?
+  canCreateLivestream Boolean?
+  canGenerateNotes    Boolean?
+  canViewTranscript   Boolean?
+  canViewActionItems  Boolean?
+  canViewRecording    Boolean?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  organization        Organization                @relation(fields: [organizationId], references: [id])
+  sessions            Session[]
+  createdMeetings     Meeting[]                   @relation("MeetingCreatedBy")
+  participantSessions MeetingParticipantSession[]
+  messages            MeetingMessage[]
+  createdLivestreams  Livestream[]                @relation("LivestreamCreatedBy")
+  livestreamMessages  LivestreamMessage[]
+  livestreamViewerSessions LivestreamViewerSession[]
+  auditLogs           AuditLog[]
+  assignedActionItems ActionItem[]
+
+  @@unique([oauthProvider, oauthId])
+  @@index([organizationId])
+}
+
+// One-time passcodes emailed for either a passwordless login or the
+// post-registration email-ownership check. Only the most recent unconsumed
+// code per (email, purpose) is valid — issuing a new one invalidates prior
+// ones (see lib/auth/otp.ts). Codes are stored hashed, never in plaintext.
+model EmailOtp {
+  id         String     @id @default(cuid())
+  email      String
+  purpose    OtpPurpose
+  codeHash   String
+  expiresAt  DateTime
+  consumedAt DateTime?
+  attempts   Int        @default(0)
+  createdAt  DateTime   @default(now())
+
+  @@index([email, purpose])
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Meeting {
+  id              String          @id @default(cuid())
+  organizationId  String
+  createdByUserId String
+  title           String
+  status          MeetingStatus   @default(SCHEDULED)
+  livekitRoomName String          @unique
+  egressId        String?
+  recordingStatus RecordingStatus @default(NONE)
+  recordingKey    String?
+  startedAt       DateTime?
+  endedAt         DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  organization        Organization                @relation(fields: [organizationId], references: [id])
+  createdBy           User                        @relation("MeetingCreatedBy", fields: [createdByUserId], references: [id])
+  participantSessions MeetingParticipantSession[]
+  messages            MeetingMessage[]
+  notes               MeetingNotes?
+  actionItems         ActionItem[]
+
+  @@index([organizationId])
+  @@index([createdByUserId])
+  @@index([status])
+}
+
+model MeetingParticipantSession {
+  id              String    @id @default(cuid())
+  meetingId       String
+  // Null for a guest (unauthenticated, public-link) participant — see
+  // guestName below. Always set for a signed-in member.
+  userId          String?
+  // Display name captured at join time for a guest session. Null for
+  // members, whose name comes from the User relation instead.
+  guestName       String?
+  joinedAt        DateTime  @default(now())
+  leftAt          DateTime?
+  durationSeconds Int?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  user    User?   @relation(fields: [userId], references: [id])
+
+  @@index([meetingId])
+  @@index([userId])
+}
+
+model MeetingMessage {
+  id        String   @id @default(cuid())
+  meetingId String
+  userId    String
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@index([meetingId, createdAt])
+}
+
+model MeetingNotes {
+  id          String             @id @default(cuid())
+  meetingId   String             @unique
+  status      MeetingNotesStatus @default(PENDING)
+  transcript  String?
+  summary     String?
+  // Action items now live as first-class ActionItem rows (see below) —
+  // generateMeetingNotes creates them directly instead of writing this blob.
+  // Cached translations of `transcript`, keyed by language code — generated
+  // on demand via POST /api/meetings/:id/notes/translate and cached here so
+  // re-requesting the same language is a cache hit, not a new AI call.
+  translations Json?
+  error       String?
+  generatedAt DateTime?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+}
+
+model ActionItem {
+  id               String           @id @default(cuid())
+  organizationId   String
+  meetingId        String
+  assignedToUserId String?
+  title            String
+  description      String?
+  dueDate          DateTime?
+  status           ActionItemStatus @default(PENDING)
+  source           ActionItemSource @default(MANUAL)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  completedAt      DateTime?
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  meeting      Meeting      @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  assignedTo   User?        @relation(fields: [assignedToUserId], references: [id])
+
+  @@index([organizationId])
+  @@index([meetingId])
+  @@index([assignedToUserId])
+  @@index([status])
+}
+
+model Livestream {
+  id              String               @id @default(cuid())
+  organizationId  String
+  createdByUserId String
+  title           String
+  status          LivestreamStatus     @default(SCHEDULED)
+  // Per-livestream, unlike Organization.publicMeetingsEnabled which is an
+  // org-wide toggle — each stream opts into public/guest access individually.
+  visibility      LivestreamVisibility @default(PRIVATE)
+  // Host/admin can shut off chat entirely for moderation purposes (spec §21)
+  // without ending the stream.
+  chatEnabled     Boolean              @default(true)
+  livekitRoomName String               @unique
+  egressId        String?
+  recordingStatus RecordingStatus      @default(NONE)
+  recordingKey    String?
+  startedAt       DateTime?
+  endedAt         DateTime?
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+
+  organization   Organization              @relation(fields: [organizationId], references: [id])
+  createdBy      User                      @relation("LivestreamCreatedBy", fields: [createdByUserId], references: [id])
+  messages       LivestreamMessage[]
+  viewerSessions LivestreamViewerSession[]
+
+  @@index([organizationId])
+  @@index([createdByUserId])
+  @@index([status])
+}
+
+model LivestreamMessage {
+  id           String   @id @default(cuid())
+  livestreamId String
+  // Null for a guest (unauthenticated, public-link) viewer — see guestName
+  // below. Always set for a signed-in member.
+  userId       String?
+  // Display name resolved server-side from the sender's LivestreamViewerSession
+  // at send time for a guest message. Null for members.
+  guestName    String?
+  message      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  livestream Livestream @relation(fields: [livestreamId], references: [id], onDelete: Cascade)
+  user       User?      @relation(fields: [userId], references: [id])
+
+  @@index([livestreamId, createdAt])
+}
+
+// Mirrors MeetingParticipantSession. Tracks every viewer (member or guest) of
+// a livestream, both for guest-join bookkeeping and as the source of the
+// "live viewers now" / viewer-trend admin KPIs.
+model LivestreamViewerSession {
+  id           String    @id @default(cuid())
+  livestreamId String
+  userId       String?
+  guestName    String?
+  joinedAt     DateTime  @default(now())
+  leftAt       DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  livestream Livestream @relation(fields: [livestreamId], references: [id], onDelete: Cascade)
+  user       User?      @relation(fields: [userId], references: [id])
+
+  @@index([livestreamId])
+  @@index([userId])
+}
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  organizationId String
+  actorUserId    String
+  action         String
+  resourceType   String
+  resourceId     String
+  metadataJson   Json?
+  ipAddress      String?
+  userAgent      String?
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  actor        User         @relation(fields: [actorUserId], references: [id])
+
+  @@index([organizationId])
+  @@index([actorUserId])
+}
