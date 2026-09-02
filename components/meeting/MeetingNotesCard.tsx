@@ -1,23 +1,9 @@
 import type { ReactNode } from 'react';
 import { Card } from '@/components/ui/Card';
 
-interface ActionItem {
-  text: string;
-  owner: string | null;
-}
-
 interface MeetingNotesLike {
   status: 'PENDING' | 'READY' | 'FAILED' | 'SKIPPED';
-  transcript: string | null;
   summary: string | null;
-  actionItems: unknown;
-}
-
-function parseActionItems(value: unknown): ActionItem[] {
-  if (!Array.isArray(value)) return [];
-  return value.filter(
-    (item): item is ActionItem => typeof item === 'object' && item !== null && typeof (item as ActionItem).text === 'string'
-  );
 }
 
 function Header({ action }: { action?: ReactNode }) {
@@ -78,8 +64,6 @@ export function MeetingNotesCard({
     );
   }
 
-  const actionItems = parseActionItems(notes.actionItems);
-
   return (
     <Card className="space-y-5 p-6">
       <Header action={action} />
@@ -87,29 +71,7 @@ export function MeetingNotesCard({
         <p className="text-sm font-medium text-muted-foreground">Summary</p>
         <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-muted-foreground">{notes.summary}</p>
       </div>
-      <div>
-        <p className="text-sm font-medium text-muted-foreground">Action items</p>
-        {actionItems.length === 0 ? (
-          <p className="mt-2 text-sm text-muted-foreground">No action items identified.</p>
-        ) : (
-          <ul className="mt-2 space-y-2">
-            {actionItems.map((item, index) => (
-              <li key={index} className="rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground">
-                {item.text}
-                {item.owner ? <span className="ml-2 text-muted-foreground">— {item.owner}</span> : null}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      {notes.transcript ? (
-        <details className="group">
-          <summary className="cursor-pointer text-sm font-medium text-muted-foreground group-open:text-foreground">Full transcript</summary>
-          <p className="mt-2 max-h-64 overflow-y-auto whitespace-pre-wrap rounded-2xl border border-border bg-background p-4 text-sm leading-6 text-muted-foreground">
-            {notes.transcript}
-          </p>
-        </details>
-      ) : null}
+      <p className="text-xs text-muted-foreground">See the Transcript and Action Items tabs for the full detail.</p>
     </Card>
   );
 }

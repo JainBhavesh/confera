@@ -4,7 +4,14 @@ import { useEffect, useState } from 'react';
 
 type RecordingStatus = 'LOADING' | 'NONE' | 'RECORDING' | 'PROCESSING' | 'READY' | 'FAILED';
 
-export function RecordingPlayer({ livestreamId }: { livestreamId: string }) {
+/**
+ * Polls a recording-status endpoint (meeting or livestream — they share the
+ * same {status, url} shape) and renders whatever's appropriate for the
+ * current state. `mediaType` picks <audio> vs <video> since meeting
+ * recordings are audio-only OGG (Room Composite) while livestream recordings
+ * are MP4 video (Track Composite) — see services/egress.service.ts.
+ */
+export function RecordingPlayer({ endpoint, mediaType = 'video' }: { endpoint: string; mediaType?: 'audio' | 'video' }) {
   const [status, setStatus] = useState<RecordingStatus>('LOADING');
   const [url, setUrl] = useState<string | null>(null);
 
@@ -14,7 +21,7 @@ export function RecordingPlayer({ livestreamId }: { livestreamId: string }) {
 
     const check = async () => {
       try {
-        const response = await fetch(`/api/livestreams/${livestreamId}/recording`);
+        const response = await fetch(endpoint);
         const data = await response.json();
         if (cancelled) return;
 
@@ -34,7 +41,7 @@ export function RecordingPlayer({ livestreamId }: { livestreamId: string }) {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [livestreamId]);
+  }, [endpoint]);
 
   if (status === 'LOADING') {
     return <p className="text-sm text-muted-foreground">Checking for a recording…</p>;
@@ -56,7 +63,11 @@ export function RecordingPlayer({ livestreamId }: { livestreamId: string }) {
     <div className="space-y-3">
       <h2 className="text-xl font-semibold text-foreground">Recording</h2>
       <div className="overflow-hidden rounded-3xl border border-slate-800 bg-black">
-        <video controls className="w-full" src={url ?? undefined} />
+        {mediaType === 'audio' ? (
+          <audio controls className="w-full p-4" src={url ?? undefined} />
+        ) : (
+          <video controls className="w-full" src={url ?? undefined} />
+        )}
       </div>
     </div>
   );

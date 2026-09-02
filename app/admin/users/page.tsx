@@ -23,7 +23,8 @@ export default async function AdminUsersPage() {
         canCreateLivestream: organization.defaultCanCreateLivestream,
         canGenerateNotes: organization.defaultCanGenerateNotes,
         canViewTranscript: organization.defaultCanViewTranscript,
-        canViewActionItems: organization.defaultCanViewActionItems
+        canViewActionItems: organization.defaultCanViewActionItems,
+        canViewRecording: organization.defaultCanViewRecording
       }}
     />
   );

@@ -3,12 +3,9 @@ import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db/prisma';
 import { requireUserPage } from '@/lib/auth/guards';
 import { getMeetingNotes } from '@/services/meetingNotes.service';
-import { getResolvedPermissions, redactMeetingNotes } from '@/lib/permissions';
-import { Card } from '@/components/ui/Card';
-import { MeetingNotesCard } from '@/components/meeting/MeetingNotesCard';
-import { GenerateNotesButton } from '@/components/meeting/GenerateNotesButton';
-import { ParticipantsTable } from '@/components/meeting/ParticipantsTable';
-import { ChatLog } from '@/components/meeting/ChatLog';
+import { getResolvedPermissions } from '@/lib/permissions';
+import { isMeetingHost } from '@/services/meeting.service';
+import { MeetingDetailTabs } from '@/components/meeting/MeetingDetailTabs';
 
 export default async function MeetingDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const user = await requireUserPage();
@@ -17,6 +14,7 @@ export default async function MeetingDetailPage({ params }: { params: Promise<{ 
   const meeting = await prisma.meeting.findFirst({
     where: { id, organizationId: user.organizationId },
     include: {
+      createdBy: { select: { name: true } },
       participantSessions: { orderBy: { joinedAt: 'asc' }, include: { user: { select: { name: true } } } },
       messages: { orderBy: { createdAt: 'asc' }, include: { user: { select: { name: true } } } }
     }
@@ -25,12 +23,15 @@ export default async function MeetingDetailPage({ params }: { params: Promise<{ 
     notFound();
   }
 
-  const rawNotes = await getMeetingNotes(meeting.id);
-  const permissions = await getResolvedPermissions(user);
-  const notes = rawNotes ? redactMeetingNotes(rawNotes, permissions) : null;
-
-  const isHostOrAdmin = user.role === 'ADMIN' || meeting.createdByUserId === user.id;
-  const canGenerateNotes = isHostOrAdmin && permissions.canGenerateNotes;
+  const [rawNotes, actionItems, permissions] = await Promise.all([
+    getMeetingNotes(meeting.id),
+    prisma.actionItem.findMany({
+      where: { meetingId: meeting.id },
+      orderBy: { createdAt: 'desc' },
+      include: { assignedTo: { select: { id: true, name: true } } }
+    }),
+    getResolvedPermissions(user)
+  ]);
 
   return (
     <div className="space-y-6">
@@ -41,36 +42,25 @@ export default async function MeetingDetailPage({ params }: { params: Promise<{ 
         </Link>
       </div>
 
-      <Card className="grid gap-4 p-6 sm:grid-cols-2">
-        <div>
-          <p className="text-sm text-muted-foreground">Status</p>
-          <p className="mt-1 text-foreground">{meeting.status}</p>
-        </div>
-        <div>
-          <p className="text-sm text-muted-foreground">Ended</p>
-          <p className="mt-1 text-foreground">{meeting.endedAt ? new Date(meeting.endedAt).toLocaleString() : '—'}</p>
-        </div>
-      </Card>
-
-      <MeetingNotesCard
-        notes={notes}
+      <MeetingDetailTabs
+        meetingId={meeting.id}
+        currentUserId={user.id}
+        overview={{
+          hostName: meeting.createdBy.name,
+          status: meeting.status,
+          startedAt: meeting.startedAt ? meeting.startedAt.toISOString() : null,
+          endedAt: meeting.endedAt ? meeting.endedAt.toISOString() : null
+        }}
+        participantSessions={meeting.participantSessions}
+        messages={meeting.messages}
+        notes={rawNotes ? { status: rawNotes.status, summary: rawNotes.summary } : null}
+        transcript={permissions.canViewTranscript ? (rawNotes?.transcript ?? null) : null}
+        translations={permissions.canViewTranscript ? ((rawNotes?.translations as Record<string, string> | null) ?? null) : null}
+        actionItems={actionItems.map((item) => ({ ...item, dueDate: item.dueDate ? item.dueDate.toISOString() : null }))}
+        permissions={permissions}
+        canManageActionItems={isMeetingHost(meeting, user)}
         meetingEnded={meeting.status === 'ENDED'}
-        action={
-          canGenerateNotes && meeting.status === 'ENDED' && notes?.status !== 'PENDING' ? (
-            <GenerateNotesButton meetingId={meeting.id} hasNotes={notes?.status === 'READY'} />
-          ) : undefined
-        }
       />
-
-      <div className="space-y-3">
-        <h2 className="text-xl font-semibold text-foreground">Participants</h2>
-        <ParticipantsTable sessions={meeting.participantSessions} />
-      </div>
-
-      <div className="space-y-3">
-        <h2 className="text-xl font-semibold text-foreground">Chat</h2>
-        <ChatLog messages={meeting.messages} />
-      </div>
     </div>
   );
 }

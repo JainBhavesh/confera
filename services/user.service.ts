@@ -17,6 +17,7 @@ export interface PublicUser {
   canGenerateNotes: boolean | null;
   canViewTranscript: boolean | null;
   canViewActionItems: boolean | null;
+  canViewRecording: boolean | null;
 }
 
 /** Strips sensitive fields (passwordHash) before a user record leaves the server. */
@@ -36,6 +37,7 @@ export function toPublicUser(user: User): PublicUser {
     canCreateLivestream: user.canCreateLivestream,
     canGenerateNotes: user.canGenerateNotes,
     canViewTranscript: user.canViewTranscript,
-    canViewActionItems: user.canViewActionItems
+    canViewActionItems: user.canViewActionItems,
+    canViewRecording: user.canViewRecording
   };
 }

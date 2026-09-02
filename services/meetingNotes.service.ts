@@ -135,3 +135,43 @@ export async function generateMeetingNotes(meetingId: string): Promise<void> {
     });
   }
 }
+
+/**
+ * Translates a meeting's transcript into `targetLanguage`, caching the
+ * result on MeetingNotes.translations so a repeat request for the same
+ * language is a cache hit instead of a new AI call. Reuses the same OpenAI
+ * client as note generation — no separate translation provider/env var.
+ */
+export async function translateTranscript(meetingId: string, targetLanguage: string): Promise<string> {
+  const notes = await prisma.meetingNotes.findUniqueOrThrow({ where: { meetingId } });
+  if (!notes.transcript) {
+    throw new Error('This meeting has no transcript to translate.');
+  }
+
+  const cached = (notes.translations as Record<string, string> | null)?.[targetLanguage];
+  if (cached) {
+    return cached;
+  }
+
+  const openai = getOpenAIClient();
+  const completion = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [
+      {
+        role: 'system',
+        content: `Translate the given meeting transcript into ${targetLanguage}. Preserve speaker labels and line breaks. Only output the translated transcript, nothing else.`
+      },
+      { role: 'user', content: notes.transcript }
+    ]
+  });
+
+  const translated = completion.choices[0]?.message.content;
+  if (!translated) {
+    throw new Error('Translation did not return any text.');
+  }
+
+  const translations = { ...(notes.translations as Record<string, string> | null), [targetLanguage]: translated };
+  await prisma.meetingNotes.update({ where: { meetingId }, data: { translations } });
+
+  return translated;
+}

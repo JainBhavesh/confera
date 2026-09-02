@@ -4,7 +4,7 @@ import { getCurrentUser } from '@/lib/auth/session';
 import { getLivestreamForGuestAccess, getOrgScopedLivestream } from '@/services/livestream.service';
 import { LivestreamHostClient } from '@/components/livestream/LivestreamHostClient';
 import { LivestreamViewerClient } from '@/components/livestream/LivestreamViewerClient';
-import { RecordingPlayer } from '@/components/livestream/RecordingPlayer';
+import { RecordingPlayer } from '@/components/recording/RecordingPlayer';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 
@@ -36,7 +36,7 @@ function EndedCard({ title, livestreamId, backHref }: { title: string; livestrea
           </Link>
         </div>
       </Card>
-      <RecordingPlayer livestreamId={livestreamId} />
+      <RecordingPlayer endpoint={`/api/livestreams/${livestreamId}/recording`} mediaType="video" />
     </div>
   );
 }

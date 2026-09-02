@@ -16,7 +16,8 @@ export default async function AdminSettingsPage() {
         canCreateLivestream: organization.defaultCanCreateLivestream,
         canGenerateNotes: organization.defaultCanGenerateNotes,
         canViewTranscript: organization.defaultCanViewTranscript,
-        canViewActionItems: organization.defaultCanViewActionItems
+        canViewActionItems: organization.defaultCanViewActionItems,
+        canViewRecording: organization.defaultCanViewRecording
       }}
     />
   );

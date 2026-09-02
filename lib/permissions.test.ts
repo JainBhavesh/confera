@@ -13,7 +13,8 @@ const orgDefaults = {
   defaultCanCreateLivestream: true,
   defaultCanGenerateNotes: false,
   defaultCanViewTranscript: true,
-  defaultCanViewActionItems: true
+  defaultCanViewActionItems: true,
+  defaultCanViewRecording: true
 };
 
 function user(overrides: Record<string, unknown> = {}) {
@@ -24,6 +25,7 @@ function user(overrides: Record<string, unknown> = {}) {
     canGenerateNotes: null,
     canViewTranscript: null,
     canViewActionItems: null,
+    canViewRecording: null,
     ...overrides
   } as never;
 }
@@ -51,7 +53,8 @@ describe('resolvePermissions', () => {
       canCreateLivestream: true,
       canGenerateNotes: true,
       canViewTranscript: true,
-      canViewActionItems: true
+      canViewActionItems: true,
+      canViewRecording: true
     });
   });
 });
@@ -79,18 +82,18 @@ describe('getResolvedPermissions', () => {
 });
 
 describe('redactMeetingNotes', () => {
-  const notes = { transcript: 'full transcript', actionItems: [{ text: 'ship it', owner: null }], summary: 'a summary' };
+  const notes = { transcript: 'full transcript', translations: { es: 'transcripción completa' }, summary: 'a summary' };
 
-  it('passes everything through when both view permissions are granted', () => {
-    const result = redactMeetingNotes(notes, { canViewTranscript: true, canViewActionItems: true } as never);
+  it('passes the transcript and translations through when permitted', () => {
+    const result = redactMeetingNotes(notes, { canViewTranscript: true } as never);
     expect(result.transcript).toBe('full transcript');
-    expect(result.actionItems).toEqual(notes.actionItems);
+    expect(result.translations).toEqual(notes.translations);
   });
 
-  it('nulls out the transcript and action items independently when not permitted', () => {
-    const result = redactMeetingNotes(notes, { canViewTranscript: false, canViewActionItems: false } as never);
+  it('nulls out the transcript and translations when not permitted', () => {
+    const result = redactMeetingNotes(notes, { canViewTranscript: false } as never);
     expect(result.transcript).toBeNull();
-    expect(result.actionItems).toBeNull();
+    expect(result.translations).toBeNull();
     expect(result.summary).toBe('a summary');
   });
 });

@@ -1,9 +1,11 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 
-const { findUniqueOrThrow, upsert, update } = vi.hoisted(() => ({
+const { findUniqueOrThrow, upsert, update, actionItemDeleteMany, actionItemCreateMany } = vi.hoisted(() => ({
   findUniqueOrThrow: vi.fn(),
   upsert: vi.fn(),
-  update: vi.fn()
+  update: vi.fn(),
+  actionItemDeleteMany: vi.fn(),
+  actionItemCreateMany: vi.fn()
 }));
 
 const { waitForRecordingToFinish } = vi.hoisted(() => ({ waitForRecordingToFinish: vi.fn() }));
@@ -16,7 +18,11 @@ const { transcriptionsCreate, chatParse } = vi.hoisted(() => ({
 }));
 
 vi.mock('@/lib/db/prisma', () => ({
-  prisma: { meeting: { findUniqueOrThrow }, meetingNotes: { upsert, update } }
+  prisma: {
+    meeting: { findUniqueOrThrow },
+    meetingNotes: { upsert, update },
+    actionItem: { deleteMany: actionItemDeleteMany, createMany: actionItemCreateMany }
+  }
 }));
 
 vi.mock('@/services/egress.service', () => ({
@@ -61,6 +67,8 @@ describe('generateMeetingNotes', () => {
     findUniqueOrThrow.mockReset();
     upsert.mockReset();
     update.mockReset();
+    actionItemDeleteMany.mockReset().mockResolvedValue({ count: 0 });
+    actionItemCreateMany.mockReset().mockResolvedValue({ count: 0 });
     waitForRecordingToFinish.mockReset();
     s3Send.mockReset();
     transcriptionsCreate.mockReset();
@@ -79,8 +87,8 @@ describe('generateMeetingNotes', () => {
     );
   });
 
-  it('marks notes READY with the transcript, summary, and action items on success', async () => {
-    findUniqueOrThrow.mockResolvedValue({ id: 'meeting-1', livekitRoomName: 'room-1', egressId: 'EG_1' });
+  it('marks notes READY with the transcript and summary, and writes action items as ActionItem rows', async () => {
+    findUniqueOrThrow.mockResolvedValue({ id: 'meeting-1', organizationId: 'org-1', livekitRoomName: 'room-1', egressId: 'EG_1' });
     waitForRecordingToFinish.mockResolvedValue(3); // EGRESS_COMPLETE
     s3Send.mockResolvedValue({ Body: bodyStream() });
     transcriptionsCreate.mockResolvedValue({ text: 'We shipped the feature.' });
@@ -95,9 +103,12 @@ describe('generateMeetingNotes', () => {
       data: expect.objectContaining({
         status: 'READY',
         transcript: 'We shipped the feature.',
-        summary: 'Shipped the feature.',
-        actionItems: [{ text: 'Deploy', owner: 'Alice' }]
+        summary: 'Shipped the feature.'
       })
+    });
+    expect(actionItemDeleteMany).toHaveBeenCalledWith({ where: { meetingId: 'meeting-1', source: 'AI' } });
+    expect(actionItemCreateMany).toHaveBeenCalledWith({
+      data: [{ organizationId: 'org-1', meetingId: 'meeting-1', title: 'Deploy', source: 'AI' }]
     });
   });
 

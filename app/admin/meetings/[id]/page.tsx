@@ -3,11 +3,9 @@ import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db/prisma';
 import { requireAdminPage } from '@/lib/auth/guards';
 import { getMeetingNotes } from '@/services/meetingNotes.service';
-import { Card } from '@/components/ui/Card';
-import { MeetingNotesCard } from '@/components/meeting/MeetingNotesCard';
-import { GenerateNotesButton } from '@/components/meeting/GenerateNotesButton';
-import { ParticipantsTable } from '@/components/meeting/ParticipantsTable';
-import { ChatLog } from '@/components/meeting/ChatLog';
+import { getResolvedPermissions } from '@/lib/permissions';
+import { isMeetingHost } from '@/services/meeting.service';
+import { MeetingDetailTabs } from '@/components/meeting/MeetingDetailTabs';
 
 export default async function AdminMeetingDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const admin = await requireAdminPage();
@@ -26,7 +24,15 @@ export default async function AdminMeetingDetailPage({ params }: { params: Promi
     notFound();
   }
 
-  const notes = await getMeetingNotes(meeting.id);
+  const [rawNotes, actionItems, permissions] = await Promise.all([
+    getMeetingNotes(meeting.id),
+    prisma.actionItem.findMany({
+      where: { meetingId: meeting.id },
+      orderBy: { createdAt: 'desc' },
+      include: { assignedTo: { select: { id: true, name: true } } }
+    }),
+    getResolvedPermissions(admin)
+  ]);
 
   return (
     <div className="space-y-6">
@@ -37,44 +43,25 @@ export default async function AdminMeetingDetailPage({ params }: { params: Promi
         </Link>
       </div>
 
-      <MeetingNotesCard
-        notes={notes}
+      <MeetingDetailTabs
+        meetingId={meeting.id}
+        currentUserId={admin.id}
+        overview={{
+          hostName: meeting.createdBy.name,
+          status: meeting.status,
+          startedAt: meeting.startedAt ? meeting.startedAt.toISOString() : null,
+          endedAt: meeting.endedAt ? meeting.endedAt.toISOString() : null
+        }}
+        participantSessions={meeting.participantSessions}
+        messages={meeting.messages}
+        notes={rawNotes ? { status: rawNotes.status, summary: rawNotes.summary } : null}
+        transcript={permissions.canViewTranscript ? (rawNotes?.transcript ?? null) : null}
+        translations={permissions.canViewTranscript ? ((rawNotes?.translations as Record<string, string> | null) ?? null) : null}
+        actionItems={actionItems.map((item) => ({ ...item, dueDate: item.dueDate ? item.dueDate.toISOString() : null }))}
+        permissions={permissions}
+        canManageActionItems={isMeetingHost(meeting, admin)}
         meetingEnded={meeting.status === 'ENDED'}
-        action={
-          meeting.status === 'ENDED' && notes?.status !== 'PENDING' ? (
-            <GenerateNotesButton meetingId={meeting.id} hasNotes={notes?.status === 'READY'} />
-          ) : undefined
-        }
       />
-
-      <Card className="grid gap-4 p-6 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <p className="text-sm text-muted-foreground">Host</p>
-          <p className="mt-1 text-foreground">{meeting.createdBy.name}</p>
-        </div>
-        <div>
-          <p className="text-sm text-muted-foreground">Status</p>
-          <p className="mt-1 text-foreground">{meeting.status}</p>
-        </div>
-        <div>
-          <p className="text-sm text-muted-foreground">Started</p>
-          <p className="mt-1 text-foreground">{meeting.startedAt ? new Date(meeting.startedAt).toLocaleString() : '—'}</p>
-        </div>
-        <div>
-          <p className="text-sm text-muted-foreground">Ended</p>
-          <p className="mt-1 text-foreground">{meeting.endedAt ? new Date(meeting.endedAt).toLocaleString() : '—'}</p>
-        </div>
-      </Card>
-
-      <div className="space-y-3">
-        <h2 className="text-xl font-semibold text-foreground">Participants</h2>
-        <ParticipantsTable sessions={meeting.participantSessions} />
-      </div>
-
-      <div className="space-y-3">
-        <h2 className="text-xl font-semibold text-foreground">Chat</h2>
-        <ChatLog messages={meeting.messages} />
-      </div>
     </div>
   );
 }

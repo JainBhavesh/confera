@@ -42,6 +42,24 @@ const links: { href: string; label: string; icon: ReactNode }[] = [
     )
   },
   {
+    href: '/admin/action-items',
+    label: 'Action items',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth={1.75} stroke="currentColor" className="h-5 w-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+    )
+  },
+  {
+    href: '/admin/analytics',
+    label: 'Analytics',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth={1.75} stroke="currentColor" className="h-5 w-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3v18h18M7 15.75V12M11.25 15.75V8.25M15.5 15.75v-5.5M19.75 15.75V6" />
+      </svg>
+    )
+  },
+  {
     href: '/admin/settings',
     label: 'Settings',
     icon: (

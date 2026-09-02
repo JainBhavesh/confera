@@ -1,6 +1,6 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 
-const { update } = vi.hoisted(() => ({ update: vi.fn() }));
+const { update, meetingUpdate } = vi.hoisted(() => ({ update: vi.fn(), meetingUpdate: vi.fn() }));
 
 const { listEgress, startTrackCompositeEgress, stopEgress } = vi.hoisted(() => ({
   listEgress: vi.fn(),
@@ -9,7 +9,7 @@ const { listEgress, startTrackCompositeEgress, stopEgress } = vi.hoisted(() => (
 }));
 
 vi.mock('@/lib/db/prisma', () => ({
-  prisma: { livestream: { update }, meeting: {} }
+  prisma: { livestream: { update }, meeting: { update: meetingUpdate } }
 }));
 
 vi.mock('livekit-server-sdk', async () => {
@@ -24,13 +24,22 @@ vi.mock('livekit-server-sdk', async () => {
   };
 });
 
-const { checkLivestreamRecordingStatus, startLivestreamRecording, stopLivestreamRecording, EgressStatus } = await import(
-  './egress.service'
-);
+const { checkLivestreamRecordingStatus, checkMeetingRecordingStatus, startLivestreamRecording, stopLivestreamRecording, EgressStatus } =
+  await import('./egress.service');
 
 function livestream(overrides: Partial<{ egressId: string | null; recordingStatus: string }> = {}) {
   return {
     id: 'live-1',
+    livekitRoomName: 'room-1',
+    egressId: 'EG_1',
+    recordingStatus: 'PROCESSING',
+    ...overrides
+  } as any;
+}
+
+function meeting(overrides: Partial<{ egressId: string | null; recordingStatus: string }> = {}) {
+  return {
+    id: 'meeting-1',
     livekitRoomName: 'room-1',
     egressId: 'EG_1',
     recordingStatus: 'PROCESSING',
@@ -91,6 +100,50 @@ describe('checkLivestreamRecordingStatus', () => {
     await checkLivestreamRecordingStatus(livestream());
 
     expect(update).not.toHaveBeenCalled();
+  });
+});
+
+describe('checkMeetingRecordingStatus', () => {
+  beforeEach(() => {
+    meetingUpdate.mockReset();
+    listEgress.mockReset();
+  });
+
+  it('does nothing when there is no recording in flight', async () => {
+    const result = await checkMeetingRecordingStatus(meeting({ recordingStatus: 'NONE' }));
+
+    expect(listEgress).not.toHaveBeenCalled();
+    expect(result.recordingStatus).toBe('NONE');
+  });
+
+  it('marks READY once egress completes, saving the uploaded filename', async () => {
+    listEgress.mockResolvedValue([{ status: EgressStatus.EGRESS_COMPLETE, fileResults: [{ filename: 'room-1.ogg' }] }]);
+    meetingUpdate.mockResolvedValue({ ...meeting(), recordingStatus: 'READY', recordingKey: 'room-1.ogg' });
+
+    await checkMeetingRecordingStatus(meeting());
+
+    expect(listEgress).toHaveBeenCalledWith({ egressId: 'EG_1' });
+    expect(meetingUpdate).toHaveBeenCalledWith({
+      where: { id: 'meeting-1' },
+      data: { recordingStatus: 'READY', recordingKey: 'room-1.ogg' }
+    });
+  });
+
+  it('marks FAILED when egress aborts', async () => {
+    listEgress.mockResolvedValue([{ status: EgressStatus.EGRESS_ABORTED }]);
+    meetingUpdate.mockResolvedValue({ ...meeting(), recordingStatus: 'FAILED' });
+
+    await checkMeetingRecordingStatus(meeting());
+
+    expect(meetingUpdate).toHaveBeenCalledWith({ where: { id: 'meeting-1' }, data: { recordingStatus: 'FAILED' } });
+  });
+
+  it('leaves status alone while still recording/ending', async () => {
+    listEgress.mockResolvedValue([{ status: EgressStatus.EGRESS_ACTIVE }]);
+
+    await checkMeetingRecordingStatus(meeting());
+
+    expect(meetingUpdate).not.toHaveBeenCalled();
   });
 });
 
