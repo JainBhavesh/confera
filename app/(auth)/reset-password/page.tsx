@@ -12,7 +12,7 @@ export default async function ResetPasswordPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-foreground">Reset your password</h1>
+        <h1 className="text-[32px] font-extrabold text-foreground">Reset your password</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Enter your email and we&apos;ll send you a code to confirm it&apos;s you.
         </p>

@@ -5,6 +5,7 @@ export interface OrgDashboardStats {
   activeUsers: number;
   totalMeetings: number;
   liveMeetingsNow: number;
+  liveLivestreamsNow: number;
   meetingHoursTotal: number;
   totalLivestreams: number;
   liveViewersNow: number;
@@ -18,6 +19,7 @@ export async function getOrgDashboardStats(organizationId: string): Promise<OrgD
     activeUsers,
     totalMeetings,
     liveMeetingsNow,
+    liveLivestreamsNow,
     durationAgg,
     totalLivestreams,
     liveViewersNow,
@@ -29,6 +31,7 @@ export async function getOrgDashboardStats(organizationId: string): Promise<OrgD
     prisma.user.count({ where: { organizationId, isActive: true } }),
     prisma.meeting.count({ where: { organizationId } }),
     prisma.meeting.count({ where: { organizationId, status: 'LIVE' } }),
+    prisma.livestream.count({ where: { organizationId, status: 'LIVE' } }),
     prisma.meetingParticipantSession.aggregate({
       _sum: { durationSeconds: true },
       where: { meeting: { organizationId } }
@@ -45,6 +48,7 @@ export async function getOrgDashboardStats(organizationId: string): Promise<OrgD
     activeUsers,
     totalMeetings,
     liveMeetingsNow,
+    liveLivestreamsNow,
     meetingHoursTotal: Math.round(((durationAgg._sum.durationSeconds ?? 0) / 3600) * 10) / 10,
     totalLivestreams,
     liveViewersNow,
@@ -165,6 +169,62 @@ export async function getTopUsersByMeetingTime(organizationId: string, limit = 1
       name: nameById.get(g.userId) ?? 'Unknown',
       totalSeconds: g._sum.durationSeconds ?? 0
     }));
+}
+
+export interface WeeklyMinutesPoint {
+  weekStart: string;
+  minutes: number;
+}
+
+function mondayOf(date: Date): Date {
+  const d = new Date(date);
+  const day = d.getDay();
+  d.setDate(d.getDate() + (day === 0 ? -6 : 1 - day));
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
+/**
+ * Meeting minutes per week, most recent `weeks` weeks — powers the Usage
+ * analytics bar chart. Always returns exactly `weeks` points (zero-filled),
+ * since a GROUP BY alone would silently omit weeks with no activity.
+ */
+export async function getWeeklyMeetingMinutes(organizationId: string, weeks = 6): Promise<WeeklyMinutesPoint[]> {
+  const thisWeekStart = mondayOf(new Date());
+  const rangeStart = new Date(thisWeekStart);
+  rangeStart.setDate(rangeStart.getDate() - (weeks - 1) * 7);
+
+  const rows = await prisma.$queryRaw<{ week: Date; minutes: number }[]>`
+    SELECT date_trunc('week', mps."joinedAt") AS week,
+           COALESCE(SUM(mps."durationSeconds"), 0) / 60 AS minutes
+    FROM "MeetingParticipantSession" mps
+    JOIN "Meeting" m ON m.id = mps."meetingId"
+    WHERE m."organizationId" = ${organizationId}
+      AND mps."joinedAt" >= ${rangeStart}
+    GROUP BY week
+  `;
+
+  const minutesByWeek = new Map(rows.map((r) => [r.week.toISOString().slice(0, 10), Math.round(Number(r.minutes))]));
+
+  return Array.from({ length: weeks }, (_, i) => {
+    const weekStart = new Date(rangeStart);
+    weekStart.setDate(weekStart.getDate() + i * 7);
+    const key = weekStart.toISOString().slice(0, 10);
+    return { weekStart: key, minutes: minutesByWeek.get(key) ?? 0 };
+  });
+}
+
+export interface TranscriptionStats {
+  readyCount: number;
+  endedCount: number;
+}
+
+export async function getTranscriptionStats(organizationId: string): Promise<TranscriptionStats> {
+  const [readyCount, endedCount] = await Promise.all([
+    prisma.meeting.count({ where: { organizationId, status: 'ENDED', notes: { status: 'READY' } } }),
+    prisma.meeting.count({ where: { organizationId, status: 'ENDED' } })
+  ]);
+  return { readyCount, endedCount };
 }
 
 export interface LivestreamViewerTrendPoint {

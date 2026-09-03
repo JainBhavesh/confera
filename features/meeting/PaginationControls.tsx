@@ -41,12 +41,12 @@ export function PaginationControls({ page, totalPages, onPrev, onNext }: Paginat
           onClick={onPrev}
           disabled={page <= 1}
           aria-label="Previous page"
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-800 text-white transition hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10"
+          className="flex h-9 w-9 items-center justify-center bg-[#2d2b2b] text-white transition hover:bg-[#3d3a3a] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10"
         >
           <ChevronLeftIcon className="h-5 w-5" />
         </button>
       </Tooltip>
-      <span className="rounded-full bg-slate-800 px-3 py-1.5 text-sm font-medium text-white">
+      <span className="bg-[#2d2b2b] px-3 py-1.5 text-sm font-medium text-white">
         {page} / {totalPages}
       </span>
       <Tooltip label="Next page">
@@ -55,7 +55,7 @@ export function PaginationControls({ page, totalPages, onPrev, onNext }: Paginat
           onClick={onNext}
           disabled={page >= totalPages}
           aria-label="Next page"
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-800 text-white transition hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10"
+          className="flex h-9 w-9 items-center justify-center bg-[#2d2b2b] text-white transition hover:bg-[#3d3a3a] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10"
         >
           <ChevronRightIcon className="h-5 w-5" />
         </button>

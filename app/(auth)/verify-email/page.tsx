@@ -21,7 +21,7 @@ export default async function VerifyEmailPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-foreground">Verify your email</h1>
+        <h1 className="text-[32px] font-extrabold text-foreground">Verify your email</h1>
         <p className="mt-2 text-sm text-muted-foreground">One more step before you can start meeting.</p>
       </div>
       <VerifyEmailForm email={email} />

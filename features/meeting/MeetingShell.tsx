@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { RoomAudioRenderer, RoomContext, useConnectionState, useParticipants, useTrackToggle } from '@livekit/components-react';
 import { ConnectionState, Room, RoomEvent, Track, type Participant } from 'livekit-client';
 import { ChatPanel } from '@/components/meeting/ChatPanel';
+import { LiveNotesPanel } from '@/components/meeting/LiveNotesPanel';
 import { CameraIcon, CameraOffIcon, MicIcon, MicOffIcon } from '@/components/ui/icons/MediaIcons';
 import { ChatIcon, LeaveIcon, ScreenShareIcon, ShareIcon, SignalIcon, UsersIcon } from '@/components/ui/icons/MeetingIcons';
 import { Tooltip } from '@/components/ui/Tooltip';
@@ -11,6 +12,7 @@ import { LiveParticipantTile } from './LiveParticipantTile';
 import { ParticipantGrid } from './ParticipantGrid';
 import { PaginationControls } from './PaginationControls';
 import { ScreenShareSpotlight } from './ScreenShareSpotlight';
+import { SpeakerSpotlight } from './SpeakerSpotlight';
 import { useParticipantPagination } from './useParticipantPagination';
 import { useResponsiveMaxCols } from './useResponsiveMaxCols';
 
@@ -25,8 +27,9 @@ interface MeetingShellProps {
   onLeave: () => void;
 }
 
-type SidePanel = 'participants' | 'chat' | null;
+type SidePanel = 'participants' | 'chat' | 'notes' | null;
 type TrackSourceName = 'camera' | 'microphone';
+type LayoutVariant = 'gallery' | 'speaker';
 
 function getParticipantDisplayName(participant: { name?: string; identity?: string }) {
   return participant.name || participant.identity || 'Guest';
@@ -55,10 +58,10 @@ function ToolbarButton({
   children: React.ReactNode;
 }) {
   const tone = danger
-    ? 'bg-rose-600 text-white hover:bg-rose-500'
+    ? 'bg-destructive text-destructive-foreground hover:opacity-90'
     : active
-      ? 'bg-sky-600 text-white hover:bg-sky-500'
-      : 'bg-slate-800 text-white hover:bg-slate-700';
+      ? 'bg-primary text-primary-foreground hover:opacity-90'
+      : 'bg-[#2d2b2b] text-white hover:bg-[#3d3a3a]';
 
   return (
     <Tooltip label={label}>
@@ -68,7 +71,7 @@ function ToolbarButton({
         disabled={disabled}
         aria-label={label}
         aria-pressed={active}
-        className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition disabled:cursor-not-allowed disabled:opacity-50 sm:h-12 sm:w-12 ${tone}`}
+        className={`relative flex h-11 w-11 shrink-0 items-center justify-center transition disabled:cursor-not-allowed disabled:opacity-50 sm:h-12 sm:w-12 ${tone}`}
       >
         {children}
       </button>
@@ -99,27 +102,27 @@ function ParticipantRow({
   const canModerate = isHost && !participant.isLocal;
 
   return (
-    <div className={`overflow-hidden rounded-xl transition ${isExpanded ? 'bg-card' : ''}`}>
+    <div className={`overflow-hidden transition ${isExpanded ? 'bg-white/8' : ''}`}>
       <button
         type="button"
         onClick={onToggleExpand}
-        className="flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition hover:bg-card"
+        className="flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition hover:bg-white/8"
       >
         <div className="flex min-w-0 items-center gap-2.5">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-card text-xs font-semibold text-foreground">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-semibold text-white">
             {getInitial(displayName)}
           </div>
-          <span className="truncate text-sm text-foreground">{participant.isLocal ? 'You' : displayName}</span>
+          <span className="truncate text-sm text-white">{participant.isLocal ? 'You' : displayName}</span>
         </div>
-        <div className="flex shrink-0 items-center gap-1.5 text-muted-foreground">
-          {hasAudio ? <MicIcon className="h-4 w-4" /> : <MicOffIcon className="h-4 w-4 text-destructive" />}
-          {hasVideo ? <CameraIcon className="h-4 w-4" /> : <CameraOffIcon className="h-4 w-4 text-destructive" />}
+        <div className="flex shrink-0 items-center gap-1.5 text-white/55">
+          {hasAudio ? <MicIcon className="h-4 w-4" /> : <MicOffIcon className="h-4 w-4 text-primary" />}
+          {hasVideo ? <CameraIcon className="h-4 w-4" /> : <CameraOffIcon className="h-4 w-4 text-primary" />}
         </div>
       </button>
 
       {isExpanded ? (
         <div className="space-y-2 px-3 pb-3">
-          <div className="h-36 overflow-hidden rounded-lg">
+          <div className="h-36 overflow-hidden">
             <LiveParticipantTile participant={participant} />
           </div>
           {canModerate ? (
@@ -128,7 +131,7 @@ function ParticipantRow({
                 type="button"
                 onClick={() => onModerate('microphone', hasAudio)}
                 disabled={pendingSource === 'microphone'}
-                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-muted px-2 py-1.5 text-xs font-medium text-foreground transition hover:bg-border disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex flex-1 items-center justify-center gap-1.5 bg-white/10 px-2 py-1.5 text-xs font-medium text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {hasAudio ? <MicOffIcon className="h-3.5 w-3.5" /> : <MicIcon className="h-3.5 w-3.5" />}
                 {hasAudio ? 'Mute' : 'Unmute'}
@@ -137,7 +140,7 @@ function ParticipantRow({
                 type="button"
                 onClick={() => onModerate('camera', hasVideo)}
                 disabled={pendingSource === 'camera'}
-                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-muted px-2 py-1.5 text-xs font-medium text-foreground transition hover:bg-border disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex flex-1 items-center justify-center gap-1.5 bg-white/10 px-2 py-1.5 text-xs font-medium text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {hasVideo ? <CameraOffIcon className="h-3.5 w-3.5" /> : <CameraIcon className="h-3.5 w-3.5" />}
                 {hasVideo ? 'Disable camera' : 'Enable camera'}
@@ -157,6 +160,16 @@ function MeetingShellContent({ room, inviteUrl, meetingId, meetingTitle, current
   const [copied, setCopied] = useState(false);
   const [expandedIdentity, setExpandedIdentity] = useState<string | null>(null);
   const [moderating, setModerating] = useState<{ identity: string; source: TrackSourceName } | null>(null);
+  const [layoutVariant, setLayoutVariant] = useState<LayoutVariant>('gallery');
+  const [activeSpeakerIdentity, setActiveSpeakerIdentity] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleActiveSpeakersChanged = (speakers: Participant[]) => setActiveSpeakerIdentity(speakers[0]?.identity ?? null);
+    room.on(RoomEvent.ActiveSpeakersChanged, handleActiveSpeakersChanged);
+    return () => {
+      room.off(RoomEvent.ActiveSpeakersChanged, handleActiveSpeakersChanged);
+    };
+  }, [room]);
 
   const { toggle: toggleMic, enabled: micEnabled, pending: micPending } = useTrackToggle({ source: Track.Source.Microphone, room });
   const { toggle: toggleCam, enabled: camEnabled, pending: camPending } = useTrackToggle({ source: Track.Source.Camera, room });
@@ -217,11 +230,12 @@ function MeetingShellContent({ room, inviteUrl, meetingId, meetingTitle, current
 
   const participantCount = participants.length;
   const togglePanel = (panel: SidePanel) => setSidePanel((current) => (current === panel ? null : panel));
-  const activePanel = isGuest && sidePanel === 'chat' ? null : sidePanel;
+  const activePanel = isGuest && (sidePanel === 'chat' || sidePanel === 'notes') ? null : sidePanel;
   const sharingParticipant = participants.find((p) => p.isScreenShareEnabled);
+  const spotlighted = participants.find((p) => p.identity === activeSpeakerIdentity) ?? participants[0];
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card dark:shadow-card-dark">
+    <div className="flex h-full flex-col overflow-hidden bg-[#141312]">
       <RoomAudioRenderer />
 
       <div className="flex min-h-0 flex-1 flex-col sm:flex-row">
@@ -229,6 +243,11 @@ function MeetingShellContent({ room, inviteUrl, meetingId, meetingTitle, current
           <div className="min-h-0 flex-1">
             {sharingParticipant ? (
               <ScreenShareSpotlight sharer={sharingParticipant} filmstripParticipants={pageItems} />
+            ) : layoutVariant === 'speaker' && spotlighted ? (
+              <SpeakerSpotlight
+                spotlighted={spotlighted}
+                filmstripParticipants={pageItems.filter((p) => p.identity !== spotlighted.identity)}
+              />
             ) : (
               <ParticipantGrid
                 items={pageItems}
@@ -249,35 +268,56 @@ function MeetingShellContent({ room, inviteUrl, meetingId, meetingTitle, current
 
           {/* Meeting title floats where the old header bar used to live, reclaiming that row for video. */}
           <div className="pointer-events-none absolute bottom-5 left-5 flex items-end gap-2 sm:bottom-6 sm:left-6">
-            <div className="rounded-2xl bg-slate-950/80 px-3.5 py-2 text-white shadow-lg backdrop-blur">
+            <div className="bg-[#141312]/85 px-3.5 py-2 text-white shadow-lg backdrop-blur">
               <p className="max-w-[40vw] truncate text-sm font-semibold sm:max-w-xs">{meetingTitle}</p>
-              <p className="text-xs text-slate-300">
+              <p className="text-xs text-white/60">
                 {participantCount} {participantCount === 1 ? 'participant' : 'participants'}
               </p>
             </div>
             {isRecording ? (
-              <div className="flex items-center gap-1.5 rounded-full bg-slate-950/80 px-3 py-2 text-xs font-semibold text-rose-300 shadow-lg backdrop-blur">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-rose-500" />
+              <div className="flex items-center gap-1.5 bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground shadow-lg">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
                 REC
               </div>
             ) : null}
             {connectionState !== ConnectionState.Connected ? (
-              <div className="flex items-center gap-1.5 rounded-full bg-slate-950/80 px-3 py-2 text-xs font-semibold text-amber-300 shadow-lg backdrop-blur">
+              <div className="flex items-center gap-1.5 bg-[#141312]/85 px-3 py-2 text-xs font-semibold text-amber-300 shadow-lg backdrop-blur">
                 <SignalIcon className="h-3.5 w-3.5" />
                 {connectionState === ConnectionState.Disconnected ? 'Disconnected' : 'Reconnecting…'}
               </div>
             ) : null}
           </div>
 
+          {/* Layout variant toggle — mirrors the redesign's A/B switch without a docked header,
+              staying consistent with the floating-chrome approach used elsewhere in this view. */}
+          <div className="pointer-events-none absolute right-5 top-5 flex sm:right-6 sm:top-6">
+            <div className="pointer-events-auto flex bg-[#141312]/85 text-xs shadow-lg backdrop-blur">
+              <button
+                type="button"
+                onClick={() => setLayoutVariant('gallery')}
+                className={`px-3 py-2 font-medium transition ${layoutVariant === 'gallery' ? 'bg-white text-[#201e1d]' : 'text-white/70 hover:text-white'}`}
+              >
+                Gallery
+              </button>
+              <button
+                type="button"
+                onClick={() => setLayoutVariant('speaker')}
+                className={`px-3 py-2 font-medium transition ${layoutVariant === 'speaker' ? 'bg-white text-[#201e1d]' : 'text-white/70 hover:text-white'}`}
+              >
+                Speaker
+              </button>
+            </div>
+          </div>
+
           {mediaError ? (
             <div className="pointer-events-none absolute inset-x-0 bottom-24 flex justify-center px-4 sm:bottom-28">
-              <p className="pointer-events-auto rounded-full bg-slate-950/90 px-4 py-2 text-xs text-rose-300 shadow-lg">{mediaError}</p>
+              <p className="pointer-events-auto bg-[#141312]/90 px-4 py-2 text-xs text-primary shadow-lg">{mediaError}</p>
             </div>
           ) : null}
 
           {/* Call controls float over the video instead of sitting in their own docked bar. */}
           <div className="pointer-events-none absolute inset-x-0 bottom-5 flex justify-center sm:bottom-6">
-            <div className="pointer-events-auto flex flex-wrap items-center justify-center gap-2 rounded-full bg-slate-950/85 px-3 py-2 shadow-xl backdrop-blur sm:gap-3 sm:px-4">
+            <div className="pointer-events-auto flex flex-wrap items-center justify-center gap-2 bg-[#2d2b2b]/85 px-3 py-2 shadow-xl backdrop-blur sm:gap-3 sm:px-4">
               <ToolbarButton
                 onClick={() => handleToggle(toggleMic)}
                 disabled={micPending}
@@ -309,13 +349,21 @@ function MeetingShellContent({ room, inviteUrl, meetingId, meetingTitle, current
                 label="Toggle participants panel"
               >
                 <UsersIcon className="h-5 w-5" />
-                <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-slate-950 px-1 text-[11px] font-semibold text-white ring-2 ring-slate-950">
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center bg-primary px-1 text-[11px] font-semibold text-primary-foreground ring-2 ring-[#2d2b2b]">
                   {participantCount}
                 </span>
               </ToolbarButton>
               {!isGuest ? (
                 <ToolbarButton onClick={() => togglePanel('chat')} active={activePanel === 'chat'} label="Toggle chat panel">
                   <ChatIcon className="h-5 w-5" />
+                </ToolbarButton>
+              ) : null}
+              {!isGuest ? (
+                <ToolbarButton onClick={() => togglePanel('notes')} active={activePanel === 'notes'} label="Toggle notes panel">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5">
+                    <path d="M9 11l2.5 2.5L20 5" />
+                    <path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10" />
+                  </svg>
                 </ToolbarButton>
               ) : null}
               <span className="mx-1 h-8 w-px bg-white/15" />
@@ -330,32 +378,45 @@ function MeetingShellContent({ room, inviteUrl, meetingId, meetingTitle, current
         </div>
 
         {activePanel ? (
-          <div className="flex h-64 shrink-0 flex-col border-t border-border bg-muted sm:h-auto sm:w-64 sm:border-l sm:border-t-0 lg:w-[320px]">
-            <div className="flex shrink-0 border-b border-border">
+          <div className="flex h-64 shrink-0 flex-col border-t border-white/14 bg-[#201e1d] sm:h-auto sm:w-64 sm:border-l sm:border-t-0 lg:w-[320px]">
+            <div className="flex shrink-0 border-b border-white/14">
               <button
                 type="button"
                 onClick={() => setSidePanel('participants')}
-                className={`flex-1 px-4 py-3 text-sm font-medium transition ${
-                  activePanel === 'participants' ? 'border-b-2 border-primary text-foreground' : 'text-muted-foreground hover:text-foreground'
+                className={`flex-1 px-3 py-3 text-[13px] font-medium transition ${
+                  activePanel === 'participants' ? 'border-b-2 border-primary text-white' : 'text-white/55 hover:text-white'
                 }`}
               >
-                Participants ({participantCount})
+                People ({participantCount})
               </button>
               {!isGuest ? (
                 <button
                   type="button"
                   onClick={() => setSidePanel('chat')}
-                  className={`flex-1 px-4 py-3 text-sm font-medium transition ${
-                    activePanel === 'chat' ? 'border-b-2 border-primary text-foreground' : 'text-muted-foreground hover:text-foreground'
+                  className={`flex-1 px-3 py-3 text-[13px] font-medium transition ${
+                    activePanel === 'chat' ? 'border-b-2 border-primary text-white' : 'text-white/55 hover:text-white'
                   }`}
                 >
                   Chat
+                </button>
+              ) : null}
+              {!isGuest ? (
+                <button
+                  type="button"
+                  onClick={() => setSidePanel('notes')}
+                  className={`flex-1 px-3 py-3 text-[13px] font-medium transition ${
+                    activePanel === 'notes' ? 'border-b-2 border-primary text-white' : 'text-white/55 hover:text-white'
+                  }`}
+                >
+                  Notes
                 </button>
               ) : null}
             </div>
 
             {activePanel === 'chat' ? (
               <ChatPanel room={room} meetingId={meetingId} currentUserId={currentUserId} />
+            ) : activePanel === 'notes' ? (
+              <LiveNotesPanel meetingId={meetingId} />
             ) : (
               <div className="min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
                 {participants.map((participant) => (

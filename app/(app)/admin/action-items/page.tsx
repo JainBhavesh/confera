@@ -15,12 +15,13 @@ export default async function AdminActionItemsPage() {
   });
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-semibold text-foreground">Action items</h1>
-        <p className="mt-2 text-muted-foreground">Track and manage action items across every meeting in your organization.</p>
+    <div>
+      <div className="border-b-2 border-divider pb-5">
+        <h1 className="mb-1.5 text-[32px] font-extrabold text-foreground">All action items</h1>
+        <p className="text-sm text-muted-foreground">Track and manage action items across every meeting in your organization.</p>
       </div>
-      <AdminActionItemsList
+      <div className="pt-4">
+        <AdminActionItemsList
         actionItems={actionItems.map((item) => ({
           id: item.id,
           title: item.title,
@@ -31,7 +32,8 @@ export default async function AdminActionItemsPage() {
           meeting: item.meeting,
           assignedTo: item.assignedTo
         }))}
-      />
+        />
+      </div>
     </div>
   );
 }

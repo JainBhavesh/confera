@@ -13,7 +13,7 @@ function StatusCard({ title, message, backHref = '/livestreams' }: { title: stri
     <div className="flex h-full items-center justify-center p-6">
       <Card className="mx-auto max-w-2xl p-8 text-center">
         <div className="space-y-4">
-          <h1 className="text-2xl font-semibold text-foreground">{title}</h1>
+          <h1 className="text-2xl font-extrabold text-foreground">{title}</h1>
           <p className="text-muted-foreground">{message}</p>
           <Link href={backHref}>
             <Button>Back</Button>
@@ -29,7 +29,7 @@ function EndedCard({ title, livestreamId, backHref }: { title: string; livestrea
     <div className="mx-auto max-w-2xl space-y-6 p-6">
       <Card className="p-8 text-center">
         <div className="space-y-4">
-          <h1 className="text-2xl font-semibold text-foreground">{title}</h1>
+          <h1 className="text-2xl font-extrabold text-foreground">{title}</h1>
           <p className="text-muted-foreground">This livestream has ended.</p>
           <Link href={backHref}>
             <Button>Back</Button>

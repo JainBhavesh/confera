@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db/prisma';
 import { requireUser, toErrorResponse } from '@/lib/auth/guards';
 import { createMeetingSchema } from '@/lib/validation/schemas';
-import { createMeeting } from '@/services/meeting.service';
+import { createMeeting, generateRecurringOccurrences } from '@/services/meeting.service';
+import { inviteEmailsToMeeting } from '@/services/meetingInvite.service';
 import { recordAuditLog } from '@/services/audit.service';
 import { getResolvedPermissions } from '@/lib/permissions';
 
@@ -45,7 +46,9 @@ export async function POST(request: NextRequest) {
     const meeting = await createMeeting({
       organizationId: user.organizationId,
       createdByUserId: user.id,
-      title: parsed.data.title
+      title: parsed.data.title,
+      scheduledAt: parsed.data.scheduledAt,
+      recurrence: parsed.data.recurrence
     });
 
     await recordAuditLog({
@@ -56,6 +59,32 @@ export async function POST(request: NextRequest) {
       resourceId: meeting.id,
       request
     });
+
+    if (meeting.recurrence !== 'ONCE') {
+      const occurrences = await generateRecurringOccurrences(meeting);
+      await recordAuditLog({
+        organizationId: user.organizationId,
+        actorUserId: user.id,
+        action: 'MEETING_CREATED',
+        resourceType: 'Meeting',
+        resourceId: meeting.id,
+        metadata: { recurringOccurrences: occurrences.length, recurrence: meeting.recurrence },
+        request
+      });
+    }
+
+    if (parsed.data.inviteEmails && parsed.data.inviteEmails.length > 0) {
+      await inviteEmailsToMeeting(meeting, user.name, parsed.data.inviteEmails);
+      await recordAuditLog({
+        organizationId: user.organizationId,
+        actorUserId: user.id,
+        action: 'MEETING_INVITES_SENT',
+        resourceType: 'Meeting',
+        resourceId: meeting.id,
+        metadata: { emails: parsed.data.inviteEmails },
+        request
+      });
+    }
 
     return NextResponse.json({ meeting }, { status: 201 });
   } catch (err) {

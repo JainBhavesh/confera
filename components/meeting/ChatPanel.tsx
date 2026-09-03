@@ -95,7 +95,7 @@ export function ChatPanel({ room, meetingId, currentUserId }: { room: Room; meet
     <div className="flex h-full min-h-0 flex-col p-4">
       <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto">
         {messages.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No messages yet.</p>
+          <p className="text-sm text-white/55">No messages yet.</p>
         ) : (
           messages.map((m) => {
             const isMe = m.user.id === currentUserId;
@@ -103,14 +103,14 @@ export function ChatPanel({ room, meetingId, currentUserId }: { room: Room; meet
               <div key={m.id} className="flex items-start gap-2.5 text-sm">
                 <div
                   className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
-                    isMe ? 'bg-primary text-primary-foreground' : 'bg-card text-foreground'
+                    isMe ? 'bg-primary text-primary-foreground' : 'bg-white/10 text-white'
                   }`}
                 >
                   {getInitial(m.user.name)}
                 </div>
                 <p className="min-w-0 break-words">
-                  <span className={`font-semibold ${isMe ? 'text-primary' : 'text-foreground'}`}>{isMe ? 'You' : m.user.name}</span>
-                  <span className="ml-2 text-foreground">{m.message}</span>
+                  <span className={`font-semibold ${isMe ? 'text-primary' : 'text-white'}`}>{isMe ? 'You' : m.user.name}</span>
+                  <span className="ml-2 text-white/85">{m.message}</span>
                 </p>
               </div>
             );
@@ -123,7 +123,7 @@ export function ChatPanel({ room, meetingId, currentUserId }: { room: Room; meet
           onChange={(e) => setDraft(e.target.value)}
           maxLength={2000}
           placeholder="Message everyone"
-          className="min-w-0 flex-1 rounded-2xl border border-border bg-card px-4 py-2 text-sm text-foreground outline-none focus:border-primary"
+          className="min-w-0 flex-1 border border-white/16 bg-white/5 px-4 py-2 text-sm text-white outline-none placeholder:text-white/40 focus:border-primary"
         />
         <Button type="submit" disabled={sending || !draft.trim()} className="px-4 py-2 text-sm">
           Send

@@ -63,6 +63,13 @@ enum ActionItemSource {
   MANUAL
 }
 
+enum MeetingRecurrence {
+  ONCE
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
 model Organization {
   id                  String  @id @default(cuid())
   name                String
@@ -82,6 +89,12 @@ model Organization {
   defaultCanViewTranscript   Boolean @default(true)
   defaultCanViewActionItems  Boolean @default(true)
   defaultCanViewRecording    Boolean @default(true)
+
+  // Persisted value for the admin "Delete recordings after N days" toggle.
+  // Null/off means recordings are kept indefinitely. Not yet enforced by a
+  // cleanup job — see services/analytics.service.ts and the admin usage
+  // page for where this is surfaced.
+  autoDeleteRecordingsAfterDays Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -146,6 +159,8 @@ model User {
   livestreamViewerSessions LivestreamViewerSession[]
   auditLogs           AuditLog[]
   assignedActionItems ActionItem[]
+  createdActionItems  ActionItem[]                @relation("ActionItemCreatedBy")
+  meetingInvites       MeetingInvite[]
 
   @@unique([oauthProvider, oauthId])
   @@index([organizationId])
@@ -189,6 +204,17 @@ model Meeting {
   egressId        String?
   recordingStatus RecordingStatus @default(NONE)
   recordingKey    String?
+  // When this meeting is planned to start — set when it's created via the
+  // Schedule screen, distinct from startedAt (set once it actually goes
+  // live). Null for an instant "Start a meeting" creation.
+  scheduledAt     DateTime?
+  // How often this meeting repeats. Set on creation from the Schedule
+  // screen's Once/Daily/Weekly/Monthly selector.
+  recurrence      MeetingRecurrence @default(ONCE)
+  // Shared by every occurrence generated from one recurring schedule
+  // creation (see generateRecurringOccurrences in meeting.service.ts) — the
+  // first occurrence's own id. Null for a one-off meeting.
+  recurringGroupId String?
   startedAt       DateTime?
   endedAt         DateTime?
   createdAt       DateTime        @default(now())
@@ -200,10 +226,13 @@ model Meeting {
   messages            MeetingMessage[]
   notes               MeetingNotes?
   actionItems         ActionItem[]
+  invites              MeetingInvite[]
 
   @@index([organizationId])
   @@index([createdByUserId])
   @@index([status])
+  @@index([scheduledAt])
+  @@index([recurringGroupId])
 }
 
 model MeetingParticipantSession {
@@ -224,6 +253,24 @@ model MeetingParticipantSession {
   meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
   user    User?   @relation(fields: [userId], references: [id])
 
+  @@index([meetingId])
+  @@index([userId])
+}
+
+// One row per email invited to a scheduled meeting. userId is always set —
+// an invite to an email with no existing account auto-registers one (see
+// services/meetingInvite.service.ts) rather than leaving a dangling invite.
+model MeetingInvite {
+  id        String   @id @default(cuid())
+  meetingId String
+  email     String
+  userId    String
+  createdAt DateTime @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@unique([meetingId, email])
   @@index([meetingId])
   @@index([userId])
 }
@@ -267,6 +314,10 @@ model ActionItem {
   organizationId   String
   meetingId        String
   assignedToUserId String?
+  // Who added this item — null for AI-sourced rows generated before this
+  // field existed (see the add_scheduling_and_action_item_creator
+  // migration's backfill). Set to the current user on manual creation.
+  createdByUserId  String?
   title            String
   description      String?
   dueDate          DateTime?
@@ -279,10 +330,12 @@ model ActionItem {
   organization Organization @relation(fields: [organizationId], references: [id])
   meeting      Meeting      @relation(fields: [meetingId], references: [id], onDelete: Cascade)
   assignedTo   User?        @relation(fields: [assignedToUserId], references: [id])
+  createdBy    User?        @relation("ActionItemCreatedBy", fields: [createdByUserId], references: [id])
 
   @@index([organizationId])
   @@index([meetingId])
   @@index([assignedToUserId])
+  @@index([createdByUserId])
   @@index([status])
 }
 

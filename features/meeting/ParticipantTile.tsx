@@ -24,21 +24,21 @@ function getInitial(name: string): string {
 export function ParticipantTile({ name, isLocal, isSpeaking, hasAudio, renderVideo }: ParticipantTileProps) {
   return (
     <div
-      className={`relative h-full w-full overflow-hidden rounded-2xl bg-slate-900 transition ${
-        isSpeaking ? 'ring-4 ring-inset ring-emerald-400/70' : ''
+      className={`relative h-full w-full overflow-hidden bg-[#201e1d] transition ${
+        isSpeaking ? 'ring-4 ring-inset ring-primary/70' : ''
       }`}
     >
       {renderVideo ? (
         renderVideo()
       ) : (
-        <div className="flex h-full w-full items-center justify-center bg-slate-800">
-          <div className="flex h-[min(40%,96px)] w-[min(40%,96px)] items-center justify-center rounded-full bg-slate-700 text-2xl font-semibold text-white">
+        <div className="flex h-full w-full items-center justify-center bg-[#2d2b2b]">
+          <div className="flex h-[min(40%,96px)] w-[min(40%,96px)] items-center justify-center rounded-full bg-[#444141] text-2xl font-semibold text-white">
             {getInitial(name)}
           </div>
         </div>
       )}
 
-      <div className="absolute bottom-2 left-2 flex max-w-[calc(100%-16px)] items-center gap-1.5 rounded-full bg-slate-950/85 px-2.5 py-1 text-xs font-medium text-white shadow-lg backdrop-blur sm:text-sm">
+      <div className="absolute bottom-2 left-2 flex max-w-[calc(100%-16px)] items-center gap-1.5 bg-[#141312]/85 px-2.5 py-1 text-xs font-medium text-white shadow-lg backdrop-blur sm:text-sm">
         {hasAudio ? <MicIcon className="h-3.5 w-3.5 shrink-0" /> : <MicOffIcon className="h-3.5 w-3.5 shrink-0 text-rose-400" />}
         <span className="truncate">{isLocal ? 'You' : name}</span>
       </div>

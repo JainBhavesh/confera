@@ -102,7 +102,7 @@ export function ActionItemsTab({
           {items.map((item) => {
             const canChangeStatus = canManage || item.assignedTo?.id === currentUserId;
             return (
-              <li key={item.id} className="rounded-2xl border border-border bg-background px-4 py-3">
+              <li key={item.id} className="border border-border bg-background px-4 py-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
                     <span className="text-sm font-medium text-foreground">{item.title}</span>
@@ -117,7 +117,7 @@ export function ActionItemsTab({
                       value={item.status}
                       disabled={pendingId === item.id || !canChangeStatus}
                       onChange={(e) => handleStatusChange(item.id, e.target.value)}
-                      className="rounded-lg border border-border bg-background px-2 py-1 text-xs text-foreground disabled:opacity-50"
+                      className="border border-border bg-background px-2 py-1 text-xs text-foreground disabled:opacity-50"
                     >
                       {STATUS_OPTIONS.map((status) => (
                         <option key={status} value={status}>

@@ -224,7 +224,7 @@ export function MeetingRoomClient({ meetingId, meetingTitle, currentUserId, curr
       <Card className="grid min-h-0 flex-1 grid-cols-1 gap-6 p-6">
         <div className="grid min-h-0 grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
           <div className="flex min-h-0 flex-col gap-4">
-            <div className="relative min-h-[320px] flex-1 overflow-hidden rounded-3xl border border-border bg-black">
+            <div className="relative min-h-[320px] flex-1 overflow-hidden border border-border bg-black">
               <video ref={previewRef} className="h-full w-full object-cover" autoPlay muted playsInline />
 
               {!videoEnabled ? (
@@ -242,8 +242,8 @@ export function MeetingRoomClient({ meetingId, meetingTitle, currentUserId, curr
                     onClick={() => setAudioEnabled((v) => !v)}
                     aria-label={audioEnabled ? 'Turn off microphone' : 'Turn on microphone'}
                     aria-pressed={!audioEnabled}
-                    className={`flex h-12 w-12 items-center justify-center rounded-full transition ${
-                      audioEnabled ? 'bg-slate-800 text-white hover:bg-slate-700' : 'bg-rose-600 text-white hover:bg-rose-500'
+                    className={`flex h-12 w-12 items-center justify-center transition ${
+                      audioEnabled ? 'bg-[#2d2b2b] text-white hover:bg-[#3d3a3a]' : 'bg-destructive text-destructive-foreground hover:opacity-90'
                     }`}
                   >
                     {audioEnabled ? <MicIcon className="h-5 w-5" /> : <MicOffIcon className="h-5 w-5" />}
@@ -255,8 +255,8 @@ export function MeetingRoomClient({ meetingId, meetingTitle, currentUserId, curr
                     onClick={() => setVideoEnabled((v) => !v)}
                     aria-label={videoEnabled ? 'Turn off camera' : 'Turn on camera'}
                     aria-pressed={!videoEnabled}
-                    className={`flex h-12 w-12 items-center justify-center rounded-full transition ${
-                      videoEnabled ? 'bg-slate-800 text-white hover:bg-slate-700' : 'bg-rose-600 text-white hover:bg-rose-500'
+                    className={`flex h-12 w-12 items-center justify-center transition ${
+                      videoEnabled ? 'bg-[#2d2b2b] text-white hover:bg-[#3d3a3a]' : 'bg-destructive text-destructive-foreground hover:opacity-90'
                     }`}
                   >
                     {videoEnabled ? <CameraIcon className="h-5 w-5" /> : <CameraOffIcon className="h-5 w-5" />}
@@ -268,7 +268,7 @@ export function MeetingRoomClient({ meetingId, meetingTitle, currentUserId, curr
             {error ? <p className="shrink-0 text-sm text-destructive">{error}</p> : null}
           </div>
 
-          <div className="flex flex-col justify-center space-y-4 rounded-3xl border border-border bg-card p-6">
+          <div className="flex flex-col justify-center space-y-4 border border-border bg-card p-6">
             <div>
               <h2 className="text-xl font-semibold text-foreground">Ready to join?</h2>
               <p className="mt-2 text-muted-foreground">
@@ -288,7 +288,7 @@ export function MeetingRoomClient({ meetingId, meetingTitle, currentUserId, curr
         </div>
       </Card>
 
-      <div className="flex shrink-0 items-center justify-between gap-4 rounded-2xl border border-border bg-card px-6 py-4 shadow-card">
+      <div className="flex shrink-0 items-center justify-between gap-4 border border-border bg-card px-6 py-4 shadow-card">
         <div className="min-w-0">
           <h1 className="truncate text-xl font-semibold text-foreground">{meetingTitle}</h1>
           <p className="text-sm text-muted-foreground">

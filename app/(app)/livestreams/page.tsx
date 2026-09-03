@@ -13,22 +13,21 @@ export default async function LivestreamsPage() {
   });
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-semibold text-foreground">Livestreams</h1>
-        <p className="mt-2 text-muted-foreground">Start a broadcast or watch one that&apos;s live.</p>
+    <div>
+      <div className="border-b-2 border-divider pb-5">
+        <h1 className="mb-1.5 text-[32px] font-extrabold text-foreground">Livestreams</h1>
+        <p className="text-sm text-muted-foreground">One host broadcasts, the whole organization watches.</p>
       </div>
 
-      <CreateLivestreamForm />
-
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">All livestreams</h2>
-        <LivestreamListTable
-          livestreams={livestreams}
-          currentUserId={user.id}
-          emptyMessage="No livestreams yet — start one above."
-        />
+      <div className="max-w-md py-6">
+        <CreateLivestreamForm />
       </div>
+
+      <LivestreamListTable
+        livestreams={livestreams}
+        currentUserId={user.id}
+        emptyMessage="No livestreams yet — start one above."
+      />
     </div>
   );
 }

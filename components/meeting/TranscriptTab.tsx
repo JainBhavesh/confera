@@ -68,7 +68,7 @@ export function TranscriptTab({
           id="transcript-language"
           value={targetLanguage}
           onChange={(e) => handleLanguageChange(e.target.value)}
-          className="rounded-lg border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+          className="border border-border bg-background px-2 py-1.5 text-sm text-foreground"
         >
           <option value="">Original</option>
           {LANGUAGE_OPTIONS.map((lang) => (
@@ -80,7 +80,7 @@ export function TranscriptTab({
         {loading ? <span className="text-xs text-muted-foreground">Translating…</span> : null}
       </div>
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
-      <p className="max-h-[32rem] overflow-y-auto whitespace-pre-wrap rounded-2xl border border-border bg-background p-4 text-sm leading-6 text-muted-foreground">
+      <p className="max-h-[32rem] overflow-y-auto whitespace-pre-wrap text-[15px] leading-relaxed text-foreground">
         {displayedText ?? transcript}
       </p>
     </div>

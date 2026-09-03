@@ -11,7 +11,15 @@ type RecordingStatus = 'LOADING' | 'NONE' | 'RECORDING' | 'PROCESSING' | 'READY'
  * recordings are audio-only OGG (Room Composite) while livestream recordings
  * are MP4 video (Track Composite) — see services/egress.service.ts.
  */
-export function RecordingPlayer({ endpoint, mediaType = 'video' }: { endpoint: string; mediaType?: 'audio' | 'video' }) {
+export function RecordingPlayer({
+  endpoint,
+  mediaType = 'video',
+  bare = false
+}: {
+  endpoint: string;
+  mediaType?: 'audio' | 'video';
+  bare?: boolean;
+}) {
   const [status, setStatus] = useState<RecordingStatus>('LOADING');
   const [url, setUrl] = useState<string | null>(null);
 
@@ -59,16 +67,21 @@ export function RecordingPlayer({ endpoint, mediaType = 'video' }: { endpoint: s
     return <p className="text-sm text-destructive">The recording couldn&apos;t be processed.</p>;
   }
 
+  const player =
+    mediaType === 'audio' ? (
+      <audio controls className="w-full p-4" src={url ?? undefined} />
+    ) : (
+      <video controls className="w-full" src={url ?? undefined} />
+    );
+
+  if (bare) {
+    return <div className="bg-black">{player}</div>;
+  }
+
   return (
     <div className="space-y-3">
       <h2 className="text-xl font-semibold text-foreground">Recording</h2>
-      <div className="overflow-hidden rounded-3xl border border-slate-800 bg-black">
-        {mediaType === 'audio' ? (
-          <audio controls className="w-full p-4" src={url ?? undefined} />
-        ) : (
-          <video controls className="w-full" src={url ?? undefined} />
-        )}
-      </div>
+      <div className="overflow-hidden border border-slate-800 bg-black">{player}</div>
     </div>
   );
 }

@@ -9,13 +9,13 @@ export interface TabItem {
 
 export function Tabs({ tabs, active, onChange }: { tabs: TabItem[]; active: string; onChange: (id: string) => void }) {
   return (
-    <div className="flex gap-1 overflow-x-auto border-b border-border">
+    <div className="flex gap-1 overflow-x-auto border-b-2 border-divider">
       {tabs.map((tab) => (
         <button
           key={tab.id}
           type="button"
           onClick={() => onChange(tab.id)}
-          className={`shrink-0 border-b-2 px-4 py-2.5 text-sm font-medium transition ${
+          className={`-mb-0.5 shrink-0 border-b-2 px-4 py-2.5 text-sm font-medium transition ${
             active === tab.id ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'
           }`}
         >

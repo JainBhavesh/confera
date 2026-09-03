@@ -75,12 +75,16 @@ export const updateSettingsSchema = z
     defaultCanGenerateNotes: z.boolean().optional(),
     defaultCanViewTranscript: z.boolean().optional(),
     defaultCanViewActionItems: z.boolean().optional(),
-    defaultCanViewRecording: z.boolean().optional()
+    defaultCanViewRecording: z.boolean().optional(),
+    autoDeleteRecordingsAfterDays: z.number().int().positive().nullable().optional()
   })
   .refine((data) => Object.keys(data).length > 0, { message: 'At least one setting must be provided.' });
 
 export const createMeetingSchema = z.object({
-  title: z.string().trim().min(1).max(200)
+  title: z.string().trim().min(1).max(200),
+  scheduledAt: z.coerce.date().optional(),
+  recurrence: z.enum(['ONCE', 'DAILY', 'WEEKLY', 'MONTHLY']).optional(),
+  inviteEmails: z.array(emailSchema).max(50).optional()
 });
 
 export const guestJoinSchema = z.object({

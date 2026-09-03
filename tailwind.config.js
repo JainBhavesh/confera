@@ -17,6 +17,7 @@ module.exports = {
         muted: 'rgb(var(--color-muted) / <alpha-value>)',
         'muted-foreground': 'rgb(var(--color-muted-foreground) / <alpha-value>)',
         border: 'rgb(var(--color-border) / <alpha-value>)',
+        divider: 'rgb(var(--color-divider) / <alpha-value>)',
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         'primary-foreground': 'rgb(var(--color-primary-foreground) / <alpha-value>)',
         accent: 'rgb(var(--color-accent) / <alpha-value>)',
@@ -24,10 +25,13 @@ module.exports = {
         destructive: 'rgb(var(--color-destructive) / <alpha-value>)',
         'destructive-foreground': 'rgb(var(--color-destructive-foreground) / <alpha-value>)'
       },
+      fontFamily: {
+        sans: ['var(--font-archivo)', 'ui-sans-serif', 'system-ui', 'sans-serif']
+      },
       boxShadow: {
-        card: '0 1px 2px rgba(15, 23, 42, 0.06), 0 12px 32px rgba(15, 23, 42, 0.06)',
-        'card-dark': '0 1px 2px rgba(0, 0, 0, 0.2), 0 12px 32px rgba(0, 0, 0, 0.35)',
-        popover: '0 12px 40px rgba(15, 23, 42, 0.16)'
+        card: '0 1px 2px rgba(45, 43, 43, 0.1), 0 12px 32px rgba(45, 43, 43, 0.08)',
+        'card-dark': '0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.4)',
+        popover: '0 12px 40px rgba(45, 43, 43, 0.18)'
       }
     }
   },

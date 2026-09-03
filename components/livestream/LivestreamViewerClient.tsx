@@ -14,6 +14,7 @@ import { Room, RoomEvent, Track } from 'livekit-client';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
+import { LeaveIcon } from '@/components/ui/icons/MeetingIcons';
 import { ViewerCountBadge } from '@/components/livestream/ViewerCountBadge';
 import { LivestreamChatPanel } from '@/components/livestream/LivestreamChatPanel';
 
@@ -124,7 +125,7 @@ export function LivestreamViewerClient({ livestreamId, livestreamTitle, currentU
         <Card className="w-full max-w-sm p-8">
           <form onSubmit={handleGuestNameSubmit} className="space-y-5">
             <div>
-              <h1 className="text-xl font-semibold text-foreground">Watch &ldquo;{livestreamTitle}&rdquo;</h1>
+              <h1 className="text-xl font-extrabold text-foreground">Watch &ldquo;{livestreamTitle}&rdquo;</h1>
               <p className="mt-2 text-sm text-muted-foreground">Enter your name to join the chat.</p>
             </div>
             <div className="space-y-2">
@@ -209,33 +210,45 @@ function LiveViewerShell({
   const hostTrack = cameraTracks[0];
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[1.7fr_0.95fr]">
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold text-white">{livestreamTitle}</h1>
-          <Button onClick={onLeave} variant="dark-secondary">
-            Leave
-          </Button>
-        </div>
-        <div className="relative overflow-hidden rounded-[30px] border border-slate-800 bg-slate-950">
-          {hostTrack ? (
-            <VideoTrack trackRef={hostTrack} playsInline className="h-full min-h-[360px] w-full object-cover" />
-          ) : (
-            <div className="flex min-h-[360px] items-center justify-center bg-slate-900 text-slate-400">
-              Waiting for the host to go live…
+    <div className="flex h-full flex-col overflow-hidden bg-[#141312]">
+      <RoomAudioRenderer />
+      <div className="flex min-h-0 flex-1 flex-col sm:flex-row">
+        <div className="relative flex min-w-0 min-h-0 flex-1 flex-col p-3 sm:p-4">
+          <div className="relative min-h-0 flex-1 overflow-hidden bg-[#201e1d]">
+            {hostTrack ? (
+              <VideoTrack trackRef={hostTrack} playsInline className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full items-center justify-center text-white/50">Waiting for the host to go live…</div>
+            )}
+          </div>
+
+          <div className="pointer-events-none absolute bottom-5 left-5 sm:bottom-6 sm:left-6">
+            <div className="bg-[#141312]/85 px-3.5 py-2 text-white shadow-lg backdrop-blur">
+              <p className="max-w-[40vw] truncate text-sm font-semibold sm:max-w-xs">{livestreamTitle}</p>
             </div>
-          )}
-          <div className="absolute right-4 top-4">
+          </div>
+          <div className="pointer-events-none absolute right-5 top-5 sm:right-6 sm:top-6">
             <ViewerCountBadge count={Math.max(remoteParticipants.length, 0)} />
           </div>
+
+          <div className="pointer-events-none absolute inset-x-0 bottom-5 flex justify-center sm:bottom-6">
+            <div className="pointer-events-auto flex items-center gap-3 bg-[#2d2b2b]/85 px-4 py-2 shadow-xl backdrop-blur">
+              <button
+                type="button"
+                onClick={onLeave}
+                aria-label="Leave"
+                className="flex h-12 w-12 items-center justify-center bg-destructive text-destructive-foreground transition hover:opacity-90"
+              >
+                <LeaveIcon className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex h-64 shrink-0 flex-col border-t border-white/14 bg-[#201e1d] sm:h-auto sm:w-64 sm:border-l sm:border-t-0 lg:w-[320px]">
+          <LivestreamChatPanel room={room} livestreamId={livestreamId} currentUserId={currentUserId} guestSessionId={guestSessionId} />
         </div>
       </div>
-
-      <div style={{ height: 480 }}>
-        <LivestreamChatPanel room={room} livestreamId={livestreamId} currentUserId={currentUserId} guestSessionId={guestSessionId} />
-      </div>
-
-      <RoomAudioRenderer />
     </div>
   );
 }

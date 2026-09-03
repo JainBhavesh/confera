@@ -21,8 +21,10 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
       if (!existingMeeting) {
         return NextResponse.json({ error: 'Meeting not found.' }, { status: 404 });
       }
-      if (existingMeeting.status === 'ENDED' || existingMeeting.status === 'CANCELLED') {
-        return NextResponse.json({ error: 'This meeting has ended.' }, { status: 400 });
+      // ENDED is fine — joinMeeting re-opens it as a fresh LIVE occurrence
+      // under the same id/url. Only a deliberately CANCELLED meeting is dead.
+      if (existingMeeting.status === 'CANCELLED') {
+        return NextResponse.json({ error: 'This meeting has been cancelled.' }, { status: 400 });
       }
 
       const { meeting } = await joinMeeting(existingMeeting, { type: 'user', user });
@@ -61,8 +63,8 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     if (!record || !record.organization.publicMeetingsEnabled) {
       return NextResponse.json({ error: 'Please log in to join this meeting.', code: 'LOGIN_REQUIRED' }, { status: 401 });
     }
-    if (record.status === 'ENDED' || record.status === 'CANCELLED') {
-      return NextResponse.json({ error: 'This meeting has ended.' }, { status: 400 });
+    if (record.status === 'CANCELLED') {
+      return NextResponse.json({ error: 'This meeting has been cancelled.' }, { status: 400 });
     }
 
     const guestIdentity = `guest-${randomBytes(9).toString('base64url')}`;

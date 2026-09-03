@@ -22,16 +22,16 @@ export default async function LoginPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-foreground">Log in</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Welcome back. Enter your credentials to continue.</p>
+        <h1 className="text-[32px] font-extrabold text-foreground">Log in</h1>
+        <p className="mt-1.5 text-sm text-muted-foreground">Welcome back. Enter your credentials to continue.</p>
       </div>
       {reset === 'success' ? (
-        <p className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-primary">
+        <p className="border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-primary">
           Your password has been reset. Log in with your new password.
         </p>
       ) : null}
       {oauthError ? (
-        <p className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">{oauthError}</p>
+        <p className="border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">{oauthError}</p>
       ) : null}
       {/* Google/Facebook OAuth isn't configured yet.
       <OAuthButtons />

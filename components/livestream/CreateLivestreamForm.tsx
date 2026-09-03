@@ -55,7 +55,7 @@ export function CreateLivestreamForm() {
           <button
             type="button"
             onClick={() => setVisibility('PRIVATE')}
-            className={`flex-1 rounded-xl border px-4 py-2 text-sm font-medium transition ${
+            className={`flex-1 border px-4 py-2 text-sm font-medium transition ${
               visibility === 'PRIVATE' ? 'border-primary bg-primary text-primary-foreground' : 'border-border text-muted-foreground hover:bg-muted'
             }`}
           >
@@ -64,7 +64,7 @@ export function CreateLivestreamForm() {
           <button
             type="button"
             onClick={() => setVisibility('PUBLIC')}
-            className={`flex-1 rounded-xl border px-4 py-2 text-sm font-medium transition ${
+            className={`flex-1 border px-4 py-2 text-sm font-medium transition ${
               visibility === 'PUBLIC' ? 'border-primary bg-primary text-primary-foreground' : 'border-border text-muted-foreground hover:bg-muted'
             }`}
           >

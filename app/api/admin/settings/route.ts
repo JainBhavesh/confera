@@ -22,6 +22,7 @@ function serializeOrganization(organization: {
   defaultCanGenerateNotes: boolean;
   defaultCanViewTranscript: boolean;
   defaultCanViewActionItems: boolean;
+  autoDeleteRecordingsAfterDays: number | null;
 }) {
   return {
     id: organization.id,
@@ -32,7 +33,8 @@ function serializeOrganization(organization: {
     defaultCanCreateLivestream: organization.defaultCanCreateLivestream,
     defaultCanGenerateNotes: organization.defaultCanGenerateNotes,
     defaultCanViewTranscript: organization.defaultCanViewTranscript,
-    defaultCanViewActionItems: organization.defaultCanViewActionItems
+    defaultCanViewActionItems: organization.defaultCanViewActionItems,
+    autoDeleteRecordingsAfterDays: organization.autoDeleteRecordingsAfterDays
   };
 }
 

@@ -19,13 +19,20 @@ export async function GET(request: NextRequest) {
     const meetingId = searchParams.get('meetingId') ?? undefined;
     const status = searchParams.get('status') ?? undefined;
     const assignedToUserId = searchParams.get('assignedToUserId') ?? undefined;
+    // 'assigned' | 'created' | 'all' — scopes the list to the current user
+    // for the /action-items aggregate screen. Independent of the explicit
+    // assignedToUserId filter above (used elsewhere, e.g. per-meeting).
+    const scope = searchParams.get('scope') ?? undefined;
 
     const actionItems = await prisma.actionItem.findMany({
       where: {
         organizationId: user.organizationId,
         ...(meetingId ? { meetingId } : {}),
         ...(status ? { status: status as never } : {}),
-        ...(assignedToUserId ? { assignedToUserId } : {})
+        ...(assignedToUserId ? { assignedToUserId } : {}),
+        ...(scope === 'assigned' ? { assignedToUserId: user.id } : {}),
+        ...(scope === 'created' ? { createdByUserId: user.id } : {}),
+        ...(scope === 'all' ? { OR: [{ assignedToUserId: user.id }, { createdByUserId: user.id }] } : {})
       },
       orderBy: { createdAt: 'desc' },
       include: {
@@ -62,6 +69,7 @@ export async function POST(request: NextRequest) {
       data: {
         organizationId: user.organizationId,
         meetingId: meeting.id,
+        createdByUserId: user.id,
         title: parsed.data.title,
         description: parsed.data.description,
         dueDate: parsed.data.dueDate,

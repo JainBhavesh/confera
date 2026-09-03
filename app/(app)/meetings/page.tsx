@@ -15,9 +15,11 @@ export default async function MeetingHistoryPage() {
   });
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-semibold text-foreground">My meetings</h1>
-      <MeetingListTable meetings={meetings} emptyMessage="You haven't created or joined any meetings yet." />
+    <div>
+      <h1 className="border-b-2 border-divider pb-5 text-[32px] font-extrabold text-foreground">Meetings</h1>
+      <div className="pt-4">
+        <MeetingListTable meetings={meetings} emptyMessage="You haven't created or joined any meetings yet." />
+      </div>
     </div>
   );
 }

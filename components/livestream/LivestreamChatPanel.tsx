@@ -104,31 +104,31 @@ export function LivestreamChatPanel({
   };
 
   return (
-    <div className="flex h-full flex-col rounded-3xl border border-slate-800 bg-slate-900 p-5">
-      <h3 className="text-lg font-semibold text-white">Livestream chat</h3>
-      <div ref={listRef} className="mt-4 flex-1 space-y-3 overflow-y-auto" style={{ maxHeight: 320 }}>
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="shrink-0 border-b border-white/14 px-4 py-3 text-[13px] font-semibold text-white">Livestream chat</div>
+      <div ref={listRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
         {messages.length === 0 ? (
-          <p className="text-sm text-slate-500">No messages yet.</p>
+          <p className="text-sm text-white/55">No messages yet.</p>
         ) : (
           messages.map((m) => {
             const isMine = sentIdsRef.current.has(m.id);
             const displayName = m.user?.name ?? m.guestName ?? 'Guest';
             return (
               <div key={m.id} className="text-sm">
-                <span className={`font-semibold ${isMine ? 'text-sky-400' : 'text-slate-200'}`}>{isMine ? 'You' : displayName}</span>
-                <span className="ml-2 break-words text-slate-300">{m.message}</span>
+                <span className={`font-semibold ${isMine ? 'text-primary' : 'text-white'}`}>{isMine ? 'You' : displayName}</span>
+                <span className="ml-2 break-words text-white/85">{m.message}</span>
               </div>
             );
           })
         )}
       </div>
-      <form onSubmit={handleSend} className="mt-4 flex gap-2">
+      <form onSubmit={handleSend} className="flex shrink-0 gap-2 p-4 pt-0">
         <input
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
           maxLength={2000}
           placeholder="Message everyone"
-          className="min-w-0 flex-1 rounded-2xl border border-slate-700 bg-slate-950 px-4 py-2 text-sm text-white outline-none focus:border-sky-500"
+          className="min-w-0 flex-1 border border-white/16 bg-white/5 px-4 py-2 text-sm text-white outline-none placeholder:text-white/40 focus:border-primary"
         />
         <Button type="submit" disabled={sending || !draft.trim()} className="px-4 py-2 text-sm">
           Send

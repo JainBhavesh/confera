@@ -113,14 +113,20 @@ export function UserManagement({
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-semibold text-foreground">Users</h1>
+    <div>
+      <div className="flex items-end justify-between gap-6 border-b-2 border-divider pb-5">
+        <div>
+          <div className="mb-1.5 text-[11px] uppercase tracking-[0.1em] text-primary">Admin</div>
+          <h1 className="mb-1.5 text-[32px] font-extrabold text-foreground">Members</h1>
+          <p className="text-sm text-muted-foreground">
+            {initialUsers.length} members · {initialUsers.filter((u) => u.isActive).length} active
+          </p>
+        </div>
         <Button onClick={() => setShowForm((v) => !v)}>{showForm ? 'Cancel' : 'Create user'}</Button>
       </div>
 
       {createdCredentials ? (
-        <Card className="border-emerald-600/40 bg-emerald-500/10 p-5 dark:border-emerald-700 dark:bg-emerald-950/40">
+        <Card className="mt-6 border-emerald-600/40 bg-emerald-500/10 p-5 dark:border-emerald-700 dark:bg-emerald-950/40">
           <p className="text-sm font-medium text-emerald-700 dark:text-emerald-200">
             Account created. Share this temporary password with {createdCredentials.email} — it will not be shown again.
           </p>
@@ -135,7 +141,7 @@ export function UserManagement({
       ) : null}
 
       {showForm ? (
-        <Card className="p-6">
+        <Card className="mt-6 p-6">
           <form onSubmit={handleCreate} className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <label className="block text-sm font-medium text-muted-foreground">Name</label>
@@ -170,58 +176,57 @@ export function UserManagement({
         </Card>
       ) : null}
 
-      <Card className="overflow-x-auto p-0">
-        <table className="w-full text-left text-sm">
-          <thead className="border-b border-border text-muted-foreground">
-            <tr>
-              <th className="px-5 py-3 font-medium">Name</th>
-              <th className="px-5 py-3 font-medium">Email</th>
-              <th className="px-5 py-3 font-medium">Status</th>
-              <th className="px-5 py-3 font-medium">Created</th>
-              <th className="px-5 py-3 font-medium">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {initialUsers.map((user) => {
-              const isExpanded = expandedUserId === user.id;
-              const isSelf = user.id === currentUserId;
-              const isAdmin = user.role === 'ADMIN';
-              return (
-                <Fragment key={user.id}>
-                  <tr className="border-b border-border last:border-0">
-                    <td className="px-5 py-3 text-foreground">{user.name}</td>
-                    <td className="px-5 py-3 text-muted-foreground">{user.email}</td>
-                    <td className="px-5 py-3">
-                      <Badge variant={user.isActive ? 'success' : 'muted'}>{user.isActive ? 'Active' : 'Disabled'}</Badge>
-                    </td>
-                    <td className="px-5 py-3 text-muted-foreground">{new Date(user.createdAt).toLocaleDateString()}</td>
-                    <td className="px-5 py-3">
-                      <div className="flex items-center gap-4">
-                        {isSelf ? (
-                          <span className="text-xs text-muted-foreground">You</span>
-                        ) : (
-                          <button
-                            onClick={() => handleToggleActive(user)}
-                            disabled={pendingUserId === user.id}
-                            className="text-sm text-primary hover:opacity-80 disabled:text-muted-foreground"
-                          >
-                            {user.isActive ? 'Deactivate' : 'Activate'}
-                          </button>
-                        )}
-                        {isAdmin ? null : (
-                          <button
-                            onClick={() => setExpandedUserId(isExpanded ? null : user.id)}
-                            className="text-sm text-muted-foreground hover:text-foreground"
-                          >
-                            {isExpanded ? 'Hide permissions' : 'Permissions'}
-                          </button>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                  {isExpanded && !isAdmin ? (
-                    <tr className="border-b border-border bg-background/40 last:border-0">
-                      <td colSpan={5} className="px-5 py-4">
+      <table className="mt-6 w-full text-left text-sm">
+        <thead>
+          <tr className="border-b-2 border-divider text-muted-foreground">
+            <th className="py-3 pr-4 text-[11px] font-medium uppercase tracking-wide">Name</th>
+            <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">Email</th>
+            <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">Status</th>
+            <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">Created</th>
+            <th className="py-3 pl-4 text-[11px] font-medium uppercase tracking-wide">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {initialUsers.map((user) => {
+            const isExpanded = expandedUserId === user.id;
+            const isSelf = user.id === currentUserId;
+            const isAdmin = user.role === 'ADMIN';
+            return (
+              <Fragment key={user.id}>
+                <tr className="border-b border-divider last:border-0 hover:bg-muted/40">
+                  <td className="py-3 pr-4 font-semibold text-foreground">{user.name}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{user.email}</td>
+                  <td className="px-4 py-3">
+                    <Badge variant={user.isActive ? 'success' : 'muted'}>{user.isActive ? 'Active' : 'Disabled'}</Badge>
+                  </td>
+                  <td className="px-4 py-3 text-muted-foreground">{new Date(user.createdAt).toLocaleDateString()}</td>
+                  <td className="py-3 pl-4">
+                    <div className="flex items-center gap-4">
+                      {isSelf ? (
+                        <span className="text-xs text-muted-foreground">You</span>
+                      ) : (
+                        <button
+                          onClick={() => handleToggleActive(user)}
+                          disabled={pendingUserId === user.id}
+                          className="text-sm text-primary hover:opacity-80 disabled:text-muted-foreground"
+                        >
+                          {user.isActive ? 'Deactivate' : 'Activate'}
+                        </button>
+                      )}
+                      {isAdmin ? null : (
+                        <button
+                          onClick={() => setExpandedUserId(isExpanded ? null : user.id)}
+                          className="text-sm text-muted-foreground hover:text-foreground"
+                        >
+                          {isExpanded ? 'Hide permissions' : 'Permissions'}
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+                {isExpanded && !isAdmin ? (
+                  <tr className="border-b border-divider bg-background/40 last:border-0">
+                    <td colSpan={5} className="px-4 py-4">
                         <p className="mb-3 text-xs uppercase tracking-wide text-muted-foreground">Permissions for {user.name}</p>
                         <div className="grid gap-3 sm:grid-cols-2">
                           {PERMISSION_KEYS.map((key) => {
@@ -234,7 +239,7 @@ export function UserManagement({
                               <div
                                 key={key}
                                 data-testid={`permission-row-${key}`}
-                                className="flex items-center justify-between gap-3 rounded-2xl border border-border bg-card px-4 py-3"
+                                className="flex items-center justify-between gap-3 border border-border bg-card px-4 py-3"
                               >
                                 <div>
                                   <p className="text-sm text-foreground">{PERMISSION_LABELS[key].title}</p>
@@ -273,7 +278,6 @@ export function UserManagement({
             })}
           </tbody>
         </table>
-      </Card>
     </div>
   );
 }

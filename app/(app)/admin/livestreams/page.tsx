@@ -13,18 +13,17 @@ export default async function AdminLivestreamsPage() {
   });
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-semibold text-foreground">Livestreams</h1>
-        <p className="mt-2 text-muted-foreground">Moderate broadcasts across your organization.</p>
+    <div>
+      <div className="border-b-2 border-divider pb-5">
+        <h1 className="mb-1.5 text-[32px] font-extrabold text-foreground">All livestreams</h1>
+        <p className="text-sm text-muted-foreground">Moderate broadcasts across your organization.</p>
       </div>
 
-      <CreateLivestreamForm />
-
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">All livestreams</h2>
-        <AdminLivestreamListTable livestreams={livestreams} emptyMessage="No livestreams yet." />
+      <div className="max-w-md py-6">
+        <CreateLivestreamForm />
       </div>
+
+      <AdminLivestreamListTable livestreams={livestreams} emptyMessage="No livestreams yet." />
     </div>
   );
 }

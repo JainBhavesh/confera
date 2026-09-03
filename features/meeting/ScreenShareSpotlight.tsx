@@ -26,11 +26,11 @@ export function ScreenShareSpotlight({ sharer, filmstripParticipants }: ScreenSh
 
   return (
     <div className="flex h-full min-h-0 gap-2">
-      <div className="relative min-h-0 min-w-0 flex-1 overflow-hidden rounded-2xl bg-black">
+      <div className="relative min-h-0 min-w-0 flex-1 overflow-hidden bg-black">
         {screenTrack ? (
           <VideoTrack trackRef={screenTrack} playsInline className="h-full w-full object-contain" />
         ) : null}
-        <div className="absolute left-4 top-4 rounded-full bg-slate-950/85 px-3 py-1.5 text-sm text-slate-100 shadow-lg">
+        <div className="absolute left-4 top-4 bg-[#141312]/85 px-3 py-1.5 text-sm text-white shadow-lg">
           {sharer.isLocal ? "You're presenting" : `${getParticipantDisplayName(sharer)} is presenting`}
         </div>
       </div>

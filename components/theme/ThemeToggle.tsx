@@ -2,7 +2,7 @@
 
 import { useTheme } from '@/components/theme/ThemeProvider';
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -12,7 +12,10 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition hover:bg-muted hover:text-foreground"
+      className={
+        className ??
+        'inline-flex h-10 w-10 items-center justify-center text-muted-foreground transition hover:bg-muted hover:text-foreground'
+      }
     >
       {isDark ? (
         <svg viewBox="0 0 24 24" fill="none" strokeWidth={1.75} stroke="currentColor" className="h-5 w-5">

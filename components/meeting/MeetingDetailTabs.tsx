@@ -2,46 +2,53 @@
 
 import { useState } from 'react';
 import { Tabs, TabPanel } from '@/components/ui/Tabs';
-import { Card } from '@/components/ui/Card';
-import { ParticipantsTable, type ParticipantSessionItem } from '@/components/meeting/ParticipantsTable';
-import { ChatLog, type ChatLogMessageItem } from '@/components/meeting/ChatLog';
 import { MeetingNotesCard } from '@/components/meeting/MeetingNotesCard';
-import { GenerateNotesButton } from '@/components/meeting/GenerateNotesButton';
 import { TranscriptTab } from '@/components/meeting/TranscriptTab';
 import { ActionItemsTab, type ActionItemItem } from '@/components/meeting/ActionItemsTab';
 import { RecordingPlayer } from '@/components/recording/RecordingPlayer';
 
+export interface ParticipantSessionItem {
+  id: string;
+  joinedAt: Date;
+  leftAt: Date | null;
+  durationSeconds: number | null;
+  user: { name: string } | null;
+  guestName: string | null;
+}
+
 export interface MeetingDetailTabsProps {
   meetingId: string;
   currentUserId: string;
-  overview: { hostName: string; status: string; startedAt: string | null; endedAt: string | null };
   participantSessions: ParticipantSessionItem[];
-  messages: ChatLogMessageItem[];
   notes: { status: 'PENDING' | 'READY' | 'FAILED' | 'SKIPPED'; summary: string | null } | null;
   transcript: string | null;
   translations: Record<string, string> | null;
   actionItems: ActionItemItem[];
-  permissions: { canViewTranscript: boolean; canViewActionItems: boolean; canViewRecording: boolean; canGenerateNotes: boolean };
+  permissions: { canViewTranscript: boolean; canViewActionItems: boolean; canViewRecording: boolean };
   canManageActionItems: boolean;
   meetingEnded: boolean;
 }
 
 const TABS = [
-  { id: 'overview', label: 'Overview' },
-  { id: 'participants', label: 'Participants' },
-  { id: 'chat', label: 'Chat' },
-  { id: 'recording', label: 'Recording' },
-  { id: 'transcript', label: 'Transcript' },
-  { id: 'notes', label: 'Notes' },
-  { id: 'action-items', label: 'Action items' }
+  { id: 'summary', label: 'Summary' },
+  { id: 'action-items', label: 'Action items' },
+  { id: 'transcript', label: 'Transcript' }
 ];
+
+function participantLabel(session: ParticipantSessionItem): string {
+  return session.user?.name ?? session.guestName ?? 'Guest';
+}
+
+function formatDuration(seconds: number | null): string {
+  if (seconds === null) return 'In progress';
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes}m`;
+}
 
 export function MeetingDetailTabs({
   meetingId,
   currentUserId,
-  overview,
   participantSessions,
-  messages,
   notes,
   transcript,
   translations,
@@ -50,78 +57,76 @@ export function MeetingDetailTabs({
   canManageActionItems,
   meetingEnded
 }: MeetingDetailTabsProps) {
-  const [active, setActive] = useState('overview');
+  const [active, setActive] = useState('summary');
+  const tabs = TABS.filter((t) => t.id !== 'action-items' || permissions.canViewActionItems).filter(
+    (t) => t.id !== 'transcript' || permissions.canViewTranscript
+  );
 
   return (
-    <div className="space-y-4">
-      <Tabs tabs={TABS} active={active} onChange={setActive} />
+    <div className="grid grid-cols-[1fr_300px] gap-10 pt-6">
+      <div>
+        <Tabs tabs={tabs} active={active} onChange={setActive} />
 
-      <TabPanel id="overview" active={active}>
-        <Card className="grid gap-4 p-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <p className="text-sm text-muted-foreground">Host</p>
-            <p className="mt-1 text-foreground">{overview.hostName}</p>
+        <TabPanel id="summary" active={active}>
+          <div className="max-w-[680px]">
+            <MeetingNotesCard notes={notes} meetingEnded={meetingEnded} bare />
           </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Status</p>
-            <p className="mt-1 text-foreground">{overview.status}</p>
+        </TabPanel>
+
+        {permissions.canViewActionItems ? (
+          <TabPanel id="action-items" active={active}>
+            <div className="max-w-[680px]">
+              <ActionItemsTab
+                meetingId={meetingId}
+                items={actionItems}
+                canManage={canManageActionItems}
+                currentUserId={currentUserId}
+              />
+            </div>
+          </TabPanel>
+        ) : null}
+
+        {permissions.canViewTranscript ? (
+          <TabPanel id="transcript" active={active}>
+            <div className="max-w-[680px]">
+              <TranscriptTab meetingId={meetingId} transcript={transcript} initialTranslations={translations} />
+            </div>
+          </TabPanel>
+        ) : null}
+      </div>
+
+      <aside>
+        {permissions.canViewRecording ? (
+          <>
+            <div className="mb-2.5 text-[11px] uppercase tracking-[0.08em] text-muted-foreground">Recording</div>
+            {!meetingEnded ? (
+              <p className="text-sm text-muted-foreground">The recording will be available once the meeting ends.</p>
+            ) : (
+              <div className="aspect-video bg-[#201e1d]">
+                <RecordingPlayer endpoint={`/api/meetings/${meetingId}/recording`} mediaType="audio" bare />
+              </div>
+            )}
+          </>
+        ) : null}
+
+        <div className="mb-2.5 mt-7 text-[11px] uppercase tracking-[0.08em] text-muted-foreground">Participants</div>
+        {participantSessions.map((session) => (
+          <div key={session.id} className="flex items-center gap-2.5 border-b border-divider py-2.5">
+            <div className="flex h-[26px] w-[26px] shrink-0 items-center justify-center bg-muted font-heading text-[11px] font-extrabold text-foreground">
+              {participantLabel(session)
+                .split(/\s+/)
+                .slice(0, 2)
+                .map((p) => p[0]?.toUpperCase())
+                .join('')}
+            </div>
+            <div className="flex-1 truncate text-[13px] text-foreground">
+              {participantLabel(session)}
+              {!session.user ? <span className="ml-1.5 text-muted-foreground">(guest)</span> : null}
+            </div>
+            <div className="text-xs text-muted-foreground">{formatDuration(session.durationSeconds)}</div>
           </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Started</p>
-            <p className="mt-1 text-foreground">{overview.startedAt ? new Date(overview.startedAt).toLocaleString() : '—'}</p>
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Ended</p>
-            <p className="mt-1 text-foreground">{overview.endedAt ? new Date(overview.endedAt).toLocaleString() : '—'}</p>
-          </div>
-        </Card>
-      </TabPanel>
-
-      <TabPanel id="participants" active={active}>
-        <ParticipantsTable sessions={participantSessions} />
-      </TabPanel>
-
-      <TabPanel id="chat" active={active}>
-        <ChatLog messages={messages} />
-      </TabPanel>
-
-      <TabPanel id="recording" active={active}>
-        {!permissions.canViewRecording ? (
-          <p className="text-sm text-muted-foreground">You do not have permission to view this meeting&apos;s recording.</p>
-        ) : !meetingEnded ? (
-          <p className="text-sm text-muted-foreground">The recording will be available once the meeting ends.</p>
-        ) : (
-          <RecordingPlayer endpoint={`/api/meetings/${meetingId}/recording`} mediaType="audio" />
-        )}
-      </TabPanel>
-
-      <TabPanel id="transcript" active={active}>
-        {!permissions.canViewTranscript ? (
-          <p className="text-sm text-muted-foreground">You do not have permission to view this meeting&apos;s transcript.</p>
-        ) : (
-          <TranscriptTab meetingId={meetingId} transcript={transcript} initialTranslations={translations} />
-        )}
-      </TabPanel>
-
-      <TabPanel id="notes" active={active}>
-        <MeetingNotesCard
-          notes={notes}
-          meetingEnded={meetingEnded}
-          action={
-            permissions.canGenerateNotes && meetingEnded && notes?.status !== 'PENDING' ? (
-              <GenerateNotesButton meetingId={meetingId} hasNotes={notes?.status === 'READY'} />
-            ) : undefined
-          }
-        />
-      </TabPanel>
-
-      <TabPanel id="action-items" active={active}>
-        {!permissions.canViewActionItems ? (
-          <p className="text-sm text-muted-foreground">You do not have permission to view action items.</p>
-        ) : (
-          <ActionItemsTab meetingId={meetingId} items={actionItems} canManage={canManageActionItems} currentUserId={currentUserId} />
-        )}
-      </TabPanel>
+        ))}
+      </aside>
     </div>
   );
 }
