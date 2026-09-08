@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Mégse",
+    "join": "Csatlakozás",
+    "notes": "Jegyzetek"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Munkaterület",
+      "knowledge": "Tudás",
+      "administration": "Adminisztráció"
+    },
+    "links": {
+      "home": "Kezdőlap",
+      "meetings": "Értekezletek",
+      "schedule": "Ütemezés",
+      "livestreams": "Élő közvetítések",
+      "searchNotes": "Jegyzetek keresése",
+      "actionItems": "Teendők",
+      "recordings": "Felvételek",
+      "usageAnalytics": "Használati elemzés",
+      "members": "Tagok",
+      "allMeetings": "Összes értekezlet",
+      "allLivestreams": "Összes élő közvetítés",
+      "notes": "Jegyzetek",
+      "allActionItems": "Összes teendő",
+      "analytics": "Statisztikák",
+      "settings": "Beállítások"
+    },
+    "viewProfile": "Profil megtekintése",
+    "logOut": "Kijelentkezés",
+    "language": "Nyelv",
+    "searchPlaceholder": "Értekezletek, jegyzetek, átiratok keresése",
+    "joinWithId": "Csatlakozás azonosítóval",
+    "meetingIdPlaceholder": "Értekezlet azonosítója",
+    "newMeeting": "Új értekezlet",
+    "starting": "Indítás…",
+    "join": "Csatlakozás"
+  },
+  "dashboard": {
+    "greeting": "Jó {period} kívánunk, {name}",
+    "periods": {
+      "morning": "reggelt",
+      "afternoon": "napot",
+      "evening": "estét"
+    },
+    "today": "Ma",
+    "meetingsCount": "{count} értekezlet",
+    "openActions": "Nyitott teendők",
+    "scheduleHeading": "Ütemezés",
+    "scheduleDescription": "Vegye fel a naptárba egy napirenddel.",
+    "goLiveHeading": "Élő közvetítés indítása",
+    "goLiveDescription": "Közvetítés az egész szervezetnek.",
+    "startLivestream": "Élő közvetítés indítása",
+    "upNext": "Következik",
+    "fullSchedule": "Teljes ütemterv",
+    "nothingScheduledToday": "A mai nap hátralévő részére nincs semmi ütemezve.",
+    "recentMeetings": "Legutóbbi értekezletek",
+    "viewAll": "Összes megtekintése",
+    "noMeetingsYet": "Még nincs értekezlet — indítson egyet fent.",
+    "yourActionItems": "Az Ön teendői",
+    "nothingAssigned": "Jelenleg semmi nincs Önhöz rendelve.",
+    "allActionItems": "Összes teendő",
+    "thisWeek": "Ezen a héten",
+    "hoursMinutes": "{hours} ó {minutes} p",
+    "weekSummary": "értekezleten, ebből {count} automatikusan átírva.",
+    "join": "Csatlakozás"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Értekezlet indítása",
+      "description": "Nyisson meg egy termet most, és küldje el a linket.",
+      "titlePlaceholder": "Értekezlet címe",
+      "startButton": "Indítás",
+      "starting": "Indítás…"
+    },
+    "schedule": {
+      "newButton": "Új ütemezett értekezlet",
+      "dialogTitle": "Értekezlet ütemezése",
+      "titleLabel": "Cím",
+      "titlePlaceholder": "Értekezlet címe",
+      "repeatsLabel": "Ismétlődés",
+      "recurrence": {
+        "once": "Egyszeri",
+        "daily": "Naponta",
+        "weekly": "Hetente",
+        "monthly": "Havonta"
+      },
+      "dateLabel": "Dátum",
+      "timeLabel": "Idő",
+      "recurrenceHint": {
+        "daily": "Munkanapokra (hétvégék nélkül) hoz létre alkalmakat az év végéig vagy 6 hónapig — amelyik később van.",
+        "weekly": "Heti alkalmakat hoz létre az év végéig vagy 6 hónapig — amelyik később van.",
+        "monthly": "Havi alkalmakat hoz létre az év végéig vagy 6 hónapig — amelyik később van."
+      },
+      "inviteLabel": "Meghívás e-mailben",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Több címet vesszővel válasszon el. Akinek nincs Confera-fiókja, annak automatikusan létrejön.",
+      "cancel": "Mégse",
+      "submit": "Ütemezés",
+      "submitting": "Ütemezés…"
+    },
+    "table": {
+      "title": "Cím",
+      "host": "Házigazda",
+      "status": "Állapot",
+      "created": "Létrehozva",
+      "join": "Csatlakozás",
+      "notes": "Jegyzetek"
+    },
+    "status": {
+      "scheduled": "ÜTEMEZVE",
+      "live": "ÉLŐ",
+      "ended": "BEFEJEZŐDÖTT",
+      "cancelled": "LEMONDVA"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Adjon címet az értekezletnek.",
+    "unable_to_create_meeting": "Az értekezletet nem sikerült létrehozni.",
+    "unable_to_create_meeting_retry": "Az értekezletet nem sikerült létrehozni. Próbálja újra később.",
+    "fill_title_date_time": "Adja meg a címet, a dátumot és az időt.",
+    "enter_valid_date_time": "Adjon meg érvényes dátumot és időt.",
+    "invalid_email": "„{email}” nem tűnik érvényes e-mail-címnek.",
+    "unable_to_schedule_meeting": "Az értekezletet nem sikerült ütemezni.",
+    "unable_to_schedule_meeting_retry": "Az értekezletet nem sikerült ütemezni. Próbálja újra később."
+  }
+}

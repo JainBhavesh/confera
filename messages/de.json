@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Abbrechen",
+    "join": "Beitreten",
+    "notes": "Notizen"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Arbeitsbereich",
+      "knowledge": "Wissen",
+      "administration": "Verwaltung"
+    },
+    "links": {
+      "home": "Startseite",
+      "meetings": "Meetings",
+      "schedule": "Zeitplan",
+      "livestreams": "Livestreams",
+      "searchNotes": "Notizen durchsuchen",
+      "actionItems": "Aufgaben",
+      "recordings": "Aufzeichnungen",
+      "usageAnalytics": "Nutzungsanalyse",
+      "members": "Mitglieder",
+      "allMeetings": "Alle Meetings",
+      "allLivestreams": "Alle Livestreams",
+      "notes": "Notizen",
+      "allActionItems": "Alle Aufgaben",
+      "analytics": "Analysen",
+      "settings": "Einstellungen"
+    },
+    "viewProfile": "Profil ansehen",
+    "logOut": "Abmelden",
+    "language": "Sprache",
+    "searchPlaceholder": "Meetings, Notizen, Transkripte durchsuchen",
+    "joinWithId": "Mit ID beitreten",
+    "meetingIdPlaceholder": "Meeting-ID",
+    "newMeeting": "Neues Meeting",
+    "starting": "Wird gestartet…",
+    "join": "Beitreten"
+  },
+  "dashboard": {
+    "greeting": "Guten {period}, {name}",
+    "periods": {
+      "morning": "Morgen",
+      "afternoon": "Tag",
+      "evening": "Abend"
+    },
+    "today": "Heute",
+    "meetingsCount": "{count} Meetings",
+    "openActions": "Offene Aufgaben",
+    "scheduleHeading": "Planen",
+    "scheduleDescription": "Mit Agenda in den Kalender eintragen.",
+    "goLiveHeading": "Live gehen",
+    "goLiveDescription": "An die gesamte Organisation übertragen.",
+    "startLivestream": "Livestream starten",
+    "upNext": "Als Nächstes",
+    "fullSchedule": "Vollständiger Zeitplan",
+    "nothingScheduledToday": "Für den Rest des Tages ist nichts geplant.",
+    "recentMeetings": "Letzte Meetings",
+    "viewAll": "Alle anzeigen",
+    "noMeetingsYet": "Noch keine Meetings — starten Sie oben eines.",
+    "yourActionItems": "Ihre Aufgaben",
+    "nothingAssigned": "Ihnen ist derzeit nichts zugewiesen.",
+    "allActionItems": "Alle Aufgaben",
+    "thisWeek": "Diese Woche",
+    "hoursMinutes": "{hours} Std {minutes} Min",
+    "weekSummary": "in Meetings, davon {count} automatisch transkribiert.",
+    "join": "Beitreten"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Meeting starten",
+      "description": "Jetzt einen Raum öffnen und den Link versenden.",
+      "titlePlaceholder": "Meeting-Titel",
+      "startButton": "Starten",
+      "starting": "Wird gestartet…"
+    },
+    "schedule": {
+      "newButton": "Neues geplantes Meeting",
+      "dialogTitle": "Meeting planen",
+      "titleLabel": "Titel",
+      "titlePlaceholder": "Meeting-Titel",
+      "repeatsLabel": "Wiederholung",
+      "recurrence": {
+        "once": "Einmalig",
+        "daily": "Täglich",
+        "weekly": "Wöchentlich",
+        "monthly": "Monatlich"
+      },
+      "dateLabel": "Datum",
+      "timeLabel": "Uhrzeit",
+      "recurrenceHint": {
+        "daily": "Erstellt Termine an Werktagen (ohne Wochenenden) bis zum Jahresende oder 6 Monate voraus — je nachdem, was später ist.",
+        "weekly": "Erstellt wöchentliche Termine bis zum Jahresende oder 6 Monate voraus — je nachdem, was später ist.",
+        "monthly": "Erstellt monatliche Termine bis zum Jahresende oder 6 Monate voraus — je nachdem, was später ist."
+      },
+      "inviteLabel": "Per E-Mail einladen",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Mehrere Adressen durch Kommas trennen. Für alle ohne Confera-Konto wird automatisch eines angelegt.",
+      "cancel": "Abbrechen",
+      "submit": "Planen",
+      "submitting": "Wird geplant…"
+    },
+    "table": {
+      "title": "Titel",
+      "host": "Gastgeber",
+      "status": "Status",
+      "created": "Erstellt",
+      "join": "Beitreten",
+      "notes": "Notizen"
+    },
+    "status": {
+      "scheduled": "GEPLANT",
+      "live": "LIVE",
+      "ended": "BEENDET",
+      "cancelled": "ABGESAGT"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Geben Sie Ihrem Meeting einen Titel.",
+    "unable_to_create_meeting": "Meeting konnte nicht erstellt werden.",
+    "unable_to_create_meeting_retry": "Meeting konnte nicht erstellt werden. Versuchen Sie es später erneut.",
+    "fill_title_date_time": "Geben Sie Titel, Datum und Uhrzeit an.",
+    "enter_valid_date_time": "Geben Sie ein gültiges Datum und eine gültige Uhrzeit ein.",
+    "invalid_email": "„{email}“ sieht nicht wie eine gültige E-Mail-Adresse aus.",
+    "unable_to_schedule_meeting": "Meeting konnte nicht geplant werden.",
+    "unable_to_schedule_meeting_retry": "Meeting konnte nicht geplant werden. Versuchen Sie es später erneut."
+  }
+}

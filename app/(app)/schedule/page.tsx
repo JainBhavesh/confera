@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { prisma } from '@/lib/db/prisma';
 import { requireUserPage } from '@/lib/auth/guards';
 import { ScheduleMeetingForm } from '@/components/meeting/ScheduleMeetingForm';
+import { ScheduleMeetingItem } from '@/components/meeting/ScheduleMeetingItem';
 
 const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-const RECURRENCE_LABEL: Record<string, string> = { DAILY: 'Daily', WEEKLY: 'Weekly', MONTHLY: 'Monthly' };
 
 function startOfWeek(date: Date): Date {
   const d = new Date(date);
@@ -115,16 +115,17 @@ export default async function SchedulePage({ searchParams }: { searchParams: Pro
               {day.date.getDate()}
             </div>
             {day.items.map((item) => (
-              <div key={item.id} className="mb-2 border-l-[3px] border-primary bg-muted px-2.5 py-2">
-                <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                  <span>{new Date(item.scheduledAt!).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                  {item.recurrence !== 'ONCE' ? (
-                    <span className="text-primary">· {RECURRENCE_LABEL[item.recurrence]}</span>
-                  ) : null}
-                </div>
-                <div className="text-[13px] font-semibold leading-tight text-foreground">{item.title}</div>
-                <div className="mt-0.5 text-[11px] text-muted-foreground">{item.createdBy.name}</div>
-              </div>
+              <ScheduleMeetingItem
+                key={item.id}
+                meeting={{
+                  id: item.id,
+                  title: item.title,
+                  scheduledAt: new Date(item.scheduledAt!),
+                  recurrence: item.recurrence,
+                  createdByName: item.createdBy.name
+                }}
+                canManage={item.status === 'SCHEDULED' && (user.role === 'ADMIN' || user.id === item.createdByUserId)}
+              />
             ))}
           </div>
         ))}

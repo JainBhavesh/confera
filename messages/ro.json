@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Anulează",
+    "join": "Alătură-te",
+    "notes": "Note"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Spațiu de lucru",
+      "knowledge": "Cunoștințe",
+      "administration": "Administrare"
+    },
+    "links": {
+      "home": "Acasă",
+      "meetings": "Întâlniri",
+      "schedule": "Program",
+      "livestreams": "Transmisiuni live",
+      "searchNotes": "Caută în note",
+      "actionItems": "Sarcini",
+      "recordings": "Înregistrări",
+      "usageAnalytics": "Analiza utilizării",
+      "members": "Membri",
+      "allMeetings": "Toate întâlnirile",
+      "allLivestreams": "Toate transmisiunile",
+      "notes": "Note",
+      "allActionItems": "Toate sarcinile",
+      "analytics": "Statistici",
+      "settings": "Setări"
+    },
+    "viewProfile": "Vezi profilul",
+    "logOut": "Deconectare",
+    "language": "Limbă",
+    "searchPlaceholder": "Caută întâlniri, note, transcrieri",
+    "joinWithId": "Alătură-te cu ID",
+    "meetingIdPlaceholder": "ID întâlnire",
+    "newMeeting": "Întâlnire nouă",
+    "starting": "Se pornește…",
+    "join": "Alătură-te"
+  },
+  "dashboard": {
+    "greeting": "Bună {period}, {name}",
+    "periods": {
+      "morning": "dimineața",
+      "afternoon": "ziua",
+      "evening": "seara"
+    },
+    "today": "Astăzi",
+    "meetingsCount": "{count} întâlniri",
+    "openActions": "Sarcini deschise",
+    "scheduleHeading": "Programează",
+    "scheduleDescription": "Adaug-o în calendar cu o agendă.",
+    "goLiveHeading": "Începe transmisia",
+    "goLiveDescription": "Transmite către întreaga organizație.",
+    "startLivestream": "Începe o transmisiune live",
+    "upNext": "Următoarele",
+    "fullSchedule": "Programul complet",
+    "nothingScheduledToday": "Nimic programat pentru restul zilei.",
+    "recentMeetings": "Întâlniri recente",
+    "viewAll": "Vezi toate",
+    "noMeetingsYet": "Încă nicio întâlnire — pornește una mai sus.",
+    "yourActionItems": "Sarcinile tale",
+    "nothingAssigned": "Nu ți s-a atribuit nimic momentan.",
+    "allActionItems": "Toate sarcinile",
+    "thisWeek": "Săptămâna aceasta",
+    "hoursMinutes": "{hours} h {minutes} min",
+    "weekSummary": "în întâlniri, dintre care {count} transcrise automat.",
+    "join": "Alătură-te"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Pornește o întâlnire",
+      "description": "Deschide o sală acum și trimite linkul.",
+      "titlePlaceholder": "Titlul întâlnirii",
+      "startButton": "Pornește",
+      "starting": "Se pornește…"
+    },
+    "schedule": {
+      "newButton": "Întâlnire programată nouă",
+      "dialogTitle": "Programează o întâlnire",
+      "titleLabel": "Titlu",
+      "titlePlaceholder": "Titlul întâlnirii",
+      "repeatsLabel": "Repetare",
+      "recurrence": {
+        "once": "O singură dată",
+        "daily": "Zilnic",
+        "weekly": "Săptămânal",
+        "monthly": "Lunar"
+      },
+      "dateLabel": "Dată",
+      "timeLabel": "Oră",
+      "recurrenceHint": {
+        "daily": "Creează repetări în zilele lucrătoare (fără weekend) până la sfârșitul anului sau timp de 6 luni — oricare este mai târziu.",
+        "weekly": "Creează repetări săptămânale până la sfârșitul anului sau timp de 6 luni — oricare este mai târziu.",
+        "monthly": "Creează repetări lunare până la sfârșitul anului sau timp de 6 luni — oricare este mai târziu."
+      },
+      "inviteLabel": "Invită prin e-mail",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Separă mai multe adrese prin virgule. Celor fără cont Confera li se va crea automat unul.",
+      "cancel": "Anulează",
+      "submit": "Programează",
+      "submitting": "Se programează…"
+    },
+    "table": {
+      "title": "Titlu",
+      "host": "Gazdă",
+      "status": "Stare",
+      "created": "Creată",
+      "join": "Alătură-te",
+      "notes": "Note"
+    },
+    "status": {
+      "scheduled": "PROGRAMATĂ",
+      "live": "LIVE",
+      "ended": "ÎNCHEIATĂ",
+      "cancelled": "ANULATĂ"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Dă un titlu întâlnirii tale.",
+    "unable_to_create_meeting": "Întâlnirea nu a putut fi creată.",
+    "unable_to_create_meeting_retry": "Întâlnirea nu a putut fi creată. Încearcă din nou mai târziu.",
+    "fill_title_date_time": "Completează titlul, data și ora.",
+    "enter_valid_date_time": "Introdu o dată și oră valide.",
+    "invalid_email": "„{email}” nu pare o adresă de e-mail validă.",
+    "unable_to_schedule_meeting": "Întâlnirea nu a putut fi programată.",
+    "unable_to_schedule_meeting_retry": "Întâlnirea nu a putut fi programată. Încearcă din nou mai târziu."
+  }
+}

@@ -14,6 +14,10 @@ export function logout(): Promise<void> {
   return apiFetch('/api/auth/logout', { method: 'POST' });
 }
 
+export function changePassword(input: { currentPassword: string; newPassword: string }): Promise<{ ok: boolean }> {
+  return apiFetch('/api/auth/password', { method: 'PATCH', body: JSON.stringify(input) });
+}
+
 // A signed-out visitor gets a 401 here, which is an expected outcome (not a
 // failure) — so this bypasses apiFetch's throw-on-!ok behavior and always
 // resolves with `{ user: null }` in that case instead of throwing.

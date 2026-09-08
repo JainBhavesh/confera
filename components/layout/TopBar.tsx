@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 
 export function TopBar() {
   const router = useRouter();
+  const t = useTranslations('nav');
   const [query, setQuery] = useState('');
   const [joinOpen, setJoinOpen] = useState(false);
   const [joinId, setJoinId] = useState('');
@@ -59,7 +61,7 @@ export function TopBar() {
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search meetings, notes, transcripts"
+          placeholder={t('searchPlaceholder')}
           className="bg-transparent pl-8"
         />
       </form>
@@ -71,16 +73,16 @@ export function TopBar() {
               autoFocus
               value={joinId}
               onChange={(e) => setJoinId(e.target.value)}
-              placeholder="Meeting ID"
+              placeholder={t('meetingIdPlaceholder')}
               className="h-11 w-40"
             />
             <Button type="submit" variant="secondary" disabled={!joinId.trim()}>
-              Join
+              {t('join')}
             </Button>
           </form>
         ) : (
           <Button variant="secondary" onClick={() => setJoinOpen(true)}>
-            Join with ID
+            {t('joinWithId')}
           </Button>
         )}
         <Button onClick={startMeeting} disabled={creating}>
@@ -88,7 +90,7 @@ export function TopBar() {
             <path d="m16 10 5-3v10l-5-3z" />
             <rect x="3" y="6" width="13" height="12" />
           </svg>
-          {creating ? 'Starting…' : 'New meeting'}
+          {creating ? t('starting') : t('newMeeting')}
         </Button>
       </div>
     </div>

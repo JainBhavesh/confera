@@ -11,6 +11,7 @@ export interface PublicUser {
   avatarUrl: string | null;
   oauthProvider: string | null;
   createdAt: Date;
+  locale: string;
   // Permission overrides — null means "inherit the org default" (see lib/permissions.ts).
   canCreateMeeting: boolean | null;
   canCreateLivestream: boolean | null;
@@ -33,6 +34,7 @@ export function toPublicUser(user: User): PublicUser {
     avatarUrl: user.avatarUrl,
     oauthProvider: user.oauthProvider,
     createdAt: user.createdAt,
+    locale: user.locale,
     canCreateMeeting: user.canCreateMeeting,
     canCreateLivestream: user.canCreateLivestream,
     canGenerateNotes: user.canGenerateNotes,

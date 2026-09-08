@@ -3,7 +3,7 @@ import { toErrorResponse } from '@/lib/auth/guards';
 import { getCurrentUser } from '@/lib/auth/session';
 import { getLivestreamForGuestAccess, getOrgScopedLivestream } from '@/services/livestream.service';
 import { checkLivestreamRecordingStatus } from '@/services/egress.service';
-import { getRecordingDownloadUrl } from '@/lib/recordingStorage';
+import { getRecordingDownloadUrl, RECORDING_STORAGE_MODE } from '@/lib/recordingStorage';
 import type { Livestream } from '@prisma/client';
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -35,7 +35,10 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
       return NextResponse.json({ status: livestream.recordingStatus, url: null });
     }
 
-    const url = await getRecordingDownloadUrl(livestream.recordingKey);
+    const url =
+      RECORDING_STORAGE_MODE === 'local'
+        ? `/api/livestreams/${id}/recording/file`
+        : await getRecordingDownloadUrl(livestream.recordingKey);
     return NextResponse.json({ status: livestream.recordingStatus, url });
   } catch (err) {
     return toErrorResponse(err);

@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Ikkanċella",
+    "join": "Ingħaqad",
+    "notes": "Noti"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Spazju tax-xogħol",
+      "knowledge": "Għarfien",
+      "administration": "Amministrazzjoni"
+    },
+    "links": {
+      "home": "Dar",
+      "meetings": "Laqgħat",
+      "schedule": "Skeda",
+      "livestreams": "Xandiriet diretti",
+      "searchNotes": "Fittex noti",
+      "actionItems": "Kompiti",
+      "recordings": "Reġistrazzjonijiet",
+      "usageAnalytics": "Analiżi tal-użu",
+      "members": "Membri",
+      "allMeetings": "Il-laqgħat kollha",
+      "allLivestreams": "Ix-xandiriet diretti kollha",
+      "notes": "Noti",
+      "allActionItems": "Il-kompiti kollha",
+      "analytics": "Statistika",
+      "settings": "Settings"
+    },
+    "viewProfile": "Ara l-profil",
+    "logOut": "Oħroġ",
+    "language": "Lingwa",
+    "searchPlaceholder": "Fittex laqgħat, noti, traskrizzjonijiet",
+    "joinWithId": "Ingħaqad bl-ID",
+    "meetingIdPlaceholder": "ID tal-laqgħa",
+    "newMeeting": "Laqgħa ġdida",
+    "starting": "Qed tibda…",
+    "join": "Ingħaqad"
+  },
+  "dashboard": {
+    "greeting": "Il-{period} it-tajjeb, {name}",
+    "periods": {
+      "morning": "għodwa",
+      "afternoon": "wara nofsinhar",
+      "evening": "filgħaxija"
+    },
+    "today": "Illum",
+    "meetingsCount": "{count} laqgħat",
+    "openActions": "Kompiti miftuħa",
+    "scheduleHeading": "Skeda",
+    "scheduleDescription": "Żidha fil-kalendarju flimkien ma' aġenda.",
+    "goLiveHeading": "Ixxandar dirett",
+    "goLiveDescription": "Ixxandar lill-organizzazzjoni kollha.",
+    "startLivestream": "Ibda xandira diretta",
+    "upNext": "Li jmiss",
+    "fullSchedule": "Skeda sħiħa",
+    "nothingScheduledToday": "Xejn mhux skedat għall-bqija tal-jum.",
+    "recentMeetings": "Laqgħat riċenti",
+    "viewAll": "Ara kollox",
+    "noMeetingsYet": "Għadha m'hemm l-ebda laqgħa — ibda waħda hawn fuq.",
+    "yourActionItems": "Il-kompiti tiegħek",
+    "nothingAssigned": "Bħalissa m'hemm xejn assenjat lilek.",
+    "allActionItems": "Il-kompiti kollha",
+    "thisWeek": "Din il-ġimgħa",
+    "hoursMinutes": "{hours} sig {minutes} min",
+    "weekSummary": "f'laqgħat, li minnhom {count} ġew traskritti awtomatikament.",
+    "join": "Ingħaqad"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Ibda laqgħa",
+      "description": "Iftaħ kamra issa u ibgħat il-link.",
+      "titlePlaceholder": "Titlu tal-laqgħa",
+      "startButton": "Ibda",
+      "starting": "Qed tibda…"
+    },
+    "schedule": {
+      "newButton": "Laqgħa skedata ġdida",
+      "dialogTitle": "Skeda laqgħa",
+      "titleLabel": "Titlu",
+      "titlePlaceholder": "Titlu tal-laqgħa",
+      "repeatsLabel": "Repetizzjoni",
+      "recurrence": {
+        "once": "Darba",
+        "daily": "Kuljum",
+        "weekly": "Kull ġimgħa",
+        "monthly": "Kull xahar"
+      },
+      "dateLabel": "Data",
+      "timeLabel": "Ħin",
+      "recurrenceHint": {
+        "daily": "Toħloq okkorrenzi f'jiem tax-xogħol (mingħajr weekends) sa tmiem is-sena, jew 6 xhur 'il quddiem — skont liema jiġi l-aktar tard.",
+        "weekly": "Toħloq okkorrenzi ta' kull ġimgħa sa tmiem is-sena, jew 6 xhur 'il quddiem — skont liema jiġi l-aktar tard.",
+        "monthly": "Toħloq okkorrenzi ta' kull xahar sa tmiem is-sena, jew 6 xhur 'il quddiem — skont liema jiġi l-aktar tard."
+      },
+      "inviteLabel": "Stieden bl-email",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Ifred bosta indirizzi b'virgoli. Kull min m'għandux kont Confera, se jinħoloqlu wieħed awtomatikament.",
+      "cancel": "Ikkanċella",
+      "submit": "Skeda",
+      "submitting": "Qed tiskeda…"
+    },
+    "table": {
+      "title": "Titlu",
+      "host": "Ospitant",
+      "status": "Status",
+      "created": "Maħluqa",
+      "join": "Ingħaqad",
+      "notes": "Noti"
+    },
+    "status": {
+      "scheduled": "SKEDATA",
+      "live": "LIVE",
+      "ended": "SPIĊĊAT",
+      "cancelled": "IKKANĊELLATA"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Agħti titlu lil-laqgħa tiegħek.",
+    "unable_to_create_meeting": "Ma setgħetx tinħoloq il-laqgħa.",
+    "unable_to_create_meeting_retry": "Ma setgħetx tinħoloq il-laqgħa. Erġa' pprova aktar tard.",
+    "fill_title_date_time": "Imla titlu, data u ħin.",
+    "enter_valid_date_time": "Daħħal data u ħin validi.",
+    "invalid_email": "\"{email}\" ma jidhirx li huwa indirizz email validu.",
+    "unable_to_schedule_meeting": "Ma setgħetx tiġi skedata l-laqgħa.",
+    "unable_to_schedule_meeting_retry": "Ma setgħetx tiġi skedata l-laqgħa. Erġa' pprova aktar tard."
+  }
+}

@@ -1,4 +1,7 @@
 import { z } from 'zod';
+import { locales } from '@/i18n/locales';
+
+export const localeSchema = z.enum(locales);
 
 const emailSchema = z.string().trim().toLowerCase().email().max(255);
 const nameSchema = z.string().trim().min(1).max(120);
@@ -86,6 +89,16 @@ export const createMeetingSchema = z.object({
   recurrence: z.enum(['ONCE', 'DAILY', 'WEEKLY', 'MONTHLY']).optional(),
   inviteEmails: z.array(emailSchema).max(50).optional()
 });
+
+export const updateMeetingSchema = z
+  .object({
+    title: z.string().trim().min(1).max(200).optional(),
+    scheduledAt: z.coerce.date().optional(),
+    scope: z.enum(['single', 'series']).optional()
+  })
+  .refine((data) => data.title !== undefined || data.scheduledAt !== undefined, {
+    message: 'At least one field must be provided.'
+  });
 
 export const guestJoinSchema = z.object({
   guestName: nameSchema

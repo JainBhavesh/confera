@@ -1,6 +1,9 @@
+import { mkdir } from 'fs/promises';
+import path from 'path';
 import { EgressClient, EncodedFileOutput, EncodedFileType, EgressStatus } from 'livekit-server-sdk';
 import type { Livestream, Meeting } from '@prisma/client';
 import { prisma } from '@/lib/db/prisma';
+import { RECORDING_STORAGE_MODE, getRecordingLocalPath } from '@/lib/recordingStorage';
 
 const wsUrl = process.env.LIVEKIT_WS_URL ?? '';
 const apiKey = process.env.LIVEKIT_API_KEY ?? '';
@@ -18,15 +21,33 @@ export function recordingObjectKey(meeting: Meeting): string {
 }
 
 /**
- * Starts an audio-only room-composite recording for the meeting, uploaded to
- * the S3-compatible bucket configured on the LiveKit Egress service. Best
- * effort — a meeting is still usable if recording fails to start.
+ * In local mode, the Egress worker must write straight into
+ * RECORDING_LOCAL_DIR (shared as a volume between this app and the Egress
+ * service — they're separate processes) rather than uploading to S3, so this
+ * resolves to an absolute path and makes sure the directory exists first. In
+ * s3 mode the filepath stays a plain relative key and the destination bucket
+ * is whatever's configured on the Egress service's own storage.s3 config.
+ */
+async function resolveEgressFilepath(key: string): Promise<string> {
+  if (RECORDING_STORAGE_MODE !== 'local') {
+    return key;
+  }
+  const filepath = getRecordingLocalPath(key);
+  await mkdir(path.dirname(filepath), { recursive: true });
+  return filepath;
+}
+
+/**
+ * Starts an audio-only room-composite recording for the meeting, saved
+ * locally by default (RECORDING_STORAGE_MODE=local) or uploaded to the
+ * S3-compatible bucket configured on the LiveKit Egress service otherwise.
+ * Best effort — a meeting is still usable if recording fails to start.
  */
 export async function startMeetingRecording(meeting: Meeting): Promise<void> {
   try {
     const output = new EncodedFileOutput({
       fileType: EncodedFileType.OGG,
-      filepath: recordingObjectKey(meeting)
+      filepath: await resolveEgressFilepath(recordingObjectKey(meeting))
     });
     const info = await getEgressClient().startRoomCompositeEgress(meeting.livekitRoomName, output, { audioOnly: true });
     await prisma.meeting.update({ where: { id: meeting.id }, data: { egressId: info.egressId, recordingStatus: 'RECORDING' } });
@@ -121,7 +142,7 @@ export async function startLivestreamRecording(
   try {
     const output = new EncodedFileOutput({
       fileType: EncodedFileType.MP4,
-      filepath: livestreamRecordingObjectKey(livestream)
+      filepath: await resolveEgressFilepath(livestreamRecordingObjectKey(livestream))
     });
     const info = await getEgressClient().startTrackCompositeEgress(livestream.livekitRoomName, output, {
       audioTrackId: tracks.audioTrackId,

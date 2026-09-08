@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Annuller",
+    "join": "Deltag",
+    "notes": "Noter"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Arbejdsområde",
+      "knowledge": "Viden",
+      "administration": "Administration"
+    },
+    "links": {
+      "home": "Hjem",
+      "meetings": "Møder",
+      "schedule": "Kalender",
+      "livestreams": "Livestreams",
+      "searchNotes": "Søg i noter",
+      "actionItems": "Opgaver",
+      "recordings": "Optagelser",
+      "usageAnalytics": "Forbrugsanalyse",
+      "members": "Medlemmer",
+      "allMeetings": "Alle møder",
+      "allLivestreams": "Alle livestreams",
+      "notes": "Noter",
+      "allActionItems": "Alle opgaver",
+      "analytics": "Statistik",
+      "settings": "Indstillinger"
+    },
+    "viewProfile": "Se profil",
+    "logOut": "Log ud",
+    "language": "Sprog",
+    "searchPlaceholder": "Søg efter møder, noter, transskriptioner",
+    "joinWithId": "Deltag med ID",
+    "meetingIdPlaceholder": "Møde-ID",
+    "newMeeting": "Nyt møde",
+    "starting": "Starter…",
+    "join": "Deltag"
+  },
+  "dashboard": {
+    "greeting": "God {period}, {name}",
+    "periods": {
+      "morning": "morgen",
+      "afternoon": "eftermiddag",
+      "evening": "aften"
+    },
+    "today": "I dag",
+    "meetingsCount": "{count} møder",
+    "openActions": "Åbne opgaver",
+    "scheduleHeading": "Planlæg",
+    "scheduleDescription": "Sæt det i kalenderen med en dagsorden.",
+    "goLiveHeading": "Gå live",
+    "goLiveDescription": "Send til hele organisationen.",
+    "startLivestream": "Start en livestream",
+    "upNext": "Op næste",
+    "fullSchedule": "Fuld kalender",
+    "nothingScheduledToday": "Intet planlagt for resten af dagen.",
+    "recentMeetings": "Seneste møder",
+    "viewAll": "Se alle",
+    "noMeetingsYet": "Ingen møder endnu — start et ovenfor.",
+    "yourActionItems": "Dine opgaver",
+    "nothingAssigned": "Der er intet tildelt dig lige nu.",
+    "allActionItems": "Alle opgaver",
+    "thisWeek": "Denne uge",
+    "hoursMinutes": "{hours} t {minutes} min",
+    "weekSummary": "i møder, heraf {count} automatisk transskriberet.",
+    "join": "Deltag"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Start et møde",
+      "description": "Åbn et rum nu, og send linket.",
+      "titlePlaceholder": "Mødetitel",
+      "startButton": "Start",
+      "starting": "Starter…"
+    },
+    "schedule": {
+      "newButton": "Nyt planlagt møde",
+      "dialogTitle": "Planlæg et møde",
+      "titleLabel": "Titel",
+      "titlePlaceholder": "Mødetitel",
+      "repeatsLabel": "Gentagelse",
+      "recurrence": {
+        "once": "Én gang",
+        "daily": "Dagligt",
+        "weekly": "Ugentligt",
+        "monthly": "Månedligt"
+      },
+      "dateLabel": "Dato",
+      "timeLabel": "Tid",
+      "recurrenceHint": {
+        "daily": "Opretter forekomster på hverdage (ikke i weekender) frem til årets udgang, eller 6 måneder frem — alt efter hvad der er senest.",
+        "weekly": "Opretter ugentlige forekomster frem til årets udgang, eller 6 måneder frem — alt efter hvad der er senest.",
+        "monthly": "Opretter månedlige forekomster frem til årets udgang, eller 6 måneder frem — alt efter hvad der er senest."
+      },
+      "inviteLabel": "Inviter via e-mail",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Adskil flere adresser med kommaer. Personer uden en Confera-konto får automatisk oprettet en.",
+      "cancel": "Annuller",
+      "submit": "Planlæg",
+      "submitting": "Planlægger…"
+    },
+    "table": {
+      "title": "Titel",
+      "host": "Vært",
+      "status": "Status",
+      "created": "Oprettet",
+      "join": "Deltag",
+      "notes": "Noter"
+    },
+    "status": {
+      "scheduled": "PLANLAGT",
+      "live": "LIVE",
+      "ended": "AFSLUTTET",
+      "cancelled": "AFLYST"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Giv dit møde en titel.",
+    "unable_to_create_meeting": "Kunne ikke oprette mødet.",
+    "unable_to_create_meeting_retry": "Kunne ikke oprette mødet. Prøv igen senere.",
+    "fill_title_date_time": "Udfyld titel, dato og tid.",
+    "enter_valid_date_time": "Angiv en gyldig dato og tid.",
+    "invalid_email": "”{email}” ligner ikke en gyldig e-mailadresse.",
+    "unable_to_schedule_meeting": "Kunne ikke planlægge mødet.",
+    "unable_to_schedule_meeting_retry": "Kunne ikke planlægge mødet. Prøv igen senere."
+  }
+}

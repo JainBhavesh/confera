@@ -2,15 +2,16 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Dialog } from '@/components/ui/Dialog';
 
 const RECURRENCE_OPTIONS = [
-  { value: 'ONCE', label: 'Once' },
-  { value: 'DAILY', label: 'Daily' },
-  { value: 'WEEKLY', label: 'Weekly' },
-  { value: 'MONTHLY', label: 'Monthly' }
+  { value: 'ONCE', labelKey: 'once' },
+  { value: 'DAILY', labelKey: 'daily' },
+  { value: 'WEEKLY', labelKey: 'weekly' },
+  { value: 'MONTHLY', labelKey: 'monthly' }
 ] as const;
 
 function parseEmails(raw: string): string[] {
@@ -38,6 +39,8 @@ function nowTimeParam(): string {
 
 export function ScheduleMeetingForm() {
   const router = useRouter();
+  const t = useTranslations('meeting.schedule');
+  const tErrors = useTranslations('errors');
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [date, setDate] = useState(todayDateParam);
@@ -60,12 +63,12 @@ export function ScheduleMeetingForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim() || !date || !time) {
-      setError('Fill in a title, date and time.');
+      setError(tErrors('fill_title_date_time'));
       return;
     }
     const scheduledAt = new Date(`${date}T${time}`);
     if (Number.isNaN(scheduledAt.getTime())) {
-      setError('Enter a valid date and time.');
+      setError(tErrors('enter_valid_date_time'));
       return;
     }
 
@@ -73,7 +76,7 @@ export function ScheduleMeetingForm() {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const invalidEmail = inviteEmails.find((email) => !emailPattern.test(email));
     if (invalidEmail) {
-      setError(`"${invalidEmail}" doesn't look like a valid email.`);
+      setError(tErrors('invalid_email', { email: invalidEmail }));
       return;
     }
 
@@ -92,13 +95,13 @@ export function ScheduleMeetingForm() {
       });
       const data = await response.json();
       if (!response.ok) {
-        setError(data.error ?? 'Unable to schedule meeting.');
+        setError(data.error ?? tErrors('unable_to_schedule_meeting'));
         return;
       }
       close();
       router.refresh();
     } catch {
-      setError('Unable to schedule meeting. Try again later.');
+      setError(tErrors('unable_to_schedule_meeting_retry'));
     } finally {
       setLoading(false);
     }
@@ -106,15 +109,15 @@ export function ScheduleMeetingForm() {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>New scheduled meeting</Button>
-      <Dialog open={open} onClose={close} title="Schedule a meeting">
+      <Button onClick={() => setOpen(true)}>{t('newButton')}</Button>
+      <Dialog open={open} onClose={close} title={t('dialogTitle')}>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="space-y-1.5">
-            <label className="block text-[13px] font-medium text-foreground">Title</label>
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Meeting title" autoFocus />
+            <label className="block text-[13px] font-medium text-foreground">{t('titleLabel')}</label>
+            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t('titlePlaceholder')} autoFocus />
           </div>
           <div className="space-y-1.5">
-            <label className="block text-[13px] font-medium text-foreground">Repeats</label>
+            <label className="block text-[13px] font-medium text-foreground">{t('repeatsLabel')}</label>
             <select
               value={recurrence}
               onChange={(e) => setRecurrence(e.target.value as typeof recurrence)}
@@ -122,50 +125,48 @@ export function ScheduleMeetingForm() {
             >
               {RECURRENCE_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
-                  {opt.label}
+                  {t(`recurrence.${opt.labelKey}`)}
                 </option>
               ))}
             </select>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="block text-[13px] font-medium text-foreground">Date</label>
+              <label className="block text-[13px] font-medium text-foreground">{t('dateLabel')}</label>
               <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
             </div>
             <div className="space-y-1.5">
-              <label className="block text-[13px] font-medium text-foreground">Time</label>
+              <label className="block text-[13px] font-medium text-foreground">{t('timeLabel')}</label>
               <Input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
             </div>
           </div>
           {recurrence !== 'ONCE' ? (
             <p className="-mt-2 text-xs text-muted-foreground">
               {recurrence === 'DAILY'
-                ? 'Creates 14 daily occurrences starting from this date.'
+                ? t('recurrenceHint.daily')
                 : recurrence === 'WEEKLY'
-                  ? 'Creates 8 weekly occurrences starting from this date.'
-                  : 'Creates 6 monthly occurrences starting from this date.'}
+                  ? t('recurrenceHint.weekly')
+                  : t('recurrenceHint.monthly')}
             </p>
           ) : null}
           <div className="space-y-1.5">
-            <label className="block text-[13px] font-medium text-foreground">Invite by email</label>
+            <label className="block text-[13px] font-medium text-foreground">{t('inviteLabel')}</label>
             <textarea
               value={inviteEmailsRaw}
               onChange={(e) => setInviteEmailsRaw(e.target.value)}
-              placeholder="jane@example.com, sam@example.com"
+              placeholder={t('invitePlaceholder')}
               rows={2}
               className="w-full resize-none border border-border bg-background px-3.5 py-2.5 text-[15px] text-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
             />
-            <p className="text-xs text-muted-foreground">
-              Separate multiple addresses with commas. Anyone without a Confera account gets one created for them.
-            </p>
+            <p className="text-xs text-muted-foreground">{t('inviteHint')}</p>
           </div>
           {error ? <p className="text-sm text-destructive">{error}</p> : null}
           <div className="flex justify-end gap-2 pt-1">
             <Button type="button" variant="secondary" onClick={close}>
-              Cancel
+              {t('cancel')}
             </Button>
             <Button type="submit" disabled={loading}>
-              {loading ? 'Scheduling…' : 'Schedule'}
+              {loading ? t('submitting') : t('submit')}
             </Button>
           </div>
         </form>

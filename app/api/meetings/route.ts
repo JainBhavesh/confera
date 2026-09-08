@@ -61,14 +61,14 @@ export async function POST(request: NextRequest) {
     });
 
     if (meeting.recurrence !== 'ONCE') {
-      const occurrences = await generateRecurringOccurrences(meeting);
+      const occurrenceCount = await generateRecurringOccurrences(meeting);
       await recordAuditLog({
         organizationId: user.organizationId,
         actorUserId: user.id,
         action: 'MEETING_CREATED',
         resourceType: 'Meeting',
         resourceId: meeting.id,
-        metadata: { recurringOccurrences: occurrences.length, recurrence: meeting.recurrence },
+        metadata: { recurringOccurrences: occurrenceCount, recurrence: meeting.recurrence },
         request
       });
     }

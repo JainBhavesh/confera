@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Avbryt",
+    "join": "Anslut",
+    "notes": "Anteckningar"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Arbetsyta",
+      "knowledge": "Kunskap",
+      "administration": "Administration"
+    },
+    "links": {
+      "home": "Hem",
+      "meetings": "Möten",
+      "schedule": "Schema",
+      "livestreams": "Livesändningar",
+      "searchNotes": "Sök anteckningar",
+      "actionItems": "Åtgärder",
+      "recordings": "Inspelningar",
+      "usageAnalytics": "Användningsanalys",
+      "members": "Medlemmar",
+      "allMeetings": "Alla möten",
+      "allLivestreams": "Alla livesändningar",
+      "notes": "Anteckningar",
+      "allActionItems": "Alla åtgärder",
+      "analytics": "Statistik",
+      "settings": "Inställningar"
+    },
+    "viewProfile": "Visa profil",
+    "logOut": "Logga ut",
+    "language": "Språk",
+    "searchPlaceholder": "Sök möten, anteckningar, transkriptioner",
+    "joinWithId": "Anslut med ID",
+    "meetingIdPlaceholder": "Mötes-ID",
+    "newMeeting": "Nytt möte",
+    "starting": "Startar…",
+    "join": "Anslut"
+  },
+  "dashboard": {
+    "greeting": "God {period}, {name}",
+    "periods": {
+      "morning": "morgon",
+      "afternoon": "eftermiddag",
+      "evening": "kväll"
+    },
+    "today": "Idag",
+    "meetingsCount": "{count} möten",
+    "openActions": "Öppna åtgärder",
+    "scheduleHeading": "Schemalägg",
+    "scheduleDescription": "Lägg till det i kalendern med en agenda.",
+    "goLiveHeading": "Gå live",
+    "goLiveDescription": "Sänd till hela organisationen.",
+    "startLivestream": "Starta en livesändning",
+    "upNext": "Näst på tur",
+    "fullSchedule": "Fullständigt schema",
+    "nothingScheduledToday": "Inget planerat för resten av dagen.",
+    "recentMeetings": "Senaste mötena",
+    "viewAll": "Visa alla",
+    "noMeetingsYet": "Inga möten än — starta ett ovan.",
+    "yourActionItems": "Dina åtgärder",
+    "nothingAssigned": "Inget är tilldelat dig just nu.",
+    "allActionItems": "Alla åtgärder",
+    "thisWeek": "Den här veckan",
+    "hoursMinutes": "{hours} tim {minutes} min",
+    "weekSummary": "i möten, varav {count} transkriberade automatiskt.",
+    "join": "Anslut"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Starta ett möte",
+      "description": "Öppna ett rum nu och skicka länken.",
+      "titlePlaceholder": "Mötestitel",
+      "startButton": "Starta",
+      "starting": "Startar…"
+    },
+    "schedule": {
+      "newButton": "Nytt schemalagt möte",
+      "dialogTitle": "Schemalägg ett möte",
+      "titleLabel": "Titel",
+      "titlePlaceholder": "Mötestitel",
+      "repeatsLabel": "Upprepning",
+      "recurrence": {
+        "once": "En gång",
+        "daily": "Dagligen",
+        "weekly": "Varje vecka",
+        "monthly": "Varje månad"
+      },
+      "dateLabel": "Datum",
+      "timeLabel": "Tid",
+      "recurrenceHint": {
+        "daily": "Skapar tillfällen på vardagar (inga helger) fram till årsskiftet, eller 6 månader framåt — beroende på vilket som är senare.",
+        "weekly": "Skapar veckovisa tillfällen fram till årsskiftet, eller 6 månader framåt — beroende på vilket som är senare.",
+        "monthly": "Skapar månatliga tillfällen fram till årsskiftet, eller 6 månader framåt — beroende på vilket som är senare."
+      },
+      "inviteLabel": "Bjud in via e-post",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Separera flera adresser med kommatecken. Den som saknar Confera-konto får ett skapat automatiskt.",
+      "cancel": "Avbryt",
+      "submit": "Schemalägg",
+      "submitting": "Schemalägger…"
+    },
+    "table": {
+      "title": "Titel",
+      "host": "Värd",
+      "status": "Status",
+      "created": "Skapat",
+      "join": "Anslut",
+      "notes": "Anteckningar"
+    },
+    "status": {
+      "scheduled": "SCHEMALAGT",
+      "live": "LIVE",
+      "ended": "AVSLUTAT",
+      "cancelled": "INSTÄLLT"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Ge mötet en titel.",
+    "unable_to_create_meeting": "Kunde inte skapa mötet.",
+    "unable_to_create_meeting_retry": "Kunde inte skapa mötet. Försök igen senare.",
+    "fill_title_date_time": "Fyll i titel, datum och tid.",
+    "enter_valid_date_time": "Ange ett giltigt datum och en giltig tid.",
+    "invalid_email": "”{email}” ser inte ut som en giltig e-postadress.",
+    "unable_to_schedule_meeting": "Kunde inte schemalägga mötet.",
+    "unable_to_schedule_meeting_retry": "Kunde inte schemalägga mötet. Försök igen senare."
+  }
+}

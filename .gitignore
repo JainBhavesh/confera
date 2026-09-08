@@ -11,3 +11,11 @@ yarn-error.log*
 coverage
 .next
 *.tsbuildinfo
+/recordings
+
+# ai-notes/ (Python service)
+ai-notes/venv
+ai-notes/__pycache__
+ai-notes/**/__pycache__
+*.pyc
+/ai-notes-models

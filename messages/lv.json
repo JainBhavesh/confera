@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Atcelt",
+    "join": "Pievienoties",
+    "notes": "Piezīmes"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Darba vieta",
+      "knowledge": "Zināšanas",
+      "administration": "Administrēšana"
+    },
+    "links": {
+      "home": "Sākums",
+      "meetings": "Sanāksmes",
+      "schedule": "Grafiks",
+      "livestreams": "Tiešraides",
+      "searchNotes": "Meklēt piezīmēs",
+      "actionItems": "Uzdevumi",
+      "recordings": "Ieraksti",
+      "usageAnalytics": "Lietojuma analīze",
+      "members": "Dalībnieki",
+      "allMeetings": "Visas sanāksmes",
+      "allLivestreams": "Visas tiešraides",
+      "notes": "Piezīmes",
+      "allActionItems": "Visi uzdevumi",
+      "analytics": "Statistika",
+      "settings": "Iestatījumi"
+    },
+    "viewProfile": "Skatīt profilu",
+    "logOut": "Izrakstīties",
+    "language": "Valoda",
+    "searchPlaceholder": "Meklēt sanāksmes, piezīmes, transkripcijas",
+    "joinWithId": "Pievienoties ar ID",
+    "meetingIdPlaceholder": "Sanāksmes ID",
+    "newMeeting": "Jauna sanāksme",
+    "starting": "Sāk…",
+    "join": "Pievienoties"
+  },
+  "dashboard": {
+    "greeting": "Labu {period}, {name}",
+    "periods": {
+      "morning": "rītu",
+      "afternoon": "dienu",
+      "evening": "vakaru"
+    },
+    "today": "Šodien",
+    "meetingsCount": "{count} sanāksmes",
+    "openActions": "Atvērtie uzdevumi",
+    "scheduleHeading": "Ieplānot",
+    "scheduleDescription": "Pievienojiet to kalendāram ar darba kārtību.",
+    "goLiveHeading": "Sākt tiešraidi",
+    "goLiveDescription": "Raidiet visai organizācijai.",
+    "startLivestream": "Sākt tiešraidi",
+    "upNext": "Nākamais",
+    "fullSchedule": "Pilns grafiks",
+    "nothingScheduledToday": "Pārējai dienas daļai nekas nav ieplānots.",
+    "recentMeetings": "Nesenās sanāksmes",
+    "viewAll": "Skatīt visas",
+    "noMeetingsYet": "Vēl nav sanāksmju — sāciet vienu iepriekš.",
+    "yourActionItems": "Jūsu uzdevumi",
+    "nothingAssigned": "Šobrīd jums nekas nav piešķirts.",
+    "allActionItems": "Visi uzdevumi",
+    "thisWeek": "Šonedēļ",
+    "hoursMinutes": "{hours} h {minutes} min",
+    "weekSummary": "sanāksmēs, no kurām {count} automātiski transkribētas.",
+    "join": "Pievienoties"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Sākt sanāksmi",
+      "description": "Atveriet telpu tagad un nosūtiet saiti.",
+      "titlePlaceholder": "Sanāksmes nosaukums",
+      "startButton": "Sākt",
+      "starting": "Sāk…"
+    },
+    "schedule": {
+      "newButton": "Jauna ieplānota sanāksme",
+      "dialogTitle": "Ieplānot sanāksmi",
+      "titleLabel": "Nosaukums",
+      "titlePlaceholder": "Sanāksmes nosaukums",
+      "repeatsLabel": "Atkārtošanās",
+      "recurrence": {
+        "once": "Vienreiz",
+        "daily": "Katru dienu",
+        "weekly": "Katru nedēļu",
+        "monthly": "Katru mēnesi"
+      },
+      "dateLabel": "Datums",
+      "timeLabel": "Laiks",
+      "recurrenceHint": {
+        "daily": "Izveido notikumus darba dienās (bez nedēļas nogalēm) līdz gada beigām vai 6 mēnešus uz priekšu — atkarībā no tā, kas ir vēlāk.",
+        "weekly": "Izveido iknedēļas notikumus līdz gada beigām vai 6 mēnešus uz priekšu — atkarībā no tā, kas ir vēlāk.",
+        "monthly": "Izveido ikmēneša notikumus līdz gada beigām vai 6 mēnešus uz priekšu — atkarībā no tā, kas ir vēlāk."
+      },
+      "inviteLabel": "Uzaicināt pa e-pastu",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Atdaliet vairākas adreses ar komatiem. Ikvienam bez Confera konta tas tiks izveidots automātiski.",
+      "cancel": "Atcelt",
+      "submit": "Ieplānot",
+      "submitting": "Plāno…"
+    },
+    "table": {
+      "title": "Nosaukums",
+      "host": "Rīkotājs",
+      "status": "Statuss",
+      "created": "Izveidota",
+      "join": "Pievienoties",
+      "notes": "Piezīmes"
+    },
+    "status": {
+      "scheduled": "IEPLĀNOTA",
+      "live": "TIEŠRAIDE",
+      "ended": "PABEIGTA",
+      "cancelled": "ATCELTA"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Piešķiriet sanāksmei nosaukumu.",
+    "unable_to_create_meeting": "Neizdevās izveidot sanāksmi.",
+    "unable_to_create_meeting_retry": "Neizdevās izveidot sanāksmi. Mēģiniet vēlreiz vēlāk.",
+    "fill_title_date_time": "Aizpildiet nosaukumu, datumu un laiku.",
+    "enter_valid_date_time": "Ievadiet derīgu datumu un laiku.",
+    "invalid_email": "„{email}” neizskatās pēc derīgas e-pasta adreses.",
+    "unable_to_schedule_meeting": "Neizdevās ieplānot sanāksmi.",
+    "unable_to_schedule_meeting_retry": "Neizdevās ieplānot sanāksmi. Mēģiniet vēlreiz vēlāk."
+  }
+}

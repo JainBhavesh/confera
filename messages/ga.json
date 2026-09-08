@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Cealaigh",
+    "join": "Glac páirt",
+    "notes": "Nótaí"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Spás oibre",
+      "knowledge": "Eolas",
+      "administration": "Riarachán"
+    },
+    "links": {
+      "home": "Baile",
+      "meetings": "Cruinnithe",
+      "schedule": "Sceideal",
+      "livestreams": "Sruthanna beo",
+      "searchNotes": "Cuardaigh nótaí",
+      "actionItems": "Míreanna gnímh",
+      "recordings": "Taifeadtaí",
+      "usageAnalytics": "Anailís úsáide",
+      "members": "Baill",
+      "allMeetings": "Gach cruinniú",
+      "allLivestreams": "Gach sruth beo",
+      "notes": "Nótaí",
+      "allActionItems": "Gach mír ghnímh",
+      "analytics": "Anailísíocht",
+      "settings": "Socruithe"
+    },
+    "viewProfile": "Féach ar an bpróifíl",
+    "logOut": "Logáil amach",
+    "language": "Teanga",
+    "searchPlaceholder": "Cuardaigh cruinnithe, nótaí, tras-scríbhinní",
+    "joinWithId": "Glac páirt le ID",
+    "meetingIdPlaceholder": "ID an chruinnithe",
+    "newMeeting": "Cruinniú nua",
+    "starting": "Ag tosú…",
+    "join": "Glac páirt"
+  },
+  "dashboard": {
+    "greeting": "Dia duit, {name}",
+    "periods": {
+      "morning": "maidin mhaith",
+      "afternoon": "tráthnóna maith",
+      "evening": "oíche mhaith"
+    },
+    "today": "Inniu",
+    "meetingsCount": "{count} cruinniú",
+    "openActions": "Míreanna gnímh oscailte",
+    "scheduleHeading": "Sceidealaigh",
+    "scheduleDescription": "Cuir san fhéilire é le clár oibre.",
+    "goLiveHeading": "Téigh beo",
+    "goLiveDescription": "Craol don eagraíocht ar fad.",
+    "startLivestream": "Tosaigh sruth beo",
+    "upNext": "Ar an mbealach",
+    "fullSchedule": "Sceideal iomlán",
+    "nothingScheduledToday": "Níl aon rud eile sceidealaithe don chuid eile den lá.",
+    "recentMeetings": "Cruinnithe le déanaí",
+    "viewAll": "Féach ar chách",
+    "noMeetingsYet": "Níl aon chruinniú fós — tosaigh ceann thuas.",
+    "yourActionItems": "Do mhíreanna gnímh",
+    "nothingAssigned": "Níl aon rud sannta duit faoi láthair.",
+    "allActionItems": "Gach mír ghnímh",
+    "thisWeek": "An tseachtain seo",
+    "hoursMinutes": "{hours} u {minutes} nóim",
+    "weekSummary": "i gcruinnithe, agus {count} díobh tras-scríofa go huathoibríoch.",
+    "join": "Glac páirt"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Tosaigh cruinniú",
+      "description": "Oscail seomra anois agus seol an nasc.",
+      "titlePlaceholder": "Teideal an chruinnithe",
+      "startButton": "Tosaigh",
+      "starting": "Ag tosú…"
+    },
+    "schedule": {
+      "newButton": "Cruinniú sceidealaithe nua",
+      "dialogTitle": "Sceidealaigh cruinniú",
+      "titleLabel": "Teideal",
+      "titlePlaceholder": "Teideal an chruinnithe",
+      "repeatsLabel": "Athdhéanamh",
+      "recurrence": {
+        "once": "Uair amháin",
+        "daily": "Laethúil",
+        "weekly": "Seachtainiúil",
+        "monthly": "Míosúil"
+      },
+      "dateLabel": "Dáta",
+      "timeLabel": "Am",
+      "recurrenceHint": {
+        "daily": "Cruthaíonn sé teagmhais ar laethanta oibre (gan deireadh seachtaine) go deireadh na bliana, nó 6 mhí romhainn — cibé is déanaí.",
+        "weekly": "Cruthaíonn sé teagmhais sheachtainiúla go deireadh na bliana, nó 6 mhí romhainn — cibé is déanaí.",
+        "monthly": "Cruthaíonn sé teagmhais mhíosúla go deireadh na bliana, nó 6 mhí romhainn — cibé is déanaí."
+      },
+      "inviteLabel": "Tabhair cuireadh trí ríomhphost",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Scar il-seoltaí le camóga. Cruthófar cuntas Confera go huathoibríoch d'aon duine nach bhfuil ceann acu.",
+      "cancel": "Cealaigh",
+      "submit": "Sceidealaigh",
+      "submitting": "Á shceidealú…"
+    },
+    "table": {
+      "title": "Teideal",
+      "host": "Óstach",
+      "status": "Stádas",
+      "created": "Cruthaithe",
+      "join": "Glac páirt",
+      "notes": "Nótaí"
+    },
+    "status": {
+      "scheduled": "SCEIDEALAITHE",
+      "live": "BEO",
+      "ended": "CRÍOCHNAITHE",
+      "cancelled": "CEALAITHE"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Tabhair teideal do do chruinniú.",
+    "unable_to_create_meeting": "Ní féidir an cruinniú a chruthú.",
+    "unable_to_create_meeting_retry": "Ní féidir an cruinniú a chruthú. Bain triail eile as níos déanaí.",
+    "fill_title_date_time": "Líon isteach teideal, dáta agus am.",
+    "enter_valid_date_time": "Cuir isteach dáta agus am bailí.",
+    "invalid_email": "Ní cosúil gur seoladh ríomhphoist bailí é \"{email}\".",
+    "unable_to_schedule_meeting": "Ní féidir an cruinniú a sceidealú.",
+    "unable_to_schedule_meeting_retry": "Ní féidir an cruinniú a sceidealú. Bain triail eile as níos déanaí."
+  }
+}

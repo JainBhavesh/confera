@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Odustani",
+    "join": "Pridruži se",
+    "notes": "Bilješke"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Radni prostor",
+      "knowledge": "Znanje",
+      "administration": "Administracija"
+    },
+    "links": {
+      "home": "Početna",
+      "meetings": "Sastanci",
+      "schedule": "Raspored",
+      "livestreams": "Prijenosi uživo",
+      "searchNotes": "Pretraži bilješke",
+      "actionItems": "Zadaci",
+      "recordings": "Snimke",
+      "usageAnalytics": "Analitika korištenja",
+      "members": "Članovi",
+      "allMeetings": "Svi sastanci",
+      "allLivestreams": "Svi prijenosi uživo",
+      "notes": "Bilješke",
+      "allActionItems": "Svi zadaci",
+      "analytics": "Statistika",
+      "settings": "Postavke"
+    },
+    "viewProfile": "Prikaži profil",
+    "logOut": "Odjava",
+    "language": "Jezik",
+    "searchPlaceholder": "Pretraži sastanke, bilješke, transkripte",
+    "joinWithId": "Pridruži se s ID-om",
+    "meetingIdPlaceholder": "ID sastanka",
+    "newMeeting": "Novi sastanak",
+    "starting": "Pokretanje…",
+    "join": "Pridruži se"
+  },
+  "dashboard": {
+    "greeting": "Dobro {period}, {name}",
+    "periods": {
+      "morning": "jutro",
+      "afternoon": "poslijepodne",
+      "evening": "veče"
+    },
+    "today": "Danas",
+    "meetingsCount": "{count} sastanaka",
+    "openActions": "Otvoreni zadaci",
+    "scheduleHeading": "Zakaži",
+    "scheduleDescription": "Dodajte ga u kalendar s dnevnim redom.",
+    "goLiveHeading": "Idi uživo",
+    "goLiveDescription": "Emitirajte cijeloj organizaciji.",
+    "startLivestream": "Pokreni prijenos uživo",
+    "upNext": "Slijedi",
+    "fullSchedule": "Cijeli raspored",
+    "nothingScheduledToday": "Za ostatak dana ništa nije zakazano.",
+    "recentMeetings": "Nedavni sastanci",
+    "viewAll": "Prikaži sve",
+    "noMeetingsYet": "Još nema sastanaka — pokrenite jedan iznad.",
+    "yourActionItems": "Vaši zadaci",
+    "nothingAssigned": "Trenutačno vam ništa nije dodijeljeno.",
+    "allActionItems": "Svi zadaci",
+    "thisWeek": "Ovaj tjedan",
+    "hoursMinutes": "{hours} h {minutes} min",
+    "weekSummary": "na sastancima, od čega je {count} automatski transkribirano.",
+    "join": "Pridruži se"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Pokreni sastanak",
+      "description": "Otvorite sobu odmah i pošaljite poveznicu.",
+      "titlePlaceholder": "Naziv sastanka",
+      "startButton": "Pokreni",
+      "starting": "Pokretanje…"
+    },
+    "schedule": {
+      "newButton": "Novi zakazani sastanak",
+      "dialogTitle": "Zakaži sastanak",
+      "titleLabel": "Naziv",
+      "titlePlaceholder": "Naziv sastanka",
+      "repeatsLabel": "Ponavljanje",
+      "recurrence": {
+        "once": "Jednom",
+        "daily": "Dnevno",
+        "weekly": "Tjedno",
+        "monthly": "Mjesečno"
+      },
+      "dateLabel": "Datum",
+      "timeLabel": "Vrijeme",
+      "recurrenceHint": {
+        "daily": "Stvara ponavljanja radnim danima (bez vikenda) do kraja godine ili 6 mjeseci unaprijed — ovisno što je kasnije.",
+        "weekly": "Stvara tjedna ponavljanja do kraja godine ili 6 mjeseci unaprijed — ovisno što je kasnije.",
+        "monthly": "Stvara mjesečna ponavljanja do kraja godine ili 6 mjeseci unaprijed — ovisno što je kasnije."
+      },
+      "inviteLabel": "Pozovi putem e-pošte",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Odvojite više adresa zarezima. Svima bez Confera računa automatski će se izraditi jedan.",
+      "cancel": "Odustani",
+      "submit": "Zakaži",
+      "submitting": "Zakazivanje…"
+    },
+    "table": {
+      "title": "Naziv",
+      "host": "Domaćin",
+      "status": "Status",
+      "created": "Stvoreno",
+      "join": "Pridruži se",
+      "notes": "Bilješke"
+    },
+    "status": {
+      "scheduled": "ZAKAZANO",
+      "live": "UŽIVO",
+      "ended": "ZAVRŠENO",
+      "cancelled": "OTKAZANO"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Dajte naziv svom sastanku.",
+    "unable_to_create_meeting": "Sastanak nije moguće stvoriti.",
+    "unable_to_create_meeting_retry": "Sastanak nije moguće stvoriti. Pokušajte ponovno kasnije.",
+    "fill_title_date_time": "Ispunite naziv, datum i vrijeme.",
+    "enter_valid_date_time": "Unesite valjani datum i vrijeme.",
+    "invalid_email": "„{email}” ne izgleda kao valjana adresa e-pošte.",
+    "unable_to_schedule_meeting": "Sastanak nije moguće zakazati.",
+    "unable_to_schedule_meeting_retry": "Sastanak nije moguće zakazati. Pokušajte ponovno kasnije."
+  }
+}

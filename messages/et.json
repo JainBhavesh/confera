@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Tühista",
+    "join": "Liitu",
+    "notes": "Märkmed"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Tööruum",
+      "knowledge": "Teadmised",
+      "administration": "Haldus"
+    },
+    "links": {
+      "home": "Avaleht",
+      "meetings": "Koosolekud",
+      "schedule": "Ajakava",
+      "livestreams": "Otseülekanded",
+      "searchNotes": "Otsi märkmeid",
+      "actionItems": "Ülesanded",
+      "recordings": "Salvestused",
+      "usageAnalytics": "Kasutusanalüüs",
+      "members": "Liikmed",
+      "allMeetings": "Kõik koosolekud",
+      "allLivestreams": "Kõik otseülekanded",
+      "notes": "Märkmed",
+      "allActionItems": "Kõik ülesanded",
+      "analytics": "Statistika",
+      "settings": "Seaded"
+    },
+    "viewProfile": "Vaata profiili",
+    "logOut": "Logi välja",
+    "language": "Keel",
+    "searchPlaceholder": "Otsi koosolekuid, märkmeid, transkriptsioone",
+    "joinWithId": "Liitu ID-ga",
+    "meetingIdPlaceholder": "Koosoleku ID",
+    "newMeeting": "Uus koosolek",
+    "starting": "Käivitamine…",
+    "join": "Liitu"
+  },
+  "dashboard": {
+    "greeting": "Tere {period}, {name}",
+    "periods": {
+      "morning": "hommikust",
+      "afternoon": "päevast",
+      "evening": "õhtust"
+    },
+    "today": "Täna",
+    "meetingsCount": "{count} koosolekut",
+    "openActions": "Avatud ülesanded",
+    "scheduleHeading": "Planeeri",
+    "scheduleDescription": "Lisage see koos päevakorraga kalendrisse.",
+    "goLiveHeading": "Mine otse",
+    "goLiveDescription": "Edastage kogu organisatsioonile.",
+    "startLivestream": "Alusta otseülekannet",
+    "upNext": "Järgmisena",
+    "fullSchedule": "Kogu ajakava",
+    "nothingScheduledToday": "Ülejäänud päevaks pole midagi plaanitud.",
+    "recentMeetings": "Hiljutised koosolekud",
+    "viewAll": "Vaata kõiki",
+    "noMeetingsYet": "Koosolekuid pole veel — alustage üks eespool.",
+    "yourActionItems": "Teie ülesanded",
+    "nothingAssigned": "Teile pole hetkel midagi määratud.",
+    "allActionItems": "Kõik ülesanded",
+    "thisWeek": "Sel nädalal",
+    "hoursMinutes": "{hours} t {minutes} min",
+    "weekSummary": "koosolekutel, millest {count} on automaatselt transkribeeritud.",
+    "join": "Liitu"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Alusta koosolekut",
+      "description": "Ava ruum kohe ja saada link.",
+      "titlePlaceholder": "Koosoleku pealkiri",
+      "startButton": "Alusta",
+      "starting": "Käivitamine…"
+    },
+    "schedule": {
+      "newButton": "Uus planeeritud koosolek",
+      "dialogTitle": "Planeeri koosolek",
+      "titleLabel": "Pealkiri",
+      "titlePlaceholder": "Koosoleku pealkiri",
+      "repeatsLabel": "Kordumine",
+      "recurrence": {
+        "once": "Ühekordne",
+        "daily": "Iga päev",
+        "weekly": "Iga nädal",
+        "monthly": "Iga kuu"
+      },
+      "dateLabel": "Kuupäev",
+      "timeLabel": "Kellaaeg",
+      "recurrenceHint": {
+        "daily": "Loob kordumised tööpäevadel (nädalavahetusteta) kuni aasta lõpuni või 6 kuud ette — kumb on hilisem.",
+        "weekly": "Loob iganädalased kordumised kuni aasta lõpuni või 6 kuud ette — kumb on hilisem.",
+        "monthly": "Loob igakuised kordumised kuni aasta lõpuni või 6 kuud ette — kumb on hilisem."
+      },
+      "inviteLabel": "Kutsu e-postiga",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Eraldage mitu aadressi komadega. Kellelgi, kellel pole Confera kontot, luuakse see automaatselt.",
+      "cancel": "Tühista",
+      "submit": "Planeeri",
+      "submitting": "Planeerimine…"
+    },
+    "table": {
+      "title": "Pealkiri",
+      "host": "Korraldaja",
+      "status": "Olek",
+      "created": "Loodud",
+      "join": "Liitu",
+      "notes": "Märkmed"
+    },
+    "status": {
+      "scheduled": "PLANEERITUD",
+      "live": "OTSE",
+      "ended": "LÕPPENUD",
+      "cancelled": "TÜHISTATUD"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Andke koosolekule pealkiri.",
+    "unable_to_create_meeting": "Koosolekut ei õnnestunud luua.",
+    "unable_to_create_meeting_retry": "Koosolekut ei õnnestunud luua. Proovige hiljem uuesti.",
+    "fill_title_date_time": "Täitke pealkiri, kuupäev ja kellaaeg.",
+    "enter_valid_date_time": "Sisestage kehtiv kuupäev ja kellaaeg.",
+    "invalid_email": "„{email}” ei tundu olevat kehtiv e-posti aadress.",
+    "unable_to_schedule_meeting": "Koosolekut ei õnnestunud planeerida.",
+    "unable_to_schedule_meeting_retry": "Koosolekut ei õnnestunud planeerida. Proovige hiljem uuesti."
+  }
+}

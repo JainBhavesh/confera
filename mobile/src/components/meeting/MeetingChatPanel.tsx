@@ -5,6 +5,7 @@ import { ChatMessageBubble } from '../chat/ChatMessageBubble';
 import { listMeetingMessages, sendMeetingMessage } from '../../services/api/meetings';
 import { CHAT_DATA_TOPIC } from '../../services/livekit';
 import type { MeetingMessage } from '../../types';
+import { callTextMuted, color, font } from '../../theme';
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
@@ -101,7 +102,7 @@ export function MeetingChatPanel({ meetingId, currentUserId, onClose }: MeetingC
           value={draft}
           onChangeText={setDraft}
           placeholder="Message everyone"
-          placeholderTextColor="#64748b"
+          placeholderTextColor={callTextMuted(0.45)}
           maxLength={2000}
           style={styles.input}
         />
@@ -118,29 +119,29 @@ export function MeetingChatPanel({ meetingId, currentUserId, onClose }: MeetingC
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0f172a' },
+  container: { flex: 1, backgroundColor: color.callBg },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#1e293b'
+    borderBottomColor: 'rgba(243,242,242,0.14)'
   },
-  title: { color: '#fff', fontSize: 16, fontWeight: '700' },
-  close: { color: '#38bdf8', fontSize: 14, fontWeight: '600' },
+  title: { fontFamily: font.headingBold, color: color.callText, fontSize: 16 },
+  close: { fontFamily: font.bodySemiBold, color: color.accent500, fontSize: 14 },
   list: { padding: 16, flexGrow: 1 },
-  empty: { color: '#64748b', textAlign: 'center', marginTop: 24 },
-  composer: { flexDirection: 'row', gap: 8, padding: 12, borderTopWidth: 1, borderTopColor: '#1e293b' },
+  empty: { fontFamily: font.body, color: callTextMuted(0.5), textAlign: 'center', marginTop: 24 },
+  composer: { flexDirection: 'row', gap: 8, padding: 12, borderTopWidth: 1, borderTopColor: 'rgba(243,242,242,0.14)' },
   input: {
     flex: 1,
-    backgroundColor: '#1e293b',
-    borderRadius: 20,
+    backgroundColor: color.callSurface,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    color: '#fff'
+    fontFamily: font.body,
+    color: color.callText
   },
-  sendButton: { backgroundColor: '#0ea5e9', borderRadius: 20, paddingHorizontal: 18, justifyContent: 'center' },
+  sendButton: { backgroundColor: color.accent, paddingHorizontal: 18, justifyContent: 'center' },
   sendButtonDisabled: { opacity: 0.5 },
-  sendButtonText: { color: '#fff', fontWeight: '700' }
+  sendButtonText: { fontFamily: font.bodySemiBold, color: color.white }
 });

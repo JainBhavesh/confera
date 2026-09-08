@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Annulla",
+    "join": "Partecipa",
+    "notes": "Note"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Area di lavoro",
+      "knowledge": "Conoscenza",
+      "administration": "Amministrazione"
+    },
+    "links": {
+      "home": "Home",
+      "meetings": "Riunioni",
+      "schedule": "Agenda",
+      "livestreams": "Dirette",
+      "searchNotes": "Cerca note",
+      "actionItems": "Attività",
+      "recordings": "Registrazioni",
+      "usageAnalytics": "Analisi di utilizzo",
+      "members": "Membri",
+      "allMeetings": "Tutte le riunioni",
+      "allLivestreams": "Tutte le dirette",
+      "notes": "Note",
+      "allActionItems": "Tutte le attività",
+      "analytics": "Statistiche",
+      "settings": "Impostazioni"
+    },
+    "viewProfile": "Visualizza profilo",
+    "logOut": "Esci",
+    "language": "Lingua",
+    "searchPlaceholder": "Cerca riunioni, note, trascrizioni",
+    "joinWithId": "Partecipa con ID",
+    "meetingIdPlaceholder": "ID riunione",
+    "newMeeting": "Nuova riunione",
+    "starting": "Avvio in corso…",
+    "join": "Partecipa"
+  },
+  "dashboard": {
+    "greeting": "Buon{period}, {name}",
+    "periods": {
+      "morning": "giorno",
+      "afternoon": " pomeriggio",
+      "evening": "asera"
+    },
+    "today": "Oggi",
+    "meetingsCount": "{count} riunioni",
+    "openActions": "Attività aperte",
+    "scheduleHeading": "Pianifica",
+    "scheduleDescription": "Inseriscila in calendario con un ordine del giorno.",
+    "goLiveHeading": "Vai in diretta",
+    "goLiveDescription": "Trasmetti a tutta l'organizzazione.",
+    "startLivestream": "Avvia una diretta",
+    "upNext": "In arrivo",
+    "fullSchedule": "Agenda completa",
+    "nothingScheduledToday": "Niente in programma per il resto della giornata.",
+    "recentMeetings": "Riunioni recenti",
+    "viewAll": "Vedi tutte",
+    "noMeetingsYet": "Nessuna riunione ancora — avviane una qui sopra.",
+    "yourActionItems": "Le tue attività",
+    "nothingAssigned": "Al momento non ti è assegnato nulla.",
+    "allActionItems": "Tutte le attività",
+    "thisWeek": "Questa settimana",
+    "hoursMinutes": "{hours} h {minutes} min",
+    "weekSummary": "in riunione, di cui {count} trascritte automaticamente.",
+    "join": "Partecipa"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Avvia una riunione",
+      "description": "Apri subito una stanza e invia il link.",
+      "titlePlaceholder": "Titolo riunione",
+      "startButton": "Avvia",
+      "starting": "Avvio in corso…"
+    },
+    "schedule": {
+      "newButton": "Nuova riunione pianificata",
+      "dialogTitle": "Pianifica una riunione",
+      "titleLabel": "Titolo",
+      "titlePlaceholder": "Titolo riunione",
+      "repeatsLabel": "Ricorrenza",
+      "recurrence": {
+        "once": "Una volta",
+        "daily": "Giornaliera",
+        "weekly": "Settimanale",
+        "monthly": "Mensile"
+      },
+      "dateLabel": "Data",
+      "timeLabel": "Ora",
+      "recurrenceHint": {
+        "daily": "Crea occorrenze nei giorni feriali (weekend esclusi) fino a fine anno, o tra 6 mesi — a seconda di quale sia più lontano.",
+        "weekly": "Crea occorrenze settimanali fino a fine anno, o tra 6 mesi — a seconda di quale sia più lontano.",
+        "monthly": "Crea occorrenze mensili fino a fine anno, o tra 6 mesi — a seconda di quale sia più lontano."
+      },
+      "inviteLabel": "Invita via email",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Separa più indirizzi con virgole. A chi non ha un account Confera ne verrà creato uno.",
+      "cancel": "Annulla",
+      "submit": "Pianifica",
+      "submitting": "Pianificazione…"
+    },
+    "table": {
+      "title": "Titolo",
+      "host": "Host",
+      "status": "Stato",
+      "created": "Creata",
+      "join": "Partecipa",
+      "notes": "Note"
+    },
+    "status": {
+      "scheduled": "PIANIFICATA",
+      "live": "IN DIRETTA",
+      "ended": "TERMINATA",
+      "cancelled": "ANNULLATA"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Dai un titolo alla tua riunione.",
+    "unable_to_create_meeting": "Impossibile creare la riunione.",
+    "unable_to_create_meeting_retry": "Impossibile creare la riunione. Riprova più tardi.",
+    "fill_title_date_time": "Inserisci titolo, data e ora.",
+    "enter_valid_date_time": "Inserisci una data e un'ora valide.",
+    "invalid_email": "«{email}» non sembra un indirizzo email valido.",
+    "unable_to_schedule_meeting": "Impossibile pianificare la riunione.",
+    "unable_to_schedule_meeting_retry": "Impossibile pianificare la riunione. Riprova più tardi."
+  }
+}

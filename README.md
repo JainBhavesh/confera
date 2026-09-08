@@ -1,6 +1,6 @@
 # Conference
 
-A multi-tenant video conferencing SaaS built on [LiveKit](https://livekit.io/): authenticated meetings, a mobile app, AI-generated meeting notes, livestreaming, and recording — with a Next.js web app, a React Native mobile app, and a self-hosted LiveKit + Egress + MinIO backend.
+A multi-tenant video conferencing SaaS built on [LiveKit](https://livekit.io/): authenticated meetings, a mobile app, AI-generated meeting notes, livestreaming, and recording — with a Next.js web app, a React Native mobile app, a self-hosted LiveKit + Egress backend, and a fully local AI notes pipeline (no external AI API required).
 
 ## Screenshots
 
@@ -20,7 +20,7 @@ Built in phases, each adding a self-contained capability on top of the last:
 - **Multi-tenant foundation** — organizations, session-based auth, roles (`ADMIN`/`USER`), admin console (user management, registration toggle, audit log)
 - **Meetings** — create/join/leave, LiveKit video + audio, screen share, persisted + real-time chat, participant time tracking
 - **Mobile app** (React Native / Expo) — auth, meeting list, and a full LiveKit meeting room (camera/mic publish, remote participant grid, chat)
-- **AI meeting notes** — after a meeting ends, the host (or an admin) can request a transcript, summary, and action items, generated via OpenAI from the meeting's recorded audio
+- **AI meeting notes** — after a meeting ends, the host (or an admin) can request a transcript, summary, and action items, generated entirely locally (see [ai-notes/](ai-notes/README.md)) from the meeting's recorded audio — no audio or transcript text ever leaves the server
 - **Livestreaming** — one host broadcasts, any number of org members watch, with live viewer count and chat; mobile can watch (not host)
 - **Recording + playback** — livestreams are recorded (video) and become watchable afterward; meetings are recorded audio-only (see [Recording](#recording) below for why)
 
@@ -32,8 +32,8 @@ Built in phases, each adding a self-contained capability on top of the last:
 | Database | PostgreSQL + Prisma |
 | Realtime / media | [LiveKit](https://livekit.io/) (self-hosted): `livekit-server-sdk`, `livekit-client`, `@livekit/components-react` |
 | Mobile | Expo (React Native), `@livekit/react-native` |
-| AI | OpenAI (`gpt-4o-transcribe` for transcription, `gpt-4o` for structured note/action-item extraction) |
-| Recording storage | S3-compatible object storage (self-hosted [MinIO](https://min.io/) in this deployment) |
+| AI notes | Fully local — [ai-notes/](ai-notes/README.md): FastAPI + [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (transcription) + [Ollama](https://ollama.com/) (summary/action items). `OPENAI_API_KEY` is only used for translating an existing transcript (`translateTranscript`), not for notes generation. |
+| Recording storage | Local disk by default (`RECORDING_STORAGE_MODE=local`, see `lib/recordingStorage.ts`); can switch to an S3-compatible bucket (e.g. self-hosted [MinIO](https://min.io/)) instead |
 | Auth | Session cookies, `bcryptjs` for password hashing |
 | Validation | Zod |
 | Testing | Vitest |
@@ -59,25 +59,28 @@ Built in phases, each adding a self-contained capability on top of the last:
      └─────────────┘                                 │ Egress       │
                                                        │ (recording)  │
                                                        └──────┬───────┘
-                                                              │ uploads
+                                                              │ writes to
                                                               ▼
                                                        ┌─────────────┐
-                                                       │   MinIO      │
-                                                       │ (S3-compat.) │
+                                                       │ Local disk   │
+                                                       │ (or S3-      │
+                                                       │  compatible) │
                                                        └──────┬───────┘
-                                                              │ fetched for
-                                                              │ transcription /
-                                                              │ served via
-                                                              │ presigned URL
+                                                              │ read by the
+                                                              │ Next.js app,
+                                                              │ POSTed to
                                                               ▼
                                                        ┌─────────────┐
-                                                       │   OpenAI     │
-                                                       │ (transcribe  │
-                                                       │  + summarize)│
-                                                       └─────────────┘
+                                                       │  ai-notes    │
+                                                       │  (FastAPI)   │
+                                                       │ faster-      │
+                                                       │ whisper  ────┼──► Ollama
+                                                       │ (transcribe) │    (local LLM:
+                                                       └──────────────┘     summary +
+                                                                            action items)
 ```
 
-The web app never talks to LiveKit's API key/secret from the client — it always mints a short-lived, scoped token server-side (host vs. viewer grants differ) and hands only that token to the browser/app.
+The web app never talks to LiveKit's API key/secret from the client — it always mints a short-lived, scoped token server-side (host vs. viewer grants differ) and hands only that token to the browser/app. Recording storage and the AI notes pipeline both run locally by default — no MinIO or external AI API required to get a working deployment.
 
 ## Recording
 
@@ -94,9 +97,10 @@ If you deploy this on a larger box (4+ vCPUs), Room Composite Egress for meeting
 app/                    Next.js routes (pages + API routes)
 components/             React components, grouped by feature (meeting, livestream, admin, auth, ui)
 services/               Business logic + Prisma access (meeting, livestream, egress, meetingNotes, ...)
-lib/                    Auth, validation, LiveKit token minting, S3/recording helpers
+lib/                    Auth, validation, LiveKit token minting, recording storage helpers
 prisma/                 Schema + migrations
 mobile/                 Expo / React Native app (independent project, own package.json)
+ai-notes/               Local AI notes microservice (FastAPI + faster-whisper + Ollama, own requirements.txt)
 docs/screenshots/       Screenshots used in this README
 ```
 
@@ -107,8 +111,8 @@ docs/screenshots/       Screenshots used in this README
 - Node.js 20+ (some dependencies require it — see [Node version note](#node-version-note))
 - PostgreSQL
 - A LiveKit deployment (self-hosted or [LiveKit Cloud](https://livekit.io/cloud)) with Egress + Redis if you want recording/AI notes
-- An S3-compatible bucket (AWS S3, MinIO, etc.) if you want recording/AI notes
-- An OpenAI API key if you want AI notes
+- Python 3.11+ and [Ollama](https://ollama.com/) if you want AI notes (see [ai-notes/README.md](ai-notes/README.md)) — no external AI API key needed
+- An S3-compatible bucket (AWS S3, MinIO, etc.) only if you want recordings uploaded to cloud storage instead of local disk (the default)
 
 ### Web app
 
@@ -127,8 +131,10 @@ Environment variables (`.env`):
 | `DATABASE_URL` | Postgres connection string |
 | `NEXT_PUBLIC_LIVEKIT_WS_URL`, `LIVEKIT_WS_URL` | LiveKit server WebSocket URL |
 | `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET` | Must match a key configured on your LiveKit server's `keys:` section |
-| `OPENAI_API_KEY` | Required for AI meeting notes (transcription + summarization) |
-| `RECORDING_S3_ENDPOINT`, `RECORDING_S3_REGION`, `RECORDING_S3_BUCKET`, `RECORDING_S3_ACCESS_KEY_ID`, `RECORDING_S3_SECRET_ACCESS_KEY` | Where recordings are uploaded by Egress and read back from — must match your Egress `storage.s3` config |
+| `AI_NOTES_SERVICE_URL`, `AI_NOTES_SERVICE_TOKEN` | Where the [ai-notes/](ai-notes/README.md) service is running and the shared secret to reach it — required for AI meeting notes |
+| `OPENAI_API_KEY` | Only used for `translateTranscript()` (translating an existing transcript) — not for notes generation |
+| `RECORDING_STORAGE_MODE`, `RECORDING_LOCAL_DIR` | Recordings save to local disk by default — see `lib/recordingStorage.ts` |
+| `RECORDING_S3_ENDPOINT`, `RECORDING_S3_REGION`, `RECORDING_S3_BUCKET`, `RECORDING_S3_ACCESS_KEY_ID`, `RECORDING_S3_SECRET_ACCESS_KEY` | Only needed if `RECORDING_STORAGE_MODE=s3` — must match your Egress `storage.s3` config |
 | `SEED_ORG_NAME`, `SEED_ORG_SLUG`, `SEED_ADMIN_NAME`, `SEED_ADMIN_EMAIL`, `SEED_ADMIN_PASSWORD` | Bootstrap organization + first admin (used only by `npx prisma db seed`) |
 
 Public registration always creates `USER` accounts — creating an `ADMIN` account is only possible via the seed script.
@@ -145,9 +151,25 @@ npm run ios             # or: npm run android
 
 The mobile app can't run in Expo Go — it depends on `@livekit/react-native`'s native module, which needs a native build (`expo prebuild` + `expo run:ios`/`run:android`).
 
+### AI notes (self-hosted)
+
+```bash
+cd ai-notes
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env   # set AI_NOTES_SERVICE_TOKEN to match the main app's .env
+
+ollama pull qwen2.5:3b   # or whatever OLLAMA_MODEL you set
+
+set -a; source .env; set +a
+uvicorn main:app --host 0.0.0.0 --port 8100
+```
+
+See [ai-notes/README.md](ai-notes/README.md) for the Docker Compose form, model sizing guidance, and the full request/response shape. This runs entirely on your own hardware — no OpenAI (or any external) API key needed for transcription or summarization.
+
 ### LiveKit backend (self-hosted)
 
-This deployment runs LiveKit, Redis, MinIO, and LiveKit Egress together via Docker Compose on one VPS. A minimal `docker-compose.yml` for that shape:
+This deployment runs LiveKit, Redis, and LiveKit Egress together via Docker Compose on one VPS (MinIO is optional — only needed if you set `RECORDING_STORAGE_MODE=s3`; recordings default to local disk). A minimal `docker-compose.yml` for that shape:
 
 ```yaml
 services:
@@ -163,19 +185,29 @@ services:
     ports: ["127.0.0.1:6379:6379"]
     volumes: ["./redis-data:/data"]
 
-  minio:
-    image: minio/minio:latest
-    ports: ["0.0.0.0:9000:9000", "127.0.0.1:9001:9001"]   # 9000 must be reachable by your app; 9001 (console) can stay local
-    volumes: ["./minio-data:/data"]
-    env_file: ["./minio.env"]
-    command: server /data --console-address ":9001"
-
   egress:
     image: livekit/egress:latest
     extra_hosts: ["host.docker.internal:host-gateway"]   # so it can reach the host-networked livekit service
     environment: ["EGRESS_CONFIG_FILE=/egress.yaml"]
     volumes: ["./egress.yaml:/egress.yaml"]
-    depends_on: [livekit, redis, minio]
+    depends_on: [livekit, redis]
+
+  ai-notes:
+    build: ./ai-notes
+    ports: ["127.0.0.1:8100:8100"]
+    env_file: ["./ai-notes/.env"]
+    volumes: ["./ai-notes-models:/models"]
+    extra_hosts: ["host.docker.internal:host-gateway"]   # to reach a host-installed Ollama
+    restart: unless-stopped
+
+  # Optional — only needed if RECORDING_STORAGE_MODE=s3. Recordings default
+  # to local disk (RECORDING_LOCAL_DIR), which needs no extra service.
+  # minio:
+  #   image: minio/minio:latest
+  #   ports: ["0.0.0.0:9000:9000", "127.0.0.1:9001:9001"]
+  #   volumes: ["./minio-data:/data"]
+  #   env_file: ["./minio.env"]
+  #   command: server /data --console-address ":9001"
 ```
 
 Key points if you're reproducing this:

@@ -1,39 +1,44 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Livestream } from '../../types';
+import { color, font, textMuted } from '../../theme';
 
-const STATUS_COLORS: Record<Livestream['status'], string> = {
-  SCHEDULED: '#64748b',
-  LIVE: '#22c55e',
-  ENDED: '#475569'
-};
+function tagStyles(status: Livestream['status']) {
+  if (status === 'LIVE') return { tag: styles.tagAccent, text: styles.tagAccentText };
+  if (status === 'SCHEDULED') return { tag: styles.tagOutline, text: styles.tagOutlineText };
+  return { tag: styles.tagNeutral, text: styles.tagNeutralText };
+}
 
 export function LivestreamListItem({ livestream, onPress }: { livestream: Livestream; onPress: () => void }) {
+  const tag = tagStyles(livestream.status);
+
   return (
     <Pressable style={styles.row} onPress={onPress}>
-      <View style={styles.info}>
-        <Text style={styles.title}>{livestream.title}</Text>
-        <Text style={styles.host}>{livestream.createdBy?.name ?? 'Unknown host'}</Text>
+      <View style={styles.metaRow}>
+        <View style={[styles.tag, tag.tag]}>
+          <Text style={[styles.tagText, tag.text]}>{livestream.status}</Text>
+        </View>
       </View>
-      <View style={[styles.badge, { backgroundColor: STATUS_COLORS[livestream.status] }]}>
-        <Text style={styles.badgeText}>{livestream.status}</Text>
-      </View>
+      <Text style={styles.title} numberOfLines={1}>
+        {livestream.title}
+      </Text>
+      <Text style={styles.host} numberOfLines={1}>
+        {livestream.createdBy?.name ?? 'Unknown host'}
+      </Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#1e293b',
-    borderRadius: 14,
-    padding: 16,
-    marginBottom: 10
-  },
-  info: { flex: 1, marginRight: 12 },
-  title: { color: '#fff', fontSize: 16, fontWeight: '600' },
-  host: { color: '#94a3b8', fontSize: 13, marginTop: 2 },
-  badge: { borderRadius: 999, paddingHorizontal: 10, paddingVertical: 4 },
-  badgeText: { color: '#fff', fontSize: 11, fontWeight: '700' }
+  row: { paddingVertical: 16, borderBottomWidth: 1, borderBottomColor: color.divider },
+  metaRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 6 },
+  tag: { paddingHorizontal: 10, paddingVertical: 3 },
+  tagText: { fontFamily: font.body, fontSize: 11, letterSpacing: 0.4 },
+  tagAccent: { backgroundColor: color.accent100 },
+  tagAccentText: { color: color.accent800 },
+  tagOutline: { borderWidth: 1, borderColor: color.accent },
+  tagOutlineText: { color: color.accent },
+  tagNeutral: { backgroundColor: color.neutral100 },
+  tagNeutralText: { color: color.neutral800 },
+  title: { fontFamily: font.bodySemiBold, fontSize: 16, color: color.text, marginBottom: 2 },
+  host: { fontFamily: font.body, fontSize: 13, color: textMuted(0.6) }
 });

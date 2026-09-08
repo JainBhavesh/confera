@@ -20,6 +20,7 @@
     "livekit-client": "^2.18.2",
     "livekit-server-sdk": "^2.15.4",
     "next": "^15.3.2",
+    "next-intl": "^4.14.2",
     "nodemailer": "^7.0.13",
     "openai": "^7.8.0",
     "prisma": "^6.19.3",

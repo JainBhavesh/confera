@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getTranslations, getFormatter } from 'next-intl/server';
 import { Badge } from '@/components/ui/Badge';
 
 export interface MeetingListItem {
@@ -17,7 +18,17 @@ const STATUS_VARIANT: Record<string, 'neutral' | 'success' | 'danger' | 'muted' 
   CANCELLED: 'danger'
 };
 
-export function MeetingListTable({ meetings, emptyMessage }: { meetings: MeetingListItem[]; emptyMessage: string }) {
+export async function MeetingListTable({
+  meetings,
+  emptyMessage
+}: {
+  meetings: MeetingListItem[];
+  emptyMessage: string;
+}) {
+  const t = await getTranslations('meeting.table');
+  const tStatus = await getTranslations('meeting.status');
+  const format = await getFormatter();
+
   if (meetings.length === 0) {
     return <p className="border border-border bg-card p-8 text-center text-sm text-muted-foreground">{emptyMessage}</p>;
   }
@@ -26,10 +37,10 @@ export function MeetingListTable({ meetings, emptyMessage }: { meetings: Meeting
     <table className="w-full text-left text-sm">
       <thead>
         <tr className="border-b-2 border-divider text-muted-foreground">
-          <th className="py-3 pr-4 text-[11px] font-medium uppercase tracking-wide">Title</th>
-          <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">Host</th>
-          <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">Status</th>
-          <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">Created</th>
+          <th className="py-3 pr-4 text-[11px] font-medium uppercase tracking-wide">{t('title')}</th>
+          <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">{t('host')}</th>
+          <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">{t('status')}</th>
+          <th className="px-4 py-3 text-[11px] font-medium uppercase tracking-wide">{t('created')}</th>
           <th className="py-3 pl-4" />
         </tr>
       </thead>
@@ -39,17 +50,19 @@ export function MeetingListTable({ meetings, emptyMessage }: { meetings: Meeting
             <td className="py-3 pr-4 font-semibold text-foreground">{meeting.title}</td>
             <td className="px-4 py-3 text-muted-foreground">{meeting.createdBy.name}</td>
             <td className="px-4 py-3">
-              <Badge variant={STATUS_VARIANT[meeting.status] ?? 'neutral'}>{meeting.status}</Badge>
+              <Badge variant={STATUS_VARIANT[meeting.status] ?? 'neutral'}>
+                {tStatus.has(meeting.status.toLowerCase()) ? tStatus(meeting.status.toLowerCase()) : meeting.status}
+              </Badge>
             </td>
-            <td className="px-4 py-3 text-muted-foreground">{new Date(meeting.createdAt).toLocaleString()}</td>
+            <td className="px-4 py-3 text-muted-foreground">{format.dateTime(new Date(meeting.createdAt))}</td>
             <td className="py-3 pl-4 text-right">
               {meeting.status === 'LIVE' || meeting.status === 'SCHEDULED' ? (
                 <Link href={`/meet/${meeting.id}`} className="text-sm text-primary hover:opacity-80">
-                  Join
+                  {t('join')}
                 </Link>
               ) : meeting.status === 'ENDED' ? (
                 <Link href={`/meetings/${meeting.id}`} className="text-sm text-primary hover:opacity-80">
-                  Notes
+                  {t('notes')}
                 </Link>
               ) : null}
             </td>

@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Annuleren",
+    "join": "Deelnemen",
+    "notes": "Notities"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Werkruimte",
+      "knowledge": "Kennis",
+      "administration": "Beheer"
+    },
+    "links": {
+      "home": "Start",
+      "meetings": "Vergaderingen",
+      "schedule": "Planning",
+      "livestreams": "Livestreams",
+      "searchNotes": "Notities zoeken",
+      "actionItems": "Actiepunten",
+      "recordings": "Opnamen",
+      "usageAnalytics": "Gebruiksanalyse",
+      "members": "Leden",
+      "allMeetings": "Alle vergaderingen",
+      "allLivestreams": "Alle livestreams",
+      "notes": "Notities",
+      "allActionItems": "Alle actiepunten",
+      "analytics": "Analyses",
+      "settings": "Instellingen"
+    },
+    "viewProfile": "Profiel bekijken",
+    "logOut": "Afmelden",
+    "language": "Taal",
+    "searchPlaceholder": "Zoek vergaderingen, notities, transcripties",
+    "joinWithId": "Deelnemen met ID",
+    "meetingIdPlaceholder": "Vergader-ID",
+    "newMeeting": "Nieuwe vergadering",
+    "starting": "Bezig met starten…",
+    "join": "Deelnemen"
+  },
+  "dashboard": {
+    "greeting": "Goede{period}, {name}",
+    "periods": {
+      "morning": "morgen",
+      "afternoon": "middag",
+      "evening": "avond"
+    },
+    "today": "Vandaag",
+    "meetingsCount": "{count} vergaderingen",
+    "openActions": "Openstaande actiepunten",
+    "scheduleHeading": "Plannen",
+    "scheduleDescription": "Zet hem met een agenda in de kalender.",
+    "goLiveHeading": "Live gaan",
+    "goLiveDescription": "Uitzenden naar de hele organisatie.",
+    "startLivestream": "Livestream starten",
+    "upNext": "Binnenkort",
+    "fullSchedule": "Volledige planning",
+    "nothingScheduledToday": "Voor de rest van de dag staat niets gepland.",
+    "recentMeetings": "Recente vergaderingen",
+    "viewAll": "Alles bekijken",
+    "noMeetingsYet": "Nog geen vergaderingen — start er hierboven een.",
+    "yourActionItems": "Jouw actiepunten",
+    "nothingAssigned": "Er is momenteel niets aan jou toegewezen.",
+    "allActionItems": "Alle actiepunten",
+    "thisWeek": "Deze week",
+    "hoursMinutes": "{hours} u {minutes} min",
+    "weekSummary": "in vergaderingen, waarvan {count} automatisch getranscribeerd.",
+    "join": "Deelnemen"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Vergadering starten",
+      "description": "Open nu een ruimte en verstuur de link.",
+      "titlePlaceholder": "Titel van de vergadering",
+      "startButton": "Starten",
+      "starting": "Bezig met starten…"
+    },
+    "schedule": {
+      "newButton": "Nieuwe geplande vergadering",
+      "dialogTitle": "Een vergadering plannen",
+      "titleLabel": "Titel",
+      "titlePlaceholder": "Titel van de vergadering",
+      "repeatsLabel": "Herhaling",
+      "recurrence": {
+        "once": "Eenmalig",
+        "daily": "Dagelijks",
+        "weekly": "Wekelijks",
+        "monthly": "Maandelijks"
+      },
+      "dateLabel": "Datum",
+      "timeLabel": "Tijd",
+      "recurrenceHint": {
+        "daily": "Maakt herhalingen op werkdagen (geen weekenden) tot het einde van het jaar, of over 6 maanden — wat later is.",
+        "weekly": "Maakt wekelijkse herhalingen tot het einde van het jaar, of over 6 maanden — wat later is.",
+        "monthly": "Maakt maandelijkse herhalingen tot het einde van het jaar, of over 6 maanden — wat later is."
+      },
+      "inviteLabel": "Uitnodigen per e-mail",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Scheid meerdere adressen met komma's. Voor iedereen zonder Confera-account wordt er automatisch een aangemaakt.",
+      "cancel": "Annuleren",
+      "submit": "Plannen",
+      "submitting": "Bezig met plannen…"
+    },
+    "table": {
+      "title": "Titel",
+      "host": "Host",
+      "status": "Status",
+      "created": "Aangemaakt",
+      "join": "Deelnemen",
+      "notes": "Notities"
+    },
+    "status": {
+      "scheduled": "GEPLAND",
+      "live": "LIVE",
+      "ended": "BEËINDIGD",
+      "cancelled": "GEANNULEERD"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Geef je vergadering een titel.",
+    "unable_to_create_meeting": "Kan vergadering niet aanmaken.",
+    "unable_to_create_meeting_retry": "Kan vergadering niet aanmaken. Probeer het later opnieuw.",
+    "fill_title_date_time": "Vul een titel, datum en tijd in.",
+    "enter_valid_date_time": "Voer een geldige datum en tijd in.",
+    "invalid_email": "‘{email}’ lijkt geen geldig e-mailadres.",
+    "unable_to_schedule_meeting": "Kan vergadering niet plannen.",
+    "unable_to_schedule_meeting_retry": "Kan vergadering niet plannen. Probeer het later opnieuw."
+  }
+}

@@ -2,18 +2,21 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 
 export function StartMeetingCard() {
   const router = useRouter();
+  const t = useTranslations('meeting.start');
+  const tErrors = useTranslations('errors');
   const [title, setTitle] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleCreate = async () => {
     if (!title.trim()) {
-      setError('Give your meeting a title.');
+      setError(tErrors('give_meeting_title'));
       return;
     }
     setError('');
@@ -26,12 +29,12 @@ export function StartMeetingCard() {
       });
       const data = await response.json();
       if (!response.ok) {
-        setError(data.error ?? 'Unable to create meeting.');
+        setError(data.error ?? tErrors('unable_to_create_meeting'));
         return;
       }
       router.push(`/meet/${data.meeting.id}`);
     } catch {
-      setError('Unable to create meeting. Try again later.');
+      setError(tErrors('unable_to_create_meeting_retry'));
     } finally {
       setLoading(false);
     }
@@ -39,17 +42,17 @@ export function StartMeetingCard() {
 
   return (
     <div>
-      <h4 className="mb-1.5 text-base font-extrabold text-foreground">Start a meeting</h4>
-      <p className="mb-3.5 text-[13px] text-muted-foreground">Open a room now and send the link.</p>
+      <h4 className="mb-1.5 text-base font-extrabold text-foreground">{t('heading')}</h4>
+      <p className="mb-3.5 text-[13px] text-muted-foreground">{t('description')}</p>
       <div className="flex gap-2">
         <Input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Meeting title"
+          placeholder={t('titlePlaceholder')}
           className="min-w-[150px] flex-1"
         />
         <Button onClick={handleCreate} disabled={loading} className="shrink-0 whitespace-nowrap">
-          {loading ? 'Starting…' : 'Start'}
+          {loading ? t('starting') : t('startButton')}
         </Button>
       </div>
       {error ? <p className="mt-2 text-xs text-destructive">{error}</p> : null}

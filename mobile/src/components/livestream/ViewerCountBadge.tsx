@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { color, font } from '../../theme';
 
 export function ViewerCountBadge({ count }: { count: number }) {
   return (
@@ -9,6 +10,6 @@ export function ViewerCountBadge({ count }: { count: number }) {
 }
 
 const styles = StyleSheet.create({
-  badge: { backgroundColor: 'rgba(15, 23, 42, 0.85)', borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6, alignSelf: 'flex-start' },
-  text: { color: '#fff', fontSize: 12, fontWeight: '600' }
+  badge: { backgroundColor: 'rgba(20, 19, 18, 0.82)', paddingHorizontal: 12, paddingVertical: 6, alignSelf: 'flex-start' },
+  text: { fontFamily: font.bodySemiBold, color: color.callText, fontSize: 12 }
 });

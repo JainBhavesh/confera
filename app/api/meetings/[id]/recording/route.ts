@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireUser, toErrorResponse } from '@/lib/auth/guards';
 import { getOrgScopedMeeting } from '@/services/meeting.service';
 import { checkMeetingRecordingStatus } from '@/services/egress.service';
-import { getRecordingDownloadUrl } from '@/lib/recordingStorage';
+import { getRecordingDownloadUrl, RECORDING_STORAGE_MODE } from '@/lib/recordingStorage';
 import { getResolvedPermissions } from '@/lib/permissions';
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -30,7 +30,8 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
       return NextResponse.json({ status: meeting.recordingStatus, url: null });
     }
 
-    const url = await getRecordingDownloadUrl(meeting.recordingKey);
+    const url =
+      RECORDING_STORAGE_MODE === 'local' ? `/api/meetings/${id}/recording/file` : await getRecordingDownloadUrl(meeting.recordingKey);
     return NextResponse.json({ status: meeting.recordingStatus, url });
   } catch (err) {
     return toErrorResponse(err);

@@ -1,4 +1,4 @@
-import type { Meeting, MeetingParticipantSession, MeetingRecurrence, User } from '@prisma/client';
+import type { Meeting, MeetingParticipantSession, MeetingRecurrence, Prisma, User } from '@prisma/client';
 import { prisma } from '@/lib/db/prisma';
 import { generateLiveKitRoomName } from '@/lib/roomUtils';
 import { startMeetingRecording, stopMeetingRecording } from '@/services/egress.service';
@@ -23,21 +23,92 @@ export async function createMeeting(input: {
   });
 }
 
+/** Edits a not-yet-started meeting's title/time — callers must check status is SCHEDULED first. */
+export async function updateMeetingDetails(
+  meetingId: string,
+  input: { title?: string; scheduledAt?: Date }
+): Promise<Meeting> {
+  return prisma.meeting.update({
+    where: { id: meetingId },
+    data: {
+      ...(input.title !== undefined ? { title: input.title } : {}),
+      ...(input.scheduledAt !== undefined ? { scheduledAt: input.scheduledAt } : {})
+    }
+  });
+}
+
+/**
+ * Edits every not-yet-started occurrence of a recurring series (shares
+ * `recurringGroupId`). Title replaces as given; a new scheduledAt only
+ * carries its time-of-day across, applied to each occurrence's own existing
+ * date — occurrences aren't moved to a different day by a series-wide edit.
+ * Returns the number of occurrences updated.
+ */
+export async function updateMeetingSeries(
+  organizationId: string,
+  recurringGroupId: string,
+  input: { title?: string; scheduledAt?: Date }
+): Promise<number> {
+  const occurrences = await prisma.meeting.findMany({
+    where: { organizationId, recurringGroupId, status: 'SCHEDULED' }
+  });
+
+  await Promise.all(
+    occurrences.map((occurrence) => {
+      const data: { title?: string; scheduledAt?: Date } = {};
+      if (input.title !== undefined) data.title = input.title;
+      if (input.scheduledAt !== undefined && occurrence.scheduledAt) {
+        const next = new Date(occurrence.scheduledAt);
+        next.setHours(input.scheduledAt.getHours(), input.scheduledAt.getMinutes(), 0, 0);
+        data.scheduledAt = next;
+      }
+      return prisma.meeting.update({ where: { id: occurrence.id }, data });
+    })
+  );
+
+  return occurrences.length;
+}
+
+/** Deletes every not-yet-started occurrence of a recurring series. Returns the number deleted. */
+export async function deleteMeetingSeries(organizationId: string, recurringGroupId: string): Promise<number> {
+  const result = await prisma.meeting.deleteMany({
+    where: { organizationId, recurringGroupId, status: 'SCHEDULED' }
+  });
+  return result.count;
+}
+
 /** Org-scoped lookup — never trust a client-supplied meeting id alone (spec §25). */
 export async function getOrgScopedMeeting(organizationId: string, meetingId: string): Promise<Meeting | null> {
   return prisma.meeting.findFirst({ where: { id: meetingId, organizationId } });
 }
 
-// How many future occurrences a recurring schedule materializes up front, and
-// the step between them. Each occurrence is its own real Meeting row (own
-// room, recording, notes, action items) — this isn't a virtual/projected
-// series, so the count is deliberately bounded rather than open-ended: a
-// daily series runs 2 weeks out, weekly ~2 months, monthly ~half a year.
-const RECURRENCE_STEPS: Record<Exclude<MeetingRecurrence, 'ONCE'>, { count: number; days?: number; months?: number }> = {
-  DAILY: { count: 13, days: 1 },
-  WEEKLY: { count: 7, days: 7 },
-  MONTHLY: { count: 5, months: 1 }
-};
+function addMonths(date: Date, months: number): Date {
+  const next = new Date(date);
+  next.setMonth(next.getMonth() + months);
+  return next;
+}
+
+function endOfYear(date: Date): Date {
+  return new Date(date.getFullYear(), 11, 31, 23, 59, 59, 999);
+}
+
+function isWeekend(date: Date): boolean {
+  const day = date.getDay();
+  return day === 0 || day === 6;
+}
+
+/**
+ * A recurring series runs through the end of its start year (so a January
+ * series runs the full year), or 6 months out if that's later — e.g. a
+ * series starting in November still gets a minimum 6-month run into next
+ * year — capped at 12 months out so a series never runs indefinitely.
+ */
+function seriesEndDate(start: Date): Date {
+  const minEnd = addMonths(start, 6);
+  const maxEnd = addMonths(start, 12);
+  const target = endOfYear(start) > minEnd ? endOfYear(start) : minEnd;
+  return target > maxEnd ? maxEnd : target;
+}
 
 /**
  * Materializes the repeat occurrences implied by `firstMeeting.recurrence` —
@@ -45,37 +116,51 @@ const RECURRENCE_STEPS: Record<Exclude<MeetingRecurrence, 'ONCE'>, { count: numb
  * occurrence's own id). No-op for a one-off meeting or one with no
  * scheduledAt to step forward from. Called right after createMeeting when
  * the caller selected anything but "Once".
+ *
+ * Occurrences run through `seriesEndDate` (see above). A DAILY series steps
+ * one calendar day at a time but skips Saturdays/Sundays — weekdays only;
+ * WEEKLY/MONTHLY step 7 days / 1 month and so naturally stay on whatever
+ * weekday the series started on.
  */
-export async function generateRecurringOccurrences(firstMeeting: Meeting): Promise<Meeting[]> {
-  if (firstMeeting.recurrence === 'ONCE' || !firstMeeting.scheduledAt) return [];
+export async function generateRecurringOccurrences(firstMeeting: Meeting): Promise<number> {
+  if (firstMeeting.recurrence === 'ONCE' || !firstMeeting.scheduledAt) return 0;
 
-  const step = RECURRENCE_STEPS[firstMeeting.recurrence];
+  const seriesEnd = seriesEndDate(firstMeeting.scheduledAt);
   await prisma.meeting.update({ where: { id: firstMeeting.id }, data: { recurringGroupId: firstMeeting.id } });
 
-  const occurrences: Meeting[] = [];
-  let cursor = new Date(firstMeeting.scheduledAt);
+  const occurrences: Prisma.MeetingCreateManyInput[] = [];
+  const cursor = new Date(firstMeeting.scheduledAt);
 
-  for (let i = 0; i < step.count; i++) {
-    cursor = new Date(cursor);
-    if (step.days) cursor.setDate(cursor.getDate() + step.days);
-    if (step.months) cursor.setMonth(cursor.getMonth() + step.months);
+  while (true) {
+    if (firstMeeting.recurrence === 'WEEKLY') {
+      cursor.setDate(cursor.getDate() + 7);
+    } else if (firstMeeting.recurrence === 'MONTHLY') {
+      cursor.setMonth(cursor.getMonth() + 1);
+    } else {
+      do {
+        cursor.setDate(cursor.getDate() + 1);
+      } while (isWeekend(cursor));
+    }
 
-    const occurrence = await prisma.meeting.create({
-      data: {
-        organizationId: firstMeeting.organizationId,
-        createdByUserId: firstMeeting.createdByUserId,
-        title: firstMeeting.title,
-        status: 'SCHEDULED',
-        scheduledAt: new Date(cursor),
-        recurrence: firstMeeting.recurrence,
-        recurringGroupId: firstMeeting.id,
-        livekitRoomName: generateLiveKitRoomName(firstMeeting.organizationId)
-      }
+    if (cursor > seriesEnd) break;
+
+    occurrences.push({
+      organizationId: firstMeeting.organizationId,
+      createdByUserId: firstMeeting.createdByUserId,
+      title: firstMeeting.title,
+      status: 'SCHEDULED',
+      scheduledAt: new Date(cursor),
+      recurrence: firstMeeting.recurrence,
+      recurringGroupId: firstMeeting.id,
+      livekitRoomName: generateLiveKitRoomName(firstMeeting.organizationId)
     });
-    occurrences.push(occurrence);
   }
 
-  return occurrences;
+  if (occurrences.length > 0) {
+    await prisma.meeting.createMany({ data: occurrences });
+  }
+
+  return occurrences.length;
 }
 
 /**

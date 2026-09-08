@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Zrušiť",
+    "join": "Pripojiť sa",
+    "notes": "Poznámky"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Pracovný priestor",
+      "knowledge": "Znalosti",
+      "administration": "Administrácia"
+    },
+    "links": {
+      "home": "Domov",
+      "meetings": "Stretnutia",
+      "schedule": "Rozvrh",
+      "livestreams": "Živé vysielania",
+      "searchNotes": "Hľadať poznámky",
+      "actionItems": "Úlohy",
+      "recordings": "Nahrávky",
+      "usageAnalytics": "Analýza používania",
+      "members": "Členovia",
+      "allMeetings": "Všetky stretnutia",
+      "allLivestreams": "Všetky živé vysielania",
+      "notes": "Poznámky",
+      "allActionItems": "Všetky úlohy",
+      "analytics": "Štatistiky",
+      "settings": "Nastavenia"
+    },
+    "viewProfile": "Zobraziť profil",
+    "logOut": "Odhlásiť sa",
+    "language": "Jazyk",
+    "searchPlaceholder": "Hľadať stretnutia, poznámky, prepisy",
+    "joinWithId": "Pripojiť sa cez ID",
+    "meetingIdPlaceholder": "ID stretnutia",
+    "newMeeting": "Nové stretnutie",
+    "starting": "Spúšťa sa…",
+    "join": "Pripojiť sa"
+  },
+  "dashboard": {
+    "greeting": "Dobré {period}, {name}",
+    "periods": {
+      "morning": "ráno",
+      "afternoon": "popoludnie",
+      "evening": "večer"
+    },
+    "today": "Dnes",
+    "meetingsCount": "{count} stretnutí",
+    "openActions": "Otvorené úlohy",
+    "scheduleHeading": "Naplánovať",
+    "scheduleDescription": "Pridajte ho do kalendára s agendou.",
+    "goLiveHeading": "Spustiť naživo",
+    "goLiveDescription": "Vysielajte celej organizácii.",
+    "startLivestream": "Spustiť živé vysielanie",
+    "upNext": "Nasleduje",
+    "fullSchedule": "Celý rozvrh",
+    "nothingScheduledToday": "Na zvyšok dňa nie je nič naplánované.",
+    "recentMeetings": "Nedávne stretnutia",
+    "viewAll": "Zobraziť všetky",
+    "noMeetingsYet": "Zatiaľ žiadne stretnutia — spustite jedno vyššie.",
+    "yourActionItems": "Vaše úlohy",
+    "nothingAssigned": "Momentálne vám nie je nič priradené.",
+    "allActionItems": "Všetky úlohy",
+    "thisWeek": "Tento týždeň",
+    "hoursMinutes": "{hours} h {minutes} min",
+    "weekSummary": "na stretnutiach, z toho {count} automaticky prepísaných.",
+    "join": "Pripojiť sa"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Spustiť stretnutie",
+      "description": "Otvorte miestnosť hneď teraz a pošlite odkaz.",
+      "titlePlaceholder": "Názov stretnutia",
+      "startButton": "Spustiť",
+      "starting": "Spúšťa sa…"
+    },
+    "schedule": {
+      "newButton": "Nové naplánované stretnutie",
+      "dialogTitle": "Naplánovať stretnutie",
+      "titleLabel": "Názov",
+      "titlePlaceholder": "Názov stretnutia",
+      "repeatsLabel": "Opakovanie",
+      "recurrence": {
+        "once": "Raz",
+        "daily": "Denne",
+        "weekly": "Týždenne",
+        "monthly": "Mesačne"
+      },
+      "dateLabel": "Dátum",
+      "timeLabel": "Čas",
+      "recurrenceHint": {
+        "daily": "Vytvorí výskyty v pracovných dňoch (bez víkendov) do konca roka alebo na 6 mesiacov dopredu — podľa toho, čo nastane neskôr.",
+        "weekly": "Vytvorí týždenné výskyty do konca roka alebo na 6 mesiacov dopredu — podľa toho, čo nastane neskôr.",
+        "monthly": "Vytvorí mesačné výskyty do konca roka alebo na 6 mesiacov dopredu — podľa toho, čo nastane neskôr."
+      },
+      "inviteLabel": "Pozvať e-mailom",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Viacero adries oddeľte čiarkami. Komukoľvek bez účtu Confera sa automaticky vytvorí.",
+      "cancel": "Zrušiť",
+      "submit": "Naplánovať",
+      "submitting": "Plánuje sa…"
+    },
+    "table": {
+      "title": "Názov",
+      "host": "Usporiadateľ",
+      "status": "Stav",
+      "created": "Vytvorené",
+      "join": "Pripojiť sa",
+      "notes": "Poznámky"
+    },
+    "status": {
+      "scheduled": "NAPLÁNOVANÉ",
+      "live": "NAŽIVO",
+      "ended": "UKONČENÉ",
+      "cancelled": "ZRUŠENÉ"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Zadajte názov stretnutia.",
+    "unable_to_create_meeting": "Stretnutie sa nepodarilo vytvoriť.",
+    "unable_to_create_meeting_retry": "Stretnutie sa nepodarilo vytvoriť. Skúste to znova neskôr.",
+    "fill_title_date_time": "Vyplňte názov, dátum a čas.",
+    "enter_valid_date_time": "Zadajte platný dátum a čas.",
+    "invalid_email": "„{email}“ nevyzerá ako platná e-mailová adresa.",
+    "unable_to_schedule_meeting": "Stretnutie sa nepodarilo naplánovať.",
+    "unable_to_schedule_meeting_retry": "Stretnutie sa nepodarilo naplánovať. Skúste to znova neskôr."
+  }
+}

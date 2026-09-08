@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Anuluj",
+    "join": "Dołącz",
+    "notes": "Notatki"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Obszar roboczy",
+      "knowledge": "Wiedza",
+      "administration": "Administracja"
+    },
+    "links": {
+      "home": "Strona główna",
+      "meetings": "Spotkania",
+      "schedule": "Harmonogram",
+      "livestreams": "Transmisje na żywo",
+      "searchNotes": "Szukaj notatek",
+      "actionItems": "Zadania",
+      "recordings": "Nagrania",
+      "usageAnalytics": "Analiza użycia",
+      "members": "Członkowie",
+      "allMeetings": "Wszystkie spotkania",
+      "allLivestreams": "Wszystkie transmisje",
+      "notes": "Notatki",
+      "allActionItems": "Wszystkie zadania",
+      "analytics": "Statystyki",
+      "settings": "Ustawienia"
+    },
+    "viewProfile": "Zobacz profil",
+    "logOut": "Wyloguj się",
+    "language": "Język",
+    "searchPlaceholder": "Szukaj spotkań, notatek, transkrypcji",
+    "joinWithId": "Dołącz z ID",
+    "meetingIdPlaceholder": "ID spotkania",
+    "newMeeting": "Nowe spotkanie",
+    "starting": "Uruchamianie…",
+    "join": "Dołącz"
+  },
+  "dashboard": {
+    "greeting": "Dzień dobry, {name}",
+    "periods": {
+      "morning": "rano",
+      "afternoon": "po południu",
+      "evening": "wieczorem"
+    },
+    "today": "Dzisiaj",
+    "meetingsCount": "{count} spotkań",
+    "openActions": "Otwarte zadania",
+    "scheduleHeading": "Zaplanuj",
+    "scheduleDescription": "Dodaj je do kalendarza wraz z agendą.",
+    "goLiveHeading": "Rozpocznij transmisję",
+    "goLiveDescription": "Nadawaj do całej organizacji.",
+    "startLivestream": "Rozpocznij transmisję na żywo",
+    "upNext": "Wkrótce",
+    "fullSchedule": "Pełny harmonogram",
+    "nothingScheduledToday": "Nic nie zaplanowano na resztę dnia.",
+    "recentMeetings": "Ostatnie spotkania",
+    "viewAll": "Zobacz wszystkie",
+    "noMeetingsYet": "Brak spotkań — rozpocznij jedno powyżej.",
+    "yourActionItems": "Twoje zadania",
+    "nothingAssigned": "Nic nie zostało Ci obecnie przypisane.",
+    "allActionItems": "Wszystkie zadania",
+    "thisWeek": "W tym tygodniu",
+    "hoursMinutes": "{hours} godz {minutes} min",
+    "weekSummary": "na spotkaniach, w tym {count} transkrybowanych automatycznie.",
+    "join": "Dołącz"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Rozpocznij spotkanie",
+      "description": "Otwórz pokój teraz i wyślij link.",
+      "titlePlaceholder": "Tytuł spotkania",
+      "startButton": "Rozpocznij",
+      "starting": "Uruchamianie…"
+    },
+    "schedule": {
+      "newButton": "Nowe zaplanowane spotkanie",
+      "dialogTitle": "Zaplanuj spotkanie",
+      "titleLabel": "Tytuł",
+      "titlePlaceholder": "Tytuł spotkania",
+      "repeatsLabel": "Powtarzanie",
+      "recurrence": {
+        "once": "Raz",
+        "daily": "Codziennie",
+        "weekly": "Co tydzień",
+        "monthly": "Co miesiąc"
+      },
+      "dateLabel": "Data",
+      "timeLabel": "Godzina",
+      "recurrenceHint": {
+        "daily": "Tworzy wystąpienia w dni robocze (bez weekendów) do końca roku lub przez 6 miesięcy — w zależności co nastąpi później.",
+        "weekly": "Tworzy cotygodniowe wystąpienia do końca roku lub przez 6 miesięcy — w zależności co nastąpi później.",
+        "monthly": "Tworzy comiesięczne wystąpienia do końca roku lub przez 6 miesięcy — w zależności co nastąpi później."
+      },
+      "inviteLabel": "Zaproś przez e-mail",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Oddziel wiele adresów przecinkami. Osobom bez konta Confera zostanie ono automatycznie utworzone.",
+      "cancel": "Anuluj",
+      "submit": "Zaplanuj",
+      "submitting": "Planowanie…"
+    },
+    "table": {
+      "title": "Tytuł",
+      "host": "Gospodarz",
+      "status": "Status",
+      "created": "Utworzono",
+      "join": "Dołącz",
+      "notes": "Notatki"
+    },
+    "status": {
+      "scheduled": "ZAPLANOWANE",
+      "live": "NA ŻYWO",
+      "ended": "ZAKOŃCZONE",
+      "cancelled": "ANULOWANE"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Nadaj tytuł swojemu spotkaniu.",
+    "unable_to_create_meeting": "Nie można utworzyć spotkania.",
+    "unable_to_create_meeting_retry": "Nie można utworzyć spotkania. Spróbuj ponownie później.",
+    "fill_title_date_time": "Podaj tytuł, datę i godzinę.",
+    "enter_valid_date_time": "Podaj prawidłową datę i godzinę.",
+    "invalid_email": "„{email}” nie wygląda na prawidłowy adres e-mail.",
+    "unable_to_schedule_meeting": "Nie można zaplanować spotkania.",
+    "unable_to_schedule_meeting_retry": "Nie można zaplanować spotkania. Spróbuj ponownie później."
+  }
+}

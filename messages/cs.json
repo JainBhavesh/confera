@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Zrušit",
+    "join": "Připojit se",
+    "notes": "Poznámky"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Pracovní prostor",
+      "knowledge": "Znalosti",
+      "administration": "Administrace"
+    },
+    "links": {
+      "home": "Domů",
+      "meetings": "Schůzky",
+      "schedule": "Rozvrh",
+      "livestreams": "Živé přenosy",
+      "searchNotes": "Hledat poznámky",
+      "actionItems": "Úkoly",
+      "recordings": "Nahrávky",
+      "usageAnalytics": "Analýza používání",
+      "members": "Členové",
+      "allMeetings": "Všechny schůzky",
+      "allLivestreams": "Všechny živé přenosy",
+      "notes": "Poznámky",
+      "allActionItems": "Všechny úkoly",
+      "analytics": "Statistiky",
+      "settings": "Nastavení"
+    },
+    "viewProfile": "Zobrazit profil",
+    "logOut": "Odhlásit se",
+    "language": "Jazyk",
+    "searchPlaceholder": "Hledat schůzky, poznámky, přepisy",
+    "joinWithId": "Připojit se pomocí ID",
+    "meetingIdPlaceholder": "ID schůzky",
+    "newMeeting": "Nová schůzka",
+    "starting": "Spouští se…",
+    "join": "Připojit se"
+  },
+  "dashboard": {
+    "greeting": "Dobré {period}, {name}",
+    "periods": {
+      "morning": "ráno",
+      "afternoon": "odpoledne",
+      "evening": "večer"
+    },
+    "today": "Dnes",
+    "meetingsCount": "{count} schůzek",
+    "openActions": "Otevřené úkoly",
+    "scheduleHeading": "Naplánovat",
+    "scheduleDescription": "Přidejte ji do kalendáře s agendou.",
+    "goLiveHeading": "Spustit živě",
+    "goLiveDescription": "Vysílejte celé organizaci.",
+    "startLivestream": "Spustit živý přenos",
+    "upNext": "Následuje",
+    "fullSchedule": "Celý rozvrh",
+    "nothingScheduledToday": "Na zbytek dne nic naplánováno není.",
+    "recentMeetings": "Nedávné schůzky",
+    "viewAll": "Zobrazit vše",
+    "noMeetingsYet": "Zatím žádné schůzky — začněte jednu výše.",
+    "yourActionItems": "Vaše úkoly",
+    "nothingAssigned": "Momentálně vám nic není přiřazeno.",
+    "allActionItems": "Všechny úkoly",
+    "thisWeek": "Tento týden",
+    "hoursMinutes": "{hours} h {minutes} min",
+    "weekSummary": "na schůzkách, z toho {count} automaticky přepsáno.",
+    "join": "Připojit se"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Zahájit schůzku",
+      "description": "Otevřete místnost hned teď a odešlete odkaz.",
+      "titlePlaceholder": "Název schůzky",
+      "startButton": "Zahájit",
+      "starting": "Spouští se…"
+    },
+    "schedule": {
+      "newButton": "Nová naplánovaná schůzka",
+      "dialogTitle": "Naplánovat schůzku",
+      "titleLabel": "Název",
+      "titlePlaceholder": "Název schůzky",
+      "repeatsLabel": "Opakování",
+      "recurrence": {
+        "once": "Jednorázově",
+        "daily": "Denně",
+        "weekly": "Týdně",
+        "monthly": "Měsíčně"
+      },
+      "dateLabel": "Datum",
+      "timeLabel": "Čas",
+      "recurrenceHint": {
+        "daily": "Vytvoří výskyty v pracovních dnech (bez víkendů) do konce roku nebo na 6 měsíců dopředu — podle toho, co nastane později.",
+        "weekly": "Vytvoří týdenní výskyty do konce roku nebo na 6 měsíců dopředu — podle toho, co nastane později.",
+        "monthly": "Vytvoří měsíční výskyty do konce roku nebo na 6 měsíců dopředu — podle toho, co nastane později."
+      },
+      "inviteLabel": "Pozvat e-mailem",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Více adres oddělte čárkami. Komukoli bez účtu Confera bude automaticky vytvořen.",
+      "cancel": "Zrušit",
+      "submit": "Naplánovat",
+      "submitting": "Plánuje se…"
+    },
+    "table": {
+      "title": "Název",
+      "host": "Pořadatel",
+      "status": "Stav",
+      "created": "Vytvořeno",
+      "join": "Připojit se",
+      "notes": "Poznámky"
+    },
+    "status": {
+      "scheduled": "NAPLÁNOVÁNO",
+      "live": "ŽIVĚ",
+      "ended": "UKONČENO",
+      "cancelled": "ZRUŠENO"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Zadejte název schůzky.",
+    "unable_to_create_meeting": "Schůzku se nepodařilo vytvořit.",
+    "unable_to_create_meeting_retry": "Schůzku se nepodařilo vytvořit. Zkuste to znovu později.",
+    "fill_title_date_time": "Vyplňte název, datum a čas.",
+    "enter_valid_date_time": "Zadejte platné datum a čas.",
+    "invalid_email": "„{email}“ nevypadá jako platná e-mailová adresa.",
+    "unable_to_schedule_meeting": "Schůzku se nepodařilo naplánovat.",
+    "unable_to_schedule_meeting_retry": "Schůzku se nepodařilo naplánovat. Zkuste to znovu později."
+  }
+}

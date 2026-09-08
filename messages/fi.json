@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Peruuta",
+    "join": "Liity",
+    "notes": "Muistiinpanot"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Työtila",
+      "knowledge": "Tieto",
+      "administration": "Hallinta"
+    },
+    "links": {
+      "home": "Etusivu",
+      "meetings": "Kokoukset",
+      "schedule": "Aikataulu",
+      "livestreams": "Suoratoistot",
+      "searchNotes": "Hae muistiinpanoja",
+      "actionItems": "Tehtävät",
+      "recordings": "Tallenteet",
+      "usageAnalytics": "Käyttöanalyysi",
+      "members": "Jäsenet",
+      "allMeetings": "Kaikki kokoukset",
+      "allLivestreams": "Kaikki suoratoistot",
+      "notes": "Muistiinpanot",
+      "allActionItems": "Kaikki tehtävät",
+      "analytics": "Tilastot",
+      "settings": "Asetukset"
+    },
+    "viewProfile": "Näytä profiili",
+    "logOut": "Kirjaudu ulos",
+    "language": "Kieli",
+    "searchPlaceholder": "Hae kokouksia, muistiinpanoja, litterointeja",
+    "joinWithId": "Liity ID:llä",
+    "meetingIdPlaceholder": "Kokouksen tunnus",
+    "newMeeting": "Uusi kokous",
+    "starting": "Käynnistetään…",
+    "join": "Liity"
+  },
+  "dashboard": {
+    "greeting": "Hyvää {period}, {name}",
+    "periods": {
+      "morning": "huomenta",
+      "afternoon": "päivää",
+      "evening": "iltaa"
+    },
+    "today": "Tänään",
+    "meetingsCount": "{count} kokousta",
+    "openActions": "Avoimet tehtävät",
+    "scheduleHeading": "Ajoita",
+    "scheduleDescription": "Lisää se kalenteriin asialistan kanssa.",
+    "goLiveHeading": "Aloita suora lähetys",
+    "goLiveDescription": "Lähetä koko organisaatiolle.",
+    "startLivestream": "Aloita suoratoisto",
+    "upNext": "Seuraavaksi",
+    "fullSchedule": "Koko aikataulu",
+    "nothingScheduledToday": "Loppupäivälle ei ole mitään suunniteltu.",
+    "recentMeetings": "Viimeisimmät kokoukset",
+    "viewAll": "Näytä kaikki",
+    "noMeetingsYet": "Ei vielä kokouksia — aloita yksi yllä.",
+    "yourActionItems": "Omat tehtäväsi",
+    "nothingAssigned": "Sinulle ei ole tällä hetkellä osoitettu mitään.",
+    "allActionItems": "Kaikki tehtävät",
+    "thisWeek": "Tällä viikolla",
+    "hoursMinutes": "{hours} t {minutes} min",
+    "weekSummary": "kokouksissa, joista {count} litteroitu automaattisesti.",
+    "join": "Liity"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Aloita kokous",
+      "description": "Avaa huone nyt ja lähetä linkki.",
+      "titlePlaceholder": "Kokouksen otsikko",
+      "startButton": "Aloita",
+      "starting": "Käynnistetään…"
+    },
+    "schedule": {
+      "newButton": "Uusi ajoitettu kokous",
+      "dialogTitle": "Ajoita kokous",
+      "titleLabel": "Otsikko",
+      "titlePlaceholder": "Kokouksen otsikko",
+      "repeatsLabel": "Toisto",
+      "recurrence": {
+        "once": "Kerran",
+        "daily": "Päivittäin",
+        "weekly": "Viikoittain",
+        "monthly": "Kuukausittain"
+      },
+      "dateLabel": "Päivämäärä",
+      "timeLabel": "Aika",
+      "recurrenceHint": {
+        "daily": "Luo tapahtumat arkipäiville (ei viikonloppuisin) vuoden loppuun tai 6 kuukauden päähän — kumpi on myöhemmin.",
+        "weekly": "Luo viikoittaiset tapahtumat vuoden loppuun tai 6 kuukauden päähän — kumpi on myöhemmin.",
+        "monthly": "Luo kuukausittaiset tapahtumat vuoden loppuun tai 6 kuukauden päähän — kumpi on myöhemmin."
+      },
+      "inviteLabel": "Kutsu sähköpostitse",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Erota useat osoitteet pilkuilla. Niille, joilla ei ole Confera-tiliä, luodaan sellainen automaattisesti.",
+      "cancel": "Peruuta",
+      "submit": "Ajoita",
+      "submitting": "Ajoitetaan…"
+    },
+    "table": {
+      "title": "Otsikko",
+      "host": "Isäntä",
+      "status": "Tila",
+      "created": "Luotu",
+      "join": "Liity",
+      "notes": "Muistiinpanot"
+    },
+    "status": {
+      "scheduled": "AJOITETTU",
+      "live": "SUORA",
+      "ended": "PÄÄTTYNYT",
+      "cancelled": "PERUTTU"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Anna kokoukselle otsikko.",
+    "unable_to_create_meeting": "Kokousta ei voitu luoda.",
+    "unable_to_create_meeting_retry": "Kokousta ei voitu luoda. Yritä myöhemmin uudelleen.",
+    "fill_title_date_time": "Täytä otsikko, päivämäärä ja aika.",
+    "enter_valid_date_time": "Anna kelvollinen päivämäärä ja aika.",
+    "invalid_email": "”{email}” ei näytä kelvolliselta sähköpostiosoitteelta.",
+    "unable_to_schedule_meeting": "Kokousta ei voitu ajoittaa.",
+    "unable_to_schedule_meeting_retry": "Kokousta ei voitu ajoittaa. Yritä myöhemmin uudelleen."
+  }
+}

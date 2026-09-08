@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Atšaukti",
+    "join": "Prisijungti",
+    "notes": "Pastabos"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Darbo erdvė",
+      "knowledge": "Žinios",
+      "administration": "Administravimas"
+    },
+    "links": {
+      "home": "Pradžia",
+      "meetings": "Susitikimai",
+      "schedule": "Tvarkaraštis",
+      "livestreams": "Tiesioginės transliacijos",
+      "searchNotes": "Ieškoti pastabų",
+      "actionItems": "Užduotys",
+      "recordings": "Įrašai",
+      "usageAnalytics": "Naudojimo analizė",
+      "members": "Nariai",
+      "allMeetings": "Visi susitikimai",
+      "allLivestreams": "Visos tiesioginės transliacijos",
+      "notes": "Pastabos",
+      "allActionItems": "Visos užduotys",
+      "analytics": "Statistika",
+      "settings": "Nustatymai"
+    },
+    "viewProfile": "Peržiūrėti profilį",
+    "logOut": "Atsijungti",
+    "language": "Kalba",
+    "searchPlaceholder": "Ieškoti susitikimų, pastabų, nuorašų",
+    "joinWithId": "Prisijungti su ID",
+    "meetingIdPlaceholder": "Susitikimo ID",
+    "newMeeting": "Naujas susitikimas",
+    "starting": "Paleidžiama…",
+    "join": "Prisijungti"
+  },
+  "dashboard": {
+    "greeting": "Labas {period}, {name}",
+    "periods": {
+      "morning": "rytas",
+      "afternoon": "diena",
+      "evening": "vakaras"
+    },
+    "today": "Šiandien",
+    "meetingsCount": "{count} susitikimai",
+    "openActions": "Atviros užduotys",
+    "scheduleHeading": "Suplanuoti",
+    "scheduleDescription": "Įtraukite jį į kalendorių su darbotvarke.",
+    "goLiveHeading": "Pradėti tiesioginę transliaciją",
+    "goLiveDescription": "Transliuokite visai organizacijai.",
+    "startLivestream": "Pradėti tiesioginę transliaciją",
+    "upNext": "Toliau",
+    "fullSchedule": "Visas tvarkaraštis",
+    "nothingScheduledToday": "Likusiai dienos daliai nieko nesuplanuota.",
+    "recentMeetings": "Naujausi susitikimai",
+    "viewAll": "Žiūrėti visus",
+    "noMeetingsYet": "Kol kas susitikimų nėra — pradėkite vieną aukščiau.",
+    "yourActionItems": "Jūsų užduotys",
+    "nothingAssigned": "Šiuo metu jums nieko nepriskirta.",
+    "allActionItems": "Visos užduotys",
+    "thisWeek": "Šią savaitę",
+    "hoursMinutes": "{hours} val {minutes} min",
+    "weekSummary": "susitikimuose, iš kurių {count} transkribuoti automatiškai.",
+    "join": "Prisijungti"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Pradėti susitikimą",
+      "description": "Atidarykite kambarį dabar ir išsiųskite nuorodą.",
+      "titlePlaceholder": "Susitikimo pavadinimas",
+      "startButton": "Pradėti",
+      "starting": "Paleidžiama…"
+    },
+    "schedule": {
+      "newButton": "Naujas suplanuotas susitikimas",
+      "dialogTitle": "Suplanuoti susitikimą",
+      "titleLabel": "Pavadinimas",
+      "titlePlaceholder": "Susitikimo pavadinimas",
+      "repeatsLabel": "Kartojimas",
+      "recurrence": {
+        "once": "Vieną kartą",
+        "daily": "Kasdien",
+        "weekly": "Kas savaitę",
+        "monthly": "Kas mėnesį"
+      },
+      "dateLabel": "Data",
+      "timeLabel": "Laikas",
+      "recurrenceHint": {
+        "daily": "Sukuria pasikartojimus darbo dienomis (be savaitgalių) iki metų pabaigos arba 6 mėnesius į priekį — priklausomai nuo to, kas vėliau.",
+        "weekly": "Sukuria savaitinius pasikartojimus iki metų pabaigos arba 6 mėnesius į priekį — priklausomai nuo to, kas vėliau.",
+        "monthly": "Sukuria mėnesinius pasikartojimus iki metų pabaigos arba 6 mėnesius į priekį — priklausomai nuo to, kas vėliau."
+      },
+      "inviteLabel": "Pakviesti el. paštu",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Kelis adresus atskirkite kableliais. Kiekvienam be Confera paskyros ji bus sukurta automatiškai.",
+      "cancel": "Atšaukti",
+      "submit": "Suplanuoti",
+      "submitting": "Planuojama…"
+    },
+    "table": {
+      "title": "Pavadinimas",
+      "host": "Organizatorius",
+      "status": "Būsena",
+      "created": "Sukurta",
+      "join": "Prisijungti",
+      "notes": "Pastabos"
+    },
+    "status": {
+      "scheduled": "SUPLANUOTAS",
+      "live": "TIESIOGIAI",
+      "ended": "PASIBAIGĖ",
+      "cancelled": "ATŠAUKTAS"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Suteikite susitikimui pavadinimą.",
+    "unable_to_create_meeting": "Nepavyko sukurti susitikimo.",
+    "unable_to_create_meeting_retry": "Nepavyko sukurti susitikimo. Bandykite dar kartą vėliau.",
+    "fill_title_date_time": "Užpildykite pavadinimą, datą ir laiką.",
+    "enter_valid_date_time": "Įveskite galiojančią datą ir laiką.",
+    "invalid_email": "„{email}“ nepanašus į galiojantį el. pašto adresą.",
+    "unable_to_schedule_meeting": "Nepavyko suplanuoti susitikimo.",
+    "unable_to_schedule_meeting_retry": "Nepavyko suplanuoti susitikimo. Bandykite dar kartą vėliau."
+  }
+}

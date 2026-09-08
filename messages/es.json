@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "join": "Unirse",
+    "notes": "Notas"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Espacio de trabajo",
+      "knowledge": "Conocimiento",
+      "administration": "Administración"
+    },
+    "links": {
+      "home": "Inicio",
+      "meetings": "Reuniones",
+      "schedule": "Agenda",
+      "livestreams": "Transmisiones en vivo",
+      "searchNotes": "Buscar notas",
+      "actionItems": "Tareas",
+      "recordings": "Grabaciones",
+      "usageAnalytics": "Análisis de uso",
+      "members": "Miembros",
+      "allMeetings": "Todas las reuniones",
+      "allLivestreams": "Todas las transmisiones",
+      "notes": "Notas",
+      "allActionItems": "Todas las tareas",
+      "analytics": "Analíticas",
+      "settings": "Configuración"
+    },
+    "viewProfile": "Ver perfil",
+    "logOut": "Cerrar sesión",
+    "language": "Idioma",
+    "searchPlaceholder": "Buscar reuniones, notas, transcripciones",
+    "joinWithId": "Unirse con ID",
+    "meetingIdPlaceholder": "ID de la reunión",
+    "newMeeting": "Nueva reunión",
+    "starting": "Iniciando…",
+    "join": "Unirse"
+  },
+  "dashboard": {
+    "greeting": "Buenos/as {period}, {name}",
+    "periods": {
+      "morning": "días",
+      "afternoon": "tardes",
+      "evening": "noches"
+    },
+    "today": "Hoy",
+    "meetingsCount": "{count} reuniones",
+    "openActions": "Tareas pendientes",
+    "scheduleHeading": "Programar",
+    "scheduleDescription": "Añádela al calendario con una agenda.",
+    "goLiveHeading": "Salir en vivo",
+    "goLiveDescription": "Transmite a toda la organización.",
+    "startLivestream": "Iniciar una transmisión",
+    "upNext": "A continuación",
+    "fullSchedule": "Agenda completa",
+    "nothingScheduledToday": "No hay nada programado para el resto del día.",
+    "recentMeetings": "Reuniones recientes",
+    "viewAll": "Ver todas",
+    "noMeetingsYet": "Aún no hay reuniones — inicia una arriba.",
+    "yourActionItems": "Tus tareas",
+    "nothingAssigned": "No tienes nada asignado por ahora.",
+    "allActionItems": "Todas las tareas",
+    "thisWeek": "Esta semana",
+    "hoursMinutes": "{hours} h {minutes} min",
+    "weekSummary": "en reuniones, {count} de ellas transcritas automáticamente.",
+    "join": "Unirse"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Iniciar una reunión",
+      "description": "Abre una sala ahora y envía el enlace.",
+      "titlePlaceholder": "Título de la reunión",
+      "startButton": "Iniciar",
+      "starting": "Iniciando…"
+    },
+    "schedule": {
+      "newButton": "Nueva reunión programada",
+      "dialogTitle": "Programar una reunión",
+      "titleLabel": "Título",
+      "titlePlaceholder": "Título de la reunión",
+      "repeatsLabel": "Repetición",
+      "recurrence": {
+        "once": "Una vez",
+        "daily": "Diaria",
+        "weekly": "Semanal",
+        "monthly": "Mensual"
+      },
+      "dateLabel": "Fecha",
+      "timeLabel": "Hora",
+      "recurrenceHint": {
+        "daily": "Crea repeticiones en días laborables (sin fines de semana) hasta fin de año o dentro de 6 meses, lo que sea más tarde.",
+        "weekly": "Crea repeticiones semanales hasta fin de año o dentro de 6 meses, lo que sea más tarde.",
+        "monthly": "Crea repeticiones mensuales hasta fin de año o dentro de 6 meses, lo que sea más tarde."
+      },
+      "inviteLabel": "Invitar por correo",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Separa varias direcciones con comas. A quien no tenga cuenta de Confera se le creará una.",
+      "cancel": "Cancelar",
+      "submit": "Programar",
+      "submitting": "Programando…"
+    },
+    "table": {
+      "title": "Título",
+      "host": "Anfitrión",
+      "status": "Estado",
+      "created": "Creada",
+      "join": "Unirse",
+      "notes": "Notas"
+    },
+    "status": {
+      "scheduled": "PROGRAMADA",
+      "live": "EN VIVO",
+      "ended": "FINALIZADA",
+      "cancelled": "CANCELADA"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Ponle un título a tu reunión.",
+    "unable_to_create_meeting": "No se pudo crear la reunión.",
+    "unable_to_create_meeting_retry": "No se pudo crear la reunión. Inténtalo de nuevo más tarde.",
+    "fill_title_date_time": "Completa el título, la fecha y la hora.",
+    "enter_valid_date_time": "Introduce una fecha y hora válidas.",
+    "invalid_email": "«{email}» no parece una dirección de correo válida.",
+    "unable_to_schedule_meeting": "No se pudo programar la reunión.",
+    "unable_to_schedule_meeting_retry": "No se pudo programar la reunión. Inténtalo de nuevo más tarde."
+  }
+}

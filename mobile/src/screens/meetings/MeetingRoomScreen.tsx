@@ -1,18 +1,22 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
   LiveKitRoom,
   useConnectionState,
   useLocalParticipant,
+  useRemoteParticipants,
   useTracks
 } from '@livekit/react-native';
-import { ConnectionState, Track } from 'livekit-client';
+import { ConnectionState, Track, type Participant } from 'livekit-client';
 import type { AppStackParamList } from '../../navigation/types';
 import { joinMeeting, leaveMeeting } from '../../services/api/meetings';
 import { useAuth } from '../../hooks/useAuth';
 import { ParticipantTile } from '../../components/meeting/ParticipantTile';
 import { MeetingChatPanel } from '../../components/meeting/MeetingChatPanel';
+import { Icon, type IconName } from '../../components/icons/Icon';
+import { callTextMuted, color, control, font } from '../../theme';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'MeetingRoom'>;
 
@@ -50,14 +54,14 @@ export function MeetingRoomScreen({ route, navigation }: Props) {
   }, [meetingId]);
 
   // Best-effort: records a leave even if the screen is dismissed via the
-  // hardware/gesture back action rather than the in-room "Leave" button.
+  // hardware/gesture back action rather than the in-room "End" button.
   useEffect(() => {
     return () => {
       leaveMeeting(meetingId).catch(() => {});
     };
   }, [meetingId]);
 
-  // Guards against double-navigation: pressing "Leave" unmounts LiveKitRoom,
+  // Guards against double-navigation: pressing "End" unmounts LiveKitRoom,
   // which disconnects the room and fires onDisconnected — which would
   // otherwise call this a second time and pop an extra screen.
   const leftRef = useRef(false);
@@ -81,7 +85,7 @@ export function MeetingRoomScreen({ route, navigation }: Props) {
   if (!connectionInfo || !user) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color="#0ea5e9" />
+        <ActivityIndicator color={color.accent} />
       </View>
     );
   }
@@ -100,6 +104,10 @@ export function MeetingRoomScreen({ route, navigation }: Props) {
   );
 }
 
+function displayName(participant: Participant) {
+  return participant.name || participant.identity || 'Guest';
+}
+
 function MeetingRoomContent({
   meetingId,
   currentUserId,
@@ -111,83 +119,191 @@ function MeetingRoomContent({
 }) {
   const connectionState = useConnectionState();
   const { localParticipant, isMicrophoneEnabled, isCameraEnabled } = useLocalParticipant();
+  const remoteParticipants = useRemoteParticipants();
   const tracks = useTracks([{ source: Track.Source.Camera, withPlaceholder: true }]);
   const [chatOpen, setChatOpen] = useState(false);
+  const [peopleOpen, setPeopleOpen] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+
+  useEffect(() => {
+    const start = Date.now();
+    const id = setInterval(() => setElapsed(Math.floor((Date.now() - start) / 1000)), 1000);
+    return () => clearInterval(id);
+  }, []);
 
   if (connectionState !== ConnectionState.Connected) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color="#0ea5e9" />
+        <ActivityIndicator color={color.accent} />
         <Text style={styles.connecting}>Connecting to meeting…</Text>
       </View>
     );
   }
 
+  const mm = String(Math.floor(elapsed / 60)).padStart(2, '0');
+  const ss = String(elapsed % 60).padStart(2, '0');
+
   return (
-    <View style={styles.room}>
-      <FlatList
-        data={tracks}
-        keyExtractor={(item) => item.participant.identity}
-        numColumns={2}
-        contentContainerStyle={styles.grid}
-        columnWrapperStyle={styles.gridRow}
-        renderItem={({ item }) => (
-          <View style={styles.tileWrapper}>
-            <ParticipantTile trackRef={item} />
-          </View>
-        )}
-      />
+    <SafeAreaView style={styles.room} edges={['top', 'bottom']}>
+      <View style={styles.header}>
+        <View style={styles.liveDot} />
+        <Text style={styles.headerTitle} numberOfLines={1}>
+          Meeting
+        </Text>
+        <Text style={styles.timer}>
+          {mm}:{ss}
+        </Text>
+      </View>
+
+      {tracks.length > 1 ? (
+        <FlatList
+          data={tracks}
+          keyExtractor={(item) => item.participant.identity}
+          numColumns={2}
+          contentContainerStyle={styles.grid}
+          columnWrapperStyle={styles.gridRow}
+          renderItem={({ item }) => (
+            <View style={styles.tileWrapper}>
+              <ParticipantTile trackRef={item} />
+            </View>
+          )}
+        />
+      ) : (
+        <View style={styles.singleTileWrapper}>
+          {tracks[0] ? <ParticipantTile trackRef={tracks[0]} fullscreen /> : null}
+        </View>
+      )}
 
       <View style={styles.controls}>
-        <Pressable
-          style={[styles.controlButton, !isMicrophoneEnabled && styles.controlButtonOff]}
+        <CallControl
+          icon="mic"
+          label={isMicrophoneEnabled ? 'Mute' : 'Unmute'}
+          active={!isMicrophoneEnabled}
           onPress={() => localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled)}
-        >
-          <Text style={styles.controlText}>{isMicrophoneEnabled ? 'Mute' : 'Unmute'}</Text>
-        </Pressable>
-        <Pressable
-          style={[styles.controlButton, !isCameraEnabled && styles.controlButtonOff]}
+        />
+        <CallControl
+          icon="camera"
+          label="Camera"
+          active={!isCameraEnabled}
           onPress={() => localParticipant.setCameraEnabled(!isCameraEnabled)}
-        >
-          <Text style={styles.controlText}>{isCameraEnabled ? 'Stop video' : 'Start video'}</Text>
-        </Pressable>
-        <Pressable style={styles.controlButton} onPress={() => setChatOpen(true)}>
-          <Text style={styles.controlText}>Chat</Text>
-        </Pressable>
-        <Pressable style={[styles.controlButton, styles.leaveButtonInline]} onPress={onLeave}>
-          <Text style={styles.controlText}>Leave</Text>
-        </Pressable>
+        />
+        <CallControl icon="people" label="People" badge={remoteParticipants.length + 1} onPress={() => setPeopleOpen(true)} />
+        <CallControl icon="chat" label="Chat" onPress={() => setChatOpen(true)} />
+        <CallControl icon="callEnd" label="End" danger onPress={onLeave} />
       </View>
+
+      <Modal visible={peopleOpen} animationType="slide" transparent onRequestClose={() => setPeopleOpen(false)}>
+        <Pressable style={styles.sheetBackdrop} onPress={() => setPeopleOpen(false)}>
+          <View style={styles.sheet}>
+            <Text style={styles.sheetTitle}>People ({remoteParticipants.length + 1})</Text>
+            <PersonRow name="You" muted={!isMicrophoneEnabled} cameraOff={!isCameraEnabled} />
+            {remoteParticipants.map((p) => (
+              <PersonRow key={p.identity} name={displayName(p)} muted={!p.isMicrophoneEnabled} cameraOff={!p.isCameraEnabled} />
+            ))}
+          </View>
+        </Pressable>
+      </Modal>
 
       <Modal visible={chatOpen} animationType="slide" onRequestClose={() => setChatOpen(false)}>
         <MeetingChatPanel meetingId={meetingId} currentUserId={currentUserId} onClose={() => setChatOpen(false)} />
       </Modal>
+    </SafeAreaView>
+  );
+}
+
+function CallControl({
+  icon,
+  label,
+  onPress,
+  active,
+  danger,
+  badge
+}: {
+  icon: IconName;
+  label: string;
+  onPress: () => void;
+  active?: boolean;
+  danger?: boolean;
+  badge?: number;
+}) {
+  return (
+    <View style={styles.controlColumn}>
+      <Pressable
+        style={[styles.controlButton, danger && styles.controlButtonDanger]}
+        onPress={onPress}
+        accessibilityLabel={label}
+      >
+        <Icon name={icon} size={22} color={active ? color.accent500 : color.callText} strokeWidth={1.8} />
+        {badge ? (
+          <View style={styles.controlBadge}>
+            <Text style={styles.controlBadgeText}>{badge}</Text>
+          </View>
+        ) : null}
+      </Pressable>
+      <Text style={styles.controlLabel}>{label}</Text>
+    </View>
+  );
+}
+
+function PersonRow({ name, muted, cameraOff }: { name: string; muted: boolean; cameraOff: boolean }) {
+  return (
+    <View style={styles.personRow}>
+      <View style={styles.personAvatar}>
+        <Text style={styles.personAvatarText}>{name.slice(0, 2).toUpperCase()}</Text>
+      </View>
+      <Text style={styles.personName}>{name}</Text>
+      <View style={styles.personIcons}>
+        <Icon name="mic" size={16} color={muted ? color.accent500 : callTextMuted(0.7)} strokeWidth={1.8} />
+        <Icon name="camera" size={16} color={cameraOff ? color.accent500 : callTextMuted(0.7)} strokeWidth={1.8} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  room: { flex: 1, backgroundColor: '#0f172a' },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#0f172a', gap: 12, padding: 24 },
-  connecting: { color: '#94a3b8', fontSize: 14 },
-  error: { color: '#f87171', fontSize: 15, textAlign: 'center' },
-  grid: { padding: 12 },
-  gridRow: { gap: 12 },
-  tileWrapper: { flex: 1, marginBottom: 12 },
-  controls: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+  room: { flex: 1, backgroundColor: color.callBg },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: color.callBg, gap: 12, padding: 24 },
+  connecting: { fontFamily: font.body, color: callTextMuted(0.7), fontSize: 14 },
+  error: { fontFamily: font.body, color: color.accent500, fontSize: 15, textAlign: 'center' },
+  header: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 20, paddingVertical: 10 },
+  liveDot: { width: 8, height: 8, backgroundColor: color.accent },
+  headerTitle: { flex: 1, fontFamily: font.headingBold, fontSize: 15, color: color.callText },
+  timer: { fontFamily: font.body, fontSize: 13, color: callTextMuted(0.55), fontVariant: ['tabular-nums'] },
+  grid: { padding: 12, flexGrow: 1 },
+  gridRow: { gap: 8 },
+  tileWrapper: { flex: 1, marginBottom: 8 },
+  singleTileWrapper: { flex: 1, padding: 12 },
+  controls: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', paddingHorizontal: 16, paddingBottom: 12, paddingTop: 6 },
+  controlColumn: { alignItems: 'center', gap: 6 },
+  controlButton: {
+    width: control.callControl,
+    height: control.callControl,
+    backgroundColor: color.callSurfaceAlt,
     alignItems: 'center',
-    paddingVertical: 14,
-    paddingHorizontal: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#1e293b',
-    backgroundColor: '#0f172a'
+    justifyContent: 'center'
   },
-  controlButton: { backgroundColor: '#1e293b', borderRadius: 20, paddingHorizontal: 16, paddingVertical: 10 },
-  controlButtonOff: { backgroundColor: '#7f1d1d' },
-  leaveButtonInline: { backgroundColor: '#dc2626' },
-  controlText: { color: '#fff', fontSize: 13, fontWeight: '600' },
-  leaveButton: { backgroundColor: '#0ea5e9', borderRadius: 20, paddingHorizontal: 20, paddingVertical: 10 },
-  leaveButtonText: { color: '#fff', fontWeight: '700' }
+  controlButtonDanger: { backgroundColor: color.accent700 },
+  controlBadge: {
+    position: 'absolute',
+    top: -4,
+    right: -4,
+    minWidth: 18,
+    height: 18,
+    paddingHorizontal: 4,
+    backgroundColor: color.accent,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  controlBadgeText: { fontFamily: font.bodySemiBold, fontSize: 10, color: color.white },
+  controlLabel: { fontFamily: font.body, fontSize: 10, color: callTextMuted(0.6) },
+  leaveButton: { backgroundColor: color.accent, paddingHorizontal: 20, paddingVertical: 10 },
+  leaveButtonText: { fontFamily: font.bodySemiBold, color: color.white },
+  sheetBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' },
+  sheet: { backgroundColor: color.callSurface, padding: 16, paddingBottom: 32, gap: 4 },
+  sheetTitle: { fontFamily: font.headingBold, fontSize: 15, color: color.callText, marginBottom: 8 },
+  personRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10 },
+  personAvatar: { width: 36, height: 36, backgroundColor: color.callSurfaceAlt, alignItems: 'center', justifyContent: 'center' },
+  personAvatarText: { fontFamily: font.headingBold, fontSize: 12, color: color.callText },
+  personName: { flex: 1, fontFamily: font.body, fontSize: 14, color: color.callText },
+  personIcons: { flexDirection: 'row', gap: 10 }
 });

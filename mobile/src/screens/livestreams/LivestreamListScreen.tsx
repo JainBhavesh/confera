@@ -1,10 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LivestreamListItem } from '../../components/livestream/LivestreamListItem';
 import { listLivestreams } from '../../services/api/livestreams';
 import type { AppStackParamList } from '../../navigation/types';
 import type { Livestream } from '../../types';
+import { Icon } from '../../components/icons/Icon';
+import { color, control, font, space, textMuted } from '../../theme';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'LivestreamList'>;
 
@@ -34,38 +37,47 @@ export function LivestreamListScreen({ navigation }: Props) {
     setRefreshing(false);
   };
 
-  if (loading) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator color="#0ea5e9" />
-      </View>
-    );
-  }
-
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+      <View style={styles.headerBar}>
+        <Pressable style={styles.iconButton} onPress={() => navigation.goBack()} accessibilityLabel="Back">
+          <Icon name="back" size={22} color={color.text} strokeWidth={1.9} />
+        </Pressable>
+        <Text style={styles.headerLabel}>Livestreams</Text>
+      </View>
+
       {error ? <Text style={styles.error}>{error}</Text> : null}
-      <FlatList
-        data={livestreams}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.list}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#0ea5e9" />}
-        renderItem={({ item }) => (
-          <LivestreamListItem
-            livestream={item}
-            onPress={() => navigation.navigate('LivestreamViewer', { livestreamId: item.id })}
-          />
-        )}
-        ListEmptyComponent={<Text style={styles.empty}>No livestreams yet.</Text>}
-      />
-    </View>
+
+      {loading ? (
+        <View style={styles.center}>
+          <ActivityIndicator color={color.accent} />
+        </View>
+      ) : (
+        <FlatList
+          data={livestreams}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.list}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor={color.accent} />}
+          renderItem={({ item }) => (
+            <LivestreamListItem
+              livestream={item}
+              onPress={() => navigation.navigate('LivestreamViewer', { livestreamId: item.id })}
+            />
+          )}
+          ListEmptyComponent={<Text style={styles.empty}>No livestreams yet.</Text>}
+        />
+      )}
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0f172a' },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#0f172a' },
-  list: { padding: 20 },
-  error: { color: '#f87171', paddingHorizontal: 20, paddingTop: 12 },
-  empty: { color: '#94a3b8', textAlign: 'center', marginTop: 40 }
+  container: { flex: 1, backgroundColor: color.bg },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  headerBar: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingBottom: 8 },
+  iconButton: { width: control.touchMin, height: control.touchMin, alignItems: 'center', justifyContent: 'center' },
+  headerLabel: { fontFamily: font.headingBold, fontSize: 17, color: color.text },
+  error: { fontFamily: font.body, color: color.accent700, paddingHorizontal: space[4] + 4, paddingTop: 12 },
+  list: { paddingHorizontal: space[4] + 4 },
+  empty: { fontFamily: font.body, color: textMuted(0.6), textAlign: 'center', marginTop: 40 }
 });

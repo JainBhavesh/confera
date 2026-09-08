@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Ακύρωση",
+    "join": "Συμμετοχή",
+    "notes": "Σημειώσεις"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Χώρος εργασίας",
+      "knowledge": "Γνώση",
+      "administration": "Διαχείριση"
+    },
+    "links": {
+      "home": "Αρχική",
+      "meetings": "Συναντήσεις",
+      "schedule": "Πρόγραμμα",
+      "livestreams": "Ζωντανές μεταδόσεις",
+      "searchNotes": "Αναζήτηση σημειώσεων",
+      "actionItems": "Ενέργειες",
+      "recordings": "Ηχογραφήσεις",
+      "usageAnalytics": "Ανάλυση χρήσης",
+      "members": "Μέλη",
+      "allMeetings": "Όλες οι συναντήσεις",
+      "allLivestreams": "Όλες οι ζωντανές μεταδόσεις",
+      "notes": "Σημειώσεις",
+      "allActionItems": "Όλες οι ενέργειες",
+      "analytics": "Στατιστικά",
+      "settings": "Ρυθμίσεις"
+    },
+    "viewProfile": "Προβολή προφίλ",
+    "logOut": "Αποσύνδεση",
+    "language": "Γλώσσα",
+    "searchPlaceholder": "Αναζήτηση συναντήσεων, σημειώσεων, απομαγνητοφωνήσεων",
+    "joinWithId": "Συμμετοχή με ID",
+    "meetingIdPlaceholder": "ID συνάντησης",
+    "newMeeting": "Νέα συνάντηση",
+    "starting": "Έναρξη…",
+    "join": "Συμμετοχή"
+  },
+  "dashboard": {
+    "greeting": "Γεια σας, {name}",
+    "periods": {
+      "morning": "πρωί",
+      "afternoon": "απόγευμα",
+      "evening": "βράδυ"
+    },
+    "today": "Σήμερα",
+    "meetingsCount": "{count} συναντήσεις",
+    "openActions": "Ανοιχτές ενέργειες",
+    "scheduleHeading": "Προγραμματισμός",
+    "scheduleDescription": "Προσθέστε την στο ημερολόγιο με ατζέντα.",
+    "goLiveHeading": "Μετάδοση ζωντανά",
+    "goLiveDescription": "Μετάδοση σε όλον τον οργανισμό.",
+    "startLivestream": "Έναρξη ζωντανής μετάδοσης",
+    "upNext": "Επόμενα",
+    "fullSchedule": "Πλήρες πρόγραμμα",
+    "nothingScheduledToday": "Δεν έχει προγραμματιστεί τίποτα για το υπόλοιπο της ημέρας.",
+    "recentMeetings": "Πρόσφατες συναντήσεις",
+    "viewAll": "Προβολή όλων",
+    "noMeetingsYet": "Καμία συνάντηση ακόμη — ξεκινήστε μία παραπάνω.",
+    "yourActionItems": "Οι ενέργειές σας",
+    "nothingAssigned": "Δεν σας έχει ανατεθεί τίποτα αυτή τη στιγμή.",
+    "allActionItems": "Όλες οι ενέργειες",
+    "thisWeek": "Αυτή την εβδομάδα",
+    "hoursMinutes": "{hours} ώ {minutes} λ",
+    "weekSummary": "σε συναντήσεις, εκ των οποίων {count} απομαγνητοφωνήθηκαν αυτόματα.",
+    "join": "Συμμετοχή"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Έναρξη συνάντησης",
+      "description": "Ανοίξτε τώρα μια αίθουσα και στείλτε τον σύνδεσμο.",
+      "titlePlaceholder": "Τίτλος συνάντησης",
+      "startButton": "Έναρξη",
+      "starting": "Έναρξη…"
+    },
+    "schedule": {
+      "newButton": "Νέα προγραμματισμένη συνάντηση",
+      "dialogTitle": "Προγραμματισμός συνάντησης",
+      "titleLabel": "Τίτλος",
+      "titlePlaceholder": "Τίτλος συνάντησης",
+      "repeatsLabel": "Επανάληψη",
+      "recurrence": {
+        "once": "Μία φορά",
+        "daily": "Καθημερινά",
+        "weekly": "Εβδομαδιαία",
+        "monthly": "Μηνιαία"
+      },
+      "dateLabel": "Ημερομηνία",
+      "timeLabel": "Ώρα",
+      "recurrenceHint": {
+        "daily": "Δημιουργεί επαναλήψεις τις καθημερινές (όχι Σαββατοκύριακα) έως το τέλος του έτους ή για 6 μήνες — όποιο είναι αργότερο.",
+        "weekly": "Δημιουργεί εβδομαδιαίες επαναλήψεις έως το τέλος του έτους ή για 6 μήνες — όποιο είναι αργότερο.",
+        "monthly": "Δημιουργεί μηνιαίες επαναλήψεις έως το τέλος του έτους ή για 6 μήνες — όποιο είναι αργότερο."
+      },
+      "inviteLabel": "Πρόσκληση μέσω e-mail",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Διαχωρίστε πολλές διευθύνσεις με κόμματα. Όσοι δεν έχουν λογαριασμό Confera θα αποκτήσουν αυτόματα έναν.",
+      "cancel": "Ακύρωση",
+      "submit": "Προγραμματισμός",
+      "submitting": "Προγραμματίζεται…"
+    },
+    "table": {
+      "title": "Τίτλος",
+      "host": "Οικοδεσπότης",
+      "status": "Κατάσταση",
+      "created": "Δημιουργήθηκε",
+      "join": "Συμμετοχή",
+      "notes": "Σημειώσεις"
+    },
+    "status": {
+      "scheduled": "ΠΡΟΓΡΑΜΜΑΤΙΣΜΕΝΗ",
+      "live": "ΖΩΝΤΑΝΑ",
+      "ended": "ΟΛΟΚΛΗΡΩΘΗΚΕ",
+      "cancelled": "ΑΚΥΡΩΘΗΚΕ"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Δώστε έναν τίτλο στη συνάντησή σας.",
+    "unable_to_create_meeting": "Δεν ήταν δυνατή η δημιουργία της συνάντησης.",
+    "unable_to_create_meeting_retry": "Δεν ήταν δυνατή η δημιουργία της συνάντησης. Δοκιμάστε ξανά αργότερα.",
+    "fill_title_date_time": "Συμπληρώστε τίτλο, ημερομηνία και ώρα.",
+    "enter_valid_date_time": "Εισαγάγετε έγκυρη ημερομηνία και ώρα.",
+    "invalid_email": "Το «{email}» δεν μοιάζει με έγκυρη διεύθυνση e-mail.",
+    "unable_to_schedule_meeting": "Δεν ήταν δυνατός ο προγραμματισμός της συνάντησης.",
+    "unable_to_schedule_meeting_retry": "Δεν ήταν δυνατός ο προγραμματισμός της συνάντησης. Δοκιμάστε ξανά αργότερα."
+  }
+}

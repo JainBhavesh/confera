@@ -12,6 +12,8 @@ export interface PublicUser {
   createdAt: string;
 }
 
+export type RecordingStatus = 'NONE' | 'RECORDING' | 'PROCESSING' | 'READY' | 'FAILED';
+
 export interface Meeting {
   id: string;
   organizationId: string;
@@ -19,6 +21,8 @@ export interface Meeting {
   title: string;
   status: MeetingStatus;
   livekitRoomName: string;
+  recordingStatus?: RecordingStatus;
+  scheduledAt: string | null;
   startedAt: string | null;
   endedAt: string | null;
   createdAt: string;
@@ -33,6 +37,41 @@ export interface MeetingMessage {
   message: string;
   createdAt: string;
   user?: { id: string; name: string };
+}
+
+export type MeetingNotesStatus = 'PENDING' | 'READY' | 'FAILED' | 'SKIPPED';
+
+export interface MeetingNotes {
+  id: string;
+  meetingId: string;
+  status: MeetingNotesStatus;
+  transcript: string | null;
+  summary: string | null;
+  error: string | null;
+  generatedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ActionItemStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'CANCELLED';
+export type ActionItemSource = 'MANUAL' | 'AI';
+
+export interface ActionItem {
+  id: string;
+  organizationId: string;
+  meetingId: string;
+  assignedToUserId: string | null;
+  createdByUserId: string | null;
+  title: string;
+  description: string | null;
+  dueDate: string | null;
+  status: ActionItemStatus;
+  source: ActionItemSource;
+  createdAt: string;
+  updatedAt: string;
+  completedAt: string | null;
+  meeting?: { id: string; title: string };
+  assignedTo?: { id: string; name: string } | null;
 }
 
 export type LivestreamStatus = 'SCHEDULED' | 'LIVE' | 'ENDED';

@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Prekliči",
+    "join": "Pridruži se",
+    "notes": "Zapiski"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Delovni prostor",
+      "knowledge": "Znanje",
+      "administration": "Administracija"
+    },
+    "links": {
+      "home": "Domov",
+      "meetings": "Sestanki",
+      "schedule": "Urnik",
+      "livestreams": "Neposredni prenosi",
+      "searchNotes": "Iskanje po zapiskih",
+      "actionItems": "Opravila",
+      "recordings": "Posnetki",
+      "usageAnalytics": "Analiza uporabe",
+      "members": "Člani",
+      "allMeetings": "Vsi sestanki",
+      "allLivestreams": "Vsi neposredni prenosi",
+      "notes": "Zapiski",
+      "allActionItems": "Vsa opravila",
+      "analytics": "Statistika",
+      "settings": "Nastavitve"
+    },
+    "viewProfile": "Ogled profila",
+    "logOut": "Odjava",
+    "language": "Jezik",
+    "searchPlaceholder": "Iskanje sestankov, zapiskov, prepisov",
+    "joinWithId": "Pridruži se z ID-jem",
+    "meetingIdPlaceholder": "ID sestanka",
+    "newMeeting": "Nov sestanek",
+    "starting": "Zaganjanje…",
+    "join": "Pridruži se"
+  },
+  "dashboard": {
+    "greeting": "Dober {period}, {name}",
+    "periods": {
+      "morning": "dan",
+      "afternoon": "popoldan",
+      "evening": "večer"
+    },
+    "today": "Danes",
+    "meetingsCount": "{count} sestankov",
+    "openActions": "Odprta opravila",
+    "scheduleHeading": "Načrtuj",
+    "scheduleDescription": "Dodajte ga v koledar z dnevnim redom.",
+    "goLiveHeading": "Pojdi v živo",
+    "goLiveDescription": "Predvajajte celotni organizaciji.",
+    "startLivestream": "Začni neposredni prenos",
+    "upNext": "Sledi",
+    "fullSchedule": "Celoten urnik",
+    "nothingScheduledToday": "Za preostanek dneva ni ničesar načrtovanega.",
+    "recentMeetings": "Nedavni sestanki",
+    "viewAll": "Prikaži vse",
+    "noMeetingsYet": "Še ni sestankov — začnite enega zgoraj.",
+    "yourActionItems": "Vaša opravila",
+    "nothingAssigned": "Trenutno vam ni dodeljeno nič.",
+    "allActionItems": "Vsa opravila",
+    "thisWeek": "Ta teden",
+    "hoursMinutes": "{hours} h {minutes} min",
+    "weekSummary": "na sestankih, od tega {count} samodejno prepisanih.",
+    "join": "Pridruži se"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Začni sestanek",
+      "description": "Zdaj odprite sobo in pošljite povezavo.",
+      "titlePlaceholder": "Naslov sestanka",
+      "startButton": "Začni",
+      "starting": "Zaganjanje…"
+    },
+    "schedule": {
+      "newButton": "Nov načrtovan sestanek",
+      "dialogTitle": "Načrtuj sestanek",
+      "titleLabel": "Naslov",
+      "titlePlaceholder": "Naslov sestanka",
+      "repeatsLabel": "Ponavljanje",
+      "recurrence": {
+        "once": "Enkrat",
+        "daily": "Dnevno",
+        "weekly": "Tedensko",
+        "monthly": "Mesečno"
+      },
+      "dateLabel": "Datum",
+      "timeLabel": "Čas",
+      "recurrenceHint": {
+        "daily": "Ustvari ponovitve ob delavnikih (brez vikendov) do konca leta ali za 6 mesecev vnaprej — kar nastopi kasneje.",
+        "weekly": "Ustvari tedenske ponovitve do konca leta ali za 6 mesecev vnaprej — kar nastopi kasneje.",
+        "monthly": "Ustvari mesečne ponovitve do konca leta ali za 6 mesecev vnaprej — kar nastopi kasneje."
+      },
+      "inviteLabel": "Povabi po e-pošti",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Več naslovov ločite z vejicami. Vsakomur brez računa Confera bo samodejno ustvarjen.",
+      "cancel": "Prekliči",
+      "submit": "Načrtuj",
+      "submitting": "Načrtovanje…"
+    },
+    "table": {
+      "title": "Naslov",
+      "host": "Gostitelj",
+      "status": "Stanje",
+      "created": "Ustvarjeno",
+      "join": "Pridruži se",
+      "notes": "Zapiski"
+    },
+    "status": {
+      "scheduled": "NAČRTOVANO",
+      "live": "V ŽIVO",
+      "ended": "KONČANO",
+      "cancelled": "PREKLICANO"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Sestanku dajte naslov.",
+    "unable_to_create_meeting": "Sestanka ni bilo mogoče ustvariti.",
+    "unable_to_create_meeting_retry": "Sestanka ni bilo mogoče ustvariti. Poskusite znova pozneje.",
+    "fill_title_date_time": "Izpolnite naslov, datum in čas.",
+    "enter_valid_date_time": "Vnesite veljaven datum in čas.",
+    "invalid_email": "„{email}“ ni videti kot veljaven e-poštni naslov.",
+    "unable_to_schedule_meeting": "Sestanka ni bilo mogoče načrtovati.",
+    "unable_to_schedule_meeting_retry": "Sestanka ni bilo mogoče načrtovati. Poskusite znova pozneje."
+  }
+}

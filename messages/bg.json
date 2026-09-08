@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "machineTranslated": true,
+    "generatedFrom": "en"
+  },
+  "common": {
+    "cancel": "Отказ",
+    "join": "Присъединяване",
+    "notes": "Бележки"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Работно пространство",
+      "knowledge": "Знания",
+      "administration": "Администрация"
+    },
+    "links": {
+      "home": "Начало",
+      "meetings": "Срещи",
+      "schedule": "График",
+      "livestreams": "Преки предавания",
+      "searchNotes": "Търсене в бележките",
+      "actionItems": "Задачи",
+      "recordings": "Записи",
+      "usageAnalytics": "Анализ на използването",
+      "members": "Членове",
+      "allMeetings": "Всички срещи",
+      "allLivestreams": "Всички преки предавания",
+      "notes": "Бележки",
+      "allActionItems": "Всички задачи",
+      "analytics": "Статистика",
+      "settings": "Настройки"
+    },
+    "viewProfile": "Преглед на профила",
+    "logOut": "Изход",
+    "language": "Език",
+    "searchPlaceholder": "Търсене на срещи, бележки, преписи",
+    "joinWithId": "Присъединяване с ID",
+    "meetingIdPlaceholder": "ID на срещата",
+    "newMeeting": "Нова среща",
+    "starting": "Стартиране…",
+    "join": "Присъединяване"
+  },
+  "dashboard": {
+    "greeting": "Добър {period}, {name}",
+    "periods": {
+      "morning": "ден",
+      "afternoon": "ден",
+      "evening": "вечер"
+    },
+    "today": "Днес",
+    "meetingsCount": "{count} срещи",
+    "openActions": "Отворени задачи",
+    "scheduleHeading": "Планиране",
+    "scheduleDescription": "Добавете я в календара с дневен ред.",
+    "goLiveHeading": "Излъчване на живо",
+    "goLiveDescription": "Излъчете към цялата организация.",
+    "startLivestream": "Стартиране на пряко предаване",
+    "upNext": "Предстоящо",
+    "fullSchedule": "Пълен график",
+    "nothingScheduledToday": "За остатъка от деня няма планирано нищо.",
+    "recentMeetings": "Скорошни срещи",
+    "viewAll": "Преглед на всички",
+    "noMeetingsYet": "Все още няма срещи — стартирайте една по-горе.",
+    "yourActionItems": "Вашите задачи",
+    "nothingAssigned": "В момента нямате възложени задачи.",
+    "allActionItems": "Всички задачи",
+    "thisWeek": "Тази седмица",
+    "hoursMinutes": "{hours} ч {minutes} мин",
+    "weekSummary": "в срещи, от които {count} преписани автоматично.",
+    "join": "Присъединяване"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Стартиране на среща",
+      "description": "Отворете стая сега и изпратете връзката.",
+      "titlePlaceholder": "Заглавие на срещата",
+      "startButton": "Старт",
+      "starting": "Стартиране…"
+    },
+    "schedule": {
+      "newButton": "Нова планирана среща",
+      "dialogTitle": "Планиране на среща",
+      "titleLabel": "Заглавие",
+      "titlePlaceholder": "Заглавие на срещата",
+      "repeatsLabel": "Повторение",
+      "recurrence": {
+        "once": "Веднъж",
+        "daily": "Ежедневно",
+        "weekly": "Ежеседмично",
+        "monthly": "Ежемесечно"
+      },
+      "dateLabel": "Дата",
+      "timeLabel": "Час",
+      "recurrenceHint": {
+        "daily": "Създава повторения в работни дни (без уикенди) до края на годината или 6 месеца напред — което от двете е по-късно.",
+        "weekly": "Създава седмични повторения до края на годината или 6 месеца напред — което от двете е по-късно.",
+        "monthly": "Създава месечни повторения до края на годината или 6 месеца напред — което от двете е по-късно."
+      },
+      "inviteLabel": "Покана по имейл",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Разделете няколко адреса със запетаи. На всеки без акаунт в Confera автоматично ще бъде създаден такъв.",
+      "cancel": "Отказ",
+      "submit": "Планиране",
+      "submitting": "Планиране…"
+    },
+    "table": {
+      "title": "Заглавие",
+      "host": "Домакин",
+      "status": "Статус",
+      "created": "Създадена",
+      "join": "Присъединяване",
+      "notes": "Бележки"
+    },
+    "status": {
+      "scheduled": "ПЛАНИРАНА",
+      "live": "НА ЖИВО",
+      "ended": "ПРИКЛЮЧЕНА",
+      "cancelled": "ОТМЕНЕНА"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Дайте заглавие на срещата си.",
+    "unable_to_create_meeting": "Срещата не можа да бъде създадена.",
+    "unable_to_create_meeting_retry": "Срещата не можа да бъде създадена. Опитайте отново по-късно.",
+    "fill_title_date_time": "Попълнете заглавие, дата и час.",
+    "enter_valid_date_time": "Въведете валидна дата и час.",
+    "invalid_email": "„{email}“ не изглежда като валиден имейл адрес.",
+    "unable_to_schedule_meeting": "Срещата не можа да бъде планирана.",
+    "unable_to_schedule_meeting_retry": "Срещата не можа да бъде планирана. Опитайте отново по-късно."
+  }
+}

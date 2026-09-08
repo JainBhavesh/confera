@@ -12,10 +12,9 @@ const { waitForRecordingToFinish } = vi.hoisted(() => ({ waitForRecordingToFinis
 
 const { s3Send } = vi.hoisted(() => ({ s3Send: vi.fn() }));
 
-const { transcriptionsCreate, chatParse } = vi.hoisted(() => ({
-  transcriptionsCreate: vi.fn(),
-  chatParse: vi.fn()
-}));
+const { readFile } = vi.hoisted(() => ({ readFile: vi.fn() }));
+
+const { processRecording } = vi.hoisted(() => ({ processRecording: vi.fn() }));
 
 vi.mock('@/lib/db/prisma', () => ({
   prisma: {
@@ -40,27 +39,14 @@ vi.mock('@aws-sdk/client-s3', () => ({
   }
 }));
 
-vi.mock('openai', () => ({
-  default: class {
-    audio = { transcriptions: { create: transcriptionsCreate } };
-    chat = { completions: { parse: chatParse } };
-  },
-  toFile: vi.fn(async (buffer: Buffer) => buffer)
-}));
+// Recordings default to local-disk storage (RECORDING_STORAGE_MODE=local),
+// so the transcription flow reads the recording via fs/promises.readFile
+// rather than S3 by default.
+vi.mock('fs/promises', () => ({ readFile }));
 
-vi.mock('openai/helpers/zod', () => ({
-  zodResponseFormat: () => ({})
-}));
+vi.mock('@/services/aiNotes.client', () => ({ processRecording }));
 
 const { generateMeetingNotes } = await import('./meetingNotes.service');
-
-function bodyStream(): AsyncIterable<Buffer> {
-  return {
-    async *[Symbol.asyncIterator]() {
-      yield Buffer.from('fake-audio-bytes');
-    }
-  };
-}
 
 describe('generateMeetingNotes', () => {
   beforeEach(() => {
@@ -71,8 +57,8 @@ describe('generateMeetingNotes', () => {
     actionItemCreateMany.mockReset().mockResolvedValue({ count: 0 });
     waitForRecordingToFinish.mockReset();
     s3Send.mockReset();
-    transcriptionsCreate.mockReset();
-    chatParse.mockReset();
+    readFile.mockReset();
+    processRecording.mockReset();
   });
 
   it('skips transcription and marks notes SKIPPED when there is no recording', async () => {
@@ -81,7 +67,7 @@ describe('generateMeetingNotes', () => {
     await generateMeetingNotes('meeting-1');
 
     expect(waitForRecordingToFinish).not.toHaveBeenCalled();
-    expect(transcriptionsCreate).not.toHaveBeenCalled();
+    expect(processRecording).not.toHaveBeenCalled();
     expect(upsert).toHaveBeenCalledWith(
       expect.objectContaining({ where: { meetingId: 'meeting-1' }, create: expect.objectContaining({ status: 'SKIPPED' }) })
     );
@@ -90,10 +76,11 @@ describe('generateMeetingNotes', () => {
   it('marks notes READY with the transcript and summary, and writes action items as ActionItem rows', async () => {
     findUniqueOrThrow.mockResolvedValue({ id: 'meeting-1', organizationId: 'org-1', livekitRoomName: 'room-1', egressId: 'EG_1' });
     waitForRecordingToFinish.mockResolvedValue(3); // EGRESS_COMPLETE
-    s3Send.mockResolvedValue({ Body: bodyStream() });
-    transcriptionsCreate.mockResolvedValue({ text: 'We shipped the feature.' });
-    chatParse.mockResolvedValue({
-      choices: [{ message: { parsed: { summary: 'Shipped the feature.', actionItems: [{ text: 'Deploy', owner: 'Alice' }] } } }]
+    readFile.mockResolvedValue(Buffer.from('fake-audio-bytes'));
+    processRecording.mockResolvedValue({
+      transcript: 'We shipped the feature.',
+      summary: 'Shipped the feature.',
+      actionItems: [{ text: 'Deploy', owner: 'Alice' }]
     });
 
     await generateMeetingNotes('meeting-1');
@@ -118,7 +105,7 @@ describe('generateMeetingNotes', () => {
 
     await generateMeetingNotes('meeting-1');
 
-    expect(transcriptionsCreate).not.toHaveBeenCalled();
+    expect(processRecording).not.toHaveBeenCalled();
     expect(update).toHaveBeenCalledWith({
       where: { meetingId: 'meeting-1' },
       data: expect.objectContaining({ status: 'FAILED' })

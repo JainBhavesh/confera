@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Logo } from '@/components/icons/Logo';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
@@ -6,7 +7,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       <aside className="hidden flex-col justify-between bg-[#201e1d] px-11 py-12 text-[#f3f2f2] lg:flex">
         <div>
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 bg-primary" />
+            <Logo className="h-9 w-9" />
             <span className="font-heading text-xl font-extrabold tracking-tight">CONFERA</span>
           </div>
           <div className="mb-8 mt-11 h-0.5 w-24 bg-primary" />

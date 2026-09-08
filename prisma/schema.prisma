@@ -119,6 +119,11 @@ model User {
   role           Role    @default(USER)
   isActive       Boolean @default(true)
   avatarUrl      String?
+  // UI locale preference — one of the 24 official EU language codes (see
+  // i18n/locales.ts). Set opportunistically whenever an authenticated user
+  // changes language via the switcher (app/api/locale/route.ts); the
+  // confera_locale cookie is the actual per-request source of truth.
+  locale         String  @default("en")
 
   // Set once the owner has proven access to `email`, either by completing the
   // registration OTP step, successfully logging in via email OTP (see

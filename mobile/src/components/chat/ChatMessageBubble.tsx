@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { callTextMuted, color, font } from '../../theme';
 
 interface ChatMessageBubbleProps {
   authorName: string;
@@ -22,10 +23,10 @@ export function ChatMessageBubble({ authorName, message, timestamp, isOwnMessage
 }
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: '#1e293b', borderRadius: 12, padding: 12, marginBottom: 8 },
-  ownContainer: { backgroundColor: '#0c4a6e' },
+  container: { backgroundColor: color.callSurface, padding: 12, marginBottom: 8 },
+  ownContainer: { backgroundColor: color.accent700 },
   header: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 },
-  author: { color: '#e2e8f0', fontSize: 12, fontWeight: '700' },
-  timestamp: { color: '#64748b', fontSize: 11 },
-  message: { color: '#f1f5f9', fontSize: 14 }
+  author: { fontFamily: font.bodySemiBold, color: color.callText, fontSize: 12 },
+  timestamp: { fontFamily: font.body, color: callTextMuted(0.5), fontSize: 11 },
+  message: { fontFamily: font.body, color: color.callText, fontSize: 14 }
 });

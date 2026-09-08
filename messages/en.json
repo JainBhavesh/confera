@@ -1,0 +1,128 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "join": "Join",
+    "notes": "Notes"
+  },
+  "nav": {
+    "sections": {
+      "workspace": "Workspace",
+      "knowledge": "Knowledge",
+      "administration": "Administration"
+    },
+    "links": {
+      "home": "Home",
+      "meetings": "Meetings",
+      "schedule": "Schedule",
+      "livestreams": "Livestreams",
+      "searchNotes": "Search notes",
+      "actionItems": "Action items",
+      "recordings": "Recordings",
+      "usageAnalytics": "Usage analytics",
+      "members": "Members",
+      "allMeetings": "All meetings",
+      "allLivestreams": "All livestreams",
+      "notes": "Notes",
+      "allActionItems": "All action items",
+      "analytics": "Analytics",
+      "settings": "Settings"
+    },
+    "viewProfile": "View profile",
+    "logOut": "Log out",
+    "language": "Language",
+    "searchPlaceholder": "Search meetings, notes, transcripts",
+    "joinWithId": "Join with ID",
+    "meetingIdPlaceholder": "Meeting ID",
+    "newMeeting": "New meeting",
+    "starting": "Starting…",
+    "join": "Join"
+  },
+  "dashboard": {
+    "greeting": "Good {period}, {name}",
+    "periods": {
+      "morning": "morning",
+      "afternoon": "afternoon",
+      "evening": "evening"
+    },
+    "today": "Today",
+    "meetingsCount": "{count} meetings",
+    "openActions": "Open actions",
+    "scheduleHeading": "Schedule",
+    "scheduleDescription": "Put it on the calendar with an agenda.",
+    "goLiveHeading": "Go live",
+    "goLiveDescription": "Broadcast to everyone in the org.",
+    "startLivestream": "Start a livestream",
+    "upNext": "Up next",
+    "fullSchedule": "Full schedule",
+    "nothingScheduledToday": "Nothing scheduled for the rest of today.",
+    "recentMeetings": "Recent meetings",
+    "viewAll": "View all",
+    "noMeetingsYet": "No meetings yet — start one above.",
+    "yourActionItems": "Your action items",
+    "nothingAssigned": "Nothing assigned to you right now.",
+    "allActionItems": "All action items",
+    "thisWeek": "This week",
+    "hoursMinutes": "{hours} hrs {minutes} min",
+    "weekSummary": "in meetings, {count} of them transcribed automatically.",
+    "join": "Join"
+  },
+  "meeting": {
+    "start": {
+      "heading": "Start a meeting",
+      "description": "Open a room now and send the link.",
+      "titlePlaceholder": "Meeting title",
+      "startButton": "Start",
+      "starting": "Starting…"
+    },
+    "schedule": {
+      "newButton": "New scheduled meeting",
+      "dialogTitle": "Schedule a meeting",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Meeting title",
+      "repeatsLabel": "Repeats",
+      "recurrence": {
+        "once": "Once",
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly"
+      },
+      "dateLabel": "Date",
+      "timeLabel": "Time",
+      "recurrenceHint": {
+        "daily": "Creates weekday occurrences (weekends off) through the end of the year, or 6 months out — whichever is later.",
+        "weekly": "Creates weekly occurrences through the end of the year, or 6 months out — whichever is later.",
+        "monthly": "Creates monthly occurrences through the end of the year, or 6 months out — whichever is later."
+      },
+      "inviteLabel": "Invite by email",
+      "invitePlaceholder": "jane@example.com, sam@example.com",
+      "inviteHint": "Separate multiple addresses with commas. Anyone without a Confera account gets one created for them.",
+      "cancel": "Cancel",
+      "submit": "Schedule",
+      "submitting": "Scheduling…"
+    },
+    "table": {
+      "title": "Title",
+      "host": "Host",
+      "status": "Status",
+      "created": "Created",
+      "join": "Join",
+      "notes": "Notes"
+    },
+    "status": {
+      "scheduled": "SCHEDULED",
+      "live": "LIVE",
+      "ended": "ENDED",
+      "cancelled": "CANCELLED"
+    }
+  },
+  "errors": {
+    "give_meeting_title": "Give your meeting a title.",
+    "unable_to_create_meeting": "Unable to create meeting.",
+    "unable_to_create_meeting_retry": "Unable to create meeting. Try again later.",
+    "fill_title_date_time": "Fill in a title, date and time.",
+    "enter_valid_date_time": "Enter a valid date and time.",
+    "invalid_email": "\"{email}\" doesn't look like a valid email.",
+    "unable_to_schedule_meeting": "Unable to schedule meeting.",
+    "unable_to_schedule_meeting_retry": "Unable to schedule meeting. Try again later."
+  }
+}

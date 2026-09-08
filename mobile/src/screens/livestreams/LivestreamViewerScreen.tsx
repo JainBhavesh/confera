@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LiveKitRoom, useConnectionState, useRemoteParticipants, useTracks } from '@livekit/react-native';
 import { ConnectionState, Track } from 'livekit-client';
@@ -9,6 +10,8 @@ import { useAuth } from '../../hooks/useAuth';
 import { ParticipantTile } from '../../components/meeting/ParticipantTile';
 import { ViewerCountBadge } from '../../components/livestream/ViewerCountBadge';
 import { LivestreamChatPanel } from '../../components/livestream/LivestreamChatPanel';
+import { Icon } from '../../components/icons/Icon';
+import { callTextMuted, color, control, font } from '../../theme';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'LivestreamViewer'>;
 
@@ -63,7 +66,7 @@ export function LivestreamViewerScreen({ route, navigation }: Props) {
   if (!connectionInfo || !user) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color="#0ea5e9" />
+        <ActivityIndicator color={color.accent} />
       </View>
     );
   }
@@ -100,14 +103,14 @@ function LivestreamViewerContent({
   if (connectionState !== ConnectionState.Connected) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color="#0ea5e9" />
+        <ActivityIndicator color={color.accent} />
         <Text style={styles.connecting}>Connecting…</Text>
       </View>
     );
   }
 
   return (
-    <View style={styles.room}>
+    <SafeAreaView style={styles.room} edges={['top', 'bottom']}>
       <View style={styles.stage}>
         {hostTrack ? (
           <ParticipantTile trackRef={hostTrack} />
@@ -122,43 +125,47 @@ function LivestreamViewerContent({
       </View>
 
       <View style={styles.controls}>
-        <Pressable style={styles.controlButton} onPress={() => setChatOpen(true)}>
-          <Text style={styles.controlText}>Chat</Text>
-        </Pressable>
-        <Pressable style={[styles.controlButton, styles.leaveButtonInline]} onPress={onLeave}>
-          <Text style={styles.controlText}>Leave</Text>
-        </Pressable>
+        <View style={styles.controlColumn}>
+          <Pressable style={styles.controlButton} onPress={() => setChatOpen(true)} accessibilityLabel="Chat">
+            <Icon name="moreHorizontal" size={20} color={color.callText} />
+          </Pressable>
+          <Text style={styles.controlLabel}>Chat</Text>
+        </View>
+        <View style={styles.controlColumn}>
+          <Pressable style={[styles.controlButton, styles.controlButtonDanger]} onPress={onLeave} accessibilityLabel="Leave">
+            <Icon name="callEnd" size={20} color={color.callText} strokeWidth={1.8} />
+          </Pressable>
+          <Text style={styles.controlLabel}>Leave</Text>
+        </View>
       </View>
 
       <Modal visible={chatOpen} animationType="slide" onRequestClose={() => setChatOpen(false)}>
         <LivestreamChatPanel livestreamId={livestreamId} currentUserId={currentUserId} onClose={() => setChatOpen(false)} />
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  room: { flex: 1, backgroundColor: '#0f172a' },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#0f172a', gap: 12, padding: 24 },
-  connecting: { color: '#94a3b8', fontSize: 14 },
-  error: { color: '#f87171', fontSize: 15, textAlign: 'center' },
+  room: { flex: 1, backgroundColor: color.callBg },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: color.callBg, gap: 12, padding: 24 },
+  connecting: { fontFamily: font.body, color: callTextMuted(0.7), fontSize: 14 },
+  error: { fontFamily: font.body, color: color.accent500, fontSize: 15, textAlign: 'center' },
   stage: { flex: 1 },
   waiting: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  waitingText: { color: '#64748b', fontSize: 14 },
+  waitingText: { fontFamily: font.body, color: callTextMuted(0.6), fontSize: 14 },
   badgeWrapper: { position: 'absolute', right: 16, top: 16 },
   controls: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingVertical: 14,
-    paddingHorizontal: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#1e293b',
-    backgroundColor: '#0f172a'
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    gap: 24,
+    paddingVertical: 14
   },
-  controlButton: { backgroundColor: '#1e293b', borderRadius: 20, paddingHorizontal: 16, paddingVertical: 10 },
-  leaveButtonInline: { backgroundColor: '#dc2626' },
-  controlText: { color: '#fff', fontSize: 13, fontWeight: '600' },
-  leaveButton: { backgroundColor: '#0ea5e9', borderRadius: 20, paddingHorizontal: 20, paddingVertical: 10 },
-  leaveButtonText: { color: '#fff', fontWeight: '700' }
+  controlColumn: { alignItems: 'center', gap: 6 },
+  controlButton: { width: control.callControl, height: control.callControl, backgroundColor: color.callSurfaceAlt, alignItems: 'center', justifyContent: 'center' },
+  controlButtonDanger: { backgroundColor: color.accent700 },
+  controlLabel: { fontFamily: font.body, fontSize: 10, color: callTextMuted(0.6) },
+  leaveButton: { backgroundColor: color.accent, paddingHorizontal: 20, paddingVertical: 10 },
+  leaveButtonText: { fontFamily: font.bodySemiBold, color: color.white }
 });

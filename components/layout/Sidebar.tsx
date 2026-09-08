@@ -2,9 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 import type { PublicUser } from '@/services/user.service';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
+import { Logo } from '@/components/icons/Logo';
 
 function initials(name: string): string {
   return name
@@ -17,7 +20,7 @@ function initials(name: string): string {
 
 interface NavLinkDef {
   href: string;
-  label: string;
+  labelKey: string;
   icon: ReactNode;
   badge?: number;
 }
@@ -25,7 +28,7 @@ interface NavLinkDef {
 const WORKSPACE_LINKS: NavLinkDef[] = [
   {
     href: '/dashboard',
-    label: 'Home',
+    labelKey: 'links.home',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" />
@@ -34,7 +37,7 @@ const WORKSPACE_LINKS: NavLinkDef[] = [
   },
   {
     href: '/meetings',
-    label: 'Meetings',
+    labelKey: 'links.meetings',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <path d="m16 10 5-3v10l-5-3z" />
@@ -44,7 +47,7 @@ const WORKSPACE_LINKS: NavLinkDef[] = [
   },
   {
     href: '/schedule',
-    label: 'Schedule',
+    labelKey: 'links.schedule',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <rect x="3" y="5" width="18" height="16" />
@@ -54,7 +57,7 @@ const WORKSPACE_LINKS: NavLinkDef[] = [
   },
   {
     href: '/livestreams',
-    label: 'Livestreams',
+    labelKey: 'links.livestreams',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <circle cx="12" cy="12" r="2.5" />
@@ -67,7 +70,7 @@ const WORKSPACE_LINKS: NavLinkDef[] = [
 const KNOWLEDGE_LINKS: (openActions: number) => NavLinkDef[] = (openActions) => [
   {
     href: '/search',
-    label: 'Search notes',
+    labelKey: 'links.searchNotes',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <circle cx="11" cy="11" r="7" />
@@ -77,7 +80,7 @@ const KNOWLEDGE_LINKS: (openActions: number) => NavLinkDef[] = (openActions) => 
   },
   {
     href: '/action-items',
-    label: 'Action items',
+    labelKey: 'links.actionItems',
     badge: openActions > 0 ? openActions : undefined,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
@@ -88,7 +91,7 @@ const KNOWLEDGE_LINKS: (openActions: number) => NavLinkDef[] = (openActions) => 
   },
   {
     href: '/recordings',
-    label: 'Recordings',
+    labelKey: 'links.recordings',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <rect x="3" y="4" width="18" height="16" />
@@ -101,7 +104,7 @@ const KNOWLEDGE_LINKS: (openActions: number) => NavLinkDef[] = (openActions) => 
 const ADMIN_LINKS: NavLinkDef[] = [
   {
     href: '/admin',
-    label: 'Usage analytics',
+    labelKey: 'links.usageAnalytics',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <path d="M4 20V10M9.3 20V5M14.7 20v-8M20 20V8" />
@@ -110,7 +113,7 @@ const ADMIN_LINKS: NavLinkDef[] = [
   },
   {
     href: '/admin/users',
-    label: 'Members',
+    labelKey: 'links.members',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <circle cx="9" cy="8" r="3.2" />
@@ -121,7 +124,7 @@ const ADMIN_LINKS: NavLinkDef[] = [
   },
   {
     href: '/admin/meetings',
-    label: 'All meetings',
+    labelKey: 'links.allMeetings',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <path d="m16 10 5-3v10l-5-3z" />
@@ -131,7 +134,7 @@ const ADMIN_LINKS: NavLinkDef[] = [
   },
   {
     href: '/admin/livestreams',
-    label: 'All livestreams',
+    labelKey: 'links.allLivestreams',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <circle cx="12" cy="12" r="2.5" />
@@ -140,8 +143,29 @@ const ADMIN_LINKS: NavLinkDef[] = [
     )
   },
   {
+    href: '/recordings',
+    labelKey: 'links.recordings',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
+        <rect x="3" y="4" width="18" height="16" />
+        <path d="M7 4v16M17 4v16M3 12h18M3 8h4M3 16h4M17 8h4M17 16h4" />
+      </svg>
+    )
+  },
+  {
+    href: '/search?kind=SUMMARY',
+    labelKey: 'links.notes',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
+        <path d="M5 3h11l3 3v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
+        <path d="M16 3v3h3" />
+        <path d="M8 12.5h8M8 16h5.5" />
+      </svg>
+    )
+  },
+  {
     href: '/admin/action-items',
-    label: 'All action items',
+    labelKey: 'links.allActionItems',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <path d="M9 11l2.5 2.5L20 5" />
@@ -151,7 +175,7 @@ const ADMIN_LINKS: NavLinkDef[] = [
   },
   {
     href: '/admin/analytics',
-    label: 'Analytics',
+    labelKey: 'links.analytics',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <path d="M3 3v18h18M7 15.75V12M11.25 15.75V8.25M15.5 15.75v-5.5M19.75 15.75V6" />
@@ -160,7 +184,7 @@ const ADMIN_LINKS: NavLinkDef[] = [
   },
   {
     href: '/admin/settings',
-    label: 'Settings',
+    labelKey: 'links.settings',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-[17px] w-[17px]">
         <path
@@ -187,7 +211,9 @@ const EXACT_MATCH_ONLY = new Set(['/dashboard', '/admin']);
 
 function NavItem({ link }: { link: NavLinkDef }) {
   const pathname = usePathname();
-  const active = EXACT_MATCH_ONLY.has(link.href) ? pathname === link.href : pathname?.startsWith(link.href);
+  const t = useTranslations('nav');
+  const linkPath = link.href.split('?')[0];
+  const active = EXACT_MATCH_ONLY.has(linkPath) ? pathname === linkPath : pathname?.startsWith(linkPath);
 
   return (
     <Link
@@ -199,7 +225,7 @@ function NavItem({ link }: { link: NavLinkDef }) {
       }`}
     >
       {link.icon}
-      {link.label}
+      {t(link.labelKey)}
       {link.badge ? (
         <span className="ml-auto flex h-[18px] min-w-[18px] items-center justify-center bg-primary px-1.5 text-[10px] font-bold text-primary-foreground">
           {link.badge}
@@ -211,6 +237,8 @@ function NavItem({ link }: { link: NavLinkDef }) {
 
 export function Sidebar({ user, openActionItemsCount }: { user: PublicUser; openActionItemsCount: number }) {
   const router = useRouter();
+  const t = useTranslations('nav');
+  const isAdmin = user.role === 'ADMIN';
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
@@ -220,29 +248,33 @@ export function Sidebar({ user, openActionItemsCount }: { user: PublicUser; open
 
   return (
     <aside className="sticky top-0 flex h-screen flex-col bg-[#201e1d] text-[#f3f2f2]">
-      <Link href="/dashboard" className="flex items-center gap-2.5 border-b border-white/16 px-5 py-6">
-        <div className="h-7 w-7 bg-primary" />
+      <Link href={isAdmin ? '/admin' : '/dashboard'} className="flex items-center gap-2.5 border-b border-white/16 px-5 py-6">
+        <Logo className="h-7 w-7" />
         <span className="font-heading text-base font-extrabold tracking-tight">CONFERA</span>
       </Link>
 
       <div className="flex-1 overflow-y-auto pb-4">
-        <SectionLabel>Workspace</SectionLabel>
-        <nav className="flex flex-col">
-          {WORKSPACE_LINKS.map((link) => (
-            <NavItem key={link.href} link={link} />
-          ))}
-        </nav>
-
-        <SectionLabel>Knowledge</SectionLabel>
-        <nav className="flex flex-col">
-          {KNOWLEDGE_LINKS(openActionItemsCount).map((link) => (
-            <NavItem key={link.href} link={link} />
-          ))}
-        </nav>
-
-        {user.role === 'ADMIN' ? (
+        {!isAdmin ? (
           <>
-            <SectionLabel>Administration</SectionLabel>
+            <SectionLabel>{t('sections.workspace')}</SectionLabel>
+            <nav className="flex flex-col">
+              {WORKSPACE_LINKS.map((link) => (
+                <NavItem key={link.href} link={link} />
+              ))}
+            </nav>
+
+            <SectionLabel>{t('sections.knowledge')}</SectionLabel>
+            <nav className="flex flex-col">
+              {KNOWLEDGE_LINKS(openActionItemsCount).map((link) => (
+                <NavItem key={link.href} link={link} />
+              ))}
+            </nav>
+          </>
+        ) : null}
+
+        {isAdmin ? (
+          <>
+            <SectionLabel>{t('sections.administration')}</SectionLabel>
             <nav className="flex flex-col">
               {ADMIN_LINKS.map((link) => (
                 <NavItem key={link.href} link={link} />
@@ -259,16 +291,17 @@ export function Sidebar({ user, openActionItemsCount }: { user: PublicUser; open
         <div className="min-w-0 leading-tight">
           <p className="truncate text-[13px] font-semibold">{user.name}</p>
           <Link href="/profile" className="truncate text-[11px] text-white/50 hover:text-white/80">
-            View profile
+            {t('viewProfile')}
           </Link>
         </div>
         <div className="ml-auto flex items-center gap-1 text-white/55">
+          <LanguageSwitcher className="relative flex h-8 w-8 items-center justify-center text-white/55 transition hover:bg-white/10 hover:text-white" />
           <ThemeToggle className="flex h-8 w-8 items-center justify-center text-white/55 transition hover:bg-white/10 hover:text-white" />
           <button
             type="button"
             onClick={handleLogout}
-            title="Log out"
-            aria-label="Log out"
+            title={t('logOut')}
+            aria-label={t('logOut')}
             className="flex h-8 w-8 items-center justify-center transition hover:text-white"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">

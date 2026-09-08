@@ -1,11 +1,9 @@
-import OpenAI, { toFile } from 'openai';
-import { zodResponseFormat } from 'openai/helpers/zod';
-import { GetObjectCommand } from '@aws-sdk/client-s3';
-import { z } from 'zod';
+import OpenAI from 'openai';
 import type { MeetingNotes } from '@prisma/client';
 import { prisma } from '@/lib/db/prisma';
 import { recordingObjectKey, waitForRecordingToFinish, EgressStatus } from '@/services/egress.service';
-import { getRecordingS3Client, RECORDING_BUCKET } from '@/lib/recordingStorage';
+import { getRecordingBuffer } from '@/lib/recordingStorage';
+import { processRecording } from '@/services/aiNotes.client';
 
 // Constructed lazily — the OpenAI SDK throws immediately if OPENAI_API_KEY is
 // unset, which would otherwise crash this module's import (and the build)
@@ -14,33 +12,16 @@ function getOpenAIClient() {
   return new OpenAI();
 }
 
-const meetingNotesOutputSchema = z.object({
-  summary: z.string(),
-  actionItems: z.array(
-    z.object({
-      text: z.string(),
-      owner: z.string().nullable()
-    })
-  )
-});
-
 export function getMeetingNotes(meetingId: string): Promise<MeetingNotes | null> {
   return prisma.meetingNotes.findUnique({ where: { meetingId } });
 }
 
-async function fetchRecordingBuffer(bucket: string, key: string): Promise<Buffer> {
-  const response = await getRecordingS3Client().send(new GetObjectCommand({ Bucket: bucket, Key: key }));
-  const chunks: Buffer[] = [];
-  for await (const chunk of response.Body as AsyncIterable<Buffer>) {
-    chunks.push(chunk);
-  }
-  return Buffer.concat(chunks);
-}
-
 /**
  * Transcribes the meeting's recorded audio and summarizes it into notes and
- * action items via OpenAI. Runs after the meeting has ended, and only when a
- * recording actually exists (see services/egress.service.ts).
+ * action items via the self-hosted ai-notes service (ai-notes/, faster-whisper
+ * + a local LLM via Ollama — no audio or transcript ever leaves the server).
+ * Runs after the meeting has ended, and only when a recording actually
+ * exists (see services/egress.service.ts).
  */
 export async function generateMeetingNotes(meetingId: string): Promise<void> {
   const meeting = await prisma.meeting.findUniqueOrThrow({ where: { id: meetingId } });
@@ -66,45 +47,16 @@ export async function generateMeetingNotes(meetingId: string): Promise<void> {
       throw new Error('Recording did not finish successfully.');
     }
 
-    const audioBuffer = await fetchRecordingBuffer(RECORDING_BUCKET, recordingObjectKey(meeting));
+    const audioBuffer = await getRecordingBuffer(meeting.recordingKey ?? recordingObjectKey(meeting));
 
-    const openai = getOpenAIClient();
-
-    const transcription = await openai.audio.transcriptions.create({
-      file: await toFile(audioBuffer, 'recording.ogg', { type: 'audio/ogg' }),
-      model: 'gpt-4o-transcribe'
-    });
-    const transcript = transcription.text;
-
-    const completion = await openai.chat.completions.parse({
-      model: 'gpt-4o',
-      messages: [
-        {
-          role: 'system',
-          content:
-            'You summarize meeting audio transcripts into concise notes and action items. ' +
-            "Only use what is actually said in the transcript — never invent participants, decisions, or " +
-            'action items that are not supported by it. If there are no clear action items, return an empty list.'
-        },
-        {
-          role: 'user',
-          content: `Meeting transcript:\n\n${transcript}\n\nSummarize the discussion and list any action items.`
-        }
-      ],
-      response_format: zodResponseFormat(meetingNotesOutputSchema, 'meeting_notes')
-    });
-
-    const parsed = completion.choices[0]?.message.parsed;
-    if (!parsed) {
-      throw new Error('Model did not return structured output.');
-    }
+    const { transcript, summary, actionItems } = await processRecording(audioBuffer);
 
     await prisma.meetingNotes.update({
       where: { meetingId },
       data: {
         status: 'READY',
         transcript,
-        summary: parsed.summary,
+        summary,
         error: null,
         generatedAt: new Date()
       }
@@ -114,12 +66,12 @@ export async function generateMeetingNotes(meetingId: string): Promise<void> {
     // the previous AI-sourced set first so it doesn't just accumulate
     // duplicates — manually added items (source: MANUAL) are left alone.
     await prisma.actionItem.deleteMany({ where: { meetingId, source: 'AI' } });
-    if (parsed.actionItems.length > 0) {
+    if (actionItems.length > 0) {
       // The model's free-text `owner` (e.g. "Alice") has no reliable mapping
       // to a User id, so it's intentionally dropped rather than guessed —
       // a host/admin can assign it manually afterward via the action items UI.
       await prisma.actionItem.createMany({
-        data: parsed.actionItems.map((item) => ({
+        data: actionItems.map((item) => ({
           organizationId: meeting.organizationId,
           meetingId,
           title: item.text,
