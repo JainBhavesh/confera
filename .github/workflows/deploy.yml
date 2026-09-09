@@ -83,10 +83,12 @@ jobs:
         run: |
           install -m 600 -D /dev/null ~/.ssh/deploy_key
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
-      - name: Sync compose file
+      - name: Sync compose + tunnel ingress config
         run: |
           scp -i ~/.ssh/deploy_key docker-compose.prod.yml \
             "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/home/${{ secrets.DEPLOY_USER }}/conferra/docker-compose.yml"
+          scp -i ~/.ssh/deploy_key cloudflared-ingress.yml \
+            "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/home/${{ secrets.DEPLOY_USER }}/conferra/cloudflared-ingress.yml"
       - name: Pull, deploy, migrate
         run: |
           ssh -i ~/.ssh/deploy_key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" "
