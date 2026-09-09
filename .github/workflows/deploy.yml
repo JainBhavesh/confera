@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: 20
           cache: npm
+      # The committed package-lock.json was generated with npm 11 — the
+      # npm 10.x bundled with actions/setup-node's Node 20 resolves it
+      # differently and npm ci rejects it as "out of sync".
+      - run: npm install -g npm@11
       - run: npm ci
       - run: npx prisma generate
       - run: npm run lint

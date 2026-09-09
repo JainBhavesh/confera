@@ -2,6 +2,9 @@
 
 FROM node:20-bookworm-slim AS deps
 WORKDIR /app
+# package-lock.json was generated with npm 11 — node:20's bundled npm 10.x
+# resolves it differently and npm ci rejects it as "out of sync".
+RUN npm install -g npm@11
 COPY package.json package-lock.json ./
 RUN npm ci
 
