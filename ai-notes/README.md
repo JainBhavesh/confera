@@ -59,3 +59,10 @@ If Ollama also runs in Docker, point `OLLAMA_URL` at its service name instead (e
 ```bash
 curl http://127.0.0.1:8100/health
 ```
+
+## Production deployment
+
+Deployed via `docker-compose.prod.yml` at the repo root as the `ai-notes`
+service, alongside the main app. Its image is built and pushed to
+`ghcr.io/jainbhavesh/confera-ai-notes` by `.github/workflows/deploy.yml`
+whenever files under this directory change.
