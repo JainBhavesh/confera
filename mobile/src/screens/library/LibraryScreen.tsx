@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import type { TabScreenProps } from '../../navigation/types';
 import { listMeetings } from '../../services/api/meetings';
 import { color, font, space, textMuted } from '../../theme';
@@ -9,6 +10,7 @@ import type { Meeting } from '../../types';
 type Props = TabScreenProps<'Library'>;
 
 export function LibraryScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -39,8 +41,8 @@ export function LibraryScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
-        <Text style={styles.title}>Library</Text>
-        <Text style={styles.subtitle}>Recordings and notes from meetings that have ended.</Text>
+        <Text style={styles.title}>{t('library.title')}</Text>
+        <Text style={styles.subtitle}>{t('library.subtitle')}</Text>
       </View>
 
       <FlatList
@@ -48,7 +50,7 @@ export function LibraryScreen({ navigation }: Props) {
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor={color.accent} />}
-        ListEmptyComponent={<Text style={styles.empty}>No ended meetings yet.</Text>}
+        ListEmptyComponent={<Text style={styles.empty}>{t('library.empty')}</Text>}
         renderItem={({ item }) => (
           <Pressable style={styles.row} onPress={() => navigation.navigate('MeetingDetail', { meetingId: item.id })}>
             <View style={styles.info}>
@@ -57,7 +59,7 @@ export function LibraryScreen({ navigation }: Props) {
               </Text>
               <Text style={styles.rowMeta}>
                 {item.endedAt ? new Date(item.endedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}
-                {item.recordingStatus === 'READY' ? ' · recording' : ''}
+                {item.recordingStatus === 'READY' ? t('library.recording') : ''}
               </Text>
             </View>
           </Pressable>

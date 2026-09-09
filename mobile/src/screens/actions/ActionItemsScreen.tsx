@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import type { TabScreenProps } from '../../navigation/types';
 import { listActionItems, updateActionItem } from '../../services/api/actionItems';
 import { Icon } from '../../components/icons/Icon';
@@ -11,21 +12,25 @@ type Props = TabScreenProps<'Actions'>;
 
 type Scope = 'assigned' | 'created' | 'all';
 
-const SCOPES: { key: Scope; label: string }[] = [
-  { key: 'assigned', label: 'Assigned to me' },
-  { key: 'created', label: 'Created by me' },
-  { key: 'all', label: 'All' }
-];
-
-function dueLabel(item: ActionItem): { text: string; overdue: boolean } | null {
-  if (!item.dueDate) return null;
-  const due = new Date(item.dueDate);
-  const overdue = item.status !== 'COMPLETED' && due.getTime() < Date.now();
-  if (overdue) return { text: 'Overdue', overdue: true };
-  return { text: due.toLocaleDateString(undefined, { weekday: 'short' }), overdue: false };
+function useDueLabel() {
+  const { t } = useTranslation();
+  return (item: ActionItem): { text: string; overdue: boolean } | null => {
+    if (!item.dueDate) return null;
+    const due = new Date(item.dueDate);
+    const overdue = item.status !== 'COMPLETED' && due.getTime() < Date.now();
+    if (overdue) return { text: t('actions.overdue'), overdue: true };
+    return { text: due.toLocaleDateString(undefined, { weekday: 'short' }), overdue: false };
+  };
 }
 
 export function ActionItemsScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+  const dueLabel = useDueLabel();
+  const SCOPES: { key: Scope; label: string }[] = [
+    { key: 'assigned', label: t('actions.scopeAssigned') },
+    { key: 'created', label: t('actions.scopeCreated') },
+    { key: 'all', label: t('actions.scopeAll') }
+  ];
   const [scope, setScope] = useState<Scope>('assigned');
   const [items, setItems] = useState<ActionItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -73,9 +78,9 @@ export function ActionItemsScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
-        <Text style={styles.title}>Action items</Text>
+        <Text style={styles.title}>{t('actions.title')}</Text>
         <Text style={styles.subtitle}>
-          {openCount} open · {doneThisMonth} done this month
+          {t('actions.subtitle', { open: openCount, done: doneThisMonth })}
         </Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterRow}>
           {SCOPES.map((s) => (
@@ -100,7 +105,7 @@ export function ActionItemsScreen({ navigation }: Props) {
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.list}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor={color.accent} />}
-          ListEmptyComponent={<Text style={styles.empty}>No action items here.</Text>}
+          ListEmptyComponent={<Text style={styles.empty}>{t('actions.empty')}</Text>}
           renderItem={({ item }) => {
             const due = dueLabel(item);
             const done = item.status === 'COMPLETED';

@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Mégse",
+    "save": "Mentés",
+    "close": "Bezárás",
+    "back": "Vissza",
+    "done": "Kész",
+    "unknownHost": "Ismeretlen házigazda",
+    "unknown": "Ismeretlen",
+    "you": "Te",
+    "goBack": "Vissza",
+    "resend": "Kód újraküldése",
+    "resendIn": "Újraküldés {{seconds}}s múlva"
+  },
+  "tabs": {
+    "home": "Kezdőlap",
+    "meetings": "Megbeszélések",
+    "schedule": "Ütemezés",
+    "actions": "Teendők",
+    "library": "Könyvtár"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Megbeszélések, amelyek maguktól dokumentálódnak.",
+      "title": "Bejelentkezés",
+      "subtitle": "Üdvözlünk újra.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "te@ceg.com",
+      "passwordLabel": "Jelszó",
+      "forgotPassword": "Elfelejtetted a jelszavad?",
+      "submit": "Bejelentkezés",
+      "or": "vagy",
+      "continueWithGoogle": "Folytatás a Google-lal",
+      "noAccount": "Nincs fiókod? ",
+      "register": "Regisztráció",
+      "genericError": "Nem sikerült bejelentkezni. Próbáld újra."
+    },
+    "register": {
+      "title": "Fiók létrehozása",
+      "subtitle": "Csak akkor érhető el, ha a szervezeted engedélyezi a regisztrációt.",
+      "nameLabel": "Teljes név",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "te@ceg.com",
+      "passwordLabel": "Jelszó",
+      "submit": "Regisztráció",
+      "haveAccount": "Már van fiókod? ",
+      "signIn": "Bejelentkezés",
+      "genericError": "Nem sikerült regisztrálni. Próbáld újra."
+    },
+    "verifyEmail": {
+      "title": "Erősítsd meg az e-mail címed",
+      "subtitle": "Add meg a kódot, amelyet erre a címre küldtünk: {{email}}.",
+      "codeLabel": "Megerősítő kód",
+      "codePlaceholder": "123456",
+      "submit": "Megerősítés",
+      "resent": "Új kódot küldtünk.",
+      "genericError": "Nem sikerült megerősíteni ezt a kódot. Próbáld újra."
+    },
+    "forgotPassword": {
+      "title": "Jelszó visszaállítása",
+      "requestSubtitle": "Add meg fiókod e-mail címét, és küldünk egy visszaállító kódot.",
+      "resetSubtitle": "Add meg a kódot, amelyet erre a címre küldtünk: {{email}}, és válassz új jelszót.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "te@ceg.com",
+      "codeLabel": "Visszaállító kód",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Új jelszó",
+      "requestSubmit": "Kód küldése",
+      "resetSubmit": "Jelszó visszaállítása",
+      "success": "A jelszavad vissza lett állítva. Jelentkezz be az új jelszóval.",
+      "backToLogin": "Vissza a bejelentkezéshez",
+      "genericError": "Nem sikerült feldolgozni ezt a kérést. Próbáld újra."
+    }
+  },
+  "profile": {
+    "nameLabel": "Név",
+    "emailLabel": "E-mail",
+    "changePassword": "Jelszó módosítása",
+    "language": "Nyelv",
+    "logOut": "Kijelentkezés",
+    "changePasswordTitle": "Jelszó módosítása",
+    "currentPasswordLabel": "Jelenlegi jelszó",
+    "newPasswordLabel": "Új jelszó",
+    "passwordUpdated": "A jelszavad frissült.",
+    "passwordTooShort": "Az új jelszónak legalább 8 karakter hosszúnak kell lennie.",
+    "genericError": "Nem sikerült módosítani a jelszót.",
+    "languageTitle": "Nyelv"
+  },
+  "dashboard": {
+    "search": "Keresés",
+    "profile": "Profil",
+    "greetingMorning": "Jó reggelt{{name}}",
+    "greetingAfternoon": "Jó napot{{name}}",
+    "greetingEvening": "Jó estét{{name}}",
+    "newMeeting": "Új megbeszélés",
+    "joinWithId": "Csatlakozás azonosítóval",
+    "today": "Ma",
+    "todayMeetings_one": "{{count}} megbeszélés",
+    "todayMeetings_other": "{{count}} megbeszélés",
+    "openActions": "Nyitott teendők",
+    "upNext": "Következő",
+    "schedule": "Ütemezés",
+    "nothingScheduled": "Nincs ütemezve semmi. Indíts egy megbeszélést fent.",
+    "live": "Élő",
+    "join": "Csatlakozás",
+    "view": "Megtekintés",
+    "thisWeek": "Ezen a héten",
+    "thisWeekValue_one": "{{count}} megbeszélés",
+    "thisWeekValue_other": "{{count}} megbeszélés",
+    "thisWeekSub": "befejezve és elérhető a könyvtáradban.",
+    "joinModalTitle": "Csatlakozás megbeszélés-azonosítóval",
+    "joinModalPlaceholder": "Megbeszélés azonosítója"
+  },
+  "meetings": {
+    "list": {
+      "title": "Megbeszélések",
+      "filterAll": "Összes",
+      "filterLive": "Élő",
+      "filterUpcoming": "Közelgő",
+      "filterEnded": "Befejezett",
+      "loadError": "Nem sikerült betölteni a megbeszéléseket.",
+      "empty": "Nincs megbeszélés ebben a szűrőben."
+    },
+    "item": {
+      "liveNow": "Most élőben",
+      "today": "Ma",
+      "joinNow": "Csatlakozás most"
+    },
+    "detail": {
+      "back": "Vissza",
+      "share": "Jegyzetek megosztása",
+      "more": "Több",
+      "tabSummary": "Összefoglaló",
+      "tabActions": "Teendők · {{count}}",
+      "tabTranscript": "Átirat",
+      "audioRecording": "Hangfelvétel",
+      "recordingAvailable": "Elérhető",
+      "recordingTranscribed": "{{duration}} · átírva",
+      "durationMinutes": "{{count}} perc",
+      "summaryHeading": "Összefoglaló",
+      "summaryPending": "A jegyzetek még generálódnak.",
+      "summaryEmpty": "Ehhez a megbeszéléshez még nincs összefoglaló.",
+      "actionsEmpty": "Nincsenek teendők ehhez a megbeszéléshez.",
+      "transcriptEmpty": "Ehhez a megbeszéléshez még nincs átirat.",
+      "shareNotes": "Jegyzetek megosztása",
+      "shareFallbackTitle": "Megbeszélés",
+      "shareFallbackSummary": "Még nem készült összefoglaló."
+    },
+    "room": {
+      "title": "Megbeszélés",
+      "connecting": "Csatlakozás a megbeszéléshez…",
+      "notConfigured": "A megbeszélés-szerver nincs beállítva.",
+      "joinError": "Nem sikerült csatlakozni a megbeszéléshez.",
+      "goBack": "Vissza",
+      "mute": "Némítás",
+      "unmute": "Némítás feloldása",
+      "camera": "Kamera",
+      "people": "Résztvevők",
+      "peopleCount": "Résztvevők ({{count}})",
+      "chat": "Csevegés",
+      "end": "Kilépés",
+      "guest": "Vendég"
+    }
+  },
+  "schedule": {
+    "title": "Ütemezés",
+    "titleLabel": "Cím",
+    "titlePlaceholder": "Heti termékszinkronizálás",
+    "dateLabel": "Dátum",
+    "datePlaceholder": "ÉÉÉÉ-HH-NN",
+    "timeLabel": "Idő",
+    "timePlaceholder": "ÓÓ:PP",
+    "repeats": "Ismétlődés",
+    "recurrenceOnce": "Egyszer",
+    "recurrenceDaily": "Naponta",
+    "recurrenceWeekly": "Hetente",
+    "recurrenceMonthly": "Havonta",
+    "submit": "Megbeszélés ütemezése",
+    "upcoming": "Közelgő",
+    "upcomingEmpty": "Még nincs ütemezve semmi.",
+    "titleRequired": "Adj címet a megbeszélésnek.",
+    "invalidDateTime": "Adj meg érvényes dátumot (ÉÉÉÉ-HH-NN) és időt (ÓÓ:PP).",
+    "genericError": "Nem sikerült ütemezni ezt a megbeszélést."
+  },
+  "actions": {
+    "title": "Teendők",
+    "subtitle": "{{open}} nyitott · {{done}} elvégezve ebben a hónapban",
+    "scopeAssigned": "Nekem kiosztva",
+    "scopeCreated": "Általam létrehozva",
+    "scopeAll": "Összes",
+    "empty": "Itt nincsenek teendők.",
+    "overdue": "Lejárt"
+  },
+  "library": {
+    "title": "Könyvtár",
+    "subtitle": "Felvételek és jegyzetek a befejezett megbeszélésekről.",
+    "empty": "Még nincs befejezett megbeszélés.",
+    "recording": " · felvétel"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Élő közvetítések",
+      "loadError": "Nem sikerült betölteni a közvetítéseket.",
+      "empty": "Még nincsenek élő közvetítések."
+    },
+    "viewer": {
+      "notConfigured": "A közvetítés-szerver nincs beállítva.",
+      "notLive": "Ez a közvetítés jelenleg nem él.",
+      "goBack": "Vissza",
+      "connecting": "Csatlakozás…",
+      "waitingForHost": "Várakozás, hogy a házigazda elindítsa a közvetítést…",
+      "viewerCountOne": "1 néző",
+      "viewerCountOther": "{{count}} néző",
+      "chat": "Csevegés",
+      "leave": "Kilépés"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Megbeszélés csevegés",
+    "livestreamTitle": "Közvetítés csevegés",
+    "close": "Bezárás",
+    "empty": "Még nincsenek üzenetek.",
+    "placeholder": "Írj mindenkinek",
+    "send": "Küldés"
+  }
+}

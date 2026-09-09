@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import type { AppStackParamList } from '../../navigation/types';
 import { getMeeting } from '../../services/api/meetings';
 import { getMeetingNotes } from '../../services/api/notes';
@@ -14,14 +15,19 @@ type Props = NativeStackScreenProps<AppStackParamList, 'MeetingDetail'>;
 
 type Tab = 'summary' | 'actions' | 'transcript';
 
-function formatDuration(startedAt: string | null, endedAt: string | null) {
-  if (!startedAt || !endedAt) return null;
-  const minutes = Math.round((new Date(endedAt).getTime() - new Date(startedAt).getTime()) / 60000);
-  return `${minutes} min`;
+function useFormatDuration() {
+  const { t } = useTranslation();
+  return (startedAt: string | null, endedAt: string | null) => {
+    if (!startedAt || !endedAt) return null;
+    const minutes = Math.round((new Date(endedAt).getTime() - new Date(startedAt).getTime()) / 60000);
+    return t('meetings.detail.durationMinutes', { count: minutes });
+  };
 }
 
 export function MeetingDetailScreen({ route, navigation }: Props) {
   const { meetingId } = route.params;
+  const { t } = useTranslation();
+  const formatDuration = useFormatDuration();
   const [meeting, setMeeting] = useState<Meeting | null>(null);
   const [notes, setNotes] = useState<MeetingNotes | null>(null);
   const [actionItems, setActionItems] = useState<ActionItem[]>([]);
@@ -56,7 +62,7 @@ export function MeetingDetailScreen({ route, navigation }: Props) {
   const handleShare = () => {
     Share.share({
       title: meeting?.title,
-      message: `${meeting?.title ?? 'Meeting'}\n\n${notes?.summary ?? 'No summary generated yet.'}`
+      message: `${meeting?.title ?? t('meetings.detail.shareFallbackTitle')}\n\n${notes?.summary ?? t('meetings.detail.shareFallbackSummary')}`
     }).catch(() => {});
   };
 
@@ -73,14 +79,14 @@ export function MeetingDetailScreen({ route, navigation }: Props) {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.headerBar}>
-        <Pressable style={styles.iconButton} onPress={() => navigation.goBack()} accessibilityLabel="Back">
+        <Pressable style={styles.iconButton} onPress={() => navigation.goBack()} accessibilityLabel={t('meetings.detail.back')}>
           <Icon name="back" size={22} color={color.text} strokeWidth={1.9} />
         </Pressable>
-        <Text style={styles.headerLabel}>Meetings</Text>
-        <Pressable style={[styles.iconButton, styles.headerRightButton]} onPress={handleShare} accessibilityLabel="Share notes">
+        <Text style={styles.headerLabel}>{t('meetings.list.title')}</Text>
+        <Pressable style={[styles.iconButton, styles.headerRightButton]} onPress={handleShare} accessibilityLabel={t('meetings.detail.share')}>
           <Icon name="share" size={20} color={color.text} strokeWidth={1.9} />
         </Pressable>
-        <Pressable style={styles.iconButton} accessibilityLabel="More">
+        <Pressable style={styles.iconButton} accessibilityLabel={t('meetings.detail.more')}>
           <Icon name="moreVertical" size={20} color={color.text} />
         </Pressable>
       </View>
@@ -102,10 +108,14 @@ export function MeetingDetailScreen({ route, navigation }: Props) {
       </View>
 
       <View style={styles.tabs}>
-        {(['summary', 'actions', 'transcript'] as Tab[]).map((t) => (
-          <Pressable key={t} style={[styles.tabButton, tab === t && styles.tabButtonActive]} onPress={() => setTab(t)}>
-            <Text style={[styles.tabText, tab === t && styles.tabTextActive]}>
-              {t === 'summary' ? 'Summary' : t === 'actions' ? `Actions · ${actionItems.length}` : 'Transcript'}
+        {(['summary', 'actions', 'transcript'] as Tab[]).map((tabKey) => (
+          <Pressable key={tabKey} style={[styles.tabButton, tab === tabKey && styles.tabButtonActive]} onPress={() => setTab(tabKey)}>
+            <Text style={[styles.tabText, tab === tabKey && styles.tabTextActive]}>
+              {tabKey === 'summary'
+                ? t('meetings.detail.tabSummary')
+                : tabKey === 'actions'
+                  ? t('meetings.detail.tabActions', { count: actionItems.length })
+                  : t('meetings.detail.tabTranscript')}
             </Text>
           </Pressable>
         ))}
@@ -119,19 +129,19 @@ export function MeetingDetailScreen({ route, navigation }: Props) {
                 <Icon name="play" size={18} color={color.white} />
               </View>
               <View>
-                <Text style={styles.recordingTitle}>Audio recording</Text>
-                <Text style={styles.recordingSub}>{duration ?? 'Available'} · transcribed</Text>
+                <Text style={styles.recordingTitle}>{t('meetings.detail.audioRecording')}</Text>
+                <Text style={styles.recordingSub}>{t('meetings.detail.recordingTranscribed', { duration: duration ?? t('meetings.detail.recordingAvailable') })}</Text>
               </View>
             </View>
           ) : null)}
         {tab === 'summary' && (
           <>
-            <Text style={styles.blockHeading}>Summary</Text>
+            <Text style={styles.blockHeading}>{t('meetings.detail.summaryHeading')}</Text>
             {notes?.summary ? (
               <Text style={styles.paragraph}>{notes.summary}</Text>
             ) : (
               <Text style={styles.emptyText}>
-                {notes?.status === 'PENDING' ? 'Notes are still being generated.' : 'No summary is available for this meeting yet.'}
+                {notes?.status === 'PENDING' ? t('meetings.detail.summaryPending') : t('meetings.detail.summaryEmpty')}
               </Text>
             )}
           </>
@@ -139,7 +149,7 @@ export function MeetingDetailScreen({ route, navigation }: Props) {
 
         {tab === 'actions' &&
           (actionItems.length === 0 ? (
-            <Text style={styles.emptyText}>No action items for this meeting.</Text>
+            <Text style={styles.emptyText}>{t('meetings.detail.actionsEmpty')}</Text>
           ) : (
             actionItems.map((item) => (
               <Pressable key={item.id} style={styles.actionRow} onPress={() => toggleAction(item)}>
@@ -155,13 +165,13 @@ export function MeetingDetailScreen({ route, navigation }: Props) {
           (notes?.transcript ? (
             <Text style={styles.paragraph}>{notes.transcript}</Text>
           ) : (
-            <Text style={styles.emptyText}>No transcript is available for this meeting yet.</Text>
+            <Text style={styles.emptyText}>{t('meetings.detail.transcriptEmpty')}</Text>
           ))}
       </ScrollView>
 
       <View style={styles.footer}>
         <Pressable style={styles.shareButton} onPress={handleShare}>
-          <Text style={styles.shareButtonText}>Share notes</Text>
+          <Text style={styles.shareButtonText}>{t('meetings.detail.shareNotes')}</Text>
         </Pressable>
       </View>
     </SafeAreaView>

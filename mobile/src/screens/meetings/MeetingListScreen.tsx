@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { MeetingListItem } from '../../components/meeting/MeetingListItem';
 import { listMeetings } from '../../services/api/meetings';
 import type { TabScreenProps } from '../../navigation/types';
@@ -11,14 +12,14 @@ type Props = TabScreenProps<'Meetings'>;
 
 type Filter = 'ALL' | 'LIVE' | 'SCHEDULED' | 'ENDED';
 
-const FILTERS: { key: Filter; label: string }[] = [
-  { key: 'ALL', label: 'All' },
-  { key: 'LIVE', label: 'Live' },
-  { key: 'SCHEDULED', label: 'Upcoming' },
-  { key: 'ENDED', label: 'Ended' }
-];
-
 export function MeetingListScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+  const FILTERS: { key: Filter; label: string }[] = [
+    { key: 'ALL', label: t('meetings.list.filterAll') },
+    { key: 'LIVE', label: t('meetings.list.filterLive') },
+    { key: 'SCHEDULED', label: t('meetings.list.filterUpcoming') },
+    { key: 'ENDED', label: t('meetings.list.filterEnded') }
+  ];
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [filter, setFilter] = useState<Filter>('ALL');
   const [loading, setLoading] = useState(true);
@@ -31,9 +32,9 @@ export function MeetingListScreen({ navigation }: Props) {
       const { meetings: result } = await listMeetings();
       setMeetings(result);
     } catch {
-      setError('Unable to load meetings.');
+      setError(t('meetings.list.loadError'));
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     load().finally(() => setLoading(false));
@@ -69,7 +70,7 @@ export function MeetingListScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
-        <Text style={styles.title}>Meetings</Text>
+        <Text style={styles.title}>{t('meetings.list.title')}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterRow}>
           {FILTERS.map((f) => (
             <Pressable
@@ -91,7 +92,7 @@ export function MeetingListScreen({ navigation }: Props) {
         contentContainerStyle={styles.list}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor={color.accent} />}
         renderItem={({ item }) => <MeetingListItem meeting={item} onPress={() => handleOpen(item)} />}
-        ListEmptyComponent={<Text style={styles.empty}>No meetings in this filter.</Text>}
+        ListEmptyComponent={<Text style={styles.empty}>{t('meetings.list.empty')}</Text>}
       />
     </SafeAreaView>
   );

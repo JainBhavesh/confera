@@ -10,6 +10,7 @@ export interface PublicUser {
   role: Role;
   isActive: boolean;
   createdAt: string;
+  locale: string;
 }
 
 export type RecordingStatus = 'NONE' | 'RECORDING' | 'PROCESSING' | 'READY' | 'FAILED';

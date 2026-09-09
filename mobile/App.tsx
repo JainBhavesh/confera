@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
@@ -11,6 +11,7 @@ import {
 } from '@expo-google-fonts/archivo';
 import { AuthProvider } from './src/store/AuthContext';
 import { RootNavigator } from './src/navigation/RootNavigator';
+import { initI18n } from './src/i18n';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -21,8 +22,13 @@ export default function App() {
     Archivo_700Bold,
     Archivo_800ExtraBold
   });
+  const [i18nReady, setI18nReady] = useState(false);
 
-  const ready = fontsLoaded || fontError;
+  useEffect(() => {
+    initI18n().finally(() => setI18nReady(true));
+  }, []);
+
+  const ready = (fontsLoaded || fontError) && i18nReady;
 
   useEffect(() => {
     if (ready) {

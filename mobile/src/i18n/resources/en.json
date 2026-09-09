@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "back": "Back",
+    "done": "Done",
+    "unknownHost": "Unknown host",
+    "unknown": "Unknown",
+    "you": "You",
+    "goBack": "Go back",
+    "resend": "Resend code",
+    "resendIn": "Resend in {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Home",
+    "meetings": "Meetings",
+    "schedule": "Schedule",
+    "actions": "Actions",
+    "library": "Library"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Meetings that write themselves down.",
+      "title": "Log in",
+      "subtitle": "Welcome back.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "passwordLabel": "Password",
+      "forgotPassword": "Forgot password?",
+      "submit": "Log in",
+      "or": "or",
+      "continueWithGoogle": "Continue with Google",
+      "noAccount": "No account? ",
+      "register": "Register",
+      "genericError": "Unable to sign in. Try again."
+    },
+    "register": {
+      "title": "Create account",
+      "subtitle": "Only available when your organization allows registration.",
+      "nameLabel": "Full name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "passwordLabel": "Password",
+      "submit": "Register",
+      "haveAccount": "Already have an account? ",
+      "signIn": "Sign in",
+      "genericError": "Unable to register. Try again."
+    },
+    "verifyEmail": {
+      "title": "Verify your email",
+      "subtitle": "Enter the code we sent to {{email}}.",
+      "codeLabel": "Verification code",
+      "codePlaceholder": "123456",
+      "submit": "Verify",
+      "resent": "A new code has been sent.",
+      "genericError": "Unable to verify this code. Try again."
+    },
+    "forgotPassword": {
+      "title": "Reset password",
+      "requestSubtitle": "Enter your account email and we'll send you a reset code.",
+      "resetSubtitle": "Enter the code we sent to {{email}} and choose a new password.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "codeLabel": "Reset code",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "New password",
+      "requestSubmit": "Send reset code",
+      "resetSubmit": "Reset password",
+      "success": "Your password has been reset. Log in with your new password.",
+      "backToLogin": "Back to log in",
+      "genericError": "Unable to process this request. Try again."
+    }
+  },
+  "profile": {
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "changePassword": "Change password",
+    "language": "Language",
+    "logOut": "Log out",
+    "changePasswordTitle": "Change password",
+    "currentPasswordLabel": "Current password",
+    "newPasswordLabel": "New password",
+    "passwordUpdated": "Your password has been updated.",
+    "passwordTooShort": "New password must be at least 8 characters.",
+    "genericError": "Unable to change password.",
+    "languageTitle": "Language"
+  },
+  "dashboard": {
+    "search": "Search",
+    "profile": "Profile",
+    "greetingMorning": "Good morning{{name}}",
+    "greetingAfternoon": "Good afternoon{{name}}",
+    "greetingEvening": "Good evening{{name}}",
+    "newMeeting": "New meeting",
+    "joinWithId": "Join with ID",
+    "today": "Today",
+    "todayMeetings_one": "{{count}} meeting",
+    "todayMeetings_other": "{{count}} meetings",
+    "openActions": "Open actions",
+    "upNext": "Up next",
+    "schedule": "Schedule",
+    "nothingScheduled": "Nothing scheduled. Start a meeting above.",
+    "live": "Live",
+    "join": "Join",
+    "view": "View",
+    "thisWeek": "This week",
+    "thisWeekValue_one": "{{count}} meeting",
+    "thisWeekValue_other": "{{count}} meetings",
+    "thisWeekSub": "completed and available in your library.",
+    "joinModalTitle": "Join with meeting ID",
+    "joinModalPlaceholder": "Meeting ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Meetings",
+      "filterAll": "All",
+      "filterLive": "Live",
+      "filterUpcoming": "Upcoming",
+      "filterEnded": "Ended",
+      "loadError": "Unable to load meetings.",
+      "empty": "No meetings in this filter."
+    },
+    "item": {
+      "liveNow": "Live now",
+      "today": "Today",
+      "joinNow": "Join now"
+    },
+    "detail": {
+      "back": "Back",
+      "share": "Share notes",
+      "more": "More",
+      "tabSummary": "Summary",
+      "tabActions": "Actions · {{count}}",
+      "tabTranscript": "Transcript",
+      "audioRecording": "Audio recording",
+      "recordingAvailable": "Available",
+      "recordingTranscribed": "{{duration}} · transcribed",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Summary",
+      "summaryPending": "Notes are still being generated.",
+      "summaryEmpty": "No summary is available for this meeting yet.",
+      "actionsEmpty": "No action items for this meeting.",
+      "transcriptEmpty": "No transcript is available for this meeting yet.",
+      "shareNotes": "Share notes",
+      "shareFallbackTitle": "Meeting",
+      "shareFallbackSummary": "No summary generated yet."
+    },
+    "room": {
+      "title": "Meeting",
+      "connecting": "Connecting to meeting…",
+      "notConfigured": "Meeting server is not configured.",
+      "joinError": "Unable to join the meeting.",
+      "goBack": "Go back",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "camera": "Camera",
+      "people": "People",
+      "peopleCount": "People ({{count}})",
+      "chat": "Chat",
+      "end": "End",
+      "guest": "Guest"
+    }
+  },
+  "schedule": {
+    "title": "Schedule",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Weekly product sync",
+    "dateLabel": "Date",
+    "datePlaceholder": "YYYY-MM-DD",
+    "timeLabel": "Time",
+    "timePlaceholder": "HH:MM",
+    "repeats": "Repeats",
+    "recurrenceOnce": "Once",
+    "recurrenceDaily": "Daily",
+    "recurrenceWeekly": "Weekly",
+    "recurrenceMonthly": "Monthly",
+    "submit": "Schedule meeting",
+    "upcoming": "Upcoming",
+    "upcomingEmpty": "Nothing scheduled yet.",
+    "titleRequired": "Give the meeting a title.",
+    "invalidDateTime": "Enter a valid date (YYYY-MM-DD) and time (HH:MM).",
+    "genericError": "Unable to schedule this meeting."
+  },
+  "actions": {
+    "title": "Action items",
+    "subtitle": "{{open}} open · {{done}} done this month",
+    "scopeAssigned": "Assigned to me",
+    "scopeCreated": "Created by me",
+    "scopeAll": "All",
+    "empty": "No action items here.",
+    "overdue": "Overdue"
+  },
+  "library": {
+    "title": "Library",
+    "subtitle": "Recordings and notes from meetings that have ended.",
+    "empty": "No ended meetings yet.",
+    "recording": " · recording"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Livestreams",
+      "loadError": "Unable to load livestreams.",
+      "empty": "No livestreams yet."
+    },
+    "viewer": {
+      "notConfigured": "Livestream server is not configured.",
+      "notLive": "This livestream is not live right now.",
+      "goBack": "Go back",
+      "connecting": "Connecting…",
+      "waitingForHost": "Waiting for the host to go live…",
+      "viewerCountOne": "1 viewer",
+      "viewerCountOther": "{{count}} viewers",
+      "chat": "Chat",
+      "leave": "Leave"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Meeting chat",
+    "livestreamTitle": "Livestream chat",
+    "close": "Close",
+    "empty": "No messages yet.",
+    "placeholder": "Message everyone",
+    "send": "Send"
+  }
+}

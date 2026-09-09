@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDataChannel } from '@livekit/react-native';
+import { useTranslation } from 'react-i18next';
 import { ChatMessageBubble } from '../chat/ChatMessageBubble';
 import { listMeetingMessages, sendMeetingMessage } from '../../services/api/meetings';
 import { CHAT_DATA_TOPIC } from '../../services/livekit';
@@ -17,6 +18,7 @@ interface MeetingChatPanelProps {
 }
 
 export function MeetingChatPanel({ meetingId, currentUserId, onClose }: MeetingChatPanelProps) {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<MeetingMessage[]>([]);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
@@ -74,9 +76,9 @@ export function MeetingChatPanel({ meetingId, currentUserId, onClose }: MeetingC
       keyboardVerticalOffset={80}
     >
       <View style={styles.header}>
-        <Text style={styles.title}>Meeting chat</Text>
+        <Text style={styles.title}>{t('chat.meetingTitle')}</Text>
         <Pressable onPress={onClose} hitSlop={12}>
-          <Text style={styles.close}>Close</Text>
+          <Text style={styles.close}>{t('chat.close')}</Text>
         </Pressable>
       </View>
 
@@ -85,10 +87,10 @@ export function MeetingChatPanel({ meetingId, currentUserId, onClose }: MeetingC
         data={messages}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
-        ListEmptyComponent={<Text style={styles.empty}>No messages yet.</Text>}
+        ListEmptyComponent={<Text style={styles.empty}>{t('chat.empty')}</Text>}
         renderItem={({ item }) => (
           <ChatMessageBubble
-            authorName={item.user?.id === currentUserId ? 'You' : item.user?.name ?? 'Unknown'}
+            authorName={item.user?.id === currentUserId ? t('common.you') : item.user?.name ?? t('common.unknown')}
             message={item.message}
             timestamp={item.createdAt}
             isOwnMessage={item.user?.id === currentUserId}
@@ -101,7 +103,7 @@ export function MeetingChatPanel({ meetingId, currentUserId, onClose }: MeetingC
         <TextInput
           value={draft}
           onChangeText={setDraft}
-          placeholder="Message everyone"
+          placeholder={t('chat.placeholder')}
           placeholderTextColor={callTextMuted(0.45)}
           maxLength={2000}
           style={styles.input}
@@ -111,7 +113,7 @@ export function MeetingChatPanel({ meetingId, currentUserId, onClose }: MeetingC
           disabled={sending || !draft.trim()}
           style={[styles.sendButton, (sending || !draft.trim()) && styles.sendButtonDisabled]}
         >
-          <Text style={styles.sendButtonText}>Send</Text>
+          <Text style={styles.sendButtonText}>{t('chat.send')}</Text>
         </Pressable>
       </View>
     </KeyboardAvoidingView>

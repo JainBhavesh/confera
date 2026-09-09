@@ -27,7 +27,7 @@ export function joinMeeting(id: string): Promise<{ token: string; serverUrl: str
   return apiFetch(`/api/meetings/${id}/join`, { method: 'POST' });
 }
 
-export function leaveMeeting(id: string): Promise<void> {
+export function leaveMeeting(id: string): Promise<{ session: unknown }> {
   return apiFetch(`/api/meetings/${id}/leave`, { method: 'POST' });
 }
 

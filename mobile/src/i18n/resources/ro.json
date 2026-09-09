@@ -1,0 +1,231 @@
+{
+  "common": {
+    "cancel": "Anulează",
+    "save": "Salvează",
+    "close": "Închide",
+    "back": "Înapoi",
+    "done": "Gata",
+    "unknownHost": "Gazdă necunoscută",
+    "unknown": "Necunoscut",
+    "you": "Tu",
+    "goBack": "Înapoi",
+    "resend": "Retrimite codul",
+    "resendIn": "Retrimite în {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Acasă",
+    "meetings": "Întâlniri",
+    "schedule": "Program",
+    "actions": "Acțiuni",
+    "library": "Bibliotecă"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Întâlniri care se documentează singure.",
+      "title": "Conectare",
+      "subtitle": "Bine ai revenit.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@companie.com",
+      "passwordLabel": "Parolă",
+      "forgotPassword": "Ai uitat parola?",
+      "submit": "Conectare",
+      "or": "sau",
+      "continueWithGoogle": "Continuă cu Google",
+      "noAccount": "Nu ai cont? ",
+      "register": "Înregistrează-te",
+      "genericError": "Conectarea a eșuat. Încearcă din nou."
+    },
+    "register": {
+      "title": "Creează cont",
+      "subtitle": "Disponibil doar dacă organizația ta permite înregistrarea.",
+      "nameLabel": "Nume complet",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@companie.com",
+      "passwordLabel": "Parolă",
+      "submit": "Înregistrare",
+      "haveAccount": "Ai deja un cont? ",
+      "signIn": "Conectează-te",
+      "genericError": "Înregistrarea a eșuat. Încearcă din nou."
+    },
+    "verifyEmail": {
+      "title": "Verifică-ți emailul",
+      "subtitle": "Introdu codul trimis la {{email}}.",
+      "codeLabel": "Cod de verificare",
+      "codePlaceholder": "123456",
+      "submit": "Verifică",
+      "resent": "A fost trimis un cod nou.",
+      "genericError": "Acest cod nu a putut fi verificat. Încearcă din nou."
+    },
+    "forgotPassword": {
+      "title": "Resetează parola",
+      "requestSubtitle": "Introdu emailul contului tău și îți vom trimite un cod de resetare.",
+      "resetSubtitle": "Introdu codul trimis la {{email}} și alege o parolă nouă.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@companie.com",
+      "codeLabel": "Cod de resetare",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Parolă nouă",
+      "requestSubmit": "Trimite codul",
+      "resetSubmit": "Resetează parola",
+      "success": "Parola ta a fost resetată. Conectează-te cu noua parolă.",
+      "backToLogin": "Înapoi la conectare",
+      "genericError": "Această cerere nu a putut fi procesată. Încearcă din nou."
+    }
+  },
+  "profile": {
+    "nameLabel": "Nume",
+    "emailLabel": "Email",
+    "changePassword": "Schimbă parola",
+    "language": "Limbă",
+    "logOut": "Deconectare",
+    "changePasswordTitle": "Schimbă parola",
+    "currentPasswordLabel": "Parola curentă",
+    "newPasswordLabel": "Parolă nouă",
+    "passwordUpdated": "Parola ta a fost actualizată.",
+    "passwordTooShort": "Noua parolă trebuie să aibă cel puțin 8 caractere.",
+    "genericError": "Parola nu a putut fi schimbată.",
+    "languageTitle": "Limbă"
+  },
+  "dashboard": {
+    "search": "Căutare",
+    "profile": "Profil",
+    "greetingMorning": "Bună dimineața{{name}}",
+    "greetingAfternoon": "Bună ziua{{name}}",
+    "greetingEvening": "Bună seara{{name}}",
+    "newMeeting": "Întâlnire nouă",
+    "joinWithId": "Alătură-te cu ID",
+    "today": "Astăzi",
+    "todayMeetings_one": "{{count}} întâlnire",
+    "todayMeetings_few": "{{count}} întâlniri",
+    "todayMeetings_other": "{{count}} de întâlniri",
+    "openActions": "Acțiuni deschise",
+    "upNext": "Următoarele",
+    "schedule": "Program",
+    "nothingScheduled": "Nimic programat. Începe o întâlnire mai sus.",
+    "live": "Live",
+    "join": "Alătură-te",
+    "view": "Vezi",
+    "thisWeek": "Săptămâna aceasta",
+    "thisWeekValue_one": "{{count}} întâlnire",
+    "thisWeekValue_few": "{{count}} întâlniri",
+    "thisWeekValue_other": "{{count}} de întâlniri",
+    "thisWeekSub": "finalizate și disponibile în biblioteca ta.",
+    "joinModalTitle": "Alătură-te cu ID-ul întâlnirii",
+    "joinModalPlaceholder": "ID-ul întâlnirii"
+  },
+  "meetings": {
+    "list": {
+      "title": "Întâlniri",
+      "filterAll": "Toate",
+      "filterLive": "Live",
+      "filterUpcoming": "Viitoare",
+      "filterEnded": "Încheiate",
+      "loadError": "Întâlnirile nu au putut fi încărcate.",
+      "empty": "Nu există întâlniri în acest filtru."
+    },
+    "item": {
+      "liveNow": "Live acum",
+      "today": "Astăzi",
+      "joinNow": "Alătură-te acum"
+    },
+    "detail": {
+      "back": "Înapoi",
+      "share": "Distribuie notițele",
+      "more": "Mai multe",
+      "tabSummary": "Rezumat",
+      "tabActions": "Acțiuni · {{count}}",
+      "tabTranscript": "Transcriere",
+      "audioRecording": "Înregistrare audio",
+      "recordingAvailable": "Disponibilă",
+      "recordingTranscribed": "{{duration}} · transcrisă",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Rezumat",
+      "summaryPending": "Notițele încă se generează.",
+      "summaryEmpty": "Încă nu există un rezumat pentru această întâlnire.",
+      "actionsEmpty": "Nu există acțiuni pentru această întâlnire.",
+      "transcriptEmpty": "Încă nu există o transcriere pentru această întâlnire.",
+      "shareNotes": "Distribuie notițele",
+      "shareFallbackTitle": "Întâlnire",
+      "shareFallbackSummary": "Niciun rezumat generat încă."
+    },
+    "room": {
+      "title": "Întâlnire",
+      "connecting": "Se conectează la întâlnire…",
+      "notConfigured": "Serverul de întâlniri nu este configurat.",
+      "joinError": "Nu s-a putut realiza conectarea la întâlnire.",
+      "goBack": "Înapoi",
+      "mute": "Dezactivează microfonul",
+      "unmute": "Activează microfonul",
+      "camera": "Cameră",
+      "people": "Participanți",
+      "peopleCount": "Participanți ({{count}})",
+      "chat": "Chat",
+      "end": "Părăsește",
+      "guest": "Invitat"
+    }
+  },
+  "schedule": {
+    "title": "Program",
+    "titleLabel": "Titlu",
+    "titlePlaceholder": "Sincronizare săptămânală de produs",
+    "dateLabel": "Data",
+    "datePlaceholder": "AAAA-LL-ZZ",
+    "timeLabel": "Ora",
+    "timePlaceholder": "OO:MM",
+    "repeats": "Repetare",
+    "recurrenceOnce": "O dată",
+    "recurrenceDaily": "Zilnic",
+    "recurrenceWeekly": "Săptămânal",
+    "recurrenceMonthly": "Lunar",
+    "submit": "Programează întâlnirea",
+    "upcoming": "Viitoare",
+    "upcomingEmpty": "Nimic programat încă.",
+    "titleRequired": "Dă un titlu întâlnirii.",
+    "invalidDateTime": "Introdu o dată (AAAA-LL-ZZ) și oră (OO:MM) valide.",
+    "genericError": "Această întâlnire nu a putut fi programată."
+  },
+  "actions": {
+    "title": "Elemente de acțiune",
+    "subtitle": "{{open}} deschise · {{done}} finalizate luna aceasta",
+    "scopeAssigned": "Atribuite mie",
+    "scopeCreated": "Create de mine",
+    "scopeAll": "Toate",
+    "empty": "Nu există elemente de acțiune aici.",
+    "overdue": "Întârziată"
+  },
+  "library": {
+    "title": "Bibliotecă",
+    "subtitle": "Înregistrări și notițe din întâlnirile încheiate.",
+    "empty": "Încă nu există întâlniri încheiate.",
+    "recording": " · înregistrare"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Transmisiuni live",
+      "loadError": "Transmisiunile nu au putut fi încărcate.",
+      "empty": "Încă nu există transmisiuni live."
+    },
+    "viewer": {
+      "notConfigured": "Serverul de transmisiune nu este configurat.",
+      "notLive": "Această transmisiune nu este live în acest moment.",
+      "goBack": "Înapoi",
+      "connecting": "Se conectează…",
+      "waitingForHost": "Se așteaptă ca gazda să înceapă transmisiunea…",
+      "viewerCountOne": "1 spectator",
+      "viewerCountFew": "{{count}} spectatori",
+      "viewerCountOther": "{{count}} de spectatori",
+      "chat": "Chat",
+      "leave": "Părăsește"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Chatul întâlnirii",
+    "livestreamTitle": "Chatul transmisiunii",
+    "close": "Închide",
+    "empty": "Încă nu există mesaje.",
+    "placeholder": "Scrie tuturor",
+    "send": "Trimite"
+  }
+}

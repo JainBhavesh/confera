@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import type { Livestream } from '../../types';
 import { color, font, textMuted } from '../../theme';
 
@@ -9,6 +10,7 @@ function tagStyles(status: Livestream['status']) {
 }
 
 export function LivestreamListItem({ livestream, onPress }: { livestream: Livestream; onPress: () => void }) {
+  const { t } = useTranslation();
   const tag = tagStyles(livestream.status);
 
   return (
@@ -22,7 +24,7 @@ export function LivestreamListItem({ livestream, onPress }: { livestream: Livest
         {livestream.title}
       </Text>
       <Text style={styles.host} numberOfLines={1}>
-        {livestream.createdBy?.name ?? 'Unknown host'}
+        {livestream.createdBy?.name ?? t('common.unknownHost')}
       </Text>
     </Pressable>
   );

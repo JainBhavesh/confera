@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Annuller",
+    "save": "Gem",
+    "close": "Luk",
+    "back": "Tilbage",
+    "done": "Færdig",
+    "unknownHost": "Ukendt vært",
+    "unknown": "Ukendt",
+    "you": "Dig",
+    "goBack": "Gå tilbage",
+    "resend": "Send kode igen",
+    "resendIn": "Send igen om {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Hjem",
+    "meetings": "Møder",
+    "schedule": "Planlægning",
+    "actions": "Opgaver",
+    "library": "Bibliotek"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Møder, der dokumenterer sig selv.",
+      "title": "Log ind",
+      "subtitle": "Velkommen tilbage.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "dig@virksomhed.dk",
+      "passwordLabel": "Adgangskode",
+      "forgotPassword": "Glemt adgangskode?",
+      "submit": "Log ind",
+      "or": "eller",
+      "continueWithGoogle": "Fortsæt med Google",
+      "noAccount": "Ingen konto? ",
+      "register": "Registrer",
+      "genericError": "Kunne ikke logge ind. Prøv igen."
+    },
+    "register": {
+      "title": "Opret konto",
+      "subtitle": "Kun tilgængeligt, når din organisation tillader registrering.",
+      "nameLabel": "Fulde navn",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "dig@virksomhed.dk",
+      "passwordLabel": "Adgangskode",
+      "submit": "Registrer",
+      "haveAccount": "Har du allerede en konto? ",
+      "signIn": "Log ind",
+      "genericError": "Kunne ikke gennemføre registreringen. Prøv igen."
+    },
+    "verifyEmail": {
+      "title": "Bekræft din e-mail",
+      "subtitle": "Indtast koden, vi sendte til {{email}}.",
+      "codeLabel": "Bekræftelseskode",
+      "codePlaceholder": "123456",
+      "submit": "Bekræft",
+      "resent": "Der er sendt en ny kode.",
+      "genericError": "Kunne ikke bekræfte denne kode. Prøv igen."
+    },
+    "forgotPassword": {
+      "title": "Nulstil adgangskode",
+      "requestSubtitle": "Indtast din kontos e-mail, så sender vi en nulstillingskode.",
+      "resetSubtitle": "Indtast koden, vi sendte til {{email}}, og vælg en ny adgangskode.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "dig@virksomhed.dk",
+      "codeLabel": "Nulstillingskode",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Ny adgangskode",
+      "requestSubmit": "Send nulstillingskode",
+      "resetSubmit": "Nulstil adgangskode",
+      "success": "Din adgangskode er nulstillet. Log ind med din nye adgangskode.",
+      "backToLogin": "Tilbage til login",
+      "genericError": "Kunne ikke behandle denne anmodning. Prøv igen."
+    }
+  },
+  "profile": {
+    "nameLabel": "Navn",
+    "emailLabel": "E-mail",
+    "changePassword": "Skift adgangskode",
+    "language": "Sprog",
+    "logOut": "Log ud",
+    "changePasswordTitle": "Skift adgangskode",
+    "currentPasswordLabel": "Nuværende adgangskode",
+    "newPasswordLabel": "Ny adgangskode",
+    "passwordUpdated": "Din adgangskode er blevet opdateret.",
+    "passwordTooShort": "Den nye adgangskode skal være mindst 8 tegn.",
+    "genericError": "Kunne ikke skifte adgangskode.",
+    "languageTitle": "Sprog"
+  },
+  "dashboard": {
+    "search": "Søg",
+    "profile": "Profil",
+    "greetingMorning": "Godmorgen{{name}}",
+    "greetingAfternoon": "God eftermiddag{{name}}",
+    "greetingEvening": "God aften{{name}}",
+    "newMeeting": "Nyt møde",
+    "joinWithId": "Deltag med ID",
+    "today": "I dag",
+    "todayMeetings_one": "{{count}} møde",
+    "todayMeetings_other": "{{count}} møder",
+    "openActions": "Åbne opgaver",
+    "upNext": "Kommende",
+    "schedule": "Planlægning",
+    "nothingScheduled": "Intet planlagt. Start et møde ovenfor.",
+    "live": "Live",
+    "join": "Deltag",
+    "view": "Se",
+    "thisWeek": "Denne uge",
+    "thisWeekValue_one": "{{count}} møde",
+    "thisWeekValue_other": "{{count}} møder",
+    "thisWeekSub": "afsluttet og tilgængeligt i dit bibliotek.",
+    "joinModalTitle": "Deltag med møde-ID",
+    "joinModalPlaceholder": "Møde-ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Møder",
+      "filterAll": "Alle",
+      "filterLive": "Live",
+      "filterUpcoming": "Kommende",
+      "filterEnded": "Afsluttet",
+      "loadError": "Kunne ikke indlæse møderne.",
+      "empty": "Ingen møder i dette filter."
+    },
+    "item": {
+      "liveNow": "Live nu",
+      "today": "I dag",
+      "joinNow": "Deltag nu"
+    },
+    "detail": {
+      "back": "Tilbage",
+      "share": "Del noter",
+      "more": "Mere",
+      "tabSummary": "Resumé",
+      "tabActions": "Opgaver · {{count}}",
+      "tabTranscript": "Transskription",
+      "audioRecording": "Lydoptagelse",
+      "recordingAvailable": "Tilgængelig",
+      "recordingTranscribed": "{{duration}} · transskriberet",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Resumé",
+      "summaryPending": "Noterne bliver stadig genereret.",
+      "summaryEmpty": "Der er endnu intet resumé for dette møde.",
+      "actionsEmpty": "Ingen opgaver for dette møde.",
+      "transcriptEmpty": "Der er endnu ingen transskription for dette møde.",
+      "shareNotes": "Del noter",
+      "shareFallbackTitle": "Møde",
+      "shareFallbackSummary": "Der er endnu ikke genereret et resumé."
+    },
+    "room": {
+      "title": "Møde",
+      "connecting": "Opretter forbindelse til mødet…",
+      "notConfigured": "Mødeserveren er ikke konfigureret.",
+      "joinError": "Kunne ikke deltage i mødet.",
+      "goBack": "Gå tilbage",
+      "mute": "Sluk mikrofon",
+      "unmute": "Tænd mikrofon",
+      "camera": "Kamera",
+      "people": "Deltagere",
+      "peopleCount": "Deltagere ({{count}})",
+      "chat": "Chat",
+      "end": "Forlad",
+      "guest": "Gæst"
+    }
+  },
+  "schedule": {
+    "title": "Planlægning",
+    "titleLabel": "Titel",
+    "titlePlaceholder": "Ugentlig produktsync",
+    "dateLabel": "Dato",
+    "datePlaceholder": "ÅÅÅÅ-MM-DD",
+    "timeLabel": "Tid",
+    "timePlaceholder": "TT:MM",
+    "repeats": "Gentagelse",
+    "recurrenceOnce": "Én gang",
+    "recurrenceDaily": "Dagligt",
+    "recurrenceWeekly": "Ugentligt",
+    "recurrenceMonthly": "Månedligt",
+    "submit": "Planlæg møde",
+    "upcoming": "Kommende",
+    "upcomingEmpty": "Intet planlagt endnu.",
+    "titleRequired": "Giv mødet en titel.",
+    "invalidDateTime": "Indtast en gyldig dato (ÅÅÅÅ-MM-DD) og tid (TT:MM).",
+    "genericError": "Kunne ikke planlægge dette møde."
+  },
+  "actions": {
+    "title": "Opgaver",
+    "subtitle": "{{open}} åbne · {{done}} udført denne måned",
+    "scopeAssigned": "Tildelt mig",
+    "scopeCreated": "Oprettet af mig",
+    "scopeAll": "Alle",
+    "empty": "Ingen opgaver her.",
+    "overdue": "Forsinket"
+  },
+  "library": {
+    "title": "Bibliotek",
+    "subtitle": "Optagelser og noter fra afsluttede møder.",
+    "empty": "Ingen afsluttede møder endnu.",
+    "recording": " · optagelse"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Livestreams",
+      "loadError": "Kunne ikke indlæse livestreams.",
+      "empty": "Ingen livestreams endnu."
+    },
+    "viewer": {
+      "notConfigured": "Livestream-serveren er ikke konfigureret.",
+      "notLive": "Denne livestream er ikke live lige nu.",
+      "goBack": "Gå tilbage",
+      "connecting": "Opretter forbindelse…",
+      "waitingForHost": "Venter på, at værten går live…",
+      "viewerCountOne": "1 seer",
+      "viewerCountOther": "{{count}} seere",
+      "chat": "Chat",
+      "leave": "Forlad"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Mødechat",
+    "livestreamTitle": "Livestreamchat",
+    "close": "Luk",
+    "empty": "Ingen beskeder endnu.",
+    "placeholder": "Skriv til alle",
+    "send": "Send"
+  }
+}

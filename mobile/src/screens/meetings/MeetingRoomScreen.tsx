@@ -10,6 +10,7 @@ import {
   useTracks
 } from '@livekit/react-native';
 import { ConnectionState, Track, type Participant } from 'livekit-client';
+import { useTranslation } from 'react-i18next';
 import type { AppStackParamList } from '../../navigation/types';
 import { joinMeeting, leaveMeeting } from '../../services/api/meetings';
 import { useAuth } from '../../hooks/useAuth';
@@ -27,6 +28,7 @@ interface ConnectionInfo {
 
 export function MeetingRoomScreen({ route, navigation }: Props) {
   const { meetingId } = route.params;
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [connectionInfo, setConnectionInfo] = useState<ConnectionInfo | null>(null);
   const [error, setError] = useState('');
@@ -38,20 +40,20 @@ export function MeetingRoomScreen({ route, navigation }: Props) {
       .then(({ token, serverUrl }) => {
         if (!cancelled) {
           if (!serverUrl) {
-            setError('Meeting server is not configured.');
+            setError(t('meetings.room.notConfigured'));
             return;
           }
           setConnectionInfo({ token, serverUrl });
         }
       })
       .catch(() => {
-        if (!cancelled) setError('Unable to join the meeting.');
+        if (!cancelled) setError(t('meetings.room.joinError'));
       });
 
     return () => {
       cancelled = true;
     };
-  }, [meetingId]);
+  }, [meetingId, t]);
 
   // Best-effort: records a leave even if the screen is dismissed via the
   // hardware/gesture back action rather than the in-room "End" button.
@@ -76,7 +78,7 @@ export function MeetingRoomScreen({ route, navigation }: Props) {
       <View style={styles.center}>
         <Text style={styles.error}>{error}</Text>
         <Pressable style={styles.leaveButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.leaveButtonText}>Go back</Text>
+          <Text style={styles.leaveButtonText}>{t('meetings.room.goBack')}</Text>
         </Pressable>
       </View>
     );
@@ -104,8 +106,9 @@ export function MeetingRoomScreen({ route, navigation }: Props) {
   );
 }
 
-function displayName(participant: Participant) {
-  return participant.name || participant.identity || 'Guest';
+function useDisplayName() {
+  const { t } = useTranslation();
+  return (participant: Participant) => participant.name || participant.identity || t('meetings.room.guest');
 }
 
 function MeetingRoomContent({
@@ -117,6 +120,8 @@ function MeetingRoomContent({
   currentUserId: string;
   onLeave: () => void;
 }) {
+  const { t } = useTranslation();
+  const displayName = useDisplayName();
   const connectionState = useConnectionState();
   const { localParticipant, isMicrophoneEnabled, isCameraEnabled } = useLocalParticipant();
   const remoteParticipants = useRemoteParticipants();
@@ -135,7 +140,7 @@ function MeetingRoomContent({
     return (
       <View style={styles.center}>
         <ActivityIndicator color={color.accent} />
-        <Text style={styles.connecting}>Connecting to meeting…</Text>
+        <Text style={styles.connecting}>{t('meetings.room.connecting')}</Text>
       </View>
     );
   }
@@ -148,7 +153,7 @@ function MeetingRoomContent({
       <View style={styles.header}>
         <View style={styles.liveDot} />
         <Text style={styles.headerTitle} numberOfLines={1}>
-          Meeting
+          {t('meetings.room.title')}
         </Text>
         <Text style={styles.timer}>
           {mm}:{ss}
@@ -177,26 +182,26 @@ function MeetingRoomContent({
       <View style={styles.controls}>
         <CallControl
           icon="mic"
-          label={isMicrophoneEnabled ? 'Mute' : 'Unmute'}
+          label={isMicrophoneEnabled ? t('meetings.room.mute') : t('meetings.room.unmute')}
           active={!isMicrophoneEnabled}
           onPress={() => localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled)}
         />
         <CallControl
           icon="camera"
-          label="Camera"
+          label={t('meetings.room.camera')}
           active={!isCameraEnabled}
           onPress={() => localParticipant.setCameraEnabled(!isCameraEnabled)}
         />
-        <CallControl icon="people" label="People" badge={remoteParticipants.length + 1} onPress={() => setPeopleOpen(true)} />
-        <CallControl icon="chat" label="Chat" onPress={() => setChatOpen(true)} />
-        <CallControl icon="callEnd" label="End" danger onPress={onLeave} />
+        <CallControl icon="people" label={t('meetings.room.people')} badge={remoteParticipants.length + 1} onPress={() => setPeopleOpen(true)} />
+        <CallControl icon="chat" label={t('meetings.room.chat')} onPress={() => setChatOpen(true)} />
+        <CallControl icon="callEnd" label={t('meetings.room.end')} danger onPress={onLeave} />
       </View>
 
       <Modal visible={peopleOpen} animationType="slide" transparent onRequestClose={() => setPeopleOpen(false)}>
         <Pressable style={styles.sheetBackdrop} onPress={() => setPeopleOpen(false)}>
           <View style={styles.sheet}>
-            <Text style={styles.sheetTitle}>People ({remoteParticipants.length + 1})</Text>
-            <PersonRow name="You" muted={!isMicrophoneEnabled} cameraOff={!isCameraEnabled} />
+            <Text style={styles.sheetTitle}>{t('meetings.room.peopleCount', { count: remoteParticipants.length + 1 })}</Text>
+            <PersonRow name={t('common.you')} muted={!isMicrophoneEnabled} cameraOff={!isCameraEnabled} />
             {remoteParticipants.map((p) => (
               <PersonRow key={p.identity} name={displayName(p)} muted={!p.isMicrophoneEnabled} cameraOff={!p.isCameraEnabled} />
             ))}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ActivityIndicator, Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useAuth } from '../../hooks/useAuth';
+import { useTranslation } from 'react-i18next';
 import type { AuthStackParamList } from '../../navigation/types';
 import * as authApi from '../../services/api/auth';
 import { ApiError } from '../../services/api/client';
@@ -11,7 +11,7 @@ import { color, control, font, space, textMuted } from '../../theme';
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
 export function RegisterScreen({ navigation }: Props) {
-  const { refresh } = useAuth();
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,10 +22,13 @@ export function RegisterScreen({ navigation }: Props) {
     setError('');
     setSubmitting(true);
     try {
-      await authApi.register({ name: name.trim(), email: email.trim(), password });
-      await refresh();
+      const trimmedEmail = email.trim();
+      // register() only sends an email OTP and does not start a session —
+      // VerifyEmailScreen completes the flow with the code.
+      await authApi.register({ name: name.trim(), email: trimmedEmail, password });
+      navigation.navigate('VerifyEmail', { email: trimmedEmail });
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Unable to register. Try again.');
+      setError(err instanceof ApiError ? err.message : t('auth.register.genericError'));
     } finally {
       setSubmitting(false);
     }
@@ -37,19 +40,25 @@ export function RegisterScreen({ navigation }: Props) {
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
           <View style={styles.brandRow}>
             <Image source={require('../../../assets/logo.png')} style={styles.brandMark} resizeMode="contain" />
-            <Text style={styles.brandName}>CONFERA</Text>
+            <Text style={styles.brandName}>{t('auth.brand')}</Text>
           </View>
 
-          <Text style={styles.title}>Create account</Text>
-          <Text style={styles.subtitle}>Only available when your organization allows registration.</Text>
+          <Text style={styles.title}>{t('auth.register.title')}</Text>
+          <Text style={styles.subtitle}>{t('auth.register.subtitle')}</Text>
 
-          <Text style={styles.label}>Full name</Text>
-          <TextInput style={styles.input} placeholder="Jane Doe" placeholderTextColor={textMuted(0.45)} value={name} onChangeText={setName} />
-
-          <Text style={styles.label}>Email</Text>
+          <Text style={styles.label}>{t('auth.register.nameLabel')}</Text>
           <TextInput
             style={styles.input}
-            placeholder="you@company.com"
+            placeholder={t('auth.register.namePlaceholder')}
+            placeholderTextColor={textMuted(0.45)}
+            value={name}
+            onChangeText={setName}
+          />
+
+          <Text style={styles.label}>{t('auth.register.emailLabel')}</Text>
+          <TextInput
+            style={styles.input}
+            placeholder={t('auth.register.emailPlaceholder')}
             placeholderTextColor={textMuted(0.45)}
             autoCapitalize="none"
             keyboardType="email-address"
@@ -57,7 +66,7 @@ export function RegisterScreen({ navigation }: Props) {
             onChangeText={setEmail}
           />
 
-          <Text style={styles.label}>Password</Text>
+          <Text style={styles.label}>{t('auth.register.passwordLabel')}</Text>
           <TextInput
             style={styles.input}
             placeholder="••••••••••"
@@ -70,12 +79,12 @@ export function RegisterScreen({ navigation }: Props) {
           {error ? <Text style={styles.error}>{error}</Text> : null}
 
           <Pressable style={styles.primaryButton} onPress={handleSubmit} disabled={submitting}>
-            {submitting ? <ActivityIndicator color={color.white} /> : <Text style={styles.primaryButtonText}>Register</Text>}
+            {submitting ? <ActivityIndicator color={color.white} /> : <Text style={styles.primaryButtonText}>{t('auth.register.submit')}</Text>}
           </Pressable>
 
           <Pressable onPress={() => navigation.navigate('Login')} style={styles.footer}>
             <Text style={styles.footerText}>
-              Already have an account? <Text style={styles.link}>Sign in</Text>
+              {t('auth.register.haveAccount')}<Text style={styles.link}>{t('auth.register.signIn')}</Text>
             </Text>
           </Pressable>
         </ScrollView>

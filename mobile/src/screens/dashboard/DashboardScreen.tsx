@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
 import type { TabScreenProps } from '../../navigation/types';
 import { createMeeting, listMeetings } from '../../services/api/meetings';
@@ -32,6 +33,7 @@ function startOfWeek(date: Date) {
 }
 
 export function DashboardScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [openActions, setOpenActions] = useState(0);
@@ -120,11 +122,11 @@ export function DashboardScreen({ navigation }: Props) {
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <Image source={require('../../../assets/logo.png')} style={styles.brandMark} resizeMode="contain" />
-        <Text style={styles.brandName}>CONFERA</Text>
-        <Pressable style={styles.searchButton} accessibilityLabel="Search" hitSlop={8}>
+        <Text style={styles.brandName}>{t('auth.brand')}</Text>
+        <Pressable style={styles.searchButton} accessibilityLabel={t('dashboard.search')} hitSlop={8}>
           <Icon name="search" size={19} color={color.text} strokeWidth={1.8} />
         </Pressable>
-        <Pressable ref={avatarRef} style={styles.avatar} onPress={handleOpenProfile} accessibilityLabel="Profile">
+        <Pressable ref={avatarRef} style={styles.avatar} onPress={handleOpenProfile} accessibilityLabel={t('dashboard.profile')}>
           <Text style={styles.avatarText}>{user ? initials(user.name) : '—'}</Text>
         </Pressable>
       </View>
@@ -134,7 +136,14 @@ export function DashboardScreen({ navigation }: Props) {
           {now.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' })}
         </Text>
         <Text style={styles.greeting}>
-          {`Good ${now.getHours() < 12 ? 'morning' : now.getHours() < 18 ? 'afternoon' : 'evening'}${user ? `, ${user.name.split(' ')[0]}` : ''}`}
+          {t(
+            now.getHours() < 12
+              ? 'dashboard.greetingMorning'
+              : now.getHours() < 18
+                ? 'dashboard.greetingAfternoon'
+                : 'dashboard.greetingEvening',
+            { name: user ? `, ${user.name.split(' ')[0]}` : '' }
+          )}
         </Text>
 
         <View style={styles.actionRow}>
@@ -144,41 +153,41 @@ export function DashboardScreen({ navigation }: Props) {
             ) : (
               <>
                 <Icon name="camera" size={17} color={color.white} strokeWidth={2} />
-                <Text style={styles.newMeetingText}>New meeting</Text>
+                <Text style={styles.newMeetingText}>{t('dashboard.newMeeting')}</Text>
               </>
             )}
           </Pressable>
-          <Pressable style={styles.joinButton} onPress={() => setJoinModalOpen(true)} accessibilityLabel="Join with ID">
+          <Pressable style={styles.joinButton} onPress={() => setJoinModalOpen(true)} accessibilityLabel={t('dashboard.joinWithId')}>
             <Icon name="plus" size={20} color={color.text} strokeWidth={1.8} />
           </Pressable>
         </View>
 
         <View style={styles.statRow}>
           <View style={[styles.statCell, styles.statCellBorder]}>
-            <Text style={styles.statLabel}>Today</Text>
-            <Text style={styles.statValue}>{todayCount} meetings</Text>
+            <Text style={styles.statLabel}>{t('dashboard.today')}</Text>
+            <Text style={styles.statValue}>{t('dashboard.todayMeetings', { count: todayCount })}</Text>
           </View>
           <View style={[styles.statCell, styles.statCellLeft]}>
-            <Text style={styles.statLabel}>Open actions</Text>
+            <Text style={styles.statLabel}>{t('dashboard.openActions')}</Text>
             <Text style={styles.statValue}>{openActions}</Text>
           </View>
         </View>
 
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Up next</Text>
+          <Text style={styles.sectionTitle}>{t('dashboard.upNext')}</Text>
           <Pressable onPress={() => navigation.navigate('Schedule')}>
-            <Text style={styles.link}>Schedule</Text>
+            <Text style={styles.link}>{t('dashboard.schedule')}</Text>
           </Pressable>
         </View>
 
         {upNext.length === 0 ? (
-          <Text style={styles.emptyText}>Nothing scheduled. Start a meeting above.</Text>
+          <Text style={styles.emptyText}>{t('dashboard.nothingScheduled')}</Text>
         ) : (
           upNext.map((meeting) => (
             <View key={meeting.id} style={styles.upNextRow}>
               <Text style={styles.upNextTime} numberOfLines={1}>
                 {meeting.status === 'LIVE'
-                  ? 'Live'
+                  ? t('dashboard.live')
                   : meeting.scheduledAt
                     ? new Date(meeting.scheduledAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
                     : '—'}
@@ -188,33 +197,33 @@ export function DashboardScreen({ navigation }: Props) {
                   {meeting.title}
                 </Text>
                 <Text style={styles.upNextHost} numberOfLines={1}>
-                  {meeting.createdBy?.name ?? 'Unknown host'}
+                  {meeting.createdBy?.name ?? t('common.unknownHost')}
                 </Text>
               </View>
               <Pressable
                 style={styles.joinRowButton}
                 onPress={() => navigation.navigate('MeetingRoom', { meetingId: meeting.id })}
               >
-                <Text style={styles.joinRowButtonText}>{meeting.status === 'LIVE' ? 'Join' : 'View'}</Text>
+                <Text style={styles.joinRowButtonText}>{meeting.status === 'LIVE' ? t('dashboard.join') : t('dashboard.view')}</Text>
               </Pressable>
             </View>
           ))
         )}
 
         <View style={styles.weekCard}>
-          <Text style={styles.weekLabel}>This week</Text>
-          <Text style={styles.weekValue}>{meetingsThisWeek} meeting{meetingsThisWeek === 1 ? '' : 's'}</Text>
-          <Text style={styles.weekSub}>completed and available in your library.</Text>
+          <Text style={styles.weekLabel}>{t('dashboard.thisWeek')}</Text>
+          <Text style={styles.weekValue}>{t('dashboard.thisWeekValue', { count: meetingsThisWeek })}</Text>
+          <Text style={styles.weekSub}>{t('dashboard.thisWeekSub')}</Text>
         </View>
       </ScrollView>
 
       <Modal visible={joinModalOpen} transparent animationType="fade" onRequestClose={() => setJoinModalOpen(false)}>
         <View style={styles.modalBackdrop}>
           <View style={styles.modalCard}>
-            <Text style={styles.modalTitle}>Join with meeting ID</Text>
+            <Text style={styles.modalTitle}>{t('dashboard.joinModalTitle')}</Text>
             <TextInput
               style={styles.modalInput}
-              placeholder="Meeting ID"
+              placeholder={t('dashboard.joinModalPlaceholder')}
               placeholderTextColor={textMuted(0.45)}
               value={joinId}
               onChangeText={setJoinId}
@@ -222,10 +231,10 @@ export function DashboardScreen({ navigation }: Props) {
             />
             <View style={styles.modalActions}>
               <Pressable style={styles.modalCancel} onPress={() => setJoinModalOpen(false)}>
-                <Text style={styles.modalCancelText}>Cancel</Text>
+                <Text style={styles.modalCancelText}>{t('common.cancel')}</Text>
               </Pressable>
               <Pressable style={styles.modalJoin} onPress={handleJoinWithId}>
-                <Text style={styles.modalJoinText}>Join</Text>
+                <Text style={styles.modalJoinText}>{t('dashboard.join')}</Text>
               </Pressable>
             </View>
           </View>

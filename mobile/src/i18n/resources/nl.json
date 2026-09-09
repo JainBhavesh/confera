@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "close": "Sluiten",
+    "back": "Terug",
+    "done": "Klaar",
+    "unknownHost": "Onbekende host",
+    "unknown": "Onbekend",
+    "you": "Jij",
+    "goBack": "Ga terug",
+    "resend": "Code opnieuw versturen",
+    "resendIn": "Opnieuw versturen over {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Start",
+    "meetings": "Vergaderingen",
+    "schedule": "Planning",
+    "actions": "Acties",
+    "library": "Bibliotheek"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Vergaderingen die zichzelf noteren.",
+      "title": "Inloggen",
+      "subtitle": "Welkom terug.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "jij@bedrijf.com",
+      "passwordLabel": "Wachtwoord",
+      "forgotPassword": "Wachtwoord vergeten?",
+      "submit": "Inloggen",
+      "or": "of",
+      "continueWithGoogle": "Doorgaan met Google",
+      "noAccount": "Geen account? ",
+      "register": "Registreren",
+      "genericError": "Inloggen mislukt. Probeer het opnieuw."
+    },
+    "register": {
+      "title": "Account aanmaken",
+      "subtitle": "Alleen beschikbaar als jouw organisatie registratie toestaat.",
+      "nameLabel": "Volledige naam",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "jij@bedrijf.com",
+      "passwordLabel": "Wachtwoord",
+      "submit": "Registreren",
+      "haveAccount": "Al een account? ",
+      "signIn": "Inloggen",
+      "genericError": "Registreren mislukt. Probeer het opnieuw."
+    },
+    "verifyEmail": {
+      "title": "Verifieer je e-mail",
+      "subtitle": "Voer de code in die we naar {{email}} hebben gestuurd.",
+      "codeLabel": "Verificatiecode",
+      "codePlaceholder": "123456",
+      "submit": "Verifiëren",
+      "resent": "Er is een nieuwe code verstuurd.",
+      "genericError": "Deze code kon niet worden geverifieerd. Probeer het opnieuw."
+    },
+    "forgotPassword": {
+      "title": "Wachtwoord opnieuw instellen",
+      "requestSubtitle": "Voer het e-mailadres van je account in, dan sturen we een resetcode.",
+      "resetSubtitle": "Voer de code in die we naar {{email}} hebben gestuurd en kies een nieuw wachtwoord.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "jij@bedrijf.com",
+      "codeLabel": "Resetcode",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Nieuw wachtwoord",
+      "requestSubmit": "Resetcode versturen",
+      "resetSubmit": "Wachtwoord opnieuw instellen",
+      "success": "Je wachtwoord is opnieuw ingesteld. Log in met je nieuwe wachtwoord.",
+      "backToLogin": "Terug naar inloggen",
+      "genericError": "Dit verzoek kon niet worden verwerkt. Probeer het opnieuw."
+    }
+  },
+  "profile": {
+    "nameLabel": "Naam",
+    "emailLabel": "E-mail",
+    "changePassword": "Wachtwoord wijzigen",
+    "language": "Taal",
+    "logOut": "Uitloggen",
+    "changePasswordTitle": "Wachtwoord wijzigen",
+    "currentPasswordLabel": "Huidig wachtwoord",
+    "newPasswordLabel": "Nieuw wachtwoord",
+    "passwordUpdated": "Je wachtwoord is bijgewerkt.",
+    "passwordTooShort": "Het nieuwe wachtwoord moet minstens 8 tekens bevatten.",
+    "genericError": "Wachtwoord kon niet worden gewijzigd.",
+    "languageTitle": "Taal"
+  },
+  "dashboard": {
+    "search": "Zoeken",
+    "profile": "Profiel",
+    "greetingMorning": "Goedemorgen{{name}}",
+    "greetingAfternoon": "Goedemiddag{{name}}",
+    "greetingEvening": "Goedenavond{{name}}",
+    "newMeeting": "Nieuwe vergadering",
+    "joinWithId": "Deelnemen met ID",
+    "today": "Vandaag",
+    "todayMeetings_one": "{{count}} vergadering",
+    "todayMeetings_other": "{{count}} vergaderingen",
+    "openActions": "Openstaande acties",
+    "upNext": "Binnenkort",
+    "schedule": "Planning",
+    "nothingScheduled": "Niets gepland. Start hierboven een vergadering.",
+    "live": "Live",
+    "join": "Deelnemen",
+    "view": "Bekijken",
+    "thisWeek": "Deze week",
+    "thisWeekValue_one": "{{count}} vergadering",
+    "thisWeekValue_other": "{{count}} vergaderingen",
+    "thisWeekSub": "afgerond en beschikbaar in je bibliotheek.",
+    "joinModalTitle": "Deelnemen met vergader-ID",
+    "joinModalPlaceholder": "Vergader-ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Vergaderingen",
+      "filterAll": "Alle",
+      "filterLive": "Live",
+      "filterUpcoming": "Aankomend",
+      "filterEnded": "Beëindigd",
+      "loadError": "Vergaderingen konden niet worden geladen.",
+      "empty": "Geen vergaderingen in dit filter."
+    },
+    "item": {
+      "liveNow": "Nu live",
+      "today": "Vandaag",
+      "joinNow": "Nu deelnemen"
+    },
+    "detail": {
+      "back": "Terug",
+      "share": "Notities delen",
+      "more": "Meer",
+      "tabSummary": "Samenvatting",
+      "tabActions": "Acties · {{count}}",
+      "tabTranscript": "Transcript",
+      "audioRecording": "Audio-opname",
+      "recordingAvailable": "Beschikbaar",
+      "recordingTranscribed": "{{duration}} · getranscribeerd",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Samenvatting",
+      "summaryPending": "Notities worden nog gegenereerd.",
+      "summaryEmpty": "Nog geen samenvatting beschikbaar voor deze vergadering.",
+      "actionsEmpty": "Geen acties voor deze vergadering.",
+      "transcriptEmpty": "Nog geen transcript beschikbaar voor deze vergadering.",
+      "shareNotes": "Notities delen",
+      "shareFallbackTitle": "Vergadering",
+      "shareFallbackSummary": "Nog geen samenvatting gegenereerd."
+    },
+    "room": {
+      "title": "Vergadering",
+      "connecting": "Verbinden met vergadering…",
+      "notConfigured": "De vergaderserver is niet geconfigureerd.",
+      "joinError": "Kon niet deelnemen aan de vergadering.",
+      "goBack": "Ga terug",
+      "mute": "Dempen",
+      "unmute": "Dempen opheffen",
+      "camera": "Camera",
+      "people": "Deelnemers",
+      "peopleCount": "Deelnemers ({{count}})",
+      "chat": "Chat",
+      "end": "Verlaten",
+      "guest": "Gast"
+    }
+  },
+  "schedule": {
+    "title": "Planning",
+    "titleLabel": "Titel",
+    "titlePlaceholder": "Wekelijkse productsync",
+    "dateLabel": "Datum",
+    "datePlaceholder": "JJJJ-MM-DD",
+    "timeLabel": "Tijd",
+    "timePlaceholder": "UU:MM",
+    "repeats": "Herhaling",
+    "recurrenceOnce": "Eenmalig",
+    "recurrenceDaily": "Dagelijks",
+    "recurrenceWeekly": "Wekelijks",
+    "recurrenceMonthly": "Maandelijks",
+    "submit": "Vergadering plannen",
+    "upcoming": "Aankomend",
+    "upcomingEmpty": "Nog niets gepland.",
+    "titleRequired": "Geef de vergadering een titel.",
+    "invalidDateTime": "Voer een geldige datum (JJJJ-MM-DD) en tijd (UU:MM) in.",
+    "genericError": "Deze vergadering kon niet worden gepland."
+  },
+  "actions": {
+    "title": "Actiepunten",
+    "subtitle": "{{open}} open · {{done}} afgerond deze maand",
+    "scopeAssigned": "Aan mij toegewezen",
+    "scopeCreated": "Door mij aangemaakt",
+    "scopeAll": "Alle",
+    "empty": "Geen actiepunten hier.",
+    "overdue": "Te laat"
+  },
+  "library": {
+    "title": "Bibliotheek",
+    "subtitle": "Opnames en notities van beëindigde vergaderingen.",
+    "empty": "Nog geen beëindigde vergaderingen.",
+    "recording": " · opname"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Livestreams",
+      "loadError": "Livestreams konden niet worden geladen.",
+      "empty": "Nog geen livestreams."
+    },
+    "viewer": {
+      "notConfigured": "De livestreamserver is niet geconfigureerd.",
+      "notLive": "Deze livestream is momenteel niet live.",
+      "goBack": "Ga terug",
+      "connecting": "Verbinden…",
+      "waitingForHost": "Wachten tot de host live gaat…",
+      "viewerCountOne": "1 kijker",
+      "viewerCountOther": "{{count}} kijkers",
+      "chat": "Chat",
+      "leave": "Verlaten"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Vergaderchat",
+    "livestreamTitle": "Livestreamchat",
+    "close": "Sluiten",
+    "empty": "Nog geen berichten.",
+    "placeholder": "Bericht aan iedereen",
+    "send": "Versturen"
+  }
+}

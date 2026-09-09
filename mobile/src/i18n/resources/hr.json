@@ -1,0 +1,231 @@
+{
+  "common": {
+    "cancel": "Otkaži",
+    "save": "Spremi",
+    "close": "Zatvori",
+    "back": "Natrag",
+    "done": "Gotovo",
+    "unknownHost": "Nepoznati domaćin",
+    "unknown": "Nepoznato",
+    "you": "Ti",
+    "goBack": "Vrati se",
+    "resend": "Ponovno pošalji kod",
+    "resendIn": "Ponovno pošalji za {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Početna",
+    "meetings": "Sastanci",
+    "schedule": "Raspored",
+    "actions": "Zadaci",
+    "library": "Knjižnica"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Sastanci koji se sami dokumentiraju.",
+      "title": "Prijava",
+      "subtitle": "Dobro došao natrag.",
+      "emailLabel": "E-pošta",
+      "emailPlaceholder": "ti@tvrtka.com",
+      "passwordLabel": "Lozinka",
+      "forgotPassword": "Zaboravio si lozinku?",
+      "submit": "Prijavi se",
+      "or": "ili",
+      "continueWithGoogle": "Nastavi s Googleom",
+      "noAccount": "Nemaš račun? ",
+      "register": "Registriraj se",
+      "genericError": "Prijava nije uspjela. Pokušaj ponovno."
+    },
+    "register": {
+      "title": "Stvori račun",
+      "subtitle": "Dostupno samo ako tvoja organizacija dopušta registraciju.",
+      "nameLabel": "Puno ime",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-pošta",
+      "emailPlaceholder": "ti@tvrtka.com",
+      "passwordLabel": "Lozinka",
+      "submit": "Registriraj se",
+      "haveAccount": "Već imaš račun? ",
+      "signIn": "Prijavi se",
+      "genericError": "Registracija nije uspjela. Pokušaj ponovno."
+    },
+    "verifyEmail": {
+      "title": "Potvrdi svoju e-poštu",
+      "subtitle": "Unesi kod koji smo poslali na {{email}}.",
+      "codeLabel": "Kod za potvrdu",
+      "codePlaceholder": "123456",
+      "submit": "Potvrdi",
+      "resent": "Poslan je novi kod.",
+      "genericError": "Ovaj kod nije bilo moguće potvrditi. Pokušaj ponovno."
+    },
+    "forgotPassword": {
+      "title": "Resetiraj lozinku",
+      "requestSubtitle": "Unesi e-poštu svog računa i poslat ćemo ti kod za resetiranje.",
+      "resetSubtitle": "Unesi kod koji smo poslali na {{email}} i odaberi novu lozinku.",
+      "emailLabel": "E-pošta",
+      "emailPlaceholder": "ti@tvrtka.com",
+      "codeLabel": "Kod za resetiranje",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Nova lozinka",
+      "requestSubmit": "Pošalji kod",
+      "resetSubmit": "Resetiraj lozinku",
+      "success": "Tvoja lozinka je resetirana. Prijavi se novom lozinkom.",
+      "backToLogin": "Natrag na prijavu",
+      "genericError": "Ovaj zahtjev nije bilo moguće obraditi. Pokušaj ponovno."
+    }
+  },
+  "profile": {
+    "nameLabel": "Ime",
+    "emailLabel": "E-pošta",
+    "changePassword": "Promijeni lozinku",
+    "language": "Jezik",
+    "logOut": "Odjava",
+    "changePasswordTitle": "Promijeni lozinku",
+    "currentPasswordLabel": "Trenutna lozinka",
+    "newPasswordLabel": "Nova lozinka",
+    "passwordUpdated": "Tvoja lozinka je ažurirana.",
+    "passwordTooShort": "Nova lozinka mora imati najmanje 8 znakova.",
+    "genericError": "Lozinku nije bilo moguće promijeniti.",
+    "languageTitle": "Jezik"
+  },
+  "dashboard": {
+    "search": "Pretraži",
+    "profile": "Profil",
+    "greetingMorning": "Dobro jutro{{name}}",
+    "greetingAfternoon": "Dobar dan{{name}}",
+    "greetingEvening": "Dobra večer{{name}}",
+    "newMeeting": "Novi sastanak",
+    "joinWithId": "Pridruži se s ID-om",
+    "today": "Danas",
+    "todayMeetings_one": "{{count}} sastanak",
+    "todayMeetings_few": "{{count}} sastanka",
+    "todayMeetings_other": "{{count}} sastanaka",
+    "openActions": "Otvoreni zadaci",
+    "upNext": "Sljedeće",
+    "schedule": "Raspored",
+    "nothingScheduled": "Ništa nije zakazano. Pokreni sastanak iznad.",
+    "live": "Uživo",
+    "join": "Pridruži se",
+    "view": "Pogledaj",
+    "thisWeek": "Ovaj tjedan",
+    "thisWeekValue_one": "{{count}} sastanak",
+    "thisWeekValue_few": "{{count}} sastanka",
+    "thisWeekValue_other": "{{count}} sastanaka",
+    "thisWeekSub": "završeno i dostupno u tvojoj knjižnici.",
+    "joinModalTitle": "Pridruži se s ID-om sastanka",
+    "joinModalPlaceholder": "ID sastanka"
+  },
+  "meetings": {
+    "list": {
+      "title": "Sastanci",
+      "filterAll": "Svi",
+      "filterLive": "Uživo",
+      "filterUpcoming": "Nadolazeći",
+      "filterEnded": "Završeni",
+      "loadError": "Sastanke nije bilo moguće učitati.",
+      "empty": "Nema sastanaka u ovom filtru."
+    },
+    "item": {
+      "liveNow": "Sada uživo",
+      "today": "Danas",
+      "joinNow": "Pridruži se sada"
+    },
+    "detail": {
+      "back": "Natrag",
+      "share": "Podijeli bilješke",
+      "more": "Više",
+      "tabSummary": "Sažetak",
+      "tabActions": "Zadaci · {{count}}",
+      "tabTranscript": "Prijepis",
+      "audioRecording": "Audio snimka",
+      "recordingAvailable": "Dostupno",
+      "recordingTranscribed": "{{duration}} · prepisano",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Sažetak",
+      "summaryPending": "Bilješke se još generiraju.",
+      "summaryEmpty": "Za ovaj sastanak sažetak još nije dostupan.",
+      "actionsEmpty": "Nema zadataka za ovaj sastanak.",
+      "transcriptEmpty": "Za ovaj sastanak prijepis još nije dostupan.",
+      "shareNotes": "Podijeli bilješke",
+      "shareFallbackTitle": "Sastanak",
+      "shareFallbackSummary": "Sažetak još nije generiran."
+    },
+    "room": {
+      "title": "Sastanak",
+      "connecting": "Povezivanje sa sastankom…",
+      "notConfigured": "Poslužitelj sastanaka nije konfiguriran.",
+      "joinError": "Pridruživanje sastanku nije uspjelo.",
+      "goBack": "Vrati se",
+      "mute": "Isključi mikrofon",
+      "unmute": "Uključi mikrofon",
+      "camera": "Kamera",
+      "people": "Sudionici",
+      "peopleCount": "Sudionici ({{count}})",
+      "chat": "Chat",
+      "end": "Napusti",
+      "guest": "Gost"
+    }
+  },
+  "schedule": {
+    "title": "Raspored",
+    "titleLabel": "Naslov",
+    "titlePlaceholder": "Tjedna sinkronizacija proizvoda",
+    "dateLabel": "Datum",
+    "datePlaceholder": "GGGG-MM-DD",
+    "timeLabel": "Vrijeme",
+    "timePlaceholder": "SS:MM",
+    "repeats": "Ponavljanje",
+    "recurrenceOnce": "Jednom",
+    "recurrenceDaily": "Dnevno",
+    "recurrenceWeekly": "Tjedno",
+    "recurrenceMonthly": "Mjesečno",
+    "submit": "Zakaži sastanak",
+    "upcoming": "Nadolazeći",
+    "upcomingEmpty": "Još ništa nije zakazano.",
+    "titleRequired": "Daj sastanku naslov.",
+    "invalidDateTime": "Unesi valjan datum (GGGG-MM-DD) i vrijeme (SS:MM).",
+    "genericError": "Ovaj sastanak nije bilo moguće zakazati."
+  },
+  "actions": {
+    "title": "Zadaci",
+    "subtitle": "{{open}} otvorenih · {{done}} završenih ovaj mjesec",
+    "scopeAssigned": "Dodijeljeno meni",
+    "scopeCreated": "Koje sam stvorio",
+    "scopeAll": "Svi",
+    "empty": "Ovdje nema zadataka.",
+    "overdue": "Zakašnjelo"
+  },
+  "library": {
+    "title": "Knjižnica",
+    "subtitle": "Snimke i bilješke sa završenih sastanaka.",
+    "empty": "Još nema završenih sastanaka.",
+    "recording": " · snimka"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Prijenosi uživo",
+      "loadError": "Prijenose nije bilo moguće učitati.",
+      "empty": "Još nema prijenosa uživo."
+    },
+    "viewer": {
+      "notConfigured": "Poslužitelj prijenosa nije konfiguriran.",
+      "notLive": "Ovaj prijenos trenutno nije uživo.",
+      "goBack": "Vrati se",
+      "connecting": "Povezivanje…",
+      "waitingForHost": "Čeka se da domaćin pokrene prijenos…",
+      "viewerCountOne": "1 gledatelj",
+      "viewerCountFew": "{{count}} gledatelja",
+      "viewerCountOther": "{{count}} gledatelja",
+      "chat": "Chat",
+      "leave": "Napusti"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Chat sastanka",
+    "livestreamTitle": "Chat prijenosa",
+    "close": "Zatvori",
+    "empty": "Još nema poruka.",
+    "placeholder": "Napiši svima",
+    "send": "Pošalji"
+  }
+}

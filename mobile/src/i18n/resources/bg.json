@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Отказ",
+    "save": "Запази",
+    "close": "Затвори",
+    "back": "Назад",
+    "done": "Готово",
+    "unknownHost": "Неизвестен домакин",
+    "unknown": "Неизвестно",
+    "you": "Ти",
+    "goBack": "Върни се",
+    "resend": "Изпрати кода отново",
+    "resendIn": "Изпрати отново след {{seconds}}с"
+  },
+  "tabs": {
+    "home": "Начало",
+    "meetings": "Срещи",
+    "schedule": "График",
+    "actions": "Задачи",
+    "library": "Библиотека"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Срещи, които сами се документират.",
+      "title": "Вход",
+      "subtitle": "Добре дошъл отново.",
+      "emailLabel": "Имейл",
+      "emailPlaceholder": "ти@компания.com",
+      "passwordLabel": "Парола",
+      "forgotPassword": "Забравена парола?",
+      "submit": "Вход",
+      "or": "или",
+      "continueWithGoogle": "Продължи с Google",
+      "noAccount": "Нямаш акаунт? ",
+      "register": "Регистрирай се",
+      "genericError": "Неуспешен вход. Опитай отново."
+    },
+    "register": {
+      "title": "Създай акаунт",
+      "subtitle": "Достъпно само когато организацията ти разрешава регистрация.",
+      "nameLabel": "Пълно име",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Имейл",
+      "emailPlaceholder": "ти@компания.com",
+      "passwordLabel": "Парола",
+      "submit": "Регистрирай се",
+      "haveAccount": "Вече имаш акаунт? ",
+      "signIn": "Вход",
+      "genericError": "Неуспешна регистрация. Опитай отново."
+    },
+    "verifyEmail": {
+      "title": "Потвърди имейла си",
+      "subtitle": "Въведи кода, който изпратихме на {{email}}.",
+      "codeLabel": "Код за потвърждение",
+      "codePlaceholder": "123456",
+      "submit": "Потвърди",
+      "resent": "Изпратен е нов код.",
+      "genericError": "Този код не можа да бъде потвърден. Опитай отново."
+    },
+    "forgotPassword": {
+      "title": "Нулиране на парола",
+      "requestSubtitle": "Въведи имейла на акаунта си и ще ти изпратим код за нулиране.",
+      "resetSubtitle": "Въведи кода, който изпратихме на {{email}}, и избери нова парола.",
+      "emailLabel": "Имейл",
+      "emailPlaceholder": "ти@компания.com",
+      "codeLabel": "Код за нулиране",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Нова парола",
+      "requestSubmit": "Изпрати код",
+      "resetSubmit": "Нулирай паролата",
+      "success": "Паролата ти беше нулирана. Влез с новата си парола.",
+      "backToLogin": "Обратно към входа",
+      "genericError": "Заявката не можа да бъде обработена. Опитай отново."
+    }
+  },
+  "profile": {
+    "nameLabel": "Име",
+    "emailLabel": "Имейл",
+    "changePassword": "Смени паролата",
+    "language": "Език",
+    "logOut": "Изход",
+    "changePasswordTitle": "Смени паролата",
+    "currentPasswordLabel": "Текуща парола",
+    "newPasswordLabel": "Нова парола",
+    "passwordUpdated": "Паролата ти беше обновена.",
+    "passwordTooShort": "Новата парола трябва да е поне 8 символа.",
+    "genericError": "Паролата не можа да бъде сменена.",
+    "languageTitle": "Език"
+  },
+  "dashboard": {
+    "search": "Търсене",
+    "profile": "Профил",
+    "greetingMorning": "Добро утро{{name}}",
+    "greetingAfternoon": "Добър ден{{name}}",
+    "greetingEvening": "Добър вечер{{name}}",
+    "newMeeting": "Нова среща",
+    "joinWithId": "Присъедини се с ID",
+    "today": "Днес",
+    "todayMeetings_one": "{{count}} среща",
+    "todayMeetings_other": "{{count}} срещи",
+    "openActions": "Отворени задачи",
+    "upNext": "Предстоящи",
+    "schedule": "График",
+    "nothingScheduled": "Нищо не е планирано. Започни среща по-горе.",
+    "live": "На живо",
+    "join": "Присъедини се",
+    "view": "Виж",
+    "thisWeek": "Тази седмица",
+    "thisWeekValue_one": "{{count}} среща",
+    "thisWeekValue_other": "{{count}} срещи",
+    "thisWeekSub": "завършени и достъпни в библиотеката ти.",
+    "joinModalTitle": "Присъедини се с ID на среща",
+    "joinModalPlaceholder": "ID на срещата"
+  },
+  "meetings": {
+    "list": {
+      "title": "Срещи",
+      "filterAll": "Всички",
+      "filterLive": "На живо",
+      "filterUpcoming": "Предстоящи",
+      "filterEnded": "Приключили",
+      "loadError": "Срещите не можаха да бъдат заредени.",
+      "empty": "Няма срещи в този филтър."
+    },
+    "item": {
+      "liveNow": "На живо сега",
+      "today": "Днес",
+      "joinNow": "Присъедини се сега"
+    },
+    "detail": {
+      "back": "Назад",
+      "share": "Сподели бележките",
+      "more": "Още",
+      "tabSummary": "Обобщение",
+      "tabActions": "Задачи · {{count}}",
+      "tabTranscript": "Транскрипция",
+      "audioRecording": "Аудио запис",
+      "recordingAvailable": "Достъпно",
+      "recordingTranscribed": "{{duration}} · транскрибирано",
+      "durationMinutes": "{{count}} мин",
+      "summaryHeading": "Обобщение",
+      "summaryPending": "Бележките все още се генерират.",
+      "summaryEmpty": "За тази среща все още няма обобщение.",
+      "actionsEmpty": "Няма задачи за тази среща.",
+      "transcriptEmpty": "За тази среща все още няма транскрипция.",
+      "shareNotes": "Сподели бележките",
+      "shareFallbackTitle": "Среща",
+      "shareFallbackSummary": "Все още няма генерирано обобщение."
+    },
+    "room": {
+      "title": "Среща",
+      "connecting": "Свързване към срещата…",
+      "notConfigured": "Сървърът за срещи не е конфигуриран.",
+      "joinError": "Присъединяването към срещата не бе успешно.",
+      "goBack": "Върни се",
+      "mute": "Заглуши",
+      "unmute": "Премахни заглушаването",
+      "camera": "Камера",
+      "people": "Участници",
+      "peopleCount": "Участници ({{count}})",
+      "chat": "Чат",
+      "end": "Напусни",
+      "guest": "Гост"
+    }
+  },
+  "schedule": {
+    "title": "График",
+    "titleLabel": "Заглавие",
+    "titlePlaceholder": "Седмична синхронизация на продукта",
+    "dateLabel": "Дата",
+    "datePlaceholder": "ГГГГ-ММ-ДД",
+    "timeLabel": "Час",
+    "timePlaceholder": "ЧЧ:ММ",
+    "repeats": "Повторение",
+    "recurrenceOnce": "Веднъж",
+    "recurrenceDaily": "Ежедневно",
+    "recurrenceWeekly": "Седмично",
+    "recurrenceMonthly": "Месечно",
+    "submit": "Насрочи среща",
+    "upcoming": "Предстоящи",
+    "upcomingEmpty": "Все още нищо не е планирано.",
+    "titleRequired": "Дай заглавие на срещата.",
+    "invalidDateTime": "Въведи валидна дата (ГГГГ-ММ-ДД) и час (ЧЧ:ММ).",
+    "genericError": "Тази среща не можа да бъде насрочена."
+  },
+  "actions": {
+    "title": "Задачи",
+    "subtitle": "{{open}} отворени · {{done}} завършени този месец",
+    "scopeAssigned": "Възложени на мен",
+    "scopeCreated": "Създадени от мен",
+    "scopeAll": "Всички",
+    "empty": "Тук няма задачи.",
+    "overdue": "Просрочено"
+  },
+  "library": {
+    "title": "Библиотека",
+    "subtitle": "Записи и бележки от приключили срещи.",
+    "empty": "Все още няма приключили срещи.",
+    "recording": " · запис"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Излъчвания на живо",
+      "loadError": "Излъчванията не можаха да бъдат заредени.",
+      "empty": "Все още няма излъчвания на живо."
+    },
+    "viewer": {
+      "notConfigured": "Сървърът за излъчване не е конфигуриран.",
+      "notLive": "Това излъчване в момента не е на живо.",
+      "goBack": "Върни се",
+      "connecting": "Свързване…",
+      "waitingForHost": "Изчакване домакинът да започне излъчването…",
+      "viewerCountOne": "1 зрител",
+      "viewerCountOther": "{{count}} зрители",
+      "chat": "Чат",
+      "leave": "Напусни"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Чат на срещата",
+    "livestreamTitle": "Чат на излъчването",
+    "close": "Затвори",
+    "empty": "Все още няма съобщения.",
+    "placeholder": "Пиши на всички",
+    "send": "Изпрати"
+  }
+}

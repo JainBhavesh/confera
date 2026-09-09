@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Dimensions,
+  FlatList,
   Modal,
   Pressable,
   StyleSheet,
@@ -9,12 +10,15 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../../hooks/useAuth";
 import * as authApi from "../../services/api/auth";
 import { ApiError } from "../../services/api/client";
+import { setAppLanguage } from "../../i18n";
+import { locales, LOCALE_LABELS, type Locale } from "../../i18n/locales";
 import { color, control, font, space, textMuted } from "../../theme";
 
-type Mode = "view" | "changePassword";
+type Mode = "view" | "changePassword" | "language";
 
 export interface PopoverAnchor {
   x: number;
@@ -39,12 +43,18 @@ export function ProfileModal({
   anchor: PopoverAnchor | null;
 }) {
   const { user, logout } = useAuth();
+  const { t, i18n } = useTranslation();
   const [mode, setMode] = useState<Mode>("view");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  const handleSelectLanguage = (locale: Locale) => {
+    setAppLanguage(locale, true).catch(() => {});
+    setMode("view");
+  };
 
   useEffect(() => {
     if (!visible) {
@@ -59,7 +69,7 @@ export function ProfileModal({
   const handleChangePassword = async () => {
     setError("");
     if (newPassword.length < 8) {
-      setError("New password must be at least 8 characters.");
+      setError(t("profile.passwordTooShort"));
       return;
     }
     setSubmitting(true);
@@ -70,7 +80,7 @@ export function ProfileModal({
       setNewPassword("");
     } catch (err) {
       setError(
-        err instanceof ApiError ? err.message : "Unable to change password.",
+        err instanceof ApiError ? err.message : t("profile.genericError"),
       );
     } finally {
       setSubmitting(false);
@@ -100,11 +110,11 @@ export function ProfileModal({
           {mode === "view" ? (
             <>
               <View style={styles.field}>
-                <Text style={styles.fieldLabel}>Name</Text>
+                <Text style={styles.fieldLabel}>{t("profile.nameLabel")}</Text>
                 <Text style={styles.fieldValue}>{user?.name ?? "—"}</Text>
               </View>
               <View style={styles.fieldLast}>
-                <Text style={styles.fieldLabel}>Email</Text>
+                <Text style={styles.fieldLabel}>{t("profile.emailLabel")}</Text>
                 <Text
                   style={[styles.fieldValue, styles.field]}
                   numberOfLines={1}
@@ -117,32 +127,62 @@ export function ProfileModal({
                 style={styles.linkRow}
                 onPress={() => setMode("changePassword")}
               >
-                <Text style={styles.linkRowText}>Change password</Text>
+                <Text style={styles.linkRowText}>{t("profile.changePassword")}</Text>
+              </Pressable>
+
+              <Pressable style={styles.linkRow} onPress={() => setMode("language")}>
+                <Text style={styles.linkRowText}>{t("profile.language")}</Text>
               </Pressable>
 
               <Pressable style={styles.logoutButton} onPress={() => logout()}>
-                <Text style={styles.logoutText}>Log out</Text>
+                <Text style={styles.logoutText}>{t("profile.logOut")}</Text>
+              </Pressable>
+            </>
+          ) : mode === "language" ? (
+            <>
+              <Text style={styles.title}>{t("profile.languageTitle")}</Text>
+              <FlatList
+                data={locales}
+                keyExtractor={(item) => item}
+                style={styles.languageList}
+                renderItem={({ item }) => (
+                  <Pressable
+                    style={styles.languageRow}
+                    onPress={() => handleSelectLanguage(item)}
+                  >
+                    <Text style={styles.languageRowText}>{LOCALE_LABELS[item]}</Text>
+                    {i18n.language === item ? (
+                      <Text style={styles.languageCheck}>✓</Text>
+                    ) : null}
+                  </Pressable>
+                )}
+              />
+              <Pressable
+                style={styles.cancelButton}
+                onPress={() => setMode("view")}
+              >
+                <Text style={styles.cancelButtonText}>{t("common.close")}</Text>
               </Pressable>
             </>
           ) : (
             <>
-              <Text style={styles.title}>Change password</Text>
+              <Text style={styles.title}>{t("profile.changePasswordTitle")}</Text>
 
               {success ? (
                 <>
                   <Text style={styles.successText}>
-                    Your password has been updated.
+                    {t("profile.passwordUpdated")}
                   </Text>
                   <Pressable
                     style={styles.primaryButton}
                     onPress={() => setMode("view")}
                   >
-                    <Text style={styles.primaryButtonText}>Done</Text>
+                    <Text style={styles.primaryButtonText}>{t("common.done")}</Text>
                   </Pressable>
                 </>
               ) : (
                 <>
-                  <Text style={styles.fieldLabel}>Current password</Text>
+                  <Text style={styles.fieldLabel}>{t("profile.currentPasswordLabel")}</Text>
                   <TextInput
                     style={styles.input}
                     placeholder="••••••••••"
@@ -153,7 +193,7 @@ export function ProfileModal({
                   />
 
                   <Text style={[styles.fieldLabel, styles.fieldLabelSpaced]}>
-                    New password
+                    {t("profile.newPasswordLabel")}
                   </Text>
                   <TextInput
                     style={styles.input}
@@ -174,7 +214,7 @@ export function ProfileModal({
                     {submitting ? (
                       <ActivityIndicator color={color.white} />
                     ) : (
-                      <Text style={styles.primaryButtonText}>Save</Text>
+                      <Text style={styles.primaryButtonText}>{t("common.save")}</Text>
                     )}
                   </Pressable>
 
@@ -182,7 +222,7 @@ export function ProfileModal({
                     style={styles.cancelButton}
                     onPress={() => setMode("view")}
                   >
-                    <Text style={styles.cancelButtonText}>Cancel</Text>
+                    <Text style={styles.cancelButtonText}>{t("common.cancel")}</Text>
                   </Pressable>
                 </>
               )}
@@ -209,6 +249,17 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
   },
   title: { fontFamily: font.headingBold, fontSize: 17, color: color.text },
+  languageList: { maxHeight: 280, marginTop: space[2] },
+  languageRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    height: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: color.divider,
+  },
+  languageRowText: { fontFamily: font.body, fontSize: 14, color: color.text },
+  languageCheck: { fontFamily: font.bodySemiBold, fontSize: 14, color: color.accent700 },
   field: {
     paddingVertical: 10,
     borderBottomWidth: 1,

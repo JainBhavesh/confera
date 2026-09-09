@@ -1,0 +1,230 @@
+{
+  "common": {
+    "cancel": "Zrušiť",
+    "save": "Uložiť",
+    "close": "Zavrieť",
+    "back": "Späť",
+    "done": "Hotovo",
+    "unknownHost": "Neznámy organizátor",
+    "unknown": "Neznáme",
+    "you": "Ty",
+    "goBack": "Späť",
+    "resend": "Odoslať kód znova",
+    "resendIn": "Odoslať znova o {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Domov",
+    "meetings": "Stretnutia",
+    "schedule": "Plán",
+    "actions": "Úlohy",
+    "library": "Knižnica"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Stretnutia, ktoré sa sami zdokumentujú.",
+      "title": "Prihlásiť sa",
+      "subtitle": "Vitaj späť.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "passwordLabel": "Heslo",
+      "forgotPassword": "Zabudol si heslo?",
+      "submit": "Prihlásiť sa",
+      "or": "alebo",
+      "continueWithGoogle": "Pokračovať s Google",
+      "noAccount": "Nemáš účet? ",
+      "register": "Zaregistrovať sa",
+      "genericError": "Prihlásenie sa nepodarilo. Skús to znova."
+    },
+    "register": {
+      "title": "Vytvoriť účet",
+      "subtitle": "Dostupné len ak tvoja organizácia povoľuje registráciu.",
+      "nameLabel": "Celé meno",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "passwordLabel": "Heslo",
+      "submit": "Zaregistrovať sa",
+      "haveAccount": "Už máš účet? ",
+      "signIn": "Prihlásiť sa",
+      "genericError": "Registrácia sa nepodarila. Skús to znova."
+    },
+    "verifyEmail": {
+      "title": "Over svoj e-mail",
+      "subtitle": "Zadaj kód, ktorý sme poslali na {{email}}.",
+      "codeLabel": "Overovací kód",
+      "codePlaceholder": "123456",
+      "submit": "Overiť",
+      "resent": "Bol odoslaný nový kód.",
+      "genericError": "Tento kód sa nepodarilo overiť. Skús to znova."
+    },
+    "forgotPassword": {
+      "title": "Obnoviť heslo",
+      "requestSubtitle": "Zadaj e-mail svojho účtu a pošleme ti kód na obnovenie.",
+      "resetSubtitle": "Zadaj kód, ktorý sme poslali na {{email}}, a zvoľ nové heslo.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "codeLabel": "Kód na obnovenie",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Nové heslo",
+      "requestSubmit": "Odoslať kód",
+      "resetSubmit": "Obnoviť heslo",
+      "success": "Tvoje heslo bolo obnovené. Prihlás sa novým heslom.",
+      "backToLogin": "Späť na prihlásenie",
+      "genericError": "Túto požiadavku sa nepodarilo spracovať. Skús to znova."
+    }
+  },
+  "profile": {
+    "nameLabel": "Meno",
+    "emailLabel": "E-mail",
+    "changePassword": "Zmeniť heslo",
+    "language": "Jazyk",
+    "logOut": "Odhlásiť sa",
+    "changePasswordTitle": "Zmeniť heslo",
+    "currentPasswordLabel": "Súčasné heslo",
+    "newPasswordLabel": "Nové heslo",
+    "passwordUpdated": "Tvoje heslo bolo aktualizované.",
+    "passwordTooShort": "Nové heslo musí mať aspoň 8 znakov.",
+    "genericError": "Heslo sa nepodarilo zmeniť.",
+    "languageTitle": "Jazyk"
+  },
+  "dashboard": {
+    "search": "Hľadať",
+    "profile": "Profil",
+    "greetingMorning": "Dobré ráno{{name}}",
+    "greetingAfternoon": "Dobré popoludnie{{name}}",
+    "greetingEvening": "Dobrý večer{{name}}",
+    "newMeeting": "Nové stretnutie",
+    "joinWithId": "Pripojiť sa pomocou ID",
+    "today": "Dnes",
+    "todayMeetings_one": "{{count}} stretnutie",
+    "todayMeetings_few": "{{count}} stretnutia",
+    "todayMeetings_other": "{{count}} stretnutí",
+    "openActions": "Otvorené úlohy",
+    "upNext": "Nasleduje",
+    "schedule": "Plán",
+    "nothingScheduled": "Nič nie je naplánované. Začni stretnutie vyššie.",
+    "live": "Naživo",
+    "join": "Pripojiť sa",
+    "view": "Zobraziť",
+    "thisWeek": "Tento týždeň",
+    "thisWeekValue_one": "{{count}} stretnutie",
+    "thisWeekValue_few": "{{count}} stretnutia",
+    "thisWeekValue_other": "{{count}} stretnutí",
+    "thisWeekSub": "dokončené a dostupné vo tvojej knižnici.",
+    "joinModalTitle": "Pripojiť sa pomocou ID stretnutia",
+    "joinModalPlaceholder": "ID stretnutia"
+  },
+  "meetings": {
+    "list": {
+      "title": "Stretnutia",
+      "filterAll": "Všetky",
+      "filterLive": "Naživo",
+      "filterUpcoming": "Nadchádzajúce",
+      "filterEnded": "Ukončené",
+      "loadError": "Stretnutia sa nepodarilo načítať.",
+      "empty": "V tomto filtri nie sú žiadne stretnutia."
+    },
+    "item": {
+      "liveNow": "Teraz naživo",
+      "today": "Dnes",
+      "joinNow": "Pripojiť sa teraz"
+    },
+    "detail": {
+      "back": "Späť",
+      "share": "Zdieľať poznámky",
+      "more": "Viac",
+      "tabSummary": "Zhrnutie",
+      "tabActions": "Úlohy · {{count}}",
+      "tabTranscript": "Prepis",
+      "audioRecording": "Zvukový záznam",
+      "recordingAvailable": "K dispozícii",
+      "recordingTranscribed": "{{duration}} · prepísané",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Zhrnutie",
+      "summaryPending": "Poznámky sa ešte generujú.",
+      "summaryEmpty": "Pre toto stretnutie zatiaľ nie je k dispozícii zhrnutie.",
+      "actionsEmpty": "Pre toto stretnutie nie sú žiadne úlohy.",
+      "transcriptEmpty": "Pre toto stretnutie zatiaľ nie je k dispozícii prepis.",
+      "shareNotes": "Zdieľať poznámky",
+      "shareFallbackTitle": "Stretnutie",
+      "shareFallbackSummary": "Zhrnutie zatiaľ nebolo vygenerované."
+    },
+    "room": {
+      "title": "Stretnutie",
+      "connecting": "Pripája sa k stretnutiu…",
+      "notConfigured": "Server stretnutia nie je nakonfigurovaný.",
+      "joinError": "K stretnutiu sa nepodarilo pripojiť.",
+      "goBack": "Späť",
+      "mute": "Stlmiť",
+      "unmute": "Zrušiť stlmenie",
+      "camera": "Kamera",
+      "people": "Účastníci",
+      "peopleCount": "Účastníci ({{count}})",
+      "chat": "Chat",
+      "end": "Opustiť",
+      "guest": "Hosť"
+    }
+  },
+  "schedule": {
+    "title": "Plán",
+    "titleLabel": "Názov",
+    "titlePlaceholder": "Týždenná produktová synchronizácia",
+    "dateLabel": "Dátum",
+    "datePlaceholder": "RRRR-MM-DD",
+    "timeLabel": "Čas",
+    "timePlaceholder": "HH:MM",
+    "repeats": "Opakovanie",
+    "recurrenceOnce": "Raz",
+    "recurrenceDaily": "Denne",
+    "recurrenceWeekly": "Týždenne",
+    "recurrenceMonthly": "Mesačne",
+    "submit": "Naplánovať stretnutie",
+    "upcoming": "Nadchádzajúce",
+    "upcomingEmpty": "Zatiaľ nič nie je naplánované.",
+    "titleRequired": "Zadaj stretnutiu názov.",
+    "invalidDateTime": "Zadaj platný dátum (RRRR-MM-DD) a čas (HH:MM).",
+    "genericError": "Toto stretnutie sa nepodarilo naplánovať."
+  },
+  "actions": {
+    "title": "Úlohy",
+    "subtitle": "{{open}} otvorených · {{done}} dokončených tento mesiac",
+    "scopeAssigned": "Priradené mne",
+    "scopeCreated": "Vytvorené mnou",
+    "scopeAll": "Všetky",
+    "empty": "Tu nie sú žiadne úlohy.",
+    "overdue": "Po termíne"
+  },
+  "library": {
+    "title": "Knižnica",
+    "subtitle": "Nahrávky a poznámky z ukončených stretnutí.",
+    "empty": "Zatiaľ žiadne ukončené stretnutia.",
+    "recording": " · nahrávka"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Živé vysielania",
+      "loadError": "Vysielania sa nepodarilo načítať.",
+      "empty": "Zatiaľ žiadne živé vysielania."
+    },
+    "viewer": {
+      "notConfigured": "Server vysielania nie je nakonfigurovaný.",
+      "notLive": "Toto vysielanie práve teraz nebeží naživo.",
+      "goBack": "Späť",
+      "connecting": "Pripája sa…",
+      "waitingForHost": "Čaká sa, kým organizátor spustí vysielanie…",
+      "viewerCountOne": "1 divák",
+      "viewerCountOther": "{{count}} divákov",
+      "chat": "Chat",
+      "leave": "Opustiť"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Chat stretnutia",
+    "livestreamTitle": "Chat vysielania",
+    "close": "Zavrieť",
+    "empty": "Zatiaľ žiadne správy.",
+    "placeholder": "Napísať všetkým",
+    "send": "Odoslať"
+  }
+}

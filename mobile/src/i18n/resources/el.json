@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Άκυρο",
+    "save": "Αποθήκευση",
+    "close": "Κλείσιμο",
+    "back": "Πίσω",
+    "done": "Τέλος",
+    "unknownHost": "Άγνωστος οικοδεσπότης",
+    "unknown": "Άγνωστο",
+    "you": "Εσύ",
+    "goBack": "Επιστροφή",
+    "resend": "Επαναποστολή κωδικού",
+    "resendIn": "Επαναποστολή σε {{seconds}}δ"
+  },
+  "tabs": {
+    "home": "Αρχική",
+    "meetings": "Συναντήσεις",
+    "schedule": "Πρόγραμμα",
+    "actions": "Ενέργειες",
+    "library": "Βιβλιοθήκη"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Συναντήσεις που τεκμηριώνονται μόνες τους.",
+      "title": "Σύνδεση",
+      "subtitle": "Καλώς όρισες ξανά.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "esy@etaireia.com",
+      "passwordLabel": "Κωδικός πρόσβασης",
+      "forgotPassword": "Ξέχασες τον κωδικό σου;",
+      "submit": "Σύνδεση",
+      "or": "ή",
+      "continueWithGoogle": "Συνέχεια με Google",
+      "noAccount": "Δεν έχεις λογαριασμό; ",
+      "register": "Εγγραφή",
+      "genericError": "Δεν ήταν δυνατή η σύνδεση. Δοκίμασε ξανά."
+    },
+    "register": {
+      "title": "Δημιουργία λογαριασμού",
+      "subtitle": "Διαθέσιμο μόνο όταν ο οργανισμός σου επιτρέπει εγγραφές.",
+      "nameLabel": "Πλήρες όνομα",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "esy@etaireia.com",
+      "passwordLabel": "Κωδικός πρόσβασης",
+      "submit": "Εγγραφή",
+      "haveAccount": "Έχεις ήδη λογαριασμό; ",
+      "signIn": "Σύνδεση",
+      "genericError": "Δεν ήταν δυνατή η ολοκλήρωση της εγγραφής. Δοκίμασε ξανά."
+    },
+    "verifyEmail": {
+      "title": "Επιβεβαίωσε το email σου",
+      "subtitle": "Εισήγαγε τον κωδικό που στείλαμε στο {{email}}.",
+      "codeLabel": "Κωδικός επιβεβαίωσης",
+      "codePlaceholder": "123456",
+      "submit": "Επιβεβαίωση",
+      "resent": "Στάλθηκε νέος κωδικός.",
+      "genericError": "Δεν ήταν δυνατή η επιβεβαίωση αυτού του κωδικού. Δοκίμασε ξανά."
+    },
+    "forgotPassword": {
+      "title": "Επαναφορά κωδικού",
+      "requestSubtitle": "Εισήγαγε το email του λογαριασμού σου και θα σου στείλουμε κωδικό επαναφοράς.",
+      "resetSubtitle": "Εισήγαγε τον κωδικό που στείλαμε στο {{email}} και επίλεξε νέο κωδικό πρόσβασης.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "esy@etaireia.com",
+      "codeLabel": "Κωδικός επαναφοράς",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Νέος κωδικός πρόσβασης",
+      "requestSubmit": "Αποστολή κωδικού",
+      "resetSubmit": "Επαναφορά κωδικού",
+      "success": "Ο κωδικός σου επαναφέρθηκε. Συνδέσου με τον νέο σου κωδικό.",
+      "backToLogin": "Επιστροφή στη σύνδεση",
+      "genericError": "Δεν ήταν δυνατή η επεξεργασία αυτού του αιτήματος. Δοκίμασε ξανά."
+    }
+  },
+  "profile": {
+    "nameLabel": "Όνομα",
+    "emailLabel": "Email",
+    "changePassword": "Αλλαγή κωδικού",
+    "language": "Γλώσσα",
+    "logOut": "Αποσύνδεση",
+    "changePasswordTitle": "Αλλαγή κωδικού",
+    "currentPasswordLabel": "Τρέχων κωδικός",
+    "newPasswordLabel": "Νέος κωδικός",
+    "passwordUpdated": "Ο κωδικός σου ενημερώθηκε.",
+    "passwordTooShort": "Ο νέος κωδικός πρέπει να έχει τουλάχιστον 8 χαρακτήρες.",
+    "genericError": "Δεν ήταν δυνατή η αλλαγή του κωδικού.",
+    "languageTitle": "Γλώσσα"
+  },
+  "dashboard": {
+    "search": "Αναζήτηση",
+    "profile": "Προφίλ",
+    "greetingMorning": "Καλημέρα{{name}}",
+    "greetingAfternoon": "Καλό απόγευμα{{name}}",
+    "greetingEvening": "Καλησπέρα{{name}}",
+    "newMeeting": "Νέα συνάντηση",
+    "joinWithId": "Συμμετοχή με ID",
+    "today": "Σήμερα",
+    "todayMeetings_one": "{{count}} συνάντηση",
+    "todayMeetings_other": "{{count}} συναντήσεις",
+    "openActions": "Ανοιχτές ενέργειες",
+    "upNext": "Επόμενα",
+    "schedule": "Πρόγραμμα",
+    "nothingScheduled": "Τίποτα δεν έχει προγραμματιστεί. Ξεκίνησε μια συνάντηση παραπάνω.",
+    "live": "Ζωντανά",
+    "join": "Συμμετοχή",
+    "view": "Προβολή",
+    "thisWeek": "Αυτή την εβδομάδα",
+    "thisWeekValue_one": "{{count}} συνάντηση",
+    "thisWeekValue_other": "{{count}} συναντήσεις",
+    "thisWeekSub": "ολοκληρώθηκαν και είναι διαθέσιμες στη βιβλιοθήκη σου.",
+    "joinModalTitle": "Συμμετοχή με ID συνάντησης",
+    "joinModalPlaceholder": "ID συνάντησης"
+  },
+  "meetings": {
+    "list": {
+      "title": "Συναντήσεις",
+      "filterAll": "Όλες",
+      "filterLive": "Ζωντανά",
+      "filterUpcoming": "Επερχόμενες",
+      "filterEnded": "Ολοκληρωμένες",
+      "loadError": "Δεν ήταν δυνατή η φόρτωση των συναντήσεων.",
+      "empty": "Δεν υπάρχουν συναντήσεις σε αυτό το φίλτρο."
+    },
+    "item": {
+      "liveNow": "Ζωντανά τώρα",
+      "today": "Σήμερα",
+      "joinNow": "Συμμετοχή τώρα"
+    },
+    "detail": {
+      "back": "Πίσω",
+      "share": "Κοινοποίηση σημειώσεων",
+      "more": "Περισσότερα",
+      "tabSummary": "Σύνοψη",
+      "tabActions": "Ενέργειες · {{count}}",
+      "tabTranscript": "Απομαγνητοφώνηση",
+      "audioRecording": "Ηχογράφηση",
+      "recordingAvailable": "Διαθέσιμη",
+      "recordingTranscribed": "{{duration}} · απομαγνητοφωνημένη",
+      "durationMinutes": "{{count}} λεπτά",
+      "summaryHeading": "Σύνοψη",
+      "summaryPending": "Οι σημειώσεις δημιουργούνται ακόμα.",
+      "summaryEmpty": "Δεν υπάρχει ακόμα σύνοψη για αυτή τη συνάντηση.",
+      "actionsEmpty": "Δεν υπάρχουν ενέργειες για αυτή τη συνάντηση.",
+      "transcriptEmpty": "Δεν υπάρχει ακόμα απομαγνητοφώνηση για αυτή τη συνάντηση.",
+      "shareNotes": "Κοινοποίηση σημειώσεων",
+      "shareFallbackTitle": "Συνάντηση",
+      "shareFallbackSummary": "Δεν έχει δημιουργηθεί ακόμα σύνοψη."
+    },
+    "room": {
+      "title": "Συνάντηση",
+      "connecting": "Σύνδεση στη συνάντηση…",
+      "notConfigured": "Ο διακομιστής συναντήσεων δεν έχει διαμορφωθεί.",
+      "joinError": "Δεν ήταν δυνατή η συμμετοχή στη συνάντηση.",
+      "goBack": "Επιστροφή",
+      "mute": "Σίγαση",
+      "unmute": "Κατάργηση σίγασης",
+      "camera": "Κάμερα",
+      "people": "Συμμετέχοντες",
+      "peopleCount": "Συμμετέχοντες ({{count}})",
+      "chat": "Συνομιλία",
+      "end": "Έξοδος",
+      "guest": "Επισκέπτης"
+    }
+  },
+  "schedule": {
+    "title": "Πρόγραμμα",
+    "titleLabel": "Τίτλος",
+    "titlePlaceholder": "Εβδομαδιαίος συγχρονισμός προϊόντος",
+    "dateLabel": "Ημερομηνία",
+    "datePlaceholder": "ΕΕΕΕ-ΜΜ-ΗΗ",
+    "timeLabel": "Ώρα",
+    "timePlaceholder": "ΩΩ:ΛΛ",
+    "repeats": "Επανάληψη",
+    "recurrenceOnce": "Μία φορά",
+    "recurrenceDaily": "Καθημερινά",
+    "recurrenceWeekly": "Εβδομαδιαία",
+    "recurrenceMonthly": "Μηνιαία",
+    "submit": "Προγραμματισμός συνάντησης",
+    "upcoming": "Επερχόμενες",
+    "upcomingEmpty": "Δεν έχει προγραμματιστεί τίποτα ακόμα.",
+    "titleRequired": "Δώσε τίτλο στη συνάντηση.",
+    "invalidDateTime": "Εισήγαγε έγκυρη ημερομηνία (ΕΕΕΕ-ΜΜ-ΗΗ) και ώρα (ΩΩ:ΛΛ).",
+    "genericError": "Δεν ήταν δυνατός ο προγραμματισμός αυτής της συνάντησης."
+  },
+  "actions": {
+    "title": "Στοιχεία ενεργειών",
+    "subtitle": "{{open}} ανοιχτές · {{done}} ολοκληρωμένες αυτόν τον μήνα",
+    "scopeAssigned": "Ανατεθειμένες σε εμένα",
+    "scopeCreated": "Δημιουργήθηκαν από εμένα",
+    "scopeAll": "Όλες",
+    "empty": "Δεν υπάρχουν στοιχεία ενεργειών εδώ.",
+    "overdue": "Εκπρόθεσμη"
+  },
+  "library": {
+    "title": "Βιβλιοθήκη",
+    "subtitle": "Ηχογραφήσεις και σημειώσεις από ολοκληρωμένες συναντήσεις.",
+    "empty": "Δεν υπάρχουν ακόμα ολοκληρωμένες συναντήσεις.",
+    "recording": " · ηχογράφηση"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Ζωντανές μεταδόσεις",
+      "loadError": "Δεν ήταν δυνατή η φόρτωση των μεταδόσεων.",
+      "empty": "Δεν υπάρχουν ακόμα ζωντανές μεταδόσεις."
+    },
+    "viewer": {
+      "notConfigured": "Ο διακομιστής μετάδοσης δεν έχει διαμορφωθεί.",
+      "notLive": "Αυτή η μετάδοση δεν είναι ζωντανή αυτή τη στιγμή.",
+      "goBack": "Επιστροφή",
+      "connecting": "Σύνδεση…",
+      "waitingForHost": "Αναμονή για έναρξη της μετάδοσης από τον οικοδεσπότη…",
+      "viewerCountOne": "1 θεατής",
+      "viewerCountOther": "{{count}} θεατές",
+      "chat": "Συνομιλία",
+      "leave": "Έξοδος"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Συνομιλία συνάντησης",
+    "livestreamTitle": "Συνομιλία μετάδοσης",
+    "close": "Κλείσιμο",
+    "empty": "Δεν υπάρχουν ακόμα μηνύματα.",
+    "placeholder": "Γράψε σε όλους",
+    "send": "Αποστολή"
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "done": "Listo",
+    "unknownHost": "Anfitrión desconocido",
+    "unknown": "Desconocido",
+    "you": "Tú",
+    "goBack": "Volver",
+    "resend": "Reenviar código",
+    "resendIn": "Reenviar en {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Inicio",
+    "meetings": "Reuniones",
+    "schedule": "Agenda",
+    "actions": "Acciones",
+    "library": "Biblioteca"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Reuniones que se documentan solas.",
+      "title": "Iniciar sesión",
+      "subtitle": "Bienvenido de nuevo.",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@empresa.com",
+      "passwordLabel": "Contraseña",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar sesión",
+      "or": "o",
+      "continueWithGoogle": "Continuar con Google",
+      "noAccount": "¿No tienes cuenta? ",
+      "register": "Regístrate",
+      "genericError": "No se pudo iniciar sesión. Inténtalo de nuevo."
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "subtitle": "Solo disponible cuando tu organización permite el registro.",
+      "nameLabel": "Nombre completo",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@empresa.com",
+      "passwordLabel": "Contraseña",
+      "submit": "Registrarse",
+      "haveAccount": "¿Ya tienes una cuenta? ",
+      "signIn": "Inicia sesión",
+      "genericError": "No se pudo completar el registro. Inténtalo de nuevo."
+    },
+    "verifyEmail": {
+      "title": "Verifica tu correo",
+      "subtitle": "Introduce el código que enviamos a {{email}}.",
+      "codeLabel": "Código de verificación",
+      "codePlaceholder": "123456",
+      "submit": "Verificar",
+      "resent": "Se ha enviado un nuevo código.",
+      "genericError": "No se pudo verificar este código. Inténtalo de nuevo."
+    },
+    "forgotPassword": {
+      "title": "Restablecer contraseña",
+      "requestSubtitle": "Introduce el correo de tu cuenta y te enviaremos un código de restablecimiento.",
+      "resetSubtitle": "Introduce el código que enviamos a {{email}} y elige una nueva contraseña.",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@empresa.com",
+      "codeLabel": "Código de restablecimiento",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Nueva contraseña",
+      "requestSubmit": "Enviar código",
+      "resetSubmit": "Restablecer contraseña",
+      "success": "Tu contraseña se ha restablecido. Inicia sesión con tu nueva contraseña.",
+      "backToLogin": "Volver a iniciar sesión",
+      "genericError": "No se pudo procesar esta solicitud. Inténtalo de nuevo."
+    }
+  },
+  "profile": {
+    "nameLabel": "Nombre",
+    "emailLabel": "Correo electrónico",
+    "changePassword": "Cambiar contraseña",
+    "language": "Idioma",
+    "logOut": "Cerrar sesión",
+    "changePasswordTitle": "Cambiar contraseña",
+    "currentPasswordLabel": "Contraseña actual",
+    "newPasswordLabel": "Nueva contraseña",
+    "passwordUpdated": "Tu contraseña se ha actualizado.",
+    "passwordTooShort": "La nueva contraseña debe tener al menos 8 caracteres.",
+    "genericError": "No se pudo cambiar la contraseña.",
+    "languageTitle": "Idioma"
+  },
+  "dashboard": {
+    "search": "Buscar",
+    "profile": "Perfil",
+    "greetingMorning": "Buenos días{{name}}",
+    "greetingAfternoon": "Buenas tardes{{name}}",
+    "greetingEvening": "Buenas noches{{name}}",
+    "newMeeting": "Nueva reunión",
+    "joinWithId": "Unirse con ID",
+    "today": "Hoy",
+    "todayMeetings_one": "{{count}} reunión",
+    "todayMeetings_other": "{{count}} reuniones",
+    "openActions": "Acciones abiertas",
+    "upNext": "Próximamente",
+    "schedule": "Agenda",
+    "nothingScheduled": "Nada programado. Inicia una reunión arriba.",
+    "live": "En directo",
+    "join": "Unirse",
+    "view": "Ver",
+    "thisWeek": "Esta semana",
+    "thisWeekValue_one": "{{count}} reunión",
+    "thisWeekValue_other": "{{count}} reuniones",
+    "thisWeekSub": "completadas y disponibles en tu biblioteca.",
+    "joinModalTitle": "Unirse con ID de reunión",
+    "joinModalPlaceholder": "ID de la reunión"
+  },
+  "meetings": {
+    "list": {
+      "title": "Reuniones",
+      "filterAll": "Todas",
+      "filterLive": "En directo",
+      "filterUpcoming": "Próximas",
+      "filterEnded": "Finalizadas",
+      "loadError": "No se pudieron cargar las reuniones.",
+      "empty": "No hay reuniones en este filtro."
+    },
+    "item": {
+      "liveNow": "En directo ahora",
+      "today": "Hoy",
+      "joinNow": "Unirse ahora"
+    },
+    "detail": {
+      "back": "Atrás",
+      "share": "Compartir notas",
+      "more": "Más",
+      "tabSummary": "Resumen",
+      "tabActions": "Acciones · {{count}}",
+      "tabTranscript": "Transcripción",
+      "audioRecording": "Grabación de audio",
+      "recordingAvailable": "Disponible",
+      "recordingTranscribed": "{{duration}} · transcrita",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Resumen",
+      "summaryPending": "Las notas todavía se están generando.",
+      "summaryEmpty": "Aún no hay resumen disponible para esta reunión.",
+      "actionsEmpty": "No hay acciones para esta reunión.",
+      "transcriptEmpty": "Aún no hay transcripción disponible para esta reunión.",
+      "shareNotes": "Compartir notas",
+      "shareFallbackTitle": "Reunión",
+      "shareFallbackSummary": "Aún no se ha generado un resumen."
+    },
+    "room": {
+      "title": "Reunión",
+      "connecting": "Conectando a la reunión…",
+      "notConfigured": "El servidor de reuniones no está configurado.",
+      "joinError": "No se pudo unir a la reunión.",
+      "goBack": "Volver",
+      "mute": "Silenciar",
+      "unmute": "Activar audio",
+      "camera": "Cámara",
+      "people": "Personas",
+      "peopleCount": "Personas ({{count}})",
+      "chat": "Chat",
+      "end": "Salir",
+      "guest": "Invitado"
+    }
+  },
+  "schedule": {
+    "title": "Agenda",
+    "titleLabel": "Título",
+    "titlePlaceholder": "Sincronización semanal de producto",
+    "dateLabel": "Fecha",
+    "datePlaceholder": "AAAA-MM-DD",
+    "timeLabel": "Hora",
+    "timePlaceholder": "HH:MM",
+    "repeats": "Repetición",
+    "recurrenceOnce": "Una vez",
+    "recurrenceDaily": "Diaria",
+    "recurrenceWeekly": "Semanal",
+    "recurrenceMonthly": "Mensual",
+    "submit": "Programar reunión",
+    "upcoming": "Próximas",
+    "upcomingEmpty": "Nada programado todavía.",
+    "titleRequired": "Ponle un título a la reunión.",
+    "invalidDateTime": "Introduce una fecha (AAAA-MM-DD) y hora (HH:MM) válidas.",
+    "genericError": "No se pudo programar esta reunión."
+  },
+  "actions": {
+    "title": "Elementos de acción",
+    "subtitle": "{{open}} abiertas · {{done}} completadas este mes",
+    "scopeAssigned": "Asignadas a mí",
+    "scopeCreated": "Creadas por mí",
+    "scopeAll": "Todas",
+    "empty": "No hay elementos de acción aquí.",
+    "overdue": "Vencida"
+  },
+  "library": {
+    "title": "Biblioteca",
+    "subtitle": "Grabaciones y notas de reuniones finalizadas.",
+    "empty": "Aún no hay reuniones finalizadas.",
+    "recording": " · grabación"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Transmisiones en vivo",
+      "loadError": "No se pudieron cargar las transmisiones.",
+      "empty": "Aún no hay transmisiones en vivo."
+    },
+    "viewer": {
+      "notConfigured": "El servidor de transmisión no está configurado.",
+      "notLive": "Esta transmisión no está en directo ahora mismo.",
+      "goBack": "Volver",
+      "connecting": "Conectando…",
+      "waitingForHost": "Esperando a que el anfitrión inicie la transmisión…",
+      "viewerCountOne": "1 espectador",
+      "viewerCountOther": "{{count}} espectadores",
+      "chat": "Chat",
+      "leave": "Salir"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Chat de la reunión",
+    "livestreamTitle": "Chat de la transmisión",
+    "close": "Cerrar",
+    "empty": "Aún no hay mensajes.",
+    "placeholder": "Escribe a todos",
+    "send": "Enviar"
+  }
+}

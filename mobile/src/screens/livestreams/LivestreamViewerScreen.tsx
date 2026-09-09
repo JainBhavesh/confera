@@ -4,8 +4,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LiveKitRoom, useConnectionState, useRemoteParticipants, useTracks } from '@livekit/react-native';
 import { ConnectionState, Track } from 'livekit-client';
+import { useTranslation } from 'react-i18next';
 import type { AppStackParamList } from '../../navigation/types';
-import { joinLivestream } from '../../services/api/livestreams';
+import { joinLivestream, leaveLivestream } from '../../services/api/livestreams';
 import { useAuth } from '../../hooks/useAuth';
 import { ParticipantTile } from '../../components/meeting/ParticipantTile';
 import { ViewerCountBadge } from '../../components/livestream/ViewerCountBadge';
@@ -22,6 +23,7 @@ interface ConnectionInfo {
 
 export function LivestreamViewerScreen({ route, navigation }: Props) {
   const { livestreamId } = route.params;
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [connectionInfo, setConnectionInfo] = useState<ConnectionInfo | null>(null);
   const [error, setError] = useState('');
@@ -33,18 +35,27 @@ export function LivestreamViewerScreen({ route, navigation }: Props) {
       .then(({ token, serverUrl }) => {
         if (!cancelled) {
           if (!serverUrl) {
-            setError('Livestream server is not configured.');
+            setError(t('livestreams.viewer.notConfigured'));
             return;
           }
           setConnectionInfo({ token, serverUrl });
         }
       })
       .catch(() => {
-        if (!cancelled) setError('This livestream is not live right now.');
+        if (!cancelled) setError(t('livestreams.viewer.notLive'));
       });
 
     return () => {
       cancelled = true;
+    };
+  }, [livestreamId, t]);
+
+  // Best-effort: closes the viewer session even if the screen is dismissed
+  // via the hardware/gesture back action rather than the in-room "Leave"
+  // button — mirrors MeetingRoomScreen's equivalent cleanup for leaveMeeting.
+  useEffect(() => {
+    return () => {
+      leaveLivestream(livestreamId).catch(() => {});
     };
   }, [livestreamId]);
 
@@ -57,7 +68,7 @@ export function LivestreamViewerScreen({ route, navigation }: Props) {
       <View style={styles.center}>
         <Text style={styles.error}>{error}</Text>
         <Pressable style={styles.leaveButton} onPress={handleLeave}>
-          <Text style={styles.leaveButtonText}>Go back</Text>
+          <Text style={styles.leaveButtonText}>{t('livestreams.viewer.goBack')}</Text>
         </Pressable>
       </View>
     );
@@ -94,6 +105,7 @@ function LivestreamViewerContent({
   currentUserId: string;
   onLeave: () => void;
 }) {
+  const { t } = useTranslation();
   const connectionState = useConnectionState();
   const remoteParticipants = useRemoteParticipants();
   const cameraTracks = useTracks([{ source: Track.Source.Camera, withPlaceholder: true }]);
@@ -104,7 +116,7 @@ function LivestreamViewerContent({
     return (
       <View style={styles.center}>
         <ActivityIndicator color={color.accent} />
-        <Text style={styles.connecting}>Connecting…</Text>
+        <Text style={styles.connecting}>{t('livestreams.viewer.connecting')}</Text>
       </View>
     );
   }
@@ -116,7 +128,7 @@ function LivestreamViewerContent({
           <ParticipantTile trackRef={hostTrack} />
         ) : (
           <View style={styles.waiting}>
-            <Text style={styles.waitingText}>Waiting for the host to go live…</Text>
+            <Text style={styles.waitingText}>{t('livestreams.viewer.waitingForHost')}</Text>
           </View>
         )}
         <View style={styles.badgeWrapper}>
@@ -126,16 +138,16 @@ function LivestreamViewerContent({
 
       <View style={styles.controls}>
         <View style={styles.controlColumn}>
-          <Pressable style={styles.controlButton} onPress={() => setChatOpen(true)} accessibilityLabel="Chat">
+          <Pressable style={styles.controlButton} onPress={() => setChatOpen(true)} accessibilityLabel={t('livestreams.viewer.chat')}>
             <Icon name="moreHorizontal" size={20} color={color.callText} />
           </Pressable>
-          <Text style={styles.controlLabel}>Chat</Text>
+          <Text style={styles.controlLabel}>{t('livestreams.viewer.chat')}</Text>
         </View>
         <View style={styles.controlColumn}>
-          <Pressable style={[styles.controlButton, styles.controlButtonDanger]} onPress={onLeave} accessibilityLabel="Leave">
+          <Pressable style={[styles.controlButton, styles.controlButtonDanger]} onPress={onLeave} accessibilityLabel={t('livestreams.viewer.leave')}>
             <Icon name="callEnd" size={20} color={color.callText} strokeWidth={1.8} />
           </Pressable>
-          <Text style={styles.controlLabel}>Leave</Text>
+          <Text style={styles.controlLabel}>{t('livestreams.viewer.leave')}</Text>
         </View>
       </View>
 

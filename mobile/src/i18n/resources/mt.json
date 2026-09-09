@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Ikkanċella",
+    "save": "Issejvja",
+    "close": "Agħlaq",
+    "back": "Lura",
+    "done": "Lest",
+    "unknownHost": "Ospitant mhux magħruf",
+    "unknown": "Mhux magħruf",
+    "you": "Int",
+    "goBack": "Mur lura",
+    "resend": "Erġa' ibgħat il-kodiċi",
+    "resendIn": "Erġa' ibgħat wara {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Home",
+    "meetings": "Laqgħat",
+    "schedule": "Skeda",
+    "actions": "Azzjonijiet",
+    "library": "Librerija"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Laqgħat li jiddokumentaw lilhom infushom.",
+      "title": "Idħol",
+      "subtitle": "Merħba lura.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "int@kumpanija.com",
+      "passwordLabel": "Password",
+      "forgotPassword": "Insejt il-password?",
+      "submit": "Idħol",
+      "or": "jew",
+      "continueWithGoogle": "Kompli bil-Google",
+      "noAccount": "M'għandekx kont? ",
+      "register": "Irreġistra",
+      "genericError": "Ma stajniex nidħlu. Erġa' pprova."
+    },
+    "register": {
+      "title": "Oħloq kont",
+      "subtitle": "Disponibbli biss meta l-organizzazzjoni tiegħek tippermetti reġistrazzjoni.",
+      "nameLabel": "Isem sħiħ",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "int@kumpanija.com",
+      "passwordLabel": "Password",
+      "submit": "Irreġistra",
+      "haveAccount": "Diġà għandek kont? ",
+      "signIn": "Idħol",
+      "genericError": "Ma stajniex nirreġistraw. Erġa' pprova."
+    },
+    "verifyEmail": {
+      "title": "Ivverifika l-email tiegħek",
+      "subtitle": "Daħħal il-kodiċi li bgħatnielek fuq {{email}}.",
+      "codeLabel": "Kodiċi ta' verifika",
+      "codePlaceholder": "123456",
+      "submit": "Ivverifika",
+      "resent": "Intbagħat kodiċi ġdid.",
+      "genericError": "Ma stajniex nivverifikaw dan il-kodiċi. Erġa' pprova."
+    },
+    "forgotPassword": {
+      "title": "Irrisettja l-password",
+      "requestSubtitle": "Daħħal l-email tal-kont tiegħek u nibagħtulek kodiċi biex tirrisettja.",
+      "resetSubtitle": "Daħħal il-kodiċi li bgħatnielek fuq {{email}} u agħżel password ġdida.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "int@kumpanija.com",
+      "codeLabel": "Kodiċi ta' rrisettjar",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Password ġdida",
+      "requestSubmit": "Ibgħat kodiċi",
+      "resetSubmit": "Irrisettja l-password",
+      "success": "Il-password tiegħek ġiet irrisettjata. Idħol bil-password il-ġdida tiegħek.",
+      "backToLogin": "Lura għad-dħul",
+      "genericError": "Ma stajniex nipproċessaw din it-talba. Erġa' pprova."
+    }
+  },
+  "profile": {
+    "nameLabel": "Isem",
+    "emailLabel": "Email",
+    "changePassword": "Ibdel il-password",
+    "language": "Lingwa",
+    "logOut": "Oħroġ",
+    "changePasswordTitle": "Ibdel il-password",
+    "currentPasswordLabel": "Password attwali",
+    "newPasswordLabel": "Password ġdida",
+    "passwordUpdated": "Il-password tiegħek ġiet aġġornata.",
+    "passwordTooShort": "Il-password il-ġdida trid tkun mill-inqas 8 karattri.",
+    "genericError": "Ma stajniex nibdlu l-password.",
+    "languageTitle": "Lingwa"
+  },
+  "dashboard": {
+    "search": "Fittex",
+    "profile": "Profil",
+    "greetingMorning": "L-għodwa t-tajba{{name}}",
+    "greetingAfternoon": "Il-jum it-tajjeb{{name}}",
+    "greetingEvening": "Il-lejl it-tajjeb{{name}}",
+    "newMeeting": "Laqgħa ġdida",
+    "joinWithId": "Ingħaqad bl-ID",
+    "today": "Illum",
+    "todayMeetings_one": "{{count}} laqgħa",
+    "todayMeetings_other": "{{count}} laqgħat",
+    "openActions": "Azzjonijiet miftuħa",
+    "upNext": "Li jmiss",
+    "schedule": "Skeda",
+    "nothingScheduled": "Xejn skedat. Ibda laqgħa hawn fuq.",
+    "live": "Live",
+    "join": "Ingħaqad",
+    "view": "Ara",
+    "thisWeek": "Din il-ġimgħa",
+    "thisWeekValue_one": "{{count}} laqgħa",
+    "thisWeekValue_other": "{{count}} laqgħat",
+    "thisWeekSub": "lesti u disponibbli fil-librerija tiegħek.",
+    "joinModalTitle": "Ingħaqad bl-ID tal-laqgħa",
+    "joinModalPlaceholder": "ID tal-laqgħa"
+  },
+  "meetings": {
+    "list": {
+      "title": "Laqgħat",
+      "filterAll": "Kollha",
+      "filterLive": "Live",
+      "filterUpcoming": "Li ġejjin",
+      "filterEnded": "Spiċċaw",
+      "loadError": "Ma stajniex intellgħu l-laqgħat.",
+      "empty": "M'hemm ebda laqgħa f'dan il-filtru."
+    },
+    "item": {
+      "liveNow": "Live issa",
+      "today": "Illum",
+      "joinNow": "Ingħaqad issa"
+    },
+    "detail": {
+      "back": "Lura",
+      "share": "Aqsam in-noti",
+      "more": "Aktar",
+      "tabSummary": "Sommarju",
+      "tabActions": "Azzjonijiet · {{count}}",
+      "tabTranscript": "Traskrizzjoni",
+      "audioRecording": "Reġistrazzjoni tal-awdjo",
+      "recordingAvailable": "Disponibbli",
+      "recordingTranscribed": "{{duration}} · traskritta",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Sommarju",
+      "summaryPending": "In-noti għadhom qed jiġu ġġenerati.",
+      "summaryEmpty": "Għadu m'hemmx sommarju disponibbli għal din il-laqgħa.",
+      "actionsEmpty": "M'hemm ebda azzjoni għal din il-laqgħa.",
+      "transcriptEmpty": "Għadha m'hemmx traskrizzjoni disponibbli għal din il-laqgħa.",
+      "shareNotes": "Aqsam in-noti",
+      "shareFallbackTitle": "Laqgħa",
+      "shareFallbackSummary": "Għadu m'hemmx sommarju ġġenerat."
+    },
+    "room": {
+      "title": "Laqgħa",
+      "connecting": "Qed jikkonnettja mal-laqgħa…",
+      "notConfigured": "Is-server tal-laqgħa mhux ikkonfigurat.",
+      "joinError": "Ma stajniex ningħaqdu mal-laqgħa.",
+      "goBack": "Mur lura",
+      "mute": "Skattat",
+      "unmute": "Neħħi l-iskattat",
+      "camera": "Kamera",
+      "people": "Parteċipanti",
+      "peopleCount": "Parteċipanti ({{count}})",
+      "chat": "Chat",
+      "end": "Warrab",
+      "guest": "Mistieden"
+    }
+  },
+  "schedule": {
+    "title": "Skeda",
+    "titleLabel": "Titlu",
+    "titlePlaceholder": "Sinkronizzazzjoni ġimgħatija tal-prodott",
+    "dateLabel": "Data",
+    "datePlaceholder": "SSSS-XX-JJ",
+    "timeLabel": "Ħin",
+    "timePlaceholder": "HH:MM",
+    "repeats": "Ripetizzjoni",
+    "recurrenceOnce": "Darba",
+    "recurrenceDaily": "Kuljum",
+    "recurrenceWeekly": "Kull ġimgħa",
+    "recurrenceMonthly": "Kull xahar",
+    "submit": "Skeda laqgħa",
+    "upcoming": "Li ġejjin",
+    "upcomingEmpty": "Għadu xejn skedat.",
+    "titleRequired": "Agħti titlu lil-laqgħa.",
+    "invalidDateTime": "Daħħal data (SSSS-XX-JJ) u ħin (HH:MM) validi.",
+    "genericError": "Ma stajniex nskedaw din il-laqgħa."
+  },
+  "actions": {
+    "title": "Elementi ta' azzjoni",
+    "subtitle": "{{open}} miftuħa · {{done}} lesti dan ix-xahar",
+    "scopeAssigned": "Assenjati lili",
+    "scopeCreated": "Maħluqa minni",
+    "scopeAll": "Kollha",
+    "empty": "M'hemm ebda element ta' azzjoni hawn.",
+    "overdue": "Tard"
+  },
+  "library": {
+    "title": "Librerija",
+    "subtitle": "Reġistrazzjonijiet u noti minn laqgħat li spiċċaw.",
+    "empty": "Għadha m'hemmx laqgħa li spiċċat.",
+    "recording": " · reġistrazzjoni"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Live streams",
+      "loadError": "Ma stajniex intellgħu l-live streams.",
+      "empty": "Għadu m'hemmx live streams."
+    },
+    "viewer": {
+      "notConfigured": "Is-server tal-live stream mhux ikkonfigurat.",
+      "notLive": "Dan il-live stream mhux live bħalissa.",
+      "goBack": "Mur lura",
+      "connecting": "Qed jikkonnettja…",
+      "waitingForHost": "Qed jistenna li l-ospitant jibda l-live…",
+      "viewerCountOne": "1 telespettatur",
+      "viewerCountOther": "{{count}} telespettaturi",
+      "chat": "Chat",
+      "leave": "Warrab"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Chat tal-laqgħa",
+    "livestreamTitle": "Chat tal-live stream",
+    "close": "Agħlaq",
+    "empty": "Għadu m'hemmx messaġġi.",
+    "placeholder": "Ikteb lil kulħadd",
+    "send": "Ibgħat"
+  }
+}

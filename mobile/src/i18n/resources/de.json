@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "close": "Schließen",
+    "back": "Zurück",
+    "done": "Fertig",
+    "unknownHost": "Unbekannter Gastgeber",
+    "unknown": "Unbekannt",
+    "you": "Du",
+    "goBack": "Zurück",
+    "resend": "Code erneut senden",
+    "resendIn": "Erneut senden in {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Start",
+    "meetings": "Meetings",
+    "schedule": "Termine",
+    "actions": "Aufgaben",
+    "library": "Bibliothek"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Meetings, die sich selbst dokumentieren.",
+      "title": "Anmelden",
+      "subtitle": "Willkommen zurück.",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "du@unternehmen.com",
+      "passwordLabel": "Passwort",
+      "forgotPassword": "Passwort vergessen?",
+      "submit": "Anmelden",
+      "or": "oder",
+      "continueWithGoogle": "Mit Google fortfahren",
+      "noAccount": "Kein Konto? ",
+      "register": "Registrieren",
+      "genericError": "Anmeldung fehlgeschlagen. Bitte erneut versuchen."
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "subtitle": "Nur verfügbar, wenn deine Organisation Registrierungen zulässt.",
+      "nameLabel": "Vollständiger Name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "du@unternehmen.com",
+      "passwordLabel": "Passwort",
+      "submit": "Registrieren",
+      "haveAccount": "Bereits ein Konto? ",
+      "signIn": "Anmelden",
+      "genericError": "Registrierung fehlgeschlagen. Bitte erneut versuchen."
+    },
+    "verifyEmail": {
+      "title": "E-Mail bestätigen",
+      "subtitle": "Gib den Code ein, den wir an {{email}} gesendet haben.",
+      "codeLabel": "Bestätigungscode",
+      "codePlaceholder": "123456",
+      "submit": "Bestätigen",
+      "resent": "Ein neuer Code wurde gesendet.",
+      "genericError": "Dieser Code konnte nicht bestätigt werden. Bitte erneut versuchen."
+    },
+    "forgotPassword": {
+      "title": "Passwort zurücksetzen",
+      "requestSubtitle": "Gib die E-Mail deines Kontos ein, wir senden dir einen Reset-Code.",
+      "resetSubtitle": "Gib den Code ein, den wir an {{email}} gesendet haben, und wähle ein neues Passwort.",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "du@unternehmen.com",
+      "codeLabel": "Reset-Code",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Neues Passwort",
+      "requestSubmit": "Reset-Code senden",
+      "resetSubmit": "Passwort zurücksetzen",
+      "success": "Dein Passwort wurde zurückgesetzt. Melde dich mit deinem neuen Passwort an.",
+      "backToLogin": "Zurück zur Anmeldung",
+      "genericError": "Diese Anfrage konnte nicht verarbeitet werden. Bitte erneut versuchen."
+    }
+  },
+  "profile": {
+    "nameLabel": "Name",
+    "emailLabel": "E-Mail",
+    "changePassword": "Passwort ändern",
+    "language": "Sprache",
+    "logOut": "Abmelden",
+    "changePasswordTitle": "Passwort ändern",
+    "currentPasswordLabel": "Aktuelles Passwort",
+    "newPasswordLabel": "Neues Passwort",
+    "passwordUpdated": "Dein Passwort wurde aktualisiert.",
+    "passwordTooShort": "Das neue Passwort muss mindestens 8 Zeichen lang sein.",
+    "genericError": "Passwort konnte nicht geändert werden.",
+    "languageTitle": "Sprache"
+  },
+  "dashboard": {
+    "search": "Suchen",
+    "profile": "Profil",
+    "greetingMorning": "Guten Morgen{{name}}",
+    "greetingAfternoon": "Guten Tag{{name}}",
+    "greetingEvening": "Guten Abend{{name}}",
+    "newMeeting": "Neues Meeting",
+    "joinWithId": "Mit ID beitreten",
+    "today": "Heute",
+    "todayMeetings_one": "{{count}} Meeting",
+    "todayMeetings_other": "{{count}} Meetings",
+    "openActions": "Offene Aufgaben",
+    "upNext": "Als Nächstes",
+    "schedule": "Termine",
+    "nothingScheduled": "Nichts geplant. Starte oben ein Meeting.",
+    "live": "Live",
+    "join": "Beitreten",
+    "view": "Ansehen",
+    "thisWeek": "Diese Woche",
+    "thisWeekValue_one": "{{count}} Meeting",
+    "thisWeekValue_other": "{{count}} Meetings",
+    "thisWeekSub": "abgeschlossen und in deiner Bibliothek verfügbar.",
+    "joinModalTitle": "Mit Meeting-ID beitreten",
+    "joinModalPlaceholder": "Meeting-ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Meetings",
+      "filterAll": "Alle",
+      "filterLive": "Live",
+      "filterUpcoming": "Bevorstehend",
+      "filterEnded": "Beendet",
+      "loadError": "Meetings konnten nicht geladen werden.",
+      "empty": "Keine Meetings in diesem Filter."
+    },
+    "item": {
+      "liveNow": "Jetzt live",
+      "today": "Heute",
+      "joinNow": "Jetzt beitreten"
+    },
+    "detail": {
+      "back": "Zurück",
+      "share": "Notizen teilen",
+      "more": "Mehr",
+      "tabSummary": "Zusammenfassung",
+      "tabActions": "Aufgaben · {{count}}",
+      "tabTranscript": "Transkript",
+      "audioRecording": "Audioaufnahme",
+      "recordingAvailable": "Verfügbar",
+      "recordingTranscribed": "{{duration}} · transkribiert",
+      "durationMinutes": "{{count}} Min.",
+      "summaryHeading": "Zusammenfassung",
+      "summaryPending": "Notizen werden noch erstellt.",
+      "summaryEmpty": "Für dieses Meeting ist noch keine Zusammenfassung verfügbar.",
+      "actionsEmpty": "Keine Aufgaben für dieses Meeting.",
+      "transcriptEmpty": "Für dieses Meeting ist noch kein Transkript verfügbar.",
+      "shareNotes": "Notizen teilen",
+      "shareFallbackTitle": "Meeting",
+      "shareFallbackSummary": "Noch keine Zusammenfassung erstellt."
+    },
+    "room": {
+      "title": "Meeting",
+      "connecting": "Verbindung zum Meeting wird hergestellt…",
+      "notConfigured": "Der Meeting-Server ist nicht konfiguriert.",
+      "joinError": "Dem Meeting konnte nicht beigetreten werden.",
+      "goBack": "Zurück",
+      "mute": "Stummschalten",
+      "unmute": "Stummschaltung aufheben",
+      "camera": "Kamera",
+      "people": "Teilnehmer",
+      "peopleCount": "Teilnehmer ({{count}})",
+      "chat": "Chat",
+      "end": "Verlassen",
+      "guest": "Gast"
+    }
+  },
+  "schedule": {
+    "title": "Termine",
+    "titleLabel": "Titel",
+    "titlePlaceholder": "Wöchentliches Produkt-Sync",
+    "dateLabel": "Datum",
+    "datePlaceholder": "JJJJ-MM-TT",
+    "timeLabel": "Uhrzeit",
+    "timePlaceholder": "HH:MM",
+    "repeats": "Wiederholung",
+    "recurrenceOnce": "Einmalig",
+    "recurrenceDaily": "Täglich",
+    "recurrenceWeekly": "Wöchentlich",
+    "recurrenceMonthly": "Monatlich",
+    "submit": "Meeting planen",
+    "upcoming": "Bevorstehend",
+    "upcomingEmpty": "Noch nichts geplant.",
+    "titleRequired": "Gib dem Meeting einen Titel.",
+    "invalidDateTime": "Gib ein gültiges Datum (JJJJ-MM-TT) und eine gültige Uhrzeit (HH:MM) ein.",
+    "genericError": "Dieses Meeting konnte nicht geplant werden."
+  },
+  "actions": {
+    "title": "Aufgaben",
+    "subtitle": "{{open}} offen · {{done}} diesen Monat erledigt",
+    "scopeAssigned": "Mir zugewiesen",
+    "scopeCreated": "Von mir erstellt",
+    "scopeAll": "Alle",
+    "empty": "Hier gibt es keine Aufgaben.",
+    "overdue": "Überfällig"
+  },
+  "library": {
+    "title": "Bibliothek",
+    "subtitle": "Aufnahmen und Notizen abgeschlossener Meetings.",
+    "empty": "Noch keine beendeten Meetings.",
+    "recording": " · Aufnahme"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Livestreams",
+      "loadError": "Livestreams konnten nicht geladen werden.",
+      "empty": "Noch keine Livestreams."
+    },
+    "viewer": {
+      "notConfigured": "Der Livestream-Server ist nicht konfiguriert.",
+      "notLive": "Dieser Livestream ist gerade nicht live.",
+      "goBack": "Zurück",
+      "connecting": "Verbindung wird hergestellt…",
+      "waitingForHost": "Warten, bis der Gastgeber live geht…",
+      "viewerCountOne": "1 Zuschauer",
+      "viewerCountOther": "{{count}} Zuschauer",
+      "chat": "Chat",
+      "leave": "Verlassen"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Meeting-Chat",
+    "livestreamTitle": "Livestream-Chat",
+    "close": "Schließen",
+    "empty": "Noch keine Nachrichten.",
+    "placeholder": "An alle schreiben",
+    "send": "Senden"
+  }
+}

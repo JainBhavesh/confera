@@ -1,19 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import type { TabScreenProps } from '../../navigation/types';
 import { createScheduledMeeting, listMeetings, type MeetingRecurrence } from '../../services/api/meetings';
 import { color, control, font, space, textMuted } from '../../theme';
 import type { Meeting } from '../../types';
 
 type Props = TabScreenProps<'Schedule'>;
-
-const RECURRENCE_OPTIONS: { key: MeetingRecurrence; label: string }[] = [
-  { key: 'ONCE', label: 'Once' },
-  { key: 'DAILY', label: 'Daily' },
-  { key: 'WEEKLY', label: 'Weekly' },
-  { key: 'MONTHLY', label: 'Monthly' }
-];
 
 function defaultDate() {
   const d = new Date();
@@ -22,6 +16,13 @@ function defaultDate() {
 }
 
 export function ScheduleScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+  const RECURRENCE_OPTIONS: { key: MeetingRecurrence; label: string }[] = [
+    { key: 'ONCE', label: t('schedule.recurrenceOnce') },
+    { key: 'DAILY', label: t('schedule.recurrenceDaily') },
+    { key: 'WEEKLY', label: t('schedule.recurrenceWeekly') },
+    { key: 'MONTHLY', label: t('schedule.recurrenceMonthly') }
+  ];
   const [title, setTitle] = useState('');
   const [date, setDate] = useState(defaultDate());
   const [time, setTime] = useState('10:00');
@@ -50,12 +51,12 @@ export function ScheduleScreen({ navigation }: Props) {
     setError('');
     const trimmed = title.trim();
     if (!trimmed) {
-      setError('Give the meeting a title.');
+      setError(t('schedule.titleRequired'));
       return;
     }
     const scheduledAt = new Date(`${date}T${time}:00`);
     if (Number.isNaN(scheduledAt.getTime())) {
-      setError('Enter a valid date (YYYY-MM-DD) and time (HH:MM).');
+      setError(t('schedule.invalidDateTime'));
       return;
     }
 
@@ -65,7 +66,7 @@ export function ScheduleScreen({ navigation }: Props) {
       setTitle('');
       await load();
     } catch {
-      setError('Unable to schedule this meeting.');
+      setError(t('schedule.genericError'));
     } finally {
       setSubmitting(false);
     }
@@ -75,12 +76,12 @@ export function ScheduleScreen({ navigation }: Props) {
     <SafeAreaView style={styles.container} edges={['top']}>
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          <Text style={styles.title}>Schedule</Text>
+          <Text style={styles.title}>{t('schedule.title')}</Text>
 
-          <Text style={styles.label}>Title</Text>
+          <Text style={styles.label}>{t('schedule.titleLabel')}</Text>
           <TextInput
             style={styles.input}
-            placeholder="Weekly product sync"
+            placeholder={t('schedule.titlePlaceholder')}
             placeholderTextColor={textMuted(0.45)}
             value={title}
             onChangeText={setTitle}
@@ -88,16 +89,16 @@ export function ScheduleScreen({ navigation }: Props) {
 
           <View style={styles.row}>
             <View style={styles.rowField}>
-              <Text style={styles.label}>Date</Text>
-              <TextInput style={styles.input} placeholder="YYYY-MM-DD" placeholderTextColor={textMuted(0.45)} value={date} onChangeText={setDate} />
+              <Text style={styles.label}>{t('schedule.dateLabel')}</Text>
+              <TextInput style={styles.input} placeholder={t('schedule.datePlaceholder')} placeholderTextColor={textMuted(0.45)} value={date} onChangeText={setDate} />
             </View>
             <View style={styles.rowField}>
-              <Text style={styles.label}>Time</Text>
-              <TextInput style={styles.input} placeholder="HH:MM" placeholderTextColor={textMuted(0.45)} value={time} onChangeText={setTime} />
+              <Text style={styles.label}>{t('schedule.timeLabel')}</Text>
+              <TextInput style={styles.input} placeholder={t('schedule.timePlaceholder')} placeholderTextColor={textMuted(0.45)} value={time} onChangeText={setTime} />
             </View>
           </View>
 
-          <Text style={styles.label}>Repeats</Text>
+          <Text style={styles.label}>{t('schedule.repeats')}</Text>
           <View style={styles.segment}>
             {RECURRENCE_OPTIONS.map((option) => (
               <Pressable
@@ -113,16 +114,16 @@ export function ScheduleScreen({ navigation }: Props) {
           {error ? <Text style={styles.error}>{error}</Text> : null}
 
           <Pressable style={styles.submitButton} onPress={handleCreate} disabled={submitting}>
-            {submitting ? <ActivityIndicator color={color.white} /> : <Text style={styles.submitButtonText}>Schedule meeting</Text>}
+            {submitting ? <ActivityIndicator color={color.white} /> : <Text style={styles.submitButtonText}>{t('schedule.submit')}</Text>}
           </Pressable>
 
           <View style={styles.divider} />
 
-          <Text style={styles.sectionTitle}>Upcoming</Text>
+          <Text style={styles.sectionTitle}>{t('schedule.upcoming')}</Text>
           {loading ? (
             <ActivityIndicator color={color.accent} style={{ marginTop: 16 }} />
           ) : upcoming.length === 0 ? (
-            <Text style={styles.emptyText}>Nothing scheduled yet.</Text>
+            <Text style={styles.emptyText}>{t('schedule.upcomingEmpty')}</Text>
           ) : (
             upcoming.map((meeting) => (
               <Pressable

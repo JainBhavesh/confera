@@ -1,21 +1,27 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import type { Meeting } from '../../types';
 import { color, control, font, textMuted } from '../../theme';
 
-function formatMeta(meeting: Meeting): string {
-  if (meeting.status === 'LIVE') return 'Live now';
-  if (meeting.status === 'SCHEDULED' && meeting.scheduledAt) {
-    const d = new Date(meeting.scheduledAt);
-    const today = new Date().toDateString() === d.toDateString();
-    return `${today ? 'Today' : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}, ${d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}`;
-  }
-  if (meeting.status === 'ENDED' && meeting.endedAt) {
-    return new Date(meeting.endedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-  }
-  return meeting.status;
+function useFormatMeta() {
+  const { t } = useTranslation();
+  return (meeting: Meeting): string => {
+    if (meeting.status === 'LIVE') return t('meetings.item.liveNow');
+    if (meeting.status === 'SCHEDULED' && meeting.scheduledAt) {
+      const d = new Date(meeting.scheduledAt);
+      const today = new Date().toDateString() === d.toDateString();
+      return `${today ? t('meetings.item.today') : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}, ${d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}`;
+    }
+    if (meeting.status === 'ENDED' && meeting.endedAt) {
+      return new Date(meeting.endedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    }
+    return meeting.status;
+  };
 }
 
 export function MeetingListItem({ meeting, onPress }: { meeting: Meeting; onPress: () => void }) {
+  const { t } = useTranslation();
+  const formatMeta = useFormatMeta();
   const tagStyle = meeting.status === 'LIVE' ? styles.tagAccent : meeting.status === 'SCHEDULED' ? styles.tagOutline : styles.tagNeutral;
   const tagTextStyle = meeting.status === 'LIVE' ? styles.tagAccentText : meeting.status === 'SCHEDULED' ? styles.tagOutlineText : styles.tagNeutralText;
 
@@ -31,11 +37,11 @@ export function MeetingListItem({ meeting, onPress }: { meeting: Meeting; onPres
         {meeting.title}
       </Text>
       <Text style={styles.host} numberOfLines={1}>
-        {meeting.createdBy?.name ?? 'Unknown host'}
+        {meeting.createdBy?.name ?? t('common.unknownHost')}
       </Text>
       {meeting.status === 'LIVE' ? (
         <Pressable style={styles.joinButton} onPress={onPress}>
-          <Text style={styles.joinButtonText}>Join now</Text>
+          <Text style={styles.joinButtonText}>{t('meetings.item.joinNow')}</Text>
         </Pressable>
       ) : (
         <Pressable style={styles.rowTouch} onPress={onPress} />

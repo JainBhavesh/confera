@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Cealaigh",
+    "save": "Sábháil",
+    "close": "Dún",
+    "back": "Ar ais",
+    "done": "Críochnaithe",
+    "unknownHost": "Óstach anaithnid",
+    "unknown": "Anaithnid",
+    "you": "Tusa",
+    "goBack": "Téigh ar ais",
+    "resend": "Athsheol an cód",
+    "resendIn": "Athsheol i gceann {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Baile",
+    "meetings": "Cruinnithe",
+    "schedule": "Sceideal",
+    "actions": "Gníomhartha",
+    "library": "Leabharlann"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Cruinnithe a dhoiciméadann iad féin.",
+      "title": "Logáil isteach",
+      "subtitle": "Fáilte ar ais.",
+      "emailLabel": "Ríomhphost",
+      "emailPlaceholder": "tusa@comhlacht.com",
+      "passwordLabel": "Pasfhocal",
+      "forgotPassword": "Pasfhocal dearmadta agat?",
+      "submit": "Logáil isteach",
+      "or": "nó",
+      "continueWithGoogle": "Lean ar aghaidh le Google",
+      "noAccount": "Gan cuntas? ",
+      "register": "Cláraigh",
+      "genericError": "Níorbh fhéidir logáil isteach. Bain triail eile as."
+    },
+    "register": {
+      "title": "Cruthaigh cuntas",
+      "subtitle": "Ar fáil ach amháin nuair a cheadaíonn d'eagraíocht clárú.",
+      "nameLabel": "Ainm iomlán",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Ríomhphost",
+      "emailPlaceholder": "tusa@comhlacht.com",
+      "passwordLabel": "Pasfhocal",
+      "submit": "Cláraigh",
+      "haveAccount": "Cuntas agat cheana? ",
+      "signIn": "Logáil isteach",
+      "genericError": "Níorbh fhéidir clárú. Bain triail eile as."
+    },
+    "verifyEmail": {
+      "title": "Deimhnigh do ríomhphost",
+      "subtitle": "Cuir isteach an cód a sheol muid chuig {{email}}.",
+      "codeLabel": "Cód deimhnithe",
+      "codePlaceholder": "123456",
+      "submit": "Deimhnigh",
+      "resent": "Seoladh cód nua.",
+      "genericError": "Níorbh fhéidir an cód seo a dheimhniú. Bain triail eile as."
+    },
+    "forgotPassword": {
+      "title": "Athshocraigh pasfhocal",
+      "requestSubtitle": "Cuir isteach ríomhphost do chuntais agus seolfaimid cód athshocraithe chugat.",
+      "resetSubtitle": "Cuir isteach an cód a sheol muid chuig {{email}} agus roghnaigh pasfhocal nua.",
+      "emailLabel": "Ríomhphost",
+      "emailPlaceholder": "tusa@comhlacht.com",
+      "codeLabel": "Cód athshocraithe",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Pasfhocal nua",
+      "requestSubmit": "Seol cód",
+      "resetSubmit": "Athshocraigh pasfhocal",
+      "success": "Athshocraíodh do phasfhocal. Logáil isteach le do phasfhocal nua.",
+      "backToLogin": "Ar ais chuig logáil isteach",
+      "genericError": "Níorbh fhéidir an t-iarratas seo a phróiseáil. Bain triail eile as."
+    }
+  },
+  "profile": {
+    "nameLabel": "Ainm",
+    "emailLabel": "Ríomhphost",
+    "changePassword": "Athraigh pasfhocal",
+    "language": "Teanga",
+    "logOut": "Logáil amach",
+    "changePasswordTitle": "Athraigh pasfhocal",
+    "currentPasswordLabel": "Pasfhocal reatha",
+    "newPasswordLabel": "Pasfhocal nua",
+    "passwordUpdated": "Nuashonraíodh do phasfhocal.",
+    "passwordTooShort": "Ní mór don phasfhocal nua a bheith 8 gcarachtar ar a laghad.",
+    "genericError": "Níorbh fhéidir an pasfhocal a athrú.",
+    "languageTitle": "Teanga"
+  },
+  "dashboard": {
+    "search": "Cuardaigh",
+    "profile": "Próifíl",
+    "greetingMorning": "Maidin mhaith{{name}}",
+    "greetingAfternoon": "Tráthnóna maith{{name}}",
+    "greetingEvening": "Oíche mhaith{{name}}",
+    "newMeeting": "Cruinniú nua",
+    "joinWithId": "Bí páirteach le ID",
+    "today": "Inniu",
+    "todayMeetings_one": "{{count}} chruinniú",
+    "todayMeetings_other": "{{count}} cruinniú",
+    "openActions": "Gníomhartha oscailte",
+    "upNext": "Ar an mbealach",
+    "schedule": "Sceideal",
+    "nothingScheduled": "Níl aon rud sceidealta. Tosaigh cruinniú thuas.",
+    "live": "Beo",
+    "join": "Bí páirteach",
+    "view": "Féach",
+    "thisWeek": "An tseachtain seo",
+    "thisWeekValue_one": "{{count}} chruinniú",
+    "thisWeekValue_other": "{{count}} cruinniú",
+    "thisWeekSub": "críochnaithe agus ar fáil i do leabharlann.",
+    "joinModalTitle": "Bí páirteach le ID an chruinnithe",
+    "joinModalPlaceholder": "ID an chruinnithe"
+  },
+  "meetings": {
+    "list": {
+      "title": "Cruinnithe",
+      "filterAll": "Uile",
+      "filterLive": "Beo",
+      "filterUpcoming": "Le teacht",
+      "filterEnded": "Críochnaithe",
+      "loadError": "Níorbh fhéidir na cruinnithe a luchtú.",
+      "empty": "Níl aon chruinniú san scagaire seo."
+    },
+    "item": {
+      "liveNow": "Beo anois",
+      "today": "Inniu",
+      "joinNow": "Bí páirteach anois"
+    },
+    "detail": {
+      "back": "Ar ais",
+      "share": "Roinn nótaí",
+      "more": "Tuilleadh",
+      "tabSummary": "Achoimre",
+      "tabActions": "Gníomhartha · {{count}}",
+      "tabTranscript": "Tras-scríbhinn",
+      "audioRecording": "Taifeadadh fuaime",
+      "recordingAvailable": "Ar fáil",
+      "recordingTranscribed": "{{duration}} · tras-scríofa",
+      "durationMinutes": "{{count}} nóim",
+      "summaryHeading": "Achoimre",
+      "summaryPending": "Táthar fós ag cruthú na nótaí.",
+      "summaryEmpty": "Níl achoimre ar fáil don chruinniú seo fós.",
+      "actionsEmpty": "Níl gníomhartha ann don chruinniú seo.",
+      "transcriptEmpty": "Níl tras-scríbhinn ar fáil don chruinniú seo fós.",
+      "shareNotes": "Roinn nótaí",
+      "shareFallbackTitle": "Cruinniú",
+      "shareFallbackSummary": "Níl achoimre cruthaithe fós."
+    },
+    "room": {
+      "title": "Cruinniú",
+      "connecting": "Ag ceangal leis an gcruinniú…",
+      "notConfigured": "Níl freastalaí an chruinnithe cumraithe.",
+      "joinError": "Níorbh fhéidir a bheith páirteach sa chruinniú.",
+      "goBack": "Téigh ar ais",
+      "mute": "Balbhaigh",
+      "unmute": "Díbhalbhaigh",
+      "camera": "Ceamara",
+      "people": "Rannpháirtithe",
+      "peopleCount": "Rannpháirtithe ({{count}})",
+      "chat": "Comhrá",
+      "end": "Fág",
+      "guest": "Aoi"
+    }
+  },
+  "schedule": {
+    "title": "Sceideal",
+    "titleLabel": "Teideal",
+    "titlePlaceholder": "Sioncronú seachtainiúil táirge",
+    "dateLabel": "Dáta",
+    "datePlaceholder": "BBBB-MM-LL",
+    "timeLabel": "Am",
+    "timePlaceholder": "UU:NN",
+    "repeats": "Athrá",
+    "recurrenceOnce": "Uair amháin",
+    "recurrenceDaily": "Laethúil",
+    "recurrenceWeekly": "Seachtainiúil",
+    "recurrenceMonthly": "Míosúil",
+    "submit": "Sceidealaigh cruinniú",
+    "upcoming": "Le teacht",
+    "upcomingEmpty": "Níl aon rud sceidealta fós.",
+    "titleRequired": "Tabhair teideal don chruinniú.",
+    "invalidDateTime": "Cuir isteach dáta bailí (BBBB-MM-LL) agus am (UU:NN).",
+    "genericError": "Níorbh fhéidir an cruinniú seo a shceidealú."
+  },
+  "actions": {
+    "title": "Míreanna gnímh",
+    "subtitle": "{{open}} oscailte · {{done}} críochnaithe an mhí seo",
+    "scopeAssigned": "Sannta domsa",
+    "scopeCreated": "Cruthaithe agam",
+    "scopeAll": "Uile",
+    "empty": "Níl aon mhír ghnímh anseo.",
+    "overdue": "Thar téarma"
+  },
+  "library": {
+    "title": "Leabharlann",
+    "subtitle": "Taifeadtaí agus nótaí ó chruinnithe críochnaithe.",
+    "empty": "Níl aon chruinniú críochnaithe fós.",
+    "recording": " · taifeadadh"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Sruthú beo",
+      "loadError": "Níorbh fhéidir na sruthanna beo a luchtú.",
+      "empty": "Níl aon sruthú beo fós."
+    },
+    "viewer": {
+      "notConfigured": "Níl freastalaí an tsrutha beo cumraithe.",
+      "notLive": "Níl an sruthú beo seo ar siúl faoi láthair.",
+      "goBack": "Téigh ar ais",
+      "connecting": "Ag ceangal…",
+      "waitingForHost": "Ag fanacht leis an óstach dul beo…",
+      "viewerCountOne": "1 fhéachadóir",
+      "viewerCountOther": "{{count}} féachadóir",
+      "chat": "Comhrá",
+      "leave": "Fág"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Comhrá an chruinnithe",
+    "livestreamTitle": "Comhrá an tsrutha bheo",
+    "close": "Dún",
+    "empty": "Níl aon teachtaireacht fós.",
+    "placeholder": "Scríobh chuig gach duine",
+    "send": "Seol"
+  }
+}

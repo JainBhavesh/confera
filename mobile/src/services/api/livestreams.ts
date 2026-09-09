@@ -11,6 +11,10 @@ export function joinLivestream(id: string): Promise<{ token: string; serverUrl: 
   return apiFetch(`/api/livestreams/${id}/join`, { method: 'POST' });
 }
 
+export function leaveLivestream(id: string): Promise<{ session: unknown }> {
+  return apiFetch(`/api/livestreams/${id}/leave`, { method: 'POST' });
+}
+
 export function listLivestreamMessages(id: string): Promise<{ messages: LivestreamMessage[] }> {
   return apiFetch(`/api/livestreams/${id}/messages`);
 }

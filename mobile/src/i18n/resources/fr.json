@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "close": "Fermer",
+    "back": "Retour",
+    "done": "Terminé",
+    "unknownHost": "Hôte inconnu",
+    "unknown": "Inconnu",
+    "you": "Vous",
+    "goBack": "Retour",
+    "resend": "Renvoyer le code",
+    "resendIn": "Renvoyer dans {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Accueil",
+    "meetings": "Réunions",
+    "schedule": "Planning",
+    "actions": "Actions",
+    "library": "Bibliothèque"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Des réunions qui se rédigent toutes seules.",
+      "title": "Connexion",
+      "subtitle": "Bon retour parmi nous.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "vous@entreprise.com",
+      "passwordLabel": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "submit": "Se connecter",
+      "or": "ou",
+      "continueWithGoogle": "Continuer avec Google",
+      "noAccount": "Pas de compte ? ",
+      "register": "S'inscrire",
+      "genericError": "Connexion impossible. Réessayez."
+    },
+    "register": {
+      "title": "Créer un compte",
+      "subtitle": "Disponible uniquement si votre organisation autorise les inscriptions.",
+      "nameLabel": "Nom complet",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "vous@entreprise.com",
+      "passwordLabel": "Mot de passe",
+      "submit": "S'inscrire",
+      "haveAccount": "Vous avez déjà un compte ? ",
+      "signIn": "Se connecter",
+      "genericError": "Inscription impossible. Réessayez."
+    },
+    "verifyEmail": {
+      "title": "Vérifiez votre e-mail",
+      "subtitle": "Entrez le code envoyé à {{email}}.",
+      "codeLabel": "Code de vérification",
+      "codePlaceholder": "123456",
+      "submit": "Vérifier",
+      "resent": "Un nouveau code a été envoyé.",
+      "genericError": "Impossible de vérifier ce code. Réessayez."
+    },
+    "forgotPassword": {
+      "title": "Réinitialiser le mot de passe",
+      "requestSubtitle": "Entrez l'e-mail de votre compte, nous vous enverrons un code de réinitialisation.",
+      "resetSubtitle": "Entrez le code envoyé à {{email}} et choisissez un nouveau mot de passe.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "vous@entreprise.com",
+      "codeLabel": "Code de réinitialisation",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Nouveau mot de passe",
+      "requestSubmit": "Envoyer le code",
+      "resetSubmit": "Réinitialiser le mot de passe",
+      "success": "Votre mot de passe a été réinitialisé. Connectez-vous avec votre nouveau mot de passe.",
+      "backToLogin": "Retour à la connexion",
+      "genericError": "Impossible de traiter cette demande. Réessayez."
+    }
+  },
+  "profile": {
+    "nameLabel": "Nom",
+    "emailLabel": "E-mail",
+    "changePassword": "Changer le mot de passe",
+    "language": "Langue",
+    "logOut": "Se déconnecter",
+    "changePasswordTitle": "Changer le mot de passe",
+    "currentPasswordLabel": "Mot de passe actuel",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "passwordUpdated": "Votre mot de passe a été mis à jour.",
+    "passwordTooShort": "Le nouveau mot de passe doit contenir au moins 8 caractères.",
+    "genericError": "Impossible de changer le mot de passe.",
+    "languageTitle": "Langue"
+  },
+  "dashboard": {
+    "search": "Rechercher",
+    "profile": "Profil",
+    "greetingMorning": "Bonjour{{name}}",
+    "greetingAfternoon": "Bon après-midi{{name}}",
+    "greetingEvening": "Bonsoir{{name}}",
+    "newMeeting": "Nouvelle réunion",
+    "joinWithId": "Rejoindre avec un ID",
+    "today": "Aujourd'hui",
+    "todayMeetings_one": "{{count}} réunion",
+    "todayMeetings_other": "{{count}} réunions",
+    "openActions": "Actions ouvertes",
+    "upNext": "À venir",
+    "schedule": "Planning",
+    "nothingScheduled": "Rien de prévu. Démarrez une réunion ci-dessus.",
+    "live": "En direct",
+    "join": "Rejoindre",
+    "view": "Voir",
+    "thisWeek": "Cette semaine",
+    "thisWeekValue_one": "{{count}} réunion",
+    "thisWeekValue_other": "{{count}} réunions",
+    "thisWeekSub": "terminées et disponibles dans votre bibliothèque.",
+    "joinModalTitle": "Rejoindre avec l'ID de la réunion",
+    "joinModalPlaceholder": "ID de la réunion"
+  },
+  "meetings": {
+    "list": {
+      "title": "Réunions",
+      "filterAll": "Toutes",
+      "filterLive": "En direct",
+      "filterUpcoming": "À venir",
+      "filterEnded": "Terminées",
+      "loadError": "Impossible de charger les réunions.",
+      "empty": "Aucune réunion dans ce filtre."
+    },
+    "item": {
+      "liveNow": "En direct maintenant",
+      "today": "Aujourd'hui",
+      "joinNow": "Rejoindre"
+    },
+    "detail": {
+      "back": "Retour",
+      "share": "Partager les notes",
+      "more": "Plus",
+      "tabSummary": "Résumé",
+      "tabActions": "Actions · {{count}}",
+      "tabTranscript": "Transcription",
+      "audioRecording": "Enregistrement audio",
+      "recordingAvailable": "Disponible",
+      "recordingTranscribed": "{{duration}} · transcrit",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Résumé",
+      "summaryPending": "Les notes sont en cours de génération.",
+      "summaryEmpty": "Aucun résumé disponible pour cette réunion pour le moment.",
+      "actionsEmpty": "Aucune action pour cette réunion.",
+      "transcriptEmpty": "Aucune transcription disponible pour cette réunion pour le moment.",
+      "shareNotes": "Partager les notes",
+      "shareFallbackTitle": "Réunion",
+      "shareFallbackSummary": "Aucun résumé généré pour le moment."
+    },
+    "room": {
+      "title": "Réunion",
+      "connecting": "Connexion à la réunion…",
+      "notConfigured": "Le serveur de réunion n'est pas configuré.",
+      "joinError": "Impossible de rejoindre la réunion.",
+      "goBack": "Retour",
+      "mute": "Couper le micro",
+      "unmute": "Activer le micro",
+      "camera": "Caméra",
+      "people": "Participants",
+      "peopleCount": "Participants ({{count}})",
+      "chat": "Chat",
+      "end": "Quitter",
+      "guest": "Invité"
+    }
+  },
+  "schedule": {
+    "title": "Planning",
+    "titleLabel": "Titre",
+    "titlePlaceholder": "Synchro produit hebdomadaire",
+    "dateLabel": "Date",
+    "datePlaceholder": "AAAA-MM-JJ",
+    "timeLabel": "Heure",
+    "timePlaceholder": "HH:MM",
+    "repeats": "Récurrence",
+    "recurrenceOnce": "Une fois",
+    "recurrenceDaily": "Quotidienne",
+    "recurrenceWeekly": "Hebdomadaire",
+    "recurrenceMonthly": "Mensuelle",
+    "submit": "Planifier la réunion",
+    "upcoming": "À venir",
+    "upcomingEmpty": "Rien de prévu pour le moment.",
+    "titleRequired": "Donnez un titre à la réunion.",
+    "invalidDateTime": "Saisissez une date (AAAA-MM-JJ) et une heure (HH:MM) valides.",
+    "genericError": "Impossible de planifier cette réunion."
+  },
+  "actions": {
+    "title": "Actions",
+    "subtitle": "{{open}} ouvertes · {{done}} terminées ce mois-ci",
+    "scopeAssigned": "Qui me sont assignées",
+    "scopeCreated": "Que j'ai créées",
+    "scopeAll": "Toutes",
+    "empty": "Aucune action ici.",
+    "overdue": "En retard"
+  },
+  "library": {
+    "title": "Bibliothèque",
+    "subtitle": "Enregistrements et notes des réunions terminées.",
+    "empty": "Aucune réunion terminée pour le moment.",
+    "recording": " · enregistrement"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Diffusions en direct",
+      "loadError": "Impossible de charger les diffusions.",
+      "empty": "Aucune diffusion pour le moment."
+    },
+    "viewer": {
+      "notConfigured": "Le serveur de diffusion n'est pas configuré.",
+      "notLive": "Cette diffusion n'est pas en direct actuellement.",
+      "goBack": "Retour",
+      "connecting": "Connexion…",
+      "waitingForHost": "En attente que l'hôte démarre la diffusion…",
+      "viewerCountOne": "1 spectateur",
+      "viewerCountOther": "{{count}} spectateurs",
+      "chat": "Chat",
+      "leave": "Quitter"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Chat de la réunion",
+    "livestreamTitle": "Chat de la diffusion",
+    "close": "Fermer",
+    "empty": "Aucun message pour le moment.",
+    "placeholder": "Écrire à tout le monde",
+    "send": "Envoyer"
+  }
+}

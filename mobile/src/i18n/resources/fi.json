@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Peruuta",
+    "save": "Tallenna",
+    "close": "Sulje",
+    "back": "Takaisin",
+    "done": "Valmis",
+    "unknownHost": "Tuntematon isäntä",
+    "unknown": "Tuntematon",
+    "you": "Sinä",
+    "goBack": "Palaa takaisin",
+    "resend": "Lähetä koodi uudelleen",
+    "resendIn": "Lähetä uudelleen {{seconds}}s kuluttua"
+  },
+  "tabs": {
+    "home": "Koti",
+    "meetings": "Kokoukset",
+    "schedule": "Aikataulu",
+    "actions": "Tehtävät",
+    "library": "Kirjasto"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Kokoukset, jotka dokumentoivat itse itsensä.",
+      "title": "Kirjaudu sisään",
+      "subtitle": "Tervetuloa takaisin.",
+      "emailLabel": "Sähköposti",
+      "emailPlaceholder": "sina@yritys.com",
+      "passwordLabel": "Salasana",
+      "forgotPassword": "Unohditko salasanan?",
+      "submit": "Kirjaudu sisään",
+      "or": "tai",
+      "continueWithGoogle": "Jatka Googlella",
+      "noAccount": "Ei tiliä? ",
+      "register": "Rekisteröidy",
+      "genericError": "Sisäänkirjautuminen epäonnistui. Yritä uudelleen."
+    },
+    "register": {
+      "title": "Luo tili",
+      "subtitle": "Käytettävissä vain, jos organisaatiosi sallii rekisteröitymisen.",
+      "nameLabel": "Koko nimi",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Sähköposti",
+      "emailPlaceholder": "sina@yritys.com",
+      "passwordLabel": "Salasana",
+      "submit": "Rekisteröidy",
+      "haveAccount": "Onko sinulla jo tili? ",
+      "signIn": "Kirjaudu sisään",
+      "genericError": "Rekisteröityminen epäonnistui. Yritä uudelleen."
+    },
+    "verifyEmail": {
+      "title": "Vahvista sähköpostisi",
+      "subtitle": "Anna koodi, jonka lähetimme osoitteeseen {{email}}.",
+      "codeLabel": "Vahvistuskoodi",
+      "codePlaceholder": "123456",
+      "submit": "Vahvista",
+      "resent": "Uusi koodi on lähetetty.",
+      "genericError": "Koodia ei voitu vahvistaa. Yritä uudelleen."
+    },
+    "forgotPassword": {
+      "title": "Nollaa salasana",
+      "requestSubtitle": "Anna tilisi sähköpostiosoite, niin lähetämme sinulle nollauskoodin.",
+      "resetSubtitle": "Anna koodi, jonka lähetimme osoitteeseen {{email}}, ja valitse uusi salasana.",
+      "emailLabel": "Sähköposti",
+      "emailPlaceholder": "sina@yritys.com",
+      "codeLabel": "Nollauskoodi",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Uusi salasana",
+      "requestSubmit": "Lähetä nollauskoodi",
+      "resetSubmit": "Nollaa salasana",
+      "success": "Salasanasi on nollattu. Kirjaudu sisään uudella salasanallasi.",
+      "backToLogin": "Takaisin kirjautumiseen",
+      "genericError": "Pyyntöä ei voitu käsitellä. Yritä uudelleen."
+    }
+  },
+  "profile": {
+    "nameLabel": "Nimi",
+    "emailLabel": "Sähköposti",
+    "changePassword": "Vaihda salasana",
+    "language": "Kieli",
+    "logOut": "Kirjaudu ulos",
+    "changePasswordTitle": "Vaihda salasana",
+    "currentPasswordLabel": "Nykyinen salasana",
+    "newPasswordLabel": "Uusi salasana",
+    "passwordUpdated": "Salasanasi on päivitetty.",
+    "passwordTooShort": "Uuden salasanan on oltava vähintään 8 merkkiä pitkä.",
+    "genericError": "Salasanaa ei voitu vaihtaa.",
+    "languageTitle": "Kieli"
+  },
+  "dashboard": {
+    "search": "Haku",
+    "profile": "Profiili",
+    "greetingMorning": "Hyvää huomenta{{name}}",
+    "greetingAfternoon": "Hyvää iltapäivää{{name}}",
+    "greetingEvening": "Hyvää iltaa{{name}}",
+    "newMeeting": "Uusi kokous",
+    "joinWithId": "Liity ID:llä",
+    "today": "Tänään",
+    "todayMeetings_one": "{{count}} kokous",
+    "todayMeetings_other": "{{count}} kokousta",
+    "openActions": "Avoimet tehtävät",
+    "upNext": "Seuraavaksi",
+    "schedule": "Aikataulu",
+    "nothingScheduled": "Ei mitään aikataulutettuna. Aloita kokous yllä.",
+    "live": "Suorana",
+    "join": "Liity",
+    "view": "Näytä",
+    "thisWeek": "Tällä viikolla",
+    "thisWeekValue_one": "{{count}} kokous",
+    "thisWeekValue_other": "{{count}} kokousta",
+    "thisWeekSub": "valmiina ja saatavilla kirjastossasi.",
+    "joinModalTitle": "Liity kokous-ID:llä",
+    "joinModalPlaceholder": "Kokous-ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Kokoukset",
+      "filterAll": "Kaikki",
+      "filterLive": "Suorana",
+      "filterUpcoming": "Tulevat",
+      "filterEnded": "Päättyneet",
+      "loadError": "Kokouksia ei voitu ladata.",
+      "empty": "Ei kokouksia tässä suodattimessa."
+    },
+    "item": {
+      "liveNow": "Suorana nyt",
+      "today": "Tänään",
+      "joinNow": "Liity nyt"
+    },
+    "detail": {
+      "back": "Takaisin",
+      "share": "Jaa muistiinpanot",
+      "more": "Lisää",
+      "tabSummary": "Yhteenveto",
+      "tabActions": "Tehtävät · {{count}}",
+      "tabTranscript": "Litterointi",
+      "audioRecording": "Äänitallenne",
+      "recordingAvailable": "Saatavilla",
+      "recordingTranscribed": "{{duration}} · litteroitu",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Yhteenveto",
+      "summaryPending": "Muistiinpanoja luodaan vielä.",
+      "summaryEmpty": "Tälle kokoukselle ei ole vielä yhteenvetoa.",
+      "actionsEmpty": "Tälle kokoukselle ei ole tehtäviä.",
+      "transcriptEmpty": "Tälle kokoukselle ei ole vielä litterointia.",
+      "shareNotes": "Jaa muistiinpanot",
+      "shareFallbackTitle": "Kokous",
+      "shareFallbackSummary": "Yhteenvetoa ei ole vielä luotu."
+    },
+    "room": {
+      "title": "Kokous",
+      "connecting": "Yhdistetään kokoukseen…",
+      "notConfigured": "Kokouspalvelinta ei ole määritetty.",
+      "joinError": "Kokoukseen liittyminen epäonnistui.",
+      "goBack": "Palaa takaisin",
+      "mute": "Mykistä",
+      "unmute": "Poista mykistys",
+      "camera": "Kamera",
+      "people": "Osallistujat",
+      "peopleCount": "Osallistujat ({{count}})",
+      "chat": "Chat",
+      "end": "Poistu",
+      "guest": "Vieras"
+    }
+  },
+  "schedule": {
+    "title": "Aikataulu",
+    "titleLabel": "Otsikko",
+    "titlePlaceholder": "Viikoittainen tuotesynkka",
+    "dateLabel": "Päivämäärä",
+    "datePlaceholder": "VVVV-KK-PP",
+    "timeLabel": "Aika",
+    "timePlaceholder": "TT:MM",
+    "repeats": "Toistuvuus",
+    "recurrenceOnce": "Kerran",
+    "recurrenceDaily": "Päivittäin",
+    "recurrenceWeekly": "Viikoittain",
+    "recurrenceMonthly": "Kuukausittain",
+    "submit": "Aikatauluta kokous",
+    "upcoming": "Tulevat",
+    "upcomingEmpty": "Ei vielä mitään aikataulutettuna.",
+    "titleRequired": "Anna kokoukselle otsikko.",
+    "invalidDateTime": "Anna kelvollinen päivämäärä (VVVV-KK-PP) ja aika (TT:MM).",
+    "genericError": "Kokousta ei voitu aikatauluttaa."
+  },
+  "actions": {
+    "title": "Tehtävät",
+    "subtitle": "{{open}} avoinna · {{done}} tehty tässä kuussa",
+    "scopeAssigned": "Minulle osoitetut",
+    "scopeCreated": "Itse luodut",
+    "scopeAll": "Kaikki",
+    "empty": "Täällä ei ole tehtäviä.",
+    "overdue": "Myöhässä"
+  },
+  "library": {
+    "title": "Kirjasto",
+    "subtitle": "Tallenteet ja muistiinpanot päättyneistä kokouksista.",
+    "empty": "Ei vielä päättyneitä kokouksia.",
+    "recording": " · tallenne"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Suoratoistot",
+      "loadError": "Suoratoistoja ei voitu ladata.",
+      "empty": "Ei vielä suoratoistoja."
+    },
+    "viewer": {
+      "notConfigured": "Suoratoistopalvelinta ei ole määritetty.",
+      "notLive": "Tämä suoratoisto ei ole juuri nyt käynnissä.",
+      "goBack": "Palaa takaisin",
+      "connecting": "Yhdistetään…",
+      "waitingForHost": "Odotetaan isännän aloittavan lähetyksen…",
+      "viewerCountOne": "1 katsoja",
+      "viewerCountOther": "{{count}} katsojaa",
+      "chat": "Chat",
+      "leave": "Poistu"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Kokouksen chat",
+    "livestreamTitle": "Suoratoiston chat",
+    "close": "Sulje",
+    "empty": "Ei vielä viestejä.",
+    "placeholder": "Viesti kaikille",
+    "send": "Lähetä"
+  }
+}

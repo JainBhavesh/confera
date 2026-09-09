@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Atšaukti",
+    "save": "Išsaugoti",
+    "close": "Uždaryti",
+    "back": "Atgal",
+    "done": "Atlikta",
+    "unknownHost": "Nežinomas vedėjas",
+    "unknown": "Nežinoma",
+    "you": "Tu",
+    "goBack": "Grįžti atgal",
+    "resend": "Siųsti kodą dar kartą",
+    "resendIn": "Siųsti dar kartą po {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Pradžia",
+    "meetings": "Susitikimai",
+    "schedule": "Tvarkaraštis",
+    "actions": "Užduotys",
+    "library": "Biblioteka"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Susitikimai, kurie patys save užrašo.",
+      "title": "Prisijungti",
+      "subtitle": "Sveiki sugrįžę.",
+      "emailLabel": "El. paštas",
+      "emailPlaceholder": "tu@imone.com",
+      "passwordLabel": "Slaptažodis",
+      "forgotPassword": "Pamiršai slaptažodį?",
+      "submit": "Prisijungti",
+      "or": "arba",
+      "continueWithGoogle": "Tęsti su Google",
+      "noAccount": "Neturite paskyros? ",
+      "register": "Registruotis",
+      "genericError": "Nepavyko prisijungti. Bandykite dar kartą."
+    },
+    "register": {
+      "title": "Sukurti paskyrą",
+      "subtitle": "Prieinama tik tada, kai jūsų organizacija leidžia registruotis.",
+      "nameLabel": "Vardas ir pavardė",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "El. paštas",
+      "emailPlaceholder": "tu@imone.com",
+      "passwordLabel": "Slaptažodis",
+      "submit": "Registruotis",
+      "haveAccount": "Jau turite paskyrą? ",
+      "signIn": "Prisijungti",
+      "genericError": "Nepavyko užsiregistruoti. Bandykite dar kartą."
+    },
+    "verifyEmail": {
+      "title": "Patvirtinkite savo el. paštą",
+      "subtitle": "Įveskite kodą, kurį išsiuntėme adresu {{email}}.",
+      "codeLabel": "Patvirtinimo kodas",
+      "codePlaceholder": "123456",
+      "submit": "Patvirtinti",
+      "resent": "Naujas kodas išsiųstas.",
+      "genericError": "Nepavyko patvirtinti šio kodo. Bandykite dar kartą."
+    },
+    "forgotPassword": {
+      "title": "Atkurti slaptažodį",
+      "requestSubtitle": "Įveskite savo paskyros el. paštą ir mes atsiųsime atkūrimo kodą.",
+      "resetSubtitle": "Įveskite kodą, kurį išsiuntėme adresu {{email}}, ir pasirinkite naują slaptažodį.",
+      "emailLabel": "El. paštas",
+      "emailPlaceholder": "tu@imone.com",
+      "codeLabel": "Atkūrimo kodas",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Naujas slaptažodis",
+      "requestSubmit": "Siųsti atkūrimo kodą",
+      "resetSubmit": "Atkurti slaptažodį",
+      "success": "Jūsų slaptažodis atkurtas. Prisijunkite su nauju slaptažodžiu.",
+      "backToLogin": "Atgal į prisijungimą",
+      "genericError": "Nepavyko apdoroti šio prašymo. Bandykite dar kartą."
+    }
+  },
+  "profile": {
+    "nameLabel": "Vardas",
+    "emailLabel": "El. paštas",
+    "changePassword": "Keisti slaptažodį",
+    "language": "Kalba",
+    "logOut": "Atsijungti",
+    "changePasswordTitle": "Keisti slaptažodį",
+    "currentPasswordLabel": "Dabartinis slaptažodis",
+    "newPasswordLabel": "Naujas slaptažodis",
+    "passwordUpdated": "Jūsų slaptažodis atnaujintas.",
+    "passwordTooShort": "Naujas slaptažodis turi būti bent 8 simbolių.",
+    "genericError": "Nepavyko pakeisti slaptažodžio.",
+    "languageTitle": "Kalba"
+  },
+  "dashboard": {
+    "search": "Ieškoti",
+    "profile": "Profilis",
+    "greetingMorning": "Labas rytas{{name}}",
+    "greetingAfternoon": "Laba diena{{name}}",
+    "greetingEvening": "Labas vakaras{{name}}",
+    "newMeeting": "Naujas susitikimas",
+    "joinWithId": "Prisijungti su ID",
+    "today": "Šiandien",
+    "todayMeetings_one": "{{count}} susitikimas",
+    "todayMeetings_other": "{{count}} susitikimai",
+    "openActions": "Atviros užduotys",
+    "upNext": "Kitas",
+    "schedule": "Tvarkaraštis",
+    "nothingScheduled": "Nieko nesuplanuota. Pradėkite susitikimą aukščiau.",
+    "live": "Tiesiogiai",
+    "join": "Prisijungti",
+    "view": "Žiūrėti",
+    "thisWeek": "Šią savaitę",
+    "thisWeekValue_one": "{{count}} susitikimas",
+    "thisWeekValue_other": "{{count}} susitikimai",
+    "thisWeekSub": "baigti ir pasiekiami jūsų bibliotekoje.",
+    "joinModalTitle": "Prisijungti su susitikimo ID",
+    "joinModalPlaceholder": "Susitikimo ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Susitikimai",
+      "filterAll": "Visi",
+      "filterLive": "Tiesiogiai",
+      "filterUpcoming": "Būsimi",
+      "filterEnded": "Pasibaigę",
+      "loadError": "Nepavyko įkelti susitikimų.",
+      "empty": "Šiame filtre nėra susitikimų."
+    },
+    "item": {
+      "liveNow": "Tiesiogiai dabar",
+      "today": "Šiandien",
+      "joinNow": "Prisijungti dabar"
+    },
+    "detail": {
+      "back": "Atgal",
+      "share": "Dalintis pastabomis",
+      "more": "Daugiau",
+      "tabSummary": "Santrauka",
+      "tabActions": "Užduotys · {{count}}",
+      "tabTranscript": "Transkriptas",
+      "audioRecording": "Garso įrašas",
+      "recordingAvailable": "Pasiekiama",
+      "recordingTranscribed": "{{duration}} · transkribuota",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Santrauka",
+      "summaryPending": "Pastabos vis dar generuojamos.",
+      "summaryEmpty": "Šiam susitikimui santraukos dar nėra.",
+      "actionsEmpty": "Šiam susitikimui užduočių nėra.",
+      "transcriptEmpty": "Šiam susitikimui transkripto dar nėra.",
+      "shareNotes": "Dalintis pastabomis",
+      "shareFallbackTitle": "Susitikimas",
+      "shareFallbackSummary": "Santrauka dar nesugeneruota."
+    },
+    "room": {
+      "title": "Susitikimas",
+      "connecting": "Jungiamasi prie susitikimo…",
+      "notConfigured": "Susitikimų serveris nesukonfigūruotas.",
+      "joinError": "Nepavyko prisijungti prie susitikimo.",
+      "goBack": "Grįžti atgal",
+      "mute": "Nutildyti",
+      "unmute": "Įjungti garsą",
+      "camera": "Kamera",
+      "people": "Dalyviai",
+      "peopleCount": "Dalyviai ({{count}})",
+      "chat": "Pokalbiai",
+      "end": "Išeiti",
+      "guest": "Svečias"
+    }
+  },
+  "schedule": {
+    "title": "Tvarkaraštis",
+    "titleLabel": "Pavadinimas",
+    "titlePlaceholder": "Savaitinė produkto sinchronizacija",
+    "dateLabel": "Data",
+    "datePlaceholder": "MMMM-MM-DD",
+    "timeLabel": "Laikas",
+    "timePlaceholder": "VV:MM",
+    "repeats": "Kartojimas",
+    "recurrenceOnce": "Vieną kartą",
+    "recurrenceDaily": "Kasdien",
+    "recurrenceWeekly": "Kas savaitę",
+    "recurrenceMonthly": "Kas mėnesį",
+    "submit": "Suplanuoti susitikimą",
+    "upcoming": "Būsimi",
+    "upcomingEmpty": "Kol kas nieko nesuplanuota.",
+    "titleRequired": "Suteikite susitikimui pavadinimą.",
+    "invalidDateTime": "Įveskite galiojančią datą (MMMM-MM-DD) ir laiką (VV:MM).",
+    "genericError": "Nepavyko suplanuoti šio susitikimo."
+  },
+  "actions": {
+    "title": "Užduotys",
+    "subtitle": "{{open}} atviros · {{done}} baigtos šį mėnesį",
+    "scopeAssigned": "Priskirtos man",
+    "scopeCreated": "Mano sukurtos",
+    "scopeAll": "Visos",
+    "empty": "Čia užduočių nėra.",
+    "overdue": "Vėluojama"
+  },
+  "library": {
+    "title": "Biblioteka",
+    "subtitle": "Įrašai ir pastabos iš pasibaigusių susitikimų.",
+    "empty": "Pasibaigusių susitikimų dar nėra.",
+    "recording": " · įrašas"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Tiesioginės transliacijos",
+      "loadError": "Nepavyko įkelti transliacijų.",
+      "empty": "Transliacijų dar nėra."
+    },
+    "viewer": {
+      "notConfigured": "Transliacijos serveris nesukonfigūruotas.",
+      "notLive": "Ši transliacija šiuo metu nevyksta.",
+      "goBack": "Grįžti atgal",
+      "connecting": "Jungiamasi…",
+      "waitingForHost": "Laukiama, kol vedėjas pradės transliaciją…",
+      "viewerCountOne": "1 žiūrovas",
+      "viewerCountOther": "{{count}} žiūrovai",
+      "chat": "Pokalbiai",
+      "leave": "Išeiti"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Susitikimo pokalbiai",
+    "livestreamTitle": "Transliacijos pokalbiai",
+    "close": "Uždaryti",
+    "empty": "Žinučių dar nėra.",
+    "placeholder": "Rašyti visiems",
+    "send": "Siųsti"
+  }
+}

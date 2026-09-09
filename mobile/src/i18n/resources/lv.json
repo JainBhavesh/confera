@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Atcelt",
+    "save": "Saglabāt",
+    "close": "Aizvērt",
+    "back": "Atpakaļ",
+    "done": "Gatavs",
+    "unknownHost": "Nezināms rīkotājs",
+    "unknown": "Nezināms",
+    "you": "Tu",
+    "goBack": "Doties atpakaļ",
+    "resend": "Sūtīt kodu vēlreiz",
+    "resendIn": "Sūtīt vēlreiz pēc {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Sākums",
+    "meetings": "Sanāksmes",
+    "schedule": "Grafiks",
+    "actions": "Uzdevumi",
+    "library": "Bibliotēka"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Sanāksmes, kas pašas sevi pieraksta.",
+      "title": "Pierakstīties",
+      "subtitle": "Laipni lūdzam atpakaļ.",
+      "emailLabel": "E-pasts",
+      "emailPlaceholder": "tu@uznemums.com",
+      "passwordLabel": "Parole",
+      "forgotPassword": "Aizmirsi paroli?",
+      "submit": "Pierakstīties",
+      "or": "vai",
+      "continueWithGoogle": "Turpināt ar Google",
+      "noAccount": "Nav konta? ",
+      "register": "Reģistrēties",
+      "genericError": "Neizdevās pierakstīties. Mēģini vēlreiz."
+    },
+    "register": {
+      "title": "Izveidot kontu",
+      "subtitle": "Pieejams tikai tad, ja tava organizācija atļauj reģistrāciju.",
+      "nameLabel": "Pilns vārds",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-pasts",
+      "emailPlaceholder": "tu@uznemums.com",
+      "passwordLabel": "Parole",
+      "submit": "Reģistrēties",
+      "haveAccount": "Jau ir konts? ",
+      "signIn": "Pierakstīties",
+      "genericError": "Neizdevās reģistrēties. Mēģini vēlreiz."
+    },
+    "verifyEmail": {
+      "title": "Apstiprini savu e-pastu",
+      "subtitle": "Ievadi kodu, ko nosūtījām uz {{email}}.",
+      "codeLabel": "Apstiprinājuma kods",
+      "codePlaceholder": "123456",
+      "submit": "Apstiprināt",
+      "resent": "Ir nosūtīts jauns kods.",
+      "genericError": "Neizdevās apstiprināt šo kodu. Mēģini vēlreiz."
+    },
+    "forgotPassword": {
+      "title": "Atiestatīt paroli",
+      "requestSubtitle": "Ievadi sava konta e-pastu, un mēs nosūtīsim atiestatīšanas kodu.",
+      "resetSubtitle": "Ievadi kodu, ko nosūtījām uz {{email}}, un izvēlies jaunu paroli.",
+      "emailLabel": "E-pasts",
+      "emailPlaceholder": "tu@uznemums.com",
+      "codeLabel": "Atiestatīšanas kods",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Jauna parole",
+      "requestSubmit": "Sūtīt atiestatīšanas kodu",
+      "resetSubmit": "Atiestatīt paroli",
+      "success": "Tava parole ir atiestatīta. Pieraksties ar jauno paroli.",
+      "backToLogin": "Atpakaļ uz pierakstīšanos",
+      "genericError": "Neizdevās apstrādāt šo pieprasījumu. Mēģini vēlreiz."
+    }
+  },
+  "profile": {
+    "nameLabel": "Vārds",
+    "emailLabel": "E-pasts",
+    "changePassword": "Mainīt paroli",
+    "language": "Valoda",
+    "logOut": "Izrakstīties",
+    "changePasswordTitle": "Mainīt paroli",
+    "currentPasswordLabel": "Pašreizējā parole",
+    "newPasswordLabel": "Jauna parole",
+    "passwordUpdated": "Tava parole ir atjaunināta.",
+    "passwordTooShort": "Jaunajai parolei jābūt vismaz 8 rakstzīmēm.",
+    "genericError": "Neizdevās mainīt paroli.",
+    "languageTitle": "Valoda"
+  },
+  "dashboard": {
+    "search": "Meklēt",
+    "profile": "Profils",
+    "greetingMorning": "Labrīt{{name}}",
+    "greetingAfternoon": "Labdien{{name}}",
+    "greetingEvening": "Labvakar{{name}}",
+    "newMeeting": "Jauna sanāksme",
+    "joinWithId": "Pievienoties ar ID",
+    "today": "Šodien",
+    "todayMeetings_one": "{{count}} sanāksme",
+    "todayMeetings_other": "{{count}} sanāksmes",
+    "openActions": "Atvērtie uzdevumi",
+    "upNext": "Nākamais",
+    "schedule": "Grafiks",
+    "nothingScheduled": "Nekas nav ieplānots. Sāc sanāksmi augstāk.",
+    "live": "Tiešraide",
+    "join": "Pievienoties",
+    "view": "Skatīt",
+    "thisWeek": "Šonedēļ",
+    "thisWeekValue_one": "{{count}} sanāksme",
+    "thisWeekValue_other": "{{count}} sanāksmes",
+    "thisWeekSub": "pabeigtas un pieejamas tavā bibliotēkā.",
+    "joinModalTitle": "Pievienoties ar sanāksmes ID",
+    "joinModalPlaceholder": "Sanāksmes ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Sanāksmes",
+      "filterAll": "Visas",
+      "filterLive": "Tiešraide",
+      "filterUpcoming": "Gaidāmās",
+      "filterEnded": "Pabeigtas",
+      "loadError": "Neizdevās ielādēt sanāksmes.",
+      "empty": "Šajā filtrā nav sanāksmju."
+    },
+    "item": {
+      "liveNow": "Tiešraidē tagad",
+      "today": "Šodien",
+      "joinNow": "Pievienoties tagad"
+    },
+    "detail": {
+      "back": "Atpakaļ",
+      "share": "Dalīties ar piezīmēm",
+      "more": "Vairāk",
+      "tabSummary": "Kopsavilkums",
+      "tabActions": "Uzdevumi · {{count}}",
+      "tabTranscript": "Transkripcija",
+      "audioRecording": "Audio ieraksts",
+      "recordingAvailable": "Pieejams",
+      "recordingTranscribed": "{{duration}} · transkribēts",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Kopsavilkums",
+      "summaryPending": "Piezīmes joprojām tiek ģenerētas.",
+      "summaryEmpty": "Šai sanāksmei vēl nav kopsavilkuma.",
+      "actionsEmpty": "Šai sanāksmei nav uzdevumu.",
+      "transcriptEmpty": "Šai sanāksmei vēl nav transkripcijas.",
+      "shareNotes": "Dalīties ar piezīmēm",
+      "shareFallbackTitle": "Sanāksme",
+      "shareFallbackSummary": "Kopsavilkums vēl nav izveidots."
+    },
+    "room": {
+      "title": "Sanāksme",
+      "connecting": "Savienojas ar sanāksmi…",
+      "notConfigured": "Sanāksmes serveris nav konfigurēts.",
+      "joinError": "Neizdevās pievienoties sanāksmei.",
+      "goBack": "Doties atpakaļ",
+      "mute": "Izslēgt mikrofonu",
+      "unmute": "Ieslēgt mikrofonu",
+      "camera": "Kamera",
+      "people": "Dalībnieki",
+      "peopleCount": "Dalībnieki ({{count}})",
+      "chat": "Tērzēšana",
+      "end": "Iziet",
+      "guest": "Viesis"
+    }
+  },
+  "schedule": {
+    "title": "Grafiks",
+    "titleLabel": "Nosaukums",
+    "titlePlaceholder": "Iknedēļas produkta sinhronizācija",
+    "dateLabel": "Datums",
+    "datePlaceholder": "GGGG-MM-DD",
+    "timeLabel": "Laiks",
+    "timePlaceholder": "HH:MM",
+    "repeats": "Atkārtošanās",
+    "recurrenceOnce": "Vienreiz",
+    "recurrenceDaily": "Katru dienu",
+    "recurrenceWeekly": "Katru nedēļu",
+    "recurrenceMonthly": "Katru mēnesi",
+    "submit": "Plānot sanāksmi",
+    "upcoming": "Gaidāmās",
+    "upcomingEmpty": "Vēl nekas nav ieplānots.",
+    "titleRequired": "Piešķir sanāksmei nosaukumu.",
+    "invalidDateTime": "Ievadi derīgu datumu (GGGG-MM-DD) un laiku (HH:MM).",
+    "genericError": "Neizdevās ieplānot šo sanāksmi."
+  },
+  "actions": {
+    "title": "Uzdevumi",
+    "subtitle": "{{open}} atvērti · {{done}} pabeigti šomēnes",
+    "scopeAssigned": "Man piešķirtie",
+    "scopeCreated": "Mana izveidotie",
+    "scopeAll": "Visi",
+    "empty": "Šeit nav uzdevumu.",
+    "overdue": "Nokavēts"
+  },
+  "library": {
+    "title": "Bibliotēka",
+    "subtitle": "Ieraksti un piezīmes no pabeigtām sanāksmēm.",
+    "empty": "Vēl nav pabeigtu sanāksmju.",
+    "recording": " · ieraksts"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Tiešraides",
+      "loadError": "Neizdevās ielādēt tiešraides.",
+      "empty": "Vēl nav tiešraižu."
+    },
+    "viewer": {
+      "notConfigured": "Tiešraides serveris nav konfigurēts.",
+      "notLive": "Šī tiešraide pašlaik nenotiek.",
+      "goBack": "Doties atpakaļ",
+      "connecting": "Savienojas…",
+      "waitingForHost": "Gaida, kad rīkotājs sāks tiešraidi…",
+      "viewerCountOne": "1 skatītājs",
+      "viewerCountOther": "{{count}} skatītāji",
+      "chat": "Tērzēšana",
+      "leave": "Iziet"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Sanāksmes tērzēšana",
+    "livestreamTitle": "Tiešraides tērzēšana",
+    "close": "Aizvērt",
+    "empty": "Vēl nav ziņu.",
+    "placeholder": "Rakstīt visiem",
+    "send": "Sūtīt"
+  }
+}

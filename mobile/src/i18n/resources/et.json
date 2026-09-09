@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Tühista",
+    "save": "Salvesta",
+    "close": "Sulge",
+    "back": "Tagasi",
+    "done": "Valmis",
+    "unknownHost": "Tundmatu korraldaja",
+    "unknown": "Teadmata",
+    "you": "Sina",
+    "goBack": "Mine tagasi",
+    "resend": "Saada kood uuesti",
+    "resendIn": "Saada uuesti {{seconds}}s pärast"
+  },
+  "tabs": {
+    "home": "Avaleht",
+    "meetings": "Koosolekud",
+    "schedule": "Ajakava",
+    "actions": "Ülesanded",
+    "library": "Raamatukogu"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Koosolekud, mis dokumenteerivad end ise.",
+      "title": "Logi sisse",
+      "subtitle": "Tere tulemast tagasi.",
+      "emailLabel": "E-post",
+      "emailPlaceholder": "sina@ettevote.com",
+      "passwordLabel": "Parool",
+      "forgotPassword": "Unustasid parooli?",
+      "submit": "Logi sisse",
+      "or": "või",
+      "continueWithGoogle": "Jätka Google'iga",
+      "noAccount": "Kontot pole? ",
+      "register": "Registreeru",
+      "genericError": "Sisselogimine ebaõnnestus. Proovi uuesti."
+    },
+    "register": {
+      "title": "Loo konto",
+      "subtitle": "Saadaval ainult siis, kui su organisatsioon lubab registreerumist.",
+      "nameLabel": "Täisnimi",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-post",
+      "emailPlaceholder": "sina@ettevote.com",
+      "passwordLabel": "Parool",
+      "submit": "Registreeru",
+      "haveAccount": "Kas sul on juba konto? ",
+      "signIn": "Logi sisse",
+      "genericError": "Registreerumine ebaõnnestus. Proovi uuesti."
+    },
+    "verifyEmail": {
+      "title": "Kinnita oma e-post",
+      "subtitle": "Sisesta kood, mille saatsime aadressile {{email}}.",
+      "codeLabel": "Kinnituskood",
+      "codePlaceholder": "123456",
+      "submit": "Kinnita",
+      "resent": "Uus kood on saadetud.",
+      "genericError": "Seda koodi ei õnnestunud kinnitada. Proovi uuesti."
+    },
+    "forgotPassword": {
+      "title": "Lähtesta parool",
+      "requestSubtitle": "Sisesta oma konto e-post ja saadame sulle lähtestamiskoodi.",
+      "resetSubtitle": "Sisesta kood, mille saatsime aadressile {{email}}, ja vali uus parool.",
+      "emailLabel": "E-post",
+      "emailPlaceholder": "sina@ettevote.com",
+      "codeLabel": "Lähtestamiskood",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Uus parool",
+      "requestSubmit": "Saada lähtestamiskood",
+      "resetSubmit": "Lähtesta parool",
+      "success": "Su parool on lähtestatud. Logi sisse oma uue parooliga.",
+      "backToLogin": "Tagasi sisselogimisse",
+      "genericError": "Seda päringut ei õnnestunud töödelda. Proovi uuesti."
+    }
+  },
+  "profile": {
+    "nameLabel": "Nimi",
+    "emailLabel": "E-post",
+    "changePassword": "Muuda parooli",
+    "language": "Keel",
+    "logOut": "Logi välja",
+    "changePasswordTitle": "Muuda parooli",
+    "currentPasswordLabel": "Praegune parool",
+    "newPasswordLabel": "Uus parool",
+    "passwordUpdated": "Su parool on uuendatud.",
+    "passwordTooShort": "Uus parool peab olema vähemalt 8 tähemärki pikk.",
+    "genericError": "Parooli ei õnnestunud muuta.",
+    "languageTitle": "Keel"
+  },
+  "dashboard": {
+    "search": "Otsi",
+    "profile": "Profiil",
+    "greetingMorning": "Tere hommikust{{name}}",
+    "greetingAfternoon": "Tere päevast{{name}}",
+    "greetingEvening": "Tere õhtust{{name}}",
+    "newMeeting": "Uus koosolek",
+    "joinWithId": "Liitu ID-ga",
+    "today": "Täna",
+    "todayMeetings_one": "{{count}} koosolek",
+    "todayMeetings_other": "{{count}} koosolekut",
+    "openActions": "Avatud ülesanded",
+    "upNext": "Järgmisena",
+    "schedule": "Ajakava",
+    "nothingScheduled": "Midagi pole planeeritud. Alusta koosolekut ülal.",
+    "live": "Otseülekanne",
+    "join": "Liitu",
+    "view": "Vaata",
+    "thisWeek": "Sel nädalal",
+    "thisWeekValue_one": "{{count}} koosolek",
+    "thisWeekValue_other": "{{count}} koosolekut",
+    "thisWeekSub": "lõpetatud ja saadaval sinu raamatukogus.",
+    "joinModalTitle": "Liitu koosoleku ID-ga",
+    "joinModalPlaceholder": "Koosoleku ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Koosolekud",
+      "filterAll": "Kõik",
+      "filterLive": "Otseülekanne",
+      "filterUpcoming": "Tulevased",
+      "filterEnded": "Lõppenud",
+      "loadError": "Koosolekuid ei õnnestunud laadida.",
+      "empty": "Selles filtris pole koosolekuid."
+    },
+    "item": {
+      "liveNow": "Praegu otse",
+      "today": "Täna",
+      "joinNow": "Liitu kohe"
+    },
+    "detail": {
+      "back": "Tagasi",
+      "share": "Jaga märkmeid",
+      "more": "Rohkem",
+      "tabSummary": "Kokkuvõte",
+      "tabActions": "Ülesanded · {{count}}",
+      "tabTranscript": "Transkriptsioon",
+      "audioRecording": "Helisalvestis",
+      "recordingAvailable": "Saadaval",
+      "recordingTranscribed": "{{duration}} · transkribeeritud",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Kokkuvõte",
+      "summaryPending": "Märkmeid alles genereeritakse.",
+      "summaryEmpty": "Selle koosoleku kohta pole veel kokkuvõtet.",
+      "actionsEmpty": "Sellel koosolekul pole ülesandeid.",
+      "transcriptEmpty": "Selle koosoleku kohta pole veel transkriptsiooni.",
+      "shareNotes": "Jaga märkmeid",
+      "shareFallbackTitle": "Koosolek",
+      "shareFallbackSummary": "Kokkuvõtet pole veel loodud."
+    },
+    "room": {
+      "title": "Koosolek",
+      "connecting": "Ühendumine koosolekuga…",
+      "notConfigured": "Koosolekuserver pole seadistatud.",
+      "joinError": "Koosolekuga liitumine ebaõnnestus.",
+      "goBack": "Mine tagasi",
+      "mute": "Summuta",
+      "unmute": "Lülita heli sisse",
+      "camera": "Kaamera",
+      "people": "Osalejad",
+      "peopleCount": "Osalejad ({{count}})",
+      "chat": "Vestlus",
+      "end": "Lahku",
+      "guest": "Külaline"
+    }
+  },
+  "schedule": {
+    "title": "Ajakava",
+    "titleLabel": "Pealkiri",
+    "titlePlaceholder": "Iganädalane tootesünkroonimine",
+    "dateLabel": "Kuupäev",
+    "datePlaceholder": "AAAA-KK-PP",
+    "timeLabel": "Kellaaeg",
+    "timePlaceholder": "TT:MM",
+    "repeats": "Kordumine",
+    "recurrenceOnce": "Ühekordne",
+    "recurrenceDaily": "Iga päev",
+    "recurrenceWeekly": "Igal nädalal",
+    "recurrenceMonthly": "Igal kuul",
+    "submit": "Planeeri koosolek",
+    "upcoming": "Tulevased",
+    "upcomingEmpty": "Veel pole midagi planeeritud.",
+    "titleRequired": "Anna koosolekule pealkiri.",
+    "invalidDateTime": "Sisesta kehtiv kuupäev (AAAA-KK-PP) ja kellaaeg (TT:MM).",
+    "genericError": "Seda koosolekut ei õnnestunud planeerida."
+  },
+  "actions": {
+    "title": "Ülesanded",
+    "subtitle": "{{open}} avatud · {{done}} tehtud sel kuul",
+    "scopeAssigned": "Minule määratud",
+    "scopeCreated": "Minu loodud",
+    "scopeAll": "Kõik",
+    "empty": "Siin pole ülesandeid.",
+    "overdue": "Tähtaeg möödas"
+  },
+  "library": {
+    "title": "Raamatukogu",
+    "subtitle": "Salvestised ja märkmed lõppenud koosolekutest.",
+    "empty": "Lõppenud koosolekuid pole veel.",
+    "recording": " · salvestis"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Otseülekanded",
+      "loadError": "Otseülekandeid ei õnnestunud laadida.",
+      "empty": "Otseülekandeid pole veel."
+    },
+    "viewer": {
+      "notConfigured": "Otseülekande server pole seadistatud.",
+      "notLive": "See otseülekanne pole praegu käimas.",
+      "goBack": "Mine tagasi",
+      "connecting": "Ühendumine…",
+      "waitingForHost": "Ootan, et korraldaja alustaks…",
+      "viewerCountOne": "1 vaataja",
+      "viewerCountOther": "{{count}} vaatajat",
+      "chat": "Vestlus",
+      "leave": "Lahku"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Koosoleku vestlus",
+    "livestreamTitle": "Otseülekande vestlus",
+    "close": "Sulge",
+    "empty": "Sõnumeid pole veel.",
+    "placeholder": "Kirjuta kõigile",
+    "send": "Saada"
+  }
+}

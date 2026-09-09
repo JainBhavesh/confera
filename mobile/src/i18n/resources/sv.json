@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Avbryt",
+    "save": "Spara",
+    "close": "Stäng",
+    "back": "Tillbaka",
+    "done": "Klar",
+    "unknownHost": "Okänd värd",
+    "unknown": "Okänd",
+    "you": "Du",
+    "goBack": "Gå tillbaka",
+    "resend": "Skicka koden igen",
+    "resendIn": "Skicka igen om {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Hem",
+    "meetings": "Möten",
+    "schedule": "Schema",
+    "actions": "Åtgärder",
+    "library": "Bibliotek"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Möten som dokumenterar sig själva.",
+      "title": "Logga in",
+      "subtitle": "Välkommen tillbaka.",
+      "emailLabel": "E-post",
+      "emailPlaceholder": "du@foretag.se",
+      "passwordLabel": "Lösenord",
+      "forgotPassword": "Glömt lösenordet?",
+      "submit": "Logga in",
+      "or": "eller",
+      "continueWithGoogle": "Fortsätt med Google",
+      "noAccount": "Inget konto? ",
+      "register": "Registrera",
+      "genericError": "Det gick inte att logga in. Försök igen."
+    },
+    "register": {
+      "title": "Skapa konto",
+      "subtitle": "Endast tillgängligt när din organisation tillåter registrering.",
+      "nameLabel": "Fullständigt namn",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-post",
+      "emailPlaceholder": "du@foretag.se",
+      "passwordLabel": "Lösenord",
+      "submit": "Registrera",
+      "haveAccount": "Har du redan ett konto? ",
+      "signIn": "Logga in",
+      "genericError": "Det gick inte att slutföra registreringen. Försök igen."
+    },
+    "verifyEmail": {
+      "title": "Verifiera din e-post",
+      "subtitle": "Ange koden vi skickade till {{email}}.",
+      "codeLabel": "Verifieringskod",
+      "codePlaceholder": "123456",
+      "submit": "Verifiera",
+      "resent": "En ny kod har skickats.",
+      "genericError": "Det gick inte att verifiera koden. Försök igen."
+    },
+    "forgotPassword": {
+      "title": "Återställ lösenord",
+      "requestSubtitle": "Ange kontots e-postadress så skickar vi en återställningskod.",
+      "resetSubtitle": "Ange koden vi skickade till {{email}} och välj ett nytt lösenord.",
+      "emailLabel": "E-post",
+      "emailPlaceholder": "du@foretag.se",
+      "codeLabel": "Återställningskod",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Nytt lösenord",
+      "requestSubmit": "Skicka återställningskod",
+      "resetSubmit": "Återställ lösenord",
+      "success": "Ditt lösenord har återställts. Logga in med ditt nya lösenord.",
+      "backToLogin": "Tillbaka till inloggning",
+      "genericError": "Det gick inte att behandla begäran. Försök igen."
+    }
+  },
+  "profile": {
+    "nameLabel": "Namn",
+    "emailLabel": "E-post",
+    "changePassword": "Byt lösenord",
+    "language": "Språk",
+    "logOut": "Logga ut",
+    "changePasswordTitle": "Byt lösenord",
+    "currentPasswordLabel": "Nuvarande lösenord",
+    "newPasswordLabel": "Nytt lösenord",
+    "passwordUpdated": "Ditt lösenord har uppdaterats.",
+    "passwordTooShort": "Det nya lösenordet måste vara minst 8 tecken.",
+    "genericError": "Det gick inte att byta lösenord.",
+    "languageTitle": "Språk"
+  },
+  "dashboard": {
+    "search": "Sök",
+    "profile": "Profil",
+    "greetingMorning": "God morgon{{name}}",
+    "greetingAfternoon": "God eftermiddag{{name}}",
+    "greetingEvening": "God kväll{{name}}",
+    "newMeeting": "Nytt möte",
+    "joinWithId": "Anslut med ID",
+    "today": "Idag",
+    "todayMeetings_one": "{{count}} möte",
+    "todayMeetings_other": "{{count}} möten",
+    "openActions": "Öppna åtgärder",
+    "upNext": "Kommande",
+    "schedule": "Schema",
+    "nothingScheduled": "Inget schemalagt. Starta ett möte ovan.",
+    "live": "Live",
+    "join": "Anslut",
+    "view": "Visa",
+    "thisWeek": "Denna vecka",
+    "thisWeekValue_one": "{{count}} möte",
+    "thisWeekValue_other": "{{count}} möten",
+    "thisWeekSub": "avslutade och tillgängliga i ditt bibliotek.",
+    "joinModalTitle": "Anslut med mötes-ID",
+    "joinModalPlaceholder": "Mötes-ID"
+  },
+  "meetings": {
+    "list": {
+      "title": "Möten",
+      "filterAll": "Alla",
+      "filterLive": "Live",
+      "filterUpcoming": "Kommande",
+      "filterEnded": "Avslutade",
+      "loadError": "Det gick inte att läsa in mötena.",
+      "empty": "Inga möten i detta filter."
+    },
+    "item": {
+      "liveNow": "Live nu",
+      "today": "Idag",
+      "joinNow": "Anslut nu"
+    },
+    "detail": {
+      "back": "Tillbaka",
+      "share": "Dela anteckningar",
+      "more": "Mer",
+      "tabSummary": "Sammanfattning",
+      "tabActions": "Åtgärder · {{count}}",
+      "tabTranscript": "Transkript",
+      "audioRecording": "Ljudinspelning",
+      "recordingAvailable": "Tillgänglig",
+      "recordingTranscribed": "{{duration}} · transkriberad",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Sammanfattning",
+      "summaryPending": "Anteckningarna genereras fortfarande.",
+      "summaryEmpty": "Ingen sammanfattning finns ännu för detta möte.",
+      "actionsEmpty": "Inga åtgärder för detta möte.",
+      "transcriptEmpty": "Inget transkript finns ännu för detta möte.",
+      "shareNotes": "Dela anteckningar",
+      "shareFallbackTitle": "Möte",
+      "shareFallbackSummary": "Ingen sammanfattning har genererats ännu."
+    },
+    "room": {
+      "title": "Möte",
+      "connecting": "Ansluter till mötet…",
+      "notConfigured": "Mötesservern är inte konfigurerad.",
+      "joinError": "Det gick inte att ansluta till mötet.",
+      "goBack": "Gå tillbaka",
+      "mute": "Stäng av mikrofon",
+      "unmute": "Sätt på mikrofon",
+      "camera": "Kamera",
+      "people": "Deltagare",
+      "peopleCount": "Deltagare ({{count}})",
+      "chat": "Chatt",
+      "end": "Lämna",
+      "guest": "Gäst"
+    }
+  },
+  "schedule": {
+    "title": "Schema",
+    "titleLabel": "Titel",
+    "titlePlaceholder": "Veckovis produktsync",
+    "dateLabel": "Datum",
+    "datePlaceholder": "ÅÅÅÅ-MM-DD",
+    "timeLabel": "Tid",
+    "timePlaceholder": "TT:MM",
+    "repeats": "Upprepning",
+    "recurrenceOnce": "En gång",
+    "recurrenceDaily": "Dagligen",
+    "recurrenceWeekly": "Varje vecka",
+    "recurrenceMonthly": "Varje månad",
+    "submit": "Schemalägg möte",
+    "upcoming": "Kommande",
+    "upcomingEmpty": "Inget schemalagt ännu.",
+    "titleRequired": "Ge mötet en titel.",
+    "invalidDateTime": "Ange ett giltigt datum (ÅÅÅÅ-MM-DD) och tid (TT:MM).",
+    "genericError": "Det gick inte att schemalägga detta möte."
+  },
+  "actions": {
+    "title": "Åtgärdspunkter",
+    "subtitle": "{{open}} öppna · {{done}} klara denna månad",
+    "scopeAssigned": "Tilldelade mig",
+    "scopeCreated": "Skapade av mig",
+    "scopeAll": "Alla",
+    "empty": "Inga åtgärdspunkter här.",
+    "overdue": "Försenad"
+  },
+  "library": {
+    "title": "Bibliotek",
+    "subtitle": "Inspelningar och anteckningar från avslutade möten.",
+    "empty": "Inga avslutade möten ännu.",
+    "recording": " · inspelning"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Livesändningar",
+      "loadError": "Det gick inte att läsa in livesändningarna.",
+      "empty": "Inga livesändningar ännu."
+    },
+    "viewer": {
+      "notConfigured": "Livesändningsservern är inte konfigurerad.",
+      "notLive": "Denna livesändning är inte live just nu.",
+      "goBack": "Gå tillbaka",
+      "connecting": "Ansluter…",
+      "waitingForHost": "Väntar på att värden ska starta sändningen…",
+      "viewerCountOne": "1 tittare",
+      "viewerCountOther": "{{count}} tittare",
+      "chat": "Chatt",
+      "leave": "Lämna"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Möteschatt",
+    "livestreamTitle": "Livesändningschatt",
+    "close": "Stäng",
+    "empty": "Inga meddelanden ännu.",
+    "placeholder": "Skriv till alla",
+    "send": "Skicka"
+  }
+}

@@ -1,5 +1,7 @@
 import { createContext, useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import * as authApi from '../services/api/auth';
+import i18n, { hasExplicitLanguageOverride, setAppLanguage } from '../i18n';
+import { isLocale } from '../i18n/locales';
 import type { PublicUser } from '../types';
 
 interface AuthContextValue {
@@ -12,6 +14,15 @@ interface AuthContextValue {
 
 export const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
+// Applies the account's saved locale on login/refresh, but only when the
+// user hasn't already picked a language explicitly on this device — an
+// on-device choice always wins (see setAppLanguage's isExplicit flag).
+async function syncAccountLocale(user: PublicUser | null) {
+  if (!user || !isLocale(user.locale) || user.locale === i18n.language) return;
+  if (await hasExplicitLanguageOverride()) return;
+  await setAppLanguage(user.locale, false);
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<PublicUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -19,6 +30,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const refresh = useCallback(async () => {
     const { user: current } = await authApi.getCurrentUser();
     setUser(current);
+    await syncAccountLocale(current);
   }, []);
 
   useEffect(() => {
@@ -28,6 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = useCallback(async (email: string, password: string) => {
     const { user: loggedInUser } = await authApi.login(email, password);
     setUser(loggedInUser);
+    await syncAccountLocale(loggedInUser);
   }, []);
 
   const logout = useCallback(async () => {

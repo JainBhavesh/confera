@@ -1,0 +1,230 @@
+{
+  "common": {
+    "cancel": "Zrušit",
+    "save": "Uložit",
+    "close": "Zavřít",
+    "back": "Zpět",
+    "done": "Hotovo",
+    "unknownHost": "Neznámý organizátor",
+    "unknown": "Neznámé",
+    "you": "Ty",
+    "goBack": "Zpět",
+    "resend": "Odeslat kód znovu",
+    "resendIn": "Odeslat znovu za {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Domů",
+    "meetings": "Schůzky",
+    "schedule": "Plán",
+    "actions": "Úkoly",
+    "library": "Knihovna"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Schůzky, které se samy zdokumentují.",
+      "title": "Přihlásit se",
+      "subtitle": "Vítej zpět.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "passwordLabel": "Heslo",
+      "forgotPassword": "Zapomněl jsi heslo?",
+      "submit": "Přihlásit se",
+      "or": "nebo",
+      "continueWithGoogle": "Pokračovat s Google",
+      "noAccount": "Nemáš účet? ",
+      "register": "Zaregistrovat se",
+      "genericError": "Přihlášení se nezdařilo. Zkus to znovu."
+    },
+    "register": {
+      "title": "Vytvořit účet",
+      "subtitle": "Dostupné pouze pokud tvá organizace povoluje registraci.",
+      "nameLabel": "Celé jméno",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "passwordLabel": "Heslo",
+      "submit": "Zaregistrovat se",
+      "haveAccount": "Už máš účet? ",
+      "signIn": "Přihlásit se",
+      "genericError": "Registrace se nezdařila. Zkus to znovu."
+    },
+    "verifyEmail": {
+      "title": "Ověř svůj e-mail",
+      "subtitle": "Zadej kód, který jsme odeslali na {{email}}.",
+      "codeLabel": "Ověřovací kód",
+      "codePlaceholder": "123456",
+      "submit": "Ověřit",
+      "resent": "Byl odeslán nový kód.",
+      "genericError": "Tento kód se nepodařilo ověřit. Zkus to znovu."
+    },
+    "forgotPassword": {
+      "title": "Obnovit heslo",
+      "requestSubtitle": "Zadej e-mail svého účtu a my ti pošleme kód pro obnovení.",
+      "resetSubtitle": "Zadej kód, který jsme odeslali na {{email}}, a zvol nové heslo.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "codeLabel": "Kód pro obnovení",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Nové heslo",
+      "requestSubmit": "Odeslat kód",
+      "resetSubmit": "Obnovit heslo",
+      "success": "Tvé heslo bylo obnoveno. Přihlas se novým heslem.",
+      "backToLogin": "Zpět na přihlášení",
+      "genericError": "Tento požadavek se nepodařilo zpracovat. Zkus to znovu."
+    }
+  },
+  "profile": {
+    "nameLabel": "Jméno",
+    "emailLabel": "E-mail",
+    "changePassword": "Změnit heslo",
+    "language": "Jazyk",
+    "logOut": "Odhlásit se",
+    "changePasswordTitle": "Změnit heslo",
+    "currentPasswordLabel": "Současné heslo",
+    "newPasswordLabel": "Nové heslo",
+    "passwordUpdated": "Tvé heslo bylo aktualizováno.",
+    "passwordTooShort": "Nové heslo musí mít alespoň 8 znaků.",
+    "genericError": "Heslo se nepodařilo změnit.",
+    "languageTitle": "Jazyk"
+  },
+  "dashboard": {
+    "search": "Hledat",
+    "profile": "Profil",
+    "greetingMorning": "Dobré ráno{{name}}",
+    "greetingAfternoon": "Dobré odpoledne{{name}}",
+    "greetingEvening": "Dobrý večer{{name}}",
+    "newMeeting": "Nová schůzka",
+    "joinWithId": "Připojit se pomocí ID",
+    "today": "Dnes",
+    "todayMeetings_one": "{{count}} schůzka",
+    "todayMeetings_few": "{{count}} schůzky",
+    "todayMeetings_other": "{{count}} schůzek",
+    "openActions": "Otevřené úkoly",
+    "upNext": "Další na řadě",
+    "schedule": "Plán",
+    "nothingScheduled": "Nic není naplánováno. Začni schůzku výše.",
+    "live": "Živě",
+    "join": "Připojit se",
+    "view": "Zobrazit",
+    "thisWeek": "Tento týden",
+    "thisWeekValue_one": "{{count}} schůzka",
+    "thisWeekValue_few": "{{count}} schůzky",
+    "thisWeekValue_other": "{{count}} schůzek",
+    "thisWeekSub": "dokončeno a k dispozici v tvé knihovně.",
+    "joinModalTitle": "Připojit se pomocí ID schůzky",
+    "joinModalPlaceholder": "ID schůzky"
+  },
+  "meetings": {
+    "list": {
+      "title": "Schůzky",
+      "filterAll": "Všechny",
+      "filterLive": "Živě",
+      "filterUpcoming": "Nadcházející",
+      "filterEnded": "Ukončené",
+      "loadError": "Schůzky se nepodařilo načíst.",
+      "empty": "V tomto filtru nejsou žádné schůzky."
+    },
+    "item": {
+      "liveNow": "Nyní živě",
+      "today": "Dnes",
+      "joinNow": "Připojit se nyní"
+    },
+    "detail": {
+      "back": "Zpět",
+      "share": "Sdílet poznámky",
+      "more": "Více",
+      "tabSummary": "Shrnutí",
+      "tabActions": "Úkoly · {{count}}",
+      "tabTranscript": "Přepis",
+      "audioRecording": "Zvukový záznam",
+      "recordingAvailable": "K dispozici",
+      "recordingTranscribed": "{{duration}} · přepsáno",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Shrnutí",
+      "summaryPending": "Poznámky se stále generují.",
+      "summaryEmpty": "Pro tuto schůzku zatím není k dispozici shrnutí.",
+      "actionsEmpty": "Pro tuto schůzku nejsou žádné úkoly.",
+      "transcriptEmpty": "Pro tuto schůzku zatím není k dispozici přepis.",
+      "shareNotes": "Sdílet poznámky",
+      "shareFallbackTitle": "Schůzka",
+      "shareFallbackSummary": "Shrnutí zatím nebylo vygenerováno."
+    },
+    "room": {
+      "title": "Schůzka",
+      "connecting": "Připojování ke schůzce…",
+      "notConfigured": "Server schůzky není nakonfigurován.",
+      "joinError": "Ke schůzce se nepodařilo připojit.",
+      "goBack": "Zpět",
+      "mute": "Ztlumit",
+      "unmute": "Zrušit ztlumení",
+      "camera": "Kamera",
+      "people": "Účastníci",
+      "peopleCount": "Účastníci ({{count}})",
+      "chat": "Chat",
+      "end": "Opustit",
+      "guest": "Host"
+    }
+  },
+  "schedule": {
+    "title": "Plán",
+    "titleLabel": "Název",
+    "titlePlaceholder": "Týdenní produktová synchronizace",
+    "dateLabel": "Datum",
+    "datePlaceholder": "RRRR-MM-DD",
+    "timeLabel": "Čas",
+    "timePlaceholder": "HH:MM",
+    "repeats": "Opakování",
+    "recurrenceOnce": "Jednou",
+    "recurrenceDaily": "Denně",
+    "recurrenceWeekly": "Týdně",
+    "recurrenceMonthly": "Měsíčně",
+    "submit": "Naplánovat schůzku",
+    "upcoming": "Nadcházející",
+    "upcomingEmpty": "Zatím nic není naplánováno.",
+    "titleRequired": "Zadej schůzce název.",
+    "invalidDateTime": "Zadej platné datum (RRRR-MM-DD) a čas (HH:MM).",
+    "genericError": "Tuto schůzku se nepodařilo naplánovat."
+  },
+  "actions": {
+    "title": "Úkoly",
+    "subtitle": "{{open}} otevřených · {{done}} dokončených tento měsíc",
+    "scopeAssigned": "Přiřazené mně",
+    "scopeCreated": "Vytvořené mnou",
+    "scopeAll": "Všechny",
+    "empty": "Zde nejsou žádné úkoly.",
+    "overdue": "Po termínu"
+  },
+  "library": {
+    "title": "Knihovna",
+    "subtitle": "Nahrávky a poznámky z ukončených schůzek.",
+    "empty": "Zatím žádné ukončené schůzky.",
+    "recording": " · nahrávka"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Živé přenosy",
+      "loadError": "Přenosy se nepodařilo načíst.",
+      "empty": "Zatím žádné živé přenosy."
+    },
+    "viewer": {
+      "notConfigured": "Server přenosu není nakonfigurován.",
+      "notLive": "Tento přenos právě teď neběží živě.",
+      "goBack": "Zpět",
+      "connecting": "Připojování…",
+      "waitingForHost": "Čeká se, až organizátor spustí přenos…",
+      "viewerCountOne": "1 divák",
+      "viewerCountOther": "{{count}} diváků",
+      "chat": "Chat",
+      "leave": "Opustit"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Chat schůzky",
+    "livestreamTitle": "Chat přenosu",
+    "close": "Zavřít",
+    "empty": "Zatím žádné zprávy.",
+    "placeholder": "Napsat všem",
+    "send": "Odeslat"
+  }
+}

@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { color, font } from '../../theme';
 
 export function ViewerCountBadge({ count }: { count: number }) {
+  const { t } = useTranslation();
   return (
     <View style={styles.badge}>
-      <Text style={styles.text}>{count === 1 ? '1 viewer' : `${count} viewers`}</Text>
+      <Text style={styles.text}>
+        {count === 1 ? t('livestreams.viewer.viewerCountOne') : t('livestreams.viewer.viewerCountOther', { count })}
+      </Text>
     </View>
   );
 }

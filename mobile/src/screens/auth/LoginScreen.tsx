@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
 import type { AuthStackParamList } from '../../navigation/types';
 import { ApiError } from '../../services/api/client';
@@ -22,6 +23,7 @@ import { color, control, font, space, textMuted } from '../../theme';
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
 export function LoginScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,7 +38,7 @@ export function LoginScreen({ navigation }: Props) {
     try {
       await login(email.trim(), password);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Unable to sign in. Try again.');
+      setError(err instanceof ApiError ? err.message : t('auth.login.genericError'));
     } finally {
       setSubmitting(false);
     }
@@ -49,20 +51,20 @@ export function LoginScreen({ navigation }: Props) {
           <View style={styles.hero}>
             <View style={styles.brandRow}>
               <Image source={require('../../../assets/logo.png')} style={styles.brandMark} resizeMode="contain" />
-              <Text style={styles.brandName}>CONFERA</Text>
+              <Text style={styles.brandName}>{t('auth.brand')}</Text>
             </View>
             <View style={styles.brandUnderline} />
-            <Text style={styles.headline}>Meetings that write themselves down.</Text>
+            <Text style={styles.headline}>{t('auth.login.headline')}</Text>
           </View>
 
           <View style={styles.body}>
-            <Text style={styles.title}>Log in</Text>
-            <Text style={styles.subtitle}>Welcome back.</Text>
+            <Text style={styles.title}>{t('auth.login.title')}</Text>
+            <Text style={styles.subtitle}>{t('auth.login.subtitle')}</Text>
 
-            <Text style={styles.label}>Email</Text>
+            <Text style={styles.label}>{t('auth.login.emailLabel')}</Text>
             <TextInput
               style={styles.input}
-              placeholder="you@company.com"
+              placeholder={t('auth.login.emailPlaceholder')}
               placeholderTextColor={textMuted(0.45)}
               autoCapitalize="none"
               keyboardType="email-address"
@@ -70,7 +72,7 @@ export function LoginScreen({ navigation }: Props) {
               onChangeText={setEmail}
             />
 
-            <Text style={styles.label}>Password</Text>
+            <Text style={styles.label}>{t('auth.login.passwordLabel')}</Text>
             <View style={[styles.passwordField, passwordFocused && styles.passwordFieldFocused]}>
               <TextInput
                 style={styles.passwordInput}
@@ -92,8 +94,8 @@ export function LoginScreen({ navigation }: Props) {
               </Pressable>
             </View>
 
-            <Pressable style={styles.forgotLink}>
-              <Text style={styles.link}>Forgot password?</Text>
+            <Pressable style={styles.forgotLink} onPress={() => navigation.navigate('ForgotPassword')}>
+              <Text style={styles.link}>{t('auth.login.forgotPassword')}</Text>
             </Pressable>
 
             {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -102,13 +104,13 @@ export function LoginScreen({ navigation }: Props) {
               {submitting ? (
                 <ActivityIndicator color={color.white} />
               ) : (
-                <Text style={styles.primaryButtonText}>Log in</Text>
+                <Text style={styles.primaryButtonText}>{t('auth.login.submit')}</Text>
               )}
             </Pressable>
 
             <View style={styles.dividerRow}>
               <View style={styles.dividerLine} />
-              <Text style={styles.dividerText}>or</Text>
+              <Text style={styles.dividerText}>{t('auth.login.or')}</Text>
               <View style={styles.dividerLine} />
             </View>
 
@@ -116,14 +118,14 @@ export function LoginScreen({ navigation }: Props) {
                 /api/auth/oauth/google requires a WebBrowser session, not a bare fetch). */}
             <Pressable style={styles.secondaryButton} disabled>
               <GoogleIcon size={20} />
-              <Text style={styles.secondaryButtonText}>Continue with Google</Text>
+              <Text style={styles.secondaryButtonText}>{t('auth.login.continueWithGoogle')}</Text>
             </Pressable>
 
             <View style={styles.footer}>
               <Text style={styles.footerText}>
-                No account?{' '}
+                {t('auth.login.noAccount')}
                 <Text style={styles.link} onPress={() => navigation.navigate('Register')}>
-                  Register
+                  {t('auth.login.register')}
                 </Text>
               </Text>
             </View>

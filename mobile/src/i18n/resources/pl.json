@@ -1,0 +1,231 @@
+{
+  "common": {
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "close": "Zamknij",
+    "back": "Wstecz",
+    "done": "Gotowe",
+    "unknownHost": "Nieznany gospodarz",
+    "unknown": "Nieznany",
+    "you": "Ty",
+    "goBack": "Wróć",
+    "resend": "Wyślij kod ponownie",
+    "resendIn": "Wyślij ponownie za {{seconds}}s"
+  },
+  "tabs": {
+    "home": "Start",
+    "meetings": "Spotkania",
+    "schedule": "Harmonogram",
+    "actions": "Zadania",
+    "library": "Biblioteka"
+  },
+  "auth": {
+    "brand": "CONFERA",
+    "login": {
+      "headline": "Spotkania, które same się dokumentują.",
+      "title": "Zaloguj się",
+      "subtitle": "Witaj ponownie.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "passwordLabel": "Hasło",
+      "forgotPassword": "Nie pamiętasz hasła?",
+      "submit": "Zaloguj się",
+      "or": "lub",
+      "continueWithGoogle": "Kontynuuj z Google",
+      "noAccount": "Nie masz konta? ",
+      "register": "Zarejestruj się",
+      "genericError": "Nie udało się zalogować. Spróbuj ponownie."
+    },
+    "register": {
+      "title": "Utwórz konto",
+      "subtitle": "Dostępne tylko wtedy, gdy Twoja organizacja zezwala na rejestrację.",
+      "nameLabel": "Imię i nazwisko",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "passwordLabel": "Hasło",
+      "submit": "Zarejestruj się",
+      "haveAccount": "Masz już konto? ",
+      "signIn": "Zaloguj się",
+      "genericError": "Nie udało się zarejestrować. Spróbuj ponownie."
+    },
+    "verifyEmail": {
+      "title": "Zweryfikuj swój e-mail",
+      "subtitle": "Wprowadź kod, który wysłaliśmy na {{email}}.",
+      "codeLabel": "Kod weryfikacyjny",
+      "codePlaceholder": "123456",
+      "submit": "Zweryfikuj",
+      "resent": "Wysłano nowy kod.",
+      "genericError": "Nie udało się zweryfikować tego kodu. Spróbuj ponownie."
+    },
+    "forgotPassword": {
+      "title": "Zresetuj hasło",
+      "requestSubtitle": "Podaj e-mail swojego konta, a wyślemy Ci kod resetujący.",
+      "resetSubtitle": "Wprowadź kod, który wysłaliśmy na {{email}}, i wybierz nowe hasło.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@firma.com",
+      "codeLabel": "Kod resetujący",
+      "codePlaceholder": "123456",
+      "newPasswordLabel": "Nowe hasło",
+      "requestSubmit": "Wyślij kod resetujący",
+      "resetSubmit": "Zresetuj hasło",
+      "success": "Twoje hasło zostało zresetowane. Zaloguj się nowym hasłem.",
+      "backToLogin": "Powrót do logowania",
+      "genericError": "Nie udało się przetworzyć tego żądania. Spróbuj ponownie."
+    }
+  },
+  "profile": {
+    "nameLabel": "Imię",
+    "emailLabel": "E-mail",
+    "changePassword": "Zmień hasło",
+    "language": "Język",
+    "logOut": "Wyloguj się",
+    "changePasswordTitle": "Zmień hasło",
+    "currentPasswordLabel": "Obecne hasło",
+    "newPasswordLabel": "Nowe hasło",
+    "passwordUpdated": "Twoje hasło zostało zaktualizowane.",
+    "passwordTooShort": "Nowe hasło musi mieć co najmniej 8 znaków.",
+    "genericError": "Nie udało się zmienić hasła.",
+    "languageTitle": "Język"
+  },
+  "dashboard": {
+    "search": "Szukaj",
+    "profile": "Profil",
+    "greetingMorning": "Dzień dobry{{name}}",
+    "greetingAfternoon": "Dzień dobry{{name}}",
+    "greetingEvening": "Dobry wieczór{{name}}",
+    "newMeeting": "Nowe spotkanie",
+    "joinWithId": "Dołącz z ID",
+    "today": "Dziś",
+    "todayMeetings_one": "{{count}} spotkanie",
+    "todayMeetings_few": "{{count}} spotkania",
+    "todayMeetings_other": "{{count}} spotkań",
+    "openActions": "Otwarte zadania",
+    "upNext": "Wkrótce",
+    "schedule": "Harmonogram",
+    "nothingScheduled": "Nic nie zaplanowano. Rozpocznij spotkanie powyżej.",
+    "live": "Na żywo",
+    "join": "Dołącz",
+    "view": "Zobacz",
+    "thisWeek": "W tym tygodniu",
+    "thisWeekValue_one": "{{count}} spotkanie",
+    "thisWeekValue_few": "{{count}} spotkania",
+    "thisWeekValue_other": "{{count}} spotkań",
+    "thisWeekSub": "zakończone i dostępne w Twojej bibliotece.",
+    "joinModalTitle": "Dołącz z ID spotkania",
+    "joinModalPlaceholder": "ID spotkania"
+  },
+  "meetings": {
+    "list": {
+      "title": "Spotkania",
+      "filterAll": "Wszystkie",
+      "filterLive": "Na żywo",
+      "filterUpcoming": "Nadchodzące",
+      "filterEnded": "Zakończone",
+      "loadError": "Nie udało się wczytać spotkań.",
+      "empty": "Brak spotkań w tym filtrze."
+    },
+    "item": {
+      "liveNow": "Na żywo teraz",
+      "today": "Dziś",
+      "joinNow": "Dołącz teraz"
+    },
+    "detail": {
+      "back": "Wstecz",
+      "share": "Udostępnij notatki",
+      "more": "Więcej",
+      "tabSummary": "Podsumowanie",
+      "tabActions": "Zadania · {{count}}",
+      "tabTranscript": "Transkrypcja",
+      "audioRecording": "Nagranie audio",
+      "recordingAvailable": "Dostępne",
+      "recordingTranscribed": "{{duration}} · transkrybowane",
+      "durationMinutes": "{{count}} min",
+      "summaryHeading": "Podsumowanie",
+      "summaryPending": "Notatki są jeszcze generowane.",
+      "summaryEmpty": "Dla tego spotkania nie ma jeszcze podsumowania.",
+      "actionsEmpty": "Brak zadań dla tego spotkania.",
+      "transcriptEmpty": "Dla tego spotkania nie ma jeszcze transkrypcji.",
+      "shareNotes": "Udostępnij notatki",
+      "shareFallbackTitle": "Spotkanie",
+      "shareFallbackSummary": "Podsumowanie nie zostało jeszcze wygenerowane."
+    },
+    "room": {
+      "title": "Spotkanie",
+      "connecting": "Łączenie ze spotkaniem…",
+      "notConfigured": "Serwer spotkań nie jest skonfigurowany.",
+      "joinError": "Nie udało się dołączyć do spotkania.",
+      "goBack": "Wróć",
+      "mute": "Wycisz",
+      "unmute": "Wyłącz wyciszenie",
+      "camera": "Kamera",
+      "people": "Uczestnicy",
+      "peopleCount": "Uczestnicy ({{count}})",
+      "chat": "Czat",
+      "end": "Opuść",
+      "guest": "Gość"
+    }
+  },
+  "schedule": {
+    "title": "Harmonogram",
+    "titleLabel": "Tytuł",
+    "titlePlaceholder": "Cotygodniowa synchronizacja produktu",
+    "dateLabel": "Data",
+    "datePlaceholder": "RRRR-MM-DD",
+    "timeLabel": "Godzina",
+    "timePlaceholder": "GG:MM",
+    "repeats": "Powtarzanie",
+    "recurrenceOnce": "Raz",
+    "recurrenceDaily": "Codziennie",
+    "recurrenceWeekly": "Co tydzień",
+    "recurrenceMonthly": "Co miesiąc",
+    "submit": "Zaplanuj spotkanie",
+    "upcoming": "Nadchodzące",
+    "upcomingEmpty": "Nic jeszcze nie zaplanowano.",
+    "titleRequired": "Nadaj spotkaniu tytuł.",
+    "invalidDateTime": "Wprowadź prawidłową datę (RRRR-MM-DD) i godzinę (GG:MM).",
+    "genericError": "Nie udało się zaplanować tego spotkania."
+  },
+  "actions": {
+    "title": "Zadania",
+    "subtitle": "{{open}} otwartych · {{done}} ukończonych w tym miesiącu",
+    "scopeAssigned": "Przypisane do mnie",
+    "scopeCreated": "Utworzone przeze mnie",
+    "scopeAll": "Wszystkie",
+    "empty": "Brak zadań tutaj.",
+    "overdue": "Zaległe"
+  },
+  "library": {
+    "title": "Biblioteka",
+    "subtitle": "Nagrania i notatki z zakończonych spotkań.",
+    "empty": "Brak zakończonych spotkań.",
+    "recording": " · nagranie"
+  },
+  "livestreams": {
+    "list": {
+      "title": "Transmisje na żywo",
+      "loadError": "Nie udało się wczytać transmisji.",
+      "empty": "Brak transmisji na żywo."
+    },
+    "viewer": {
+      "notConfigured": "Serwer transmisji nie jest skonfigurowany.",
+      "notLive": "Ta transmisja nie jest teraz na żywo.",
+      "goBack": "Wróć",
+      "connecting": "Łączenie…",
+      "waitingForHost": "Oczekiwanie, aż gospodarz rozpocznie transmisję…",
+      "viewerCountOne": "1 widz",
+      "viewerCountFew": "{{count}} widzów",
+      "viewerCountOther": "{{count}} widzów",
+      "chat": "Czat",
+      "leave": "Opuść"
+    }
+  },
+  "chat": {
+    "meetingTitle": "Czat spotkania",
+    "livestreamTitle": "Czat transmisji",
+    "close": "Zamknij",
+    "empty": "Brak wiadomości.",
+    "placeholder": "Napisz do wszystkich",
+    "send": "Wyślij"
+  }
+}
