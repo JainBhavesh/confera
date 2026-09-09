@@ -52,6 +52,10 @@ services:
     container_name: conferra-cloudflared
     restart: unless-stopped
     network_mode: host
+    volumes: ["./cloudflared-ingress.yml:/etc/cloudflared/config.yml:ro"]
     # ${TUNNEL_TOKEN} is substituted by docker compose from .env in this
-    # directory at parse time — not injected as a container env var.
-    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    # directory at parse time — not injected as a container env var. The
+    # --config file supplies ingress rules locally rather than relying on
+    # Cloudflare's remote "Public Hostname" dashboard config, which proved
+    # unreliable to configure via API/dashboard for this account.
+    command: tunnel --no-autoupdate --config /etc/cloudflared/config.yml run --token ${TUNNEL_TOKEN}
