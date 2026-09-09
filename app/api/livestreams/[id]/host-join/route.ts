@@ -38,7 +38,9 @@ export async function POST(_request: NextRequest, { params }: RouteContext) {
 
     return NextResponse.json({
       token,
-      serverUrl: process.env.LIVEKIT_WS_URL,
+      // NEXT_PUBLIC_LIVEKIT_WS_URL, not LIVEKIT_WS_URL — see meetings'
+      // join/route.ts for the client/server URL split this depends on.
+      serverUrl: process.env.NEXT_PUBLIC_LIVEKIT_WS_URL,
       roomName: livestream.livekitRoomName,
       livestream
     });

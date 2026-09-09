@@ -39,7 +39,12 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
 
       return NextResponse.json({
         token,
-        serverUrl: process.env.LIVEKIT_WS_URL,
+        // NEXT_PUBLIC_LIVEKIT_WS_URL, not LIVEKIT_WS_URL — this is handed to
+        // the browser to open a WebSocket directly, so it must be the
+        // public LiveKit URL. LIVEKIT_WS_URL is the server-side one used
+        // for RoomServiceClient/token minting and can point at an internal
+        // address the browser could never resolve.
+        serverUrl: process.env.NEXT_PUBLIC_LIVEKIT_WS_URL,
         roomName: meeting.livekitRoomName,
         meeting,
         isGuest: false
@@ -92,7 +97,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
 
     return NextResponse.json({
       token,
-      serverUrl: process.env.LIVEKIT_WS_URL,
+      serverUrl: process.env.NEXT_PUBLIC_LIVEKIT_WS_URL,
       roomName: meeting.livekitRoomName,
       meeting,
       isGuest: true,

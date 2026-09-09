@@ -18,6 +18,10 @@ RUN npm run build
 FROM node:20-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
+# Prisma's query engine needs OpenSSL to detect libssl and picks the wrong
+# version without it on a bare bookworm-slim image.
+RUN apt-get update -y && apt-get install -y --no-install-recommends openssl \
+  && rm -rf /var/lib/apt/lists/*
 RUN groupadd --system --gid 1001 nodejs \
   && useradd --system --uid 1001 --gid nodejs nextjs
 
@@ -25,6 +29,7 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 COPY --from=builder /app/next.config.ts ./next.config.ts
 
 RUN chown -R nextjs:nodejs /app
