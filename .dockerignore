@@ -1,0 +1,13 @@
+node_modules
+.next
+.git
+.env
+.env.*
+!.env.example
+mobile
+ai-notes
+recordings
+docs
+*.log
+.DS_Store
+.vscode-server
