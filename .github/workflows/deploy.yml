@@ -6,8 +6,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  APP_IMAGE: ghcr.io/${{ github.repository_owner }}/confera-app
-  AI_NOTES_IMAGE: ghcr.io/${{ github.repository_owner }}/confera-ai-notes
+  APP_IMAGE: ghcr.io/jainbhavesh/confera-app
+  AI_NOTES_IMAGE: ghcr.io/jainbhavesh/confera-ai-notes
 
 jobs:
   test:
