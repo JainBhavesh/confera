@@ -10,6 +10,12 @@ RUN npm ci
 
 FROM node:20-bookworm-slim AS builder
 WORKDIR /app
+# Must be present before `prisma generate` — it picks the query engine
+# binary target by detecting the openssl actually installed at generate
+# time, and a mismatch with the runner stage's openssl breaks every query
+# at runtime ("Prisma Client could not locate the Query Engine").
+RUN apt-get update -y && apt-get install -y --no-install-recommends openssl \
+  && rm -rf /var/lib/apt/lists/*
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npx prisma generate
